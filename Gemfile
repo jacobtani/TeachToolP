@@ -4,7 +4,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use pg as the database for Active Record
-#gem 'pg',  '0.18.3'
+gem 'pg' #-- --with-pg-config=/usr/local/bin/pg_config
+#bootstrap sass
+gem 'bootstrap-sass', '~> 3.3.5'         
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -16,8 +18,6 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'health_check',         '1.5.0'             # Simple health checks
 gem 'puma'                                      # Simple, fast threaded and concurrent HTTP server
 
-#bootstrap sass
-gem 'bootstrap-sass', :require => false                 
 #automatically adds the proper vendor prefixes to your CSS code when it is compiled.
 gem 'autoprefixer-rails'                                
 gem 'font-awesome-sass', '~> 4.3.0' 
