@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028094330) do
+ActiveRecord::Schema.define(version: 20151028095002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 20151028094330) do
     t.datetime "end_date"
     t.boolean  "includes_free_trial"
   end
+
+  create_table "packs", force: :cascade do |t|
+    t.string  "name"
+    t.text    "description"
+    t.text    "action_required"
+    t.integer "subject_id",      null: false
+    t.boolean "in_stock?"
+  end
+
+  add_index "packs", ["subject_id"], name: "index_packs_on_subject_id", using: :btree
 
   create_table "packtypes", force: :cascade do |t|
     t.integer "type"
