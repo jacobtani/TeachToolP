@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028085900) do
+ActiveRecord::Schema.define(version: 20151028091210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "enrolments", force: :cascade do |t|
+    t.integer  "person_id",       null: false
+    t.datetime "date"
+    t.integer  "subject_id",      null: false
+    t.datetime "activation_date"
+    t.float    "fees"
+    t.boolean  "deferred?"
+    t.datetime "start_date"
+  end
+
+  add_index "enrolments", ["person_id"], name: "index_enrolments_on_person_id", using: :btree
+  add_index "enrolments", ["subject_id"], name: "index_enrolments_on_subject_id", using: :btree
 
   create_table "offers", force: :cascade do |t|
     t.string   "offer_name"
