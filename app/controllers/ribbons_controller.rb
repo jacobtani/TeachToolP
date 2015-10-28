@@ -1,4 +1,3 @@
-
 class RibbonsController < ApplicationController
 
   def index
