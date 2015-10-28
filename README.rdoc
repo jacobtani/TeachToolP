@@ -1,7 +1,6 @@
-== README
+== Our Company Tuition Centre
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a web app that will help family members setup an online tutoring centre.
 
 Things you may want to cover:
 
