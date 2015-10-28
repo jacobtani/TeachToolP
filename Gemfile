@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 # Use pg as the database for Active Record
 gem 'pg' #-- --with-pg-config=/usr/local/bin/pg_config
+#authentication
+gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.5'         
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
