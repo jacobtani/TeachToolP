@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028084859) do
+ActiveRecord::Schema.define(version: 20151028085900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(version: 20151028084859) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.boolean  "includes_free_trial"
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "subject_name"
+    t.float  "fee"
+    t.text   "grades",       default: [], array: true
   end
 
   create_table "users", force: :cascade do |t|
