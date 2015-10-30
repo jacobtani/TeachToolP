@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:update, :show, :destroy]
+  before_action :admin_only, only: [:new, :create, :update, :destroy]
   
   def index
     @users = User.all
   end
 
   def show
-    @user = User.find params[:id]
+    @user = User.find(params[:id])
   end
 
   def new
@@ -14,22 +16,21 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
-    respond_to do |format|
-      if @user.save
-        format.js { redirect_turbo user_path(@user) }
-      else
-        #format.js { render partial: 'shared/ajax_form_errors', locals: {model: @user}, status: 500 }
-      end
-    end
+    if @user.save
+      redirect_to root_path
+    else
+      redirect_to root_path
   end
 
-  def update
+def update
     respond_to do |format|
       if @user.update_attributes user_params
         flash[:success] = "User was updated successfully."
-        format.js {}
+        redirect_to root_path
+        #format.js {}
       else
-       # format.js { render partial: 'shared/ajax_form_errors', locals: {model: @user}, status: 500 }
+        redirect_to root_path
+        #format.js { render partial: 'shared/ajax_form_errors', locals: {model: @site}, status: 500 }
       end
     end
   end
@@ -37,7 +38,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    #redirect_to users_path
+    redirect_to root_path
   end
 
   private 
@@ -45,5 +46,11 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :surname, :role, :email, :password)
   end
+
+  def set_user
+    @user = User.find params[:id] rescue nil
+    return not_found! unless @user
+  end
+
 
 end
