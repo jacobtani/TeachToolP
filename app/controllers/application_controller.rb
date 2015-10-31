@@ -11,8 +11,16 @@ class ApplicationController < ActionController::Base
   # devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :current_password, :gender }
   end
 
-  def is_admin
-    !current_user.nil? && current_user.role == 'admin'
+  def admin_only
+    user_signed_in? && current_user.role == 'admin'
+  end
+
+  def priviliged_only
+    user_signed_in? && current_user.role == 'parent'  || current_user.role == 'admin'
+  end
+
+  def student_only
+    user_signed_in && current_user.role == 'student'
   end
 
 end
