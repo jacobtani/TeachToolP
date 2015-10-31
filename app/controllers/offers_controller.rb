@@ -1,4 +1,5 @@
  class OffersController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_offer, only: [:update, :show, :destroy]
   before_action :admin_only, only: [:new, :create, :update, :destroy]
   

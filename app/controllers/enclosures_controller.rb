@@ -1,4 +1,5 @@
  class EnclosuresController < ApplicationController
+  before_action :authenticate_user!  
   before_action :set_enclosure, only: [:update, :show, :destroy]
   before_action :admin_only, only: [:new, :create, :update, :destroy]
   
