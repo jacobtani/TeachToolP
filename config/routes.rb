@@ -1,8 +1,20 @@
 Rails.application.routes.draw do
    
   devise_for :users
-   root 'pages#home'
-   resources :users
+  root 'pages#home'
+   
+  resources :users do 
+    resources :enrolments
+  end
+
+  resources :packs do
+    resources :enclosures
+  end
+
+  resources :ribbons
+  resources :subjects
+  resources :offers
+
   controller :pages do
     get :home
     get :about
