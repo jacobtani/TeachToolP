@@ -1,6 +1,6 @@
  class EnrolmentsController < ApplicationController
   before_action :set_enrolment, only: [:update, :show, :destroy]
-  before_action :admin_only, only: [:new, :create, :update, :destroy]
+  before_action :priviliged_only, only: [:new, :create, :update, :destroy]
   
   def index
     @enrolments = Enrolment.all
