@@ -21,9 +21,10 @@
       redirect_to root_path
     else
       redirect_to root_path
+    end
   end
 
-    def update
+  def update
     respond_to do |format|
       if @offer.update_attributes offer_params
         flash[:success] = "Offer was updated successfully."

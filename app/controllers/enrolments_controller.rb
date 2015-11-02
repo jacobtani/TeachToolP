@@ -21,9 +21,10 @@
       redirect_to root_path
     else
       redirect_to root_path
+    end
   end
 
-    def update
+  def update
     respond_to do |format|
       if @enrolment.update_attributes enrolment_params
         flash[:success] = "Enrolment was updated successfully."

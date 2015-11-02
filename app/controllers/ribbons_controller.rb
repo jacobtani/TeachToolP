@@ -21,9 +21,13 @@
       redirect_to root_path
     else
       redirect_to root_path
+    end
   end
 
-    def update
+  def edit
+  end
+
+  def update
     respond_to do |format|
       if @ribbon.update_attributes ribbon_params
         flash[:success] = "Ribbon was updated successfully."
@@ -51,6 +55,5 @@
       @ribbon = Ribbon.find params[:id] rescue nil
       return not_found! unless @ribbon
     end
-
 
 end

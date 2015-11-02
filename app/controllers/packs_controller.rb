@@ -21,9 +21,13 @@ class PacksController < ApplicationController
       redirect_to root_path
     else
       redirect_to root_path
+    end
   end
 
-    def update
+  def edit
+  end
+  
+  def update
     respond_to do |format|
       if @pack.update_attributes pack_params
         flash[:success] = "Pack was updated successfully."
