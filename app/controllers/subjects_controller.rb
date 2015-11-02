@@ -19,7 +19,7 @@
     respond_to do |format|
       if @subject.save
         flash[:success] = "Subject was created successfully."
-        format.js { redirect_turbo subjects_path}
+        format.js { redirect_turbo admin_path}
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @subject}, status: 500 }
       end
@@ -33,7 +33,7 @@
     respond_to do |format|
       if @subject.update_attributes subject_params
         flash[:success] = "Subject was updated successfully."
-        format.js {redirect_turbo subjects_path}
+        format.js {redirect_turbo admin_path}
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @site}, status: 500 }
       end
