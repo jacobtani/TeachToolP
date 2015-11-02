@@ -1,0 +1,5 @@
+//actions to do when submit button of edit subject form has been clicked
+$("#edit-subject-link").removeAttr('disabled', 'disabled');
+$("#delete-subject-link").attr('data-confirm', 'Are you sure you want to delete <%=@subject.name%> ?')
+$("#edit-subject-form").addClass('hidden');
+$(document).trigger('subject:form_disabled');
