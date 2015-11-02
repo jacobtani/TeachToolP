@@ -1,0 +1,35 @@
+<div class = 'container'>
+  <h2> Packs</h2>
+  <div class= 'pull-right'>
+    <%= link_to 'Add Pack', new_pack_path, 
+                class: "btn btn-primary", id: 'new-pack-link' %>
+  </div>
+  <% @packs = Pack.all if @packs.nil? %> 
+  <table class = 'table tb-striped'>
+    <thead>
+      <th> Pack Name </th>
+      <th> Description </th>
+      <th> Action Required </th>
+      <th> Subject </th>
+      <th> In Stock </th>
+      <% if current_user.role == 'parent' %>
+        <th> Administration </th>
+      <%end%>
+    </thead>
+    <% @packs.each do |pack| %>
+      <tr>
+        <td> <%= pack.name %> </td>
+        <td> <%= pack.description %> </td>
+        <td> <%= pack.action_required %> </td>
+        <td> <%= pack.subject_id %> </td>
+        <% if current_user.role == 'parent' %>
+          <td> 
+            <%= link_to 'Edit Pack', edit_pack_path(pack), class: "btn btn-success", id: 'edit-pack-link' %> 
+            <%= link_to 'Delete Pack', pack_path(pack), method: :delete,
+                  class: "btn btn-danger", id: 'delete-pack-link' %>
+          </td>
+        <%end%>
+      </tr>
+    <%end%>
+  </table>
+</div>
