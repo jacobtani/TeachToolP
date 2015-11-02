@@ -33,8 +33,8 @@
         <td> <%= subject.grades %> </td>
         <% if current_user.role == 'parent' %>
           <td> 
-            <%= link_to 'Edit Subject', edit_subject_path(id: subject.id), remote: true, class: "btn btn-success", id: 'edit-subject-link' %> 
-            <%= link_to 'Delete Subject', subject_path(subject), method: :delete,
+            <%= link_to 'Edit', edit_subject_path(id: subject.id), remote: true, class: "btn btn-success", id: 'edit-subject-link' %> 
+            <%= link_to 'Delete', subject_path(subject), method: :delete,
                 class: "btn btn-danger", id: 'delete-subject-link' %>
           </td>
         <%end%>
