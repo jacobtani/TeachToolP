@@ -42,7 +42,7 @@
 
   def destroy
     @subject.destroy
-    redirect_to subjects_path
+    redirect_to admin_path
   end
 
   private
