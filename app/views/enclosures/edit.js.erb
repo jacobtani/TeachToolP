@@ -1,0 +1,32 @@
+//do the following actions when editing an enclosure
+$("#new-subject-form").addClass('hidden');
+$("#edit-subject-form").addClass('hidden');
+$("#new-pack-form").addClass('hidden');
+$("#edit-pack-form").addClass('hidden');
+$("#new-offer-form").addClass('hidden');
+$("#edit-offer-form").addClass('hidden');
+$("#new-ribbon-form").addClass('hidden');
+$("#edit-ribbon-form").addClass('hidden');
+$("#new-enclosure-form").addClass('hidden');
+$("#edit-enclosure-link").attr('disabled', 'disabled');
+$("#edit-enclosure-form").removeClass('hidden');
+$("#edit-enclosure-form").html("<%= j render('form', enclosure: @enclosure, remote_mode: true, title: 'Edit Enclosure', path: enclosure_path(@enclosure) ) %>");
+$(document).trigger('init_placeholder');
+//if click outside the form, close it and make the button enabled
+var enclosure = "#edit_enclosure_" + <%=@enclosure.id%>;
+var container = $(enclosure);
+
+$(document).mouseup(function (e) {
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+      if ( !$("#new-enclosure-link").is(e.target) ) {
+        container.hide();
+      };
+      $("#edit-enclosure-link").removeAttr('disabled', 'disabled');
+    }
+});
+
+//if cancel button is clicked, make button enabled
+$("#add-enclosure-cancel-button").on("click", function () {
+  $("#edit-enclosure-link").removeAttr('disabled', 'disabled');
+  container.hide();
+});
