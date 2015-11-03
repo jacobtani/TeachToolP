@@ -1,0 +1,24 @@
+//do the following actions when creating a new pack
+$("#new-subject-form").addClass('hidden');
+$("#edit-subject-form").addClass('hidden');
+$("#edit-pack-form").addClass('hidden');
+$("#new-offer-form").addClass('hidden');
+$("#edit-offer-form").addClass('hidden');
+$("#new-pack-form").removeClass('hidden');
+$("#new-pack-form").html('<%= j render("form", pack: @pack, title: "Add Pack", path: packs_path(@pack)) %>')
+$("#new-pack-link").attr('disabled', 'disabled');
+$(document).trigger('init_placeholder');
+$(".new-pack-form").addClass('hidden');
+
+//if click outside the form, close it and make the button enabled
+$(document).mouseup(function (e) {
+    var container = $("#new-pack-form");
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        container.hide();
+	       $("#new-pack-link").removeAttr('disabled', 'disabled');
+    }
+});
+//if cancel button is clicked, make button enabled
+$("#add-pack-cancel-button").on("click", function () {
+	$("#new-pack-link").removeAttr('disabled', 'disabled');
+});
