@@ -1,0 +1,26 @@
+//do the following actions when creating a new offer
+$("#new-subject-form").addClass('hidden');
+$("#edit-subject-form").addClass('hidden');
+$("#new-pack-form").addClass('hidden');
+$("#edit-pack-form").addClass('hidden');
+$("#new-ribbon-form").addClass('hidden');
+$("#edit-ribbon-form").addClass('hidden');
+$("#edit-offer-form").addClass('hidden');
+$("#new-offer-form").removeClass('hidden');
+$("#new-offer-form").html('<%= j render("form", offer: @offer, title: "Add Offer", path: offers_path(@offer)) %>')
+$("#new-offer-link").attr('disabled', 'disabled');
+$(document).trigger('init_placeholder');
+$(".new-offer-form").addClass('hidden');
+
+//if click outside the form, close it and make the button enabled
+$(document).mouseup(function (e) {
+    var container = $("#new-offer-form");
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        container.hide();
+	       $("#new-offer-link").removeAttr('disabled', 'disabled');
+    }
+});
+//if cancel button is clicked, make button enabled
+$("#add-offer-cancel-button").on("click", function () {
+	$("#new-offer-link").removeAttr('disabled', 'disabled');
+});
