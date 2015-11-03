@@ -13,7 +13,7 @@
   </div>
 
   <% @enclosures = Enclosure.all if @enclosures.nil? %> 
-  <table class = 'table tb-striped'>
+  <table class = 'table table-striped'>
     <thead>
       <th> Enclosure Name </th>
       <% if current_user.role == 'parent' %>
