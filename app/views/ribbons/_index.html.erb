@@ -1,9 +1,17 @@
 <div class = 'container'>
   <h2> Ribbons</h2>
   <div class= 'pull-right'>
-    <%= link_to 'Add Ribbon', new_ribbon_path, 
-                class: "btn btn-primary", id: 'new-ribbon-link' %>
+        <%= link_to 'Add Ribbon', new_ribbon_path, remote: true, class: "btn btn-primary", id: 'new-ribbon-link' %>
   </div>
+
+  <div class="row">
+    <div id="new-ribbon-form" class="col-sm-6"></div>
+  </div>
+
+  <div class="row">
+    <div id="edit-ribbon-form" class="col-sm-6"></div>
+  </div>
+
   <% @ribbons = Ribbon.all if @ribbons.nil? %> 
   <table class = 'table tb-striped'>
     <thead>
@@ -16,12 +24,12 @@
     <% @ribbons.each do |ribbon| %>
       <tr>
         <td> <%= ribbon.name %> </td>
-        <td> <%= ribbon.subject_id %> </td>
+        <td> <%= Subject.find(ribbon.subject_id).subject_name %> </td>
         <% if current_user.role == 'parent' %>
           <td> 
-            <%= link_to 'Edit Ribbon', edit_ribbon_path(ribbon), class: "btn btn-success", id: 'edit-ribbon-link' %> 
-            <%= link_to 'Delete Ribbon', ribbon_path(ribbon), method: :delete,
-                  class: "btn btn-danger", id: 'delete-ribbon-link' %>
+            <%= link_to 'Edit', edit_ribbon_path(id: ribbon.id), remote: true, class: "btn btn-success", id: 'edit-ribbon-link' %> 
+            <%= link_to 'Delete', ribbon_path(ribbon), method: :delete,
+                class: "btn btn-danger", id: 'delete-ribbon-link' %>
           </td>
         <%end%>
       </tr>

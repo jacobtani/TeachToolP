@@ -1,0 +1,30 @@
+//do the following actions when editing a ribbon
+$("#new-subject-form").addClass('hidden');
+$("#edit-subject-form").addClass('hidden');
+$("#new-pack-form").addClass('hidden');
+$("#edit-pack-form").addClass('hidden');
+$("#new-offer-form").addClass('hidden');
+$("#edit-pack-form").addClass('hidden');
+$("#new-ribbon-form").addClass('hidden');
+$("#edit-ribbon-link").attr('disabled', 'disabled');
+$("#edit-ribbon-form").removeClass('hidden');
+$("#edit-ribbon-form").html("<%= j render('form', ribbon: @ribbon, remote_mode: true, title: 'Edit Ribbon', path: ribbon_path(@ribbon) ) %>");
+$(document).trigger('init_placeholder');
+//if click outside the form, close it and make the button enabled
+var ribbon = "#edit_ribbon_" + <%=@ribbon.id%>;
+var container = $(ribbon);
+
+$(document).mouseup(function (e) {
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+      if ( !$("#new-ribbon-link").is(e.target) ) {
+        container.hide();
+      };
+      $("#edit-ribbon-link").removeAttr('disabled', 'disabled');
+    }
+});
+
+//if cancel button is clicked, make button enabled
+$("#add-ribbon-cancel-button").on("click", function () {
+  $("#edit-ribbon-link").removeAttr('disabled', 'disabled');
+  container.hide();
+});
