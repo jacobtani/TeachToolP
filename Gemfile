@@ -18,6 +18,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'health_check',         '1.5.0'             # Simple health checks
 gem 'puma'                                      # Simple, fast threaded and concurrent HTTP server
+gem 'jquery-turbolinks'                         #jQuery plugin for drop-in fix binded events problem caused by Turbolinks
 
 #automatically adds the proper vendor prefixes to your CSS code when it is compiled.
 gem 'autoprefixer-rails'                                

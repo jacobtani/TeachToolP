@@ -1,7 +1,7 @@
 class PacksController < ApplicationController
   before_action :authenticate_user!  
-  before_action :set_pack, only: [:update, :show, :destroy]
-  before_action :admin_only, only: [:new, :create, :update, :destroy]
+  before_action :set_pack, only: [:edit, :update, :show, :destroy]
+  #before_action :admin_only, only: [:new, :create, :update, :destroy]
   
   def index
     @packs = Pack.all
@@ -16,35 +16,40 @@ class PacksController < ApplicationController
   end
 
   def create
-    @pack = Pack.new enclosure_params
-    if @pack.save
-      redirect_to root_path
-    else
-      redirect_to root_path
+    @pack = Pack.new pack_params
+    respond_to do |format|
+      if @pack.save
+        flash[:success] = "Pack was created successfully."
+        format.js { redirect_turbo admin_path}
+      else
+        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @pack}, status: 500 }
+      end
+    end
   end
 
-    def update
+  def edit
+  end
+  
+  def update
     respond_to do |format|
       if @pack.update_attributes pack_params
         flash[:success] = "Pack was updated successfully."
-        redirect_to root_path
-        #format.js {}
+        format.js {redirect_turbo admin_path}
       else
-        redirect_to root_path
-        #format.js { render partial: 'shared/ajax_form_errors', locals: {model: @site}, status: 500 }
+        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @pack}, status: 500 }
       end
     end
   end
 
   def destroy
     @pack.destroy
-    redirect_to root_path
+    redirect_to admin_path
   end
 
   private
 
     def pack_params
-      params.require(:pack).permit(:name, :subject)
+      params.require(:pack).permit(:name, :description, :action_required, :subject_id)
     end
 
     def set_pack

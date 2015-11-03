@@ -20,9 +20,10 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       redirect_to root_path
+    end
   end
 
-def update
+  def update
     respond_to do |format|
       if @user.update_attributes user_params
         flash[:success] = "User was updated successfully."

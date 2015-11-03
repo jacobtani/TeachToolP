@@ -1,0 +1,5 @@
+//actions to do when submit button of edit offer form has been clicked
+$("#edit-offer-link").removeAttr('disabled', 'disabled');
+$("#delete-offer-link").attr('data-confirm', 'Are you sure you want to delete <%=@offer.name%> ?')
+$("#edit-offer-form").addClass('hidden');
+$(document).trigger('offer:form_disabled');

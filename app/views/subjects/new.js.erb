@@ -1,0 +1,19 @@
+//do the following actions when creating a new subject
+$("#new-subject-form").removeClass('hidden');
+$("#new-subject-form").html('<%= j render("form", subject: @subject, title: "Add Subject", path: subjects_path(@subject)) %>')
+$("#new-subject-link").attr('disabled', 'disabled');
+$(document).trigger('init_placeholder');
+$(".new-subject-form").addClass('hidden');
+
+//if click outside the form, close it and make the button enabled
+$(document).mouseup(function (e) {
+    var container = $("#new-subject-form");
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        container.hide();
+	       $("#new-subject-link").removeAttr('disabled', 'disabled');
+    }
+});
+//if cancel button is clicked, make button enabled
+$("#add-subject-cancel-button").on("click", function () {
+	$("#new-subject-link").removeAttr('disabled', 'disabled');
+});

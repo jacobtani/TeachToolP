@@ -1,0 +1,44 @@
+<div class = 'container'>
+  <div class = 'subject-header'>
+    <h2> Subjects Offered </h2>
+    <div class='btn-toolbar pull-right' id='toolbars'>
+      <div class="btn-group button-group" role="group" aria-label="a">
+        <%= link_to 'Add Subject', new_subject_path, remote: true, class: "btn btn-primary", id: 'new-subject-link' %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div id="new-subject-form" class="col-sm-6"></div>
+  </div>
+
+  <div class="row">
+    <div id="edit-subject-form" class="col-sm-6"></div>
+  </div>
+
+  <% @subjects = Subject.all if @subjects.nil? %> 
+  <table class = 'table table-striped'>
+    <thead>
+      <th> Subject </th>
+      <th> Monthly Fee </th>
+      <th> Grades </th>
+      <% if current_user.role == 'parent' %>
+        <th> Administration </th>
+      <%end%>
+    </thead>
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td> <%= subject.subject_name %> </td>
+        <td> <%= subject.fee %> </td>
+        <td> <%= subject.grades %> </td>
+        <% if current_user.role == 'parent' %>
+          <td> 
+            <%= link_to 'Edit', edit_subject_path(id: subject.id), remote: true, class: "btn btn-success", id: 'edit-subject-link' %> 
+            <%= link_to 'Delete', subject_path(subject), method: :delete,
+                class: "btn btn-danger", id: 'delete-subject-link' %>
+          </td>
+        <%end%>
+      </tr>
+    <%end%>
+  </table>
+</div>

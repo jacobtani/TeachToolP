@@ -1,0 +1,5 @@
+//actions to do when submit button of edit pack form has been clicked
+$("#edit-pack-link").removeAttr('disabled', 'disabled');
+$("#delete-pack-link").attr('data-confirm', 'Are you sure you want to delete <%=@pack.name%> ?')
+$("#edit-pack-form").addClass('hidden');
+$(document).trigger('pack:form_disabled');

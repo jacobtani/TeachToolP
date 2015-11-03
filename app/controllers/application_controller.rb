@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
     user_signed_in && current_user.role == 'student'
   end
 
+  def redirect_turbo(path)
+    render js: "Turbolinks.visit('#{path}')"
+  end
+
 end

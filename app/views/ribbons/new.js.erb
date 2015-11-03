@@ -1,0 +1,26 @@
+//do the following actions when creating a new ribbon
+$("#new-subject-form").addClass('hidden');
+$("#edit-subject-form").addClass('hidden');
+$("#new-pack-form").addClass('hidden');
+$("#edit-pack-form").addClass('hidden');
+$("#new-offer-form").addClass('hidden');
+$("#edit-offer-form").addClass('hidden');
+$("#edit-ribbon-form").addClass('hidden');
+$("#new-ribbon-form").removeClass('hidden');
+$("#new-ribbon-form").html('<%= j render("form", ribbon: @ribbon, title: "Add Ribbon", path: ribbons_path(@ribbon)) %>')
+$("#new-ribbon-link").attr('disabled', 'disabled');
+$(document).trigger('init_placeholder');
+$(".new-ribbon-form").addClass('hidden');
+
+//if click outside the form, close it and make the button enabled
+$(document).mouseup(function (e) {
+    var container = $("#new-ribbon-form");
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        container.hide();
+	       $("#new-ribbon-link").removeAttr('disabled', 'disabled');
+    }
+});
+//if cancel button is clicked, make button enabled
+$("#add-ribbon-cancel-button").on("click", function () {
+	$("#new-ribbon-link").removeAttr('disabled', 'disabled');
+});

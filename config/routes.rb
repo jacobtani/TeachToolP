@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     get :delivery_approach
     get :fees_offers
     get :contact
+    get :admin
   end
 
 end

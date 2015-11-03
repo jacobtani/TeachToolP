@@ -1,0 +1,44 @@
+<div class = 'container'>
+  <h2> Offers</h2>
+  <div class= 'pull-right'>
+        <%= link_to 'Add Offer', new_offer_path, remote: true, class: "btn btn-primary", id: 'new-offer-link' %>
+  </div>
+
+  <div class="row">
+    <div id="new-offer-form" class="col-sm-6"></div>
+  </div>
+
+  <div class="row">
+    <div id="edit-offer-form" class="col-sm-6"></div>
+  </div>
+
+  <% @offers = Offer.all if @offers.nil? %> 
+  <table class = 'table table-striped'>
+    <thead>
+      <th> Offer Name </th>
+      <th> Description </th>
+      <th> Start Date </th>
+      <th> End Date </th>
+      <th> Free trial </th>
+      <% if current_user.role == 'parent' %>
+      	<th> Administration </th>
+      <%end%>
+    </thead>
+    <% @offers.each do |offer| %>
+      <tr>
+        <td> <%= offer.offer_name %> </td>
+        <td> <%= offer.offer_description %> </td>
+        <td> <%= offer.start_date %> </td>
+        <td> <%= offer.end_date %> </td>
+        <td> <%= offer.includes_free_trial %> </td>
+        <% if current_user.role == 'parent' %>
+          <td> 
+            <%= link_to 'Edit', edit_offer_path(id: offer.id), remote: true, class: "btn btn-success", id: 'edit-offer-link' %> 
+            <%= link_to 'Delete', offer_path(offer), method: :delete,
+                class: "btn btn-danger", id: 'delete-offer-link' %>
+          </td>
+        <%end%>
+      </tr>
+    <%end%>
+  </table>
+</div>

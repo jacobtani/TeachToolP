@@ -1,0 +1,5 @@
+//actions to do when submit button of edit enclosure form has been clicked
+$("#edit-enclosure-link").removeAttr('disabled', 'disabled');
+$("#delete-enclosure-link").attr('data-confirm', 'Are you sure you want to delete <%=@enclosure.name%> ?')
+$("#edit-enclosure-form").addClass('hidden');
+$(document).trigger('enclosure:form_disabled');
