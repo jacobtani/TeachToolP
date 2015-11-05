@@ -1,3 +1,3 @@
 class Enclosure < ActiveRecord::Base
-  belongs_to: :pack
+  belongs_to :pack
 end
