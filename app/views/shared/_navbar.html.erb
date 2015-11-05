@@ -14,16 +14,16 @@
         <div class="collapse navbar-collapse" id="navbar-collapsable">
           <ul class="nav navbar-nav foo" id="menu">
             <li><%= link_to 'About', about_path%></li>
-            <li><%= link_to 'Delivery Approach', delivery_approach_path%></li>
-            <li><%= link_to 'Fees and Offers', fees_offers_path%></li>
-            <li><%= link_to 'Contact Us', contact_path%></li>
+            <li><%= link_to 'Approach', delivery_approach_path%></li>
+            <li><%= link_to 'Fees', fees_offers_path%></li>
+            <li><%= link_to 'Contact', contact_path%></li>
             <li><%= link_to 'Student Records', edit_user_registration_path%></li>
             <li><%#= link_to 'Create Enrolment', new_user_enrolment_path%></li>
             <li><%= link_to 'Admin', admin_path%></li>
           </ul>
           <p class="nav navbar-right">
             <% if user_signed_in? %>
-                 <%= link_to current_user.email, edit_user_registration_path, class: 'btn btn-primary navbar-btn' %>
+                 <%= link_to 'Me', edit_user_registration_path, class: 'btn btn-primary navbar-btn' %>
                 <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-primary navbar-btn' %>
             <% else %>
                 <%= link_to 'Login', new_user_session_path, class: "btn btn-success navbar-btn"  %>  
