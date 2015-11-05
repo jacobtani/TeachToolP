@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'pages#home'
    
   resources :users do 
+    resources :pack_records
     resources :enrolments
   end
 
