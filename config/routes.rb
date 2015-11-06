@@ -23,6 +23,14 @@ Rails.application.routes.draw do
     get :fees_offers
     get :contact
     get :admin
+    get :background
+    get :expected_roles
+    get :mission
+    get :terms_conditions
+    get :questions
+    get :why_extend
+    get :communications
+    get :historical_view
   end
 
 end

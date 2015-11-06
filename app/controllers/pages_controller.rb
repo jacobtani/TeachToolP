@@ -18,4 +18,28 @@ class PagesController < ApplicationController
   def admin
   end
 
+  def communications
+  end
+  
+  def background
+  end
+
+  def expected_roles
+  end
+
+  def historical_view
+  end
+
+  def questions
+  end
+
+  def terms_conditions
+  end
+
+  def mission
+  end
+
+  def why_extend
+  end
+
 end
