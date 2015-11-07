@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107000611) do
+ActiveRecord::Schema.define(version: 20151107102603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,17 +29,17 @@ ActiveRecord::Schema.define(version: 20151107000611) do
   end
 
   create_table "enrolments", force: :cascade do |t|
-    t.integer  "person_id",       null: false
     t.datetime "date"
     t.integer  "subject_id",      null: false
     t.datetime "activation_date"
     t.float    "fees"
     t.boolean  "deferred?"
     t.datetime "start_date"
+    t.integer  "user_id",         null: false
   end
 
-  add_index "enrolments", ["person_id"], name: "index_enrolments_on_person_id", using: :btree
   add_index "enrolments", ["subject_id"], name: "index_enrolments_on_subject_id", using: :btree
+  add_index "enrolments", ["user_id"], name: "index_enrolments_on_user_id", using: :btree
 
   create_table "offers", force: :cascade do |t|
     t.string   "offer_name"
@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(version: 20151107000611) do
     t.string   "phone_number"
     t.text     "mailing_address"
     t.text     "postal_address",                      null: false
-    t.integer  "number_of_enrolments"
     t.float    "overdue_fees"
     t.float    "coupon_value"
     t.datetime "created_at",                          null: false
@@ -123,6 +122,7 @@ ActiveRecord::Schema.define(version: 20151107000611) do
     t.string   "contact_email"
     t.string   "contact_phone"
     t.string   "contact_mobile"
+    t.integer  "number_of_enrolments",   default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

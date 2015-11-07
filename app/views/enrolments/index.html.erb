@@ -1,0 +1,46 @@
+<div class = 'container'>
+  <h2> My Enrolments </h2>
+  <div class= 'pull-right'>
+    <%= link_to 'Add Student Account', new_user_registration_path, remote: true, class: "btn btn-primary", id: 'new-user-link' if user_signed_in? %>
+    <%= link_to 'Add Enrolment', new_user_enrolment_path(user_id: current_user.id), remote: true, class: "btn btn-primary", id: 'new-enrolment-link' if user_signed_in? %>
+  </div>
+
+  <div class="row">
+    <div id="new-user-form" class="col-sm-6"></div>
+  </div>
+
+  <div class="row">
+    <div id="new-enrolment-form" class="col-sm-6"></div>
+  </div>
+  <% @children = current_user.children %> 
+  <table class = 'table table-striped'>
+    <thead>
+      <th> Student Name</th>
+      <th> Number of Enrolments</th>
+      <th> Subject </th>
+        <% if current_user.role == 'parent' %>
+          <th> Administration </th>
+        <%end%>
+    </thead>
+    <% @children.each do | child | %>
+      <%if child.enrolments.present? %>
+      <tr>
+        <td> <%= link_to child.first_name, user_enrolment_path(user_id: child.id, id: child.enrolments[0].id) %> </td>
+        <td> <%= child.number_of_enrolments %> </td>
+        <% if child.number_of_enrolments == 1 %>
+          <td> <%= Subject.find(child.enrolments[0].subject_id).subject_name %> </td>
+        <%elsif child.number_of_enrolments == 2 %>
+          <td> <%= [(Subject.find(child.enrolments[0].subject_id).subject_name), (Subject.find(child.enrolments[1].subject_id).subject_name)].join(" ") %> </td>
+        <%end%>
+        <% if current_user.role == 'parent' %>
+          <td> 
+            <%= link_to 'Edit', edit_user_enrolment_path(id: child.enrolments[0].id, user_id: current_user), remote: true, class: "btn btn-success", id: 'edit-enrolment-link' %> 
+            <%= link_to 'Delete', ribbon_path(user_id: current_user, id: child.enrolments[0]), method: :delete,
+                class: "btn btn-danger", id: 'delete-enrolment-link' %>
+          </td>
+        <%end%>
+      </tr>
+      <% end%>
+    <%end%>
+  </table>
+</div>

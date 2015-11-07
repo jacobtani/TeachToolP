@@ -1,5 +1,6 @@
 <%= form_for @user, url: path, title: title, remote: true, html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>  
   <div id="form-errors"></div>
+  <%= label_tag(:q, title) %>
 
   <div class="form-group">
     <div class="row">

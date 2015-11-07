@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   has_many :children, class_name: "User", foreign_key: "parent_id", dependent: :destroy
   belongs_to :parent, class_name: "User" 
   has_many :pack_records, dependent: :destroy
+  has_many :enrolments, dependent: :destroy
 end
