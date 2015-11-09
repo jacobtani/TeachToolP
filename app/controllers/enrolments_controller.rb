@@ -9,7 +9,7 @@
   end
 
   def show
-    @enrolment = Enrolment.find(params[:id])
+    @enrolment = @user.enrolments.find (params[:id])
   end
 
   def new
@@ -21,13 +21,13 @@
     @enrolment.date = Date.today
     @enrolment.user_id = params[:enrolment][:user_id]
     @user_enrolled = User.find(params[:enrolment][:user_id])
-    @user_enrolled.number_of_enrolments += 1
     @user_enrolled.enrolments << @enrolment
+    @enrolment.fees = 98
     respond_to do |format|
       if @enrolment.save
         @user_enrolled.save
         flash[:success] = "Enrolment was created successfully."
-        format.js { redirect_turbo user_enrolments_path}
+        format.js { redirect_turbo parent_summary_path}
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @enrolment}, status: 500 }
       end
@@ -58,7 +58,7 @@
   private
 
     def enrolment_params
-      params.require(:enrolment).permit(:user, :subject_id)
+      params.require(:enrolment).permit(:user_id, :grade, :subject_id, :fees)
     end
     
     def set_enrolment
@@ -70,7 +70,5 @@
       @user = current_user if user_signed_in?
       return not_found! unless @user
     end
-
-
 
 end

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
    
-  devise_for :users, :controllers => {:registrations => "tjregistrations"}
+  devise_for :users, :controllers => {:registrations => "myregistrations"}
   root 'pages#home'
    
   resources :users do 
@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     get :why_extend
     get :communications
     get :historical_view
+    get :parent_summary
   end
 
 end
