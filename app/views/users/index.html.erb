@@ -1,1 +1,16 @@
 <h2> Index page </h2> 
+<div class = 'container'>
+  <div class = 'jumbotron'>
+    <h2> Create Enrolment </h2> 
+    <%= link_to 'Add Person', new_user_registration_path, remote: true, class: "btn btn-primary", id: 'new-user-link' if user_signed_in? %>
+        <%= link_to 'Add Enrolment', new_user_enrolment_path(user_id: current_user.id), remote: true, class: "btn btn-primary", id: 'new-enrolment-link' if user_signed_in? %>
+
+  </div>
+  <div class="row">
+    <div id="new-user-form" class="col-sm-6"></div>
+  </div>
+  <div class="row">
+    <div id="new-enrolment-form" class="col-sm-6"></div>
+  </div>
+
+</div>

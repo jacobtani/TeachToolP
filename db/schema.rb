@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105080859) do
+ActiveRecord::Schema.define(version: 20151109094305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,17 +29,18 @@ ActiveRecord::Schema.define(version: 20151105080859) do
   end
 
   create_table "enrolments", force: :cascade do |t|
-    t.integer  "person_id",       null: false
     t.datetime "date"
     t.integer  "subject_id",      null: false
     t.datetime "activation_date"
     t.float    "fees"
     t.boolean  "deferred?"
     t.datetime "start_date"
+    t.integer  "user_id",         null: false
+    t.integer  "grade",           null: false
   end
 
-  add_index "enrolments", ["person_id"], name: "index_enrolments_on_person_id", using: :btree
   add_index "enrolments", ["subject_id"], name: "index_enrolments_on_subject_id", using: :btree
+  add_index "enrolments", ["user_id"], name: "index_enrolments_on_user_id", using: :btree
 
   create_table "offers", force: :cascade do |t|
     t.string   "offer_name"
@@ -86,37 +87,43 @@ ActiveRecord::Schema.define(version: 20151105080859) do
   add_index "ribbons", ["subject_id"], name: "index_ribbons_on_subject_id", using: :btree
 
   create_table "subjects", force: :cascade do |t|
-    t.string "subject_name"
-    t.float  "fee"
-    t.text   "grades",       default: [], array: true
+    t.string  "subject_name"
+    t.float   "fee"
+    t.integer "lowest_grade_taught"
+    t.integer "highest_grade_taught"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",                          null: false
-    t.string   "surname",                             null: false
+    t.string   "first_name",                           null: false
+    t.string   "surname",                              null: false
     t.datetime "date_of_birth"
-    t.string   "role",                                null: false
+    t.string   "role",                                 null: false
     t.string   "username"
     t.string   "password"
     t.string   "phone_number"
     t.text     "mailing_address"
-    t.text     "postal_address",                      null: false
-    t.integer  "number_of_enrolments"
-    t.float    "overdue_fees"
-    t.float    "coupon_value"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.text     "postal_address",                       null: false
+    t.float    "overdue_fees",           default: 0.0
+    t.float    "coupon_value",           default: 0.0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "email",                  default: "",  null: false
+    t.string   "encrypted_password",     default: "",  null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,   null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.integer  "parent_id"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip_code"
+    t.string   "contact_email"
+    t.string   "contact_phone"
+    t.string   "contact_mobile"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

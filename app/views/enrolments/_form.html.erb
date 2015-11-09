@@ -1,0 +1,37 @@
+<%= form_for @enrolment, url: path, title: title, remote: true, html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>  
+  <div id="form-errors"></div>
+  <%= label_tag(:q, title) %>
+
+   <div class="form-group">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= f.label 'Subject: ' %>
+      </div>
+      <div class = "col-md-5">
+        <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select Subject" %>
+      </div>
+      <div class = "col-md-2">
+        <%= f.label 'Choose Grade' %>
+      </div>
+      <div class = "col-md-3">
+        <%= f.number_field :grade, min: 1, max: 7 %>
+      </div>
+    </div>
+  </div>
+
+   <div class="form-group">
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.label 'Child: ' %>
+        <%= f.collection_select :user_id, current_user.children, :id, :first_name, :prompt => "Select child" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row submit">
+    <%= button_tag type: "submit", class: "btn btn-primary", name: "commit", value: "Save" do %>
+      <a>Save</a>
+    <% end %>
+    <a class="btn btn-danger hvr-trim" id='add-enrolment-cancel-button' data-behaviour="form-dismiss">Cancel</a>
+  </div>
+<% end %>

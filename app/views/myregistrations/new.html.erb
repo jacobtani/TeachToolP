@@ -1,0 +1,54 @@
+<h2> Register User </h2>
+<%= form_for @user, title: 'Register User', path: users_path(@user), html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>  
+  <div id="form-errors"></div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class = "col-sm-1">
+        <h6> Name: </h6>
+      </div>
+      <div class="col-sm-6">
+        <%= f.text_field :first_name, placeholder: 'Enter first name', class: 'form-control' %>
+      </div>
+      <div class="col-sm-5">
+        <%= f.text_field :surname, placeholder: 'Enter surname', class: 'form-control' %>
+      </div>
+    </div>
+    <br/>
+    <div class = 'row'>
+      <div class = "col-sm-1">
+        <h6> Address: </h6>
+      </div>
+      <div class="col-sm-11">
+        <%= f.text_field :postal_address, placeholder: 'Enter mailing address', class: 'form-control' %>
+      </div>
+    </div>
+    <div class = 'row'>
+      <div class = "col-sm-1">
+        <h6> Role: </h6>
+      </div>
+      <div class="col-sm-11">
+        <%= f.select :role, ['parent', 'student'] %>
+      </div>
+    </div>
+     <div class = 'row'>
+      <div class = "col-sm-1">
+        <h6> User details: </h6>
+      </div>
+      <div class="col-sm-6">
+        <%= f.email_field :email, placeholder: 'Enter email', class: 'form-control' %>
+      </div>
+      <div class="col-sm-5">
+        <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-group row submit">
+    <%= button_tag type: "submit", class: "btn btn-primary", name: "commit", value: "Save" do %>
+      <a>Save</a>
+    <% end %>
+    <a class="btn btn-danger hvr-trim" id='add-user-cancel-button' data-behaviour="form-dismiss">Cancel</a>
+  </div>
+<% end %>

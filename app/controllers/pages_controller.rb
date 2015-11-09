@@ -42,4 +42,7 @@ class PagesController < ApplicationController
   def why_extend
   end
 
+  def parent_summary
+  end
+
 end
