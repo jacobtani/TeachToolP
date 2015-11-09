@@ -7,8 +7,8 @@ $(document).trigger('init_placeholder');
 $(".new-user-form").addClass('hidden');
 
 //if click outside the form, close it and make the button enabled
+var container = $("#new-user-form");
 $(document).mouseup(function (e) {
-    var container = $("#new-user-form");
     if (!container.is(e.target) && container.has(e.target).length === 0) {
         container.hide();
 	       $("#new-user-link").removeAttr('disabled', 'disabled');
@@ -17,4 +17,5 @@ $(document).mouseup(function (e) {
 //if cancel button is clicked, make button enabled
 $("#add-user-cancel-button").on("click", function () {
 	$("#new-user-link").removeAttr('disabled', 'disabled');
+	container.hide();
 });

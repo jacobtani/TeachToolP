@@ -36,8 +36,12 @@
       <div class = "col-sm-1">
         <h6> Role: </h6>
       </div>
-      <div class="col-sm-11">
+      <div class="col-sm-5">
         <%= f.select :role, ['parent', 'student'] %>
+      </div>
+      <div class="col-sm-5">
+        <%= f.label 'DOB:' %>
+        <%= f.date_field :date_of_birth %>
       </div>
     </div>
      <div class = 'row'>

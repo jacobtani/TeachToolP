@@ -1,4 +1,4 @@
-class TjregistrationsController < Devise::RegistrationsController
+class MyregistrationsController < Devise::RegistrationsController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
 #  before_action :admin_only, only: [:new, :create, :update, :destroy]
   
@@ -21,7 +21,11 @@ class TjregistrationsController < Devise::RegistrationsController
       respond_to do |format| 
         if @user.save
           flash[:success] = "User was created successfully."
-          format.js { redirect_turbo root_path }
+          if current_user 
+            format.js { redirect_turbo parent_summary_path }
+          else
+            format.js { redirect_turbo root_path }
+          end
         else
           format.js { render partial: 'shared/ajax_form_errors', locals: {model: @user}, status: 500 }
         end
@@ -54,7 +58,7 @@ class TjregistrationsController < Devise::RegistrationsController
   private 
 
   def user_params
-    params.require(:user).permit(:first_name, :surname, :role, :parent_id, :number_of_enrolments, :postal_address, :email, :password, :city, :state, :zip_code, :phone_number, :contact_email, :contact_phone, :contact_mobile, :date_of_birth)
+    params.require(:user).permit(:first_name, :surname, :role, :parent_id, :postal_address, :email, :password, :city, :state, :zip_code, :phone_number, :contact_email, :contact_phone, :contact_mobile, :date_of_birth)
   end
 
   def set_user
