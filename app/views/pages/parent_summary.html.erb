@@ -1,0 +1,71 @@
+<div class = 'container'>
+  <div class = 'student-summary'>
+    <h2> Registered Children </h2>
+    <div class= 'pull-right'>
+      <%= link_to 'Add Child Account', new_user_registration_path, remote: true, class: "btn btn-primary", id: 'new-user-
+      link' if user_signed_in? %>
+    </div>
+
+    <div class="row">
+      <div id="new-user-form" class="col-sm-6"></div>
+    </div>
+
+    <% @children = current_user.children %> 
+    <table class = 'table table-striped'>
+      <thead>
+        <th> Name</th>
+        <th> Email</th>
+        <th> Date of Birth</th>
+        <th> Coupon Value</th>
+        <th> Overdue Fees</th>
+        <% if current_user.role == 'parent'%>
+          <th> Administration </th>
+        <%end%>
+      </thead>
+      <% @children.each do | child | %>
+        <tr>
+          <td> <%= child.full_name %> </td>
+          <td> <%= child.email %> </td>
+          <td> <%= child.date_of_birth.strftime('%D') if child.date_of_birth %> </td>
+          <td> <%= number_to_currency child.coupon_value %> </td>
+          <td> <%= number_to_currency child.overdue_fees %> </td>
+          <%if current_user.role == 'parent'%>
+            <td> 
+              <%#= link_to 'Edit', edit_user_registration_path(id: child.id), remote: true, class: "btn btn-success", id: 'edit-user-registration-link' %> 
+              <%#= link_to 'Delete', user_registration_path(child), method: :delete,
+                class: "btn btn-danger", id: 'delete-user-registration-link' %>
+            </td>
+          <%end%>
+         </tr>
+      <%end%>
+    </table>
+  </div>
+  <div class = 'summary-enrolments'>  
+    <h2> Enrolments Summary </h2>
+    <div class= 'pull-right'>
+      <%= link_to 'Add Enrolment', new_user_enrolment_path(user_id: current_user.id), remote: true, class: "btn btn-primary", id: 'new-enrolment-link' if user_signed_in? %>
+    </div>
+
+    <div class="row">
+      <div id="new-enrolment-form" class="col-sm-6"></div>
+    </div>
+
+    <% @children = current_user.children %> 
+    <table class = 'table table-striped'>
+      <thead>
+        <th> Student Name</th>
+        <th> Enrolled Subjects</th>
+        <th> Total Fees</th>
+       </thead>
+      <% @children.each do | child | %>
+        <%if child.enrolments.present? %>
+        <tr>
+          <td> <%= link_to child.full_name, user_enrolment_path(user_id: child.id, id: child.enrolments[0].id) %> </td>
+          <td> <%= child.subjects.pluck(:subject_name).join(' , ')%> </td>
+          <td> <%= number_to_currency child.calculate_fees(child) %> </td>
+        </tr>
+        <% end%>
+      <%end%>
+    </table>
+  </div>
+</div>
