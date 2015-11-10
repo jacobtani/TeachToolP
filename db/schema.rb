@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109094305) do
+ActiveRecord::Schema.define(version: 20151110053704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,14 +52,14 @@ ActiveRecord::Schema.define(version: 20151109094305) do
 
   create_table "pack_records", force: :cascade do |t|
     t.datetime "record_date"
-    t.string   "grade"
     t.string   "comment"
     t.string   "status"
     t.datetime "due_date"
-    t.integer  "pack_id",     null: false
-    t.integer  "user_id",     null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "pack_id",                 null: false
+    t.integer  "user_id",                 null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "score",       default: 0
   end
 
   add_index "pack_records", ["pack_id"], name: "index_pack_records_on_pack_id", using: :btree
