@@ -1,8 +1,12 @@
 class UserMailer < ApplicationMailer
 
-  def registration_confirmation(user)
+  def registration_confirmation_to_user(user)
     @user = user
-    mail(:to => @user.email, :subject => "Registration Complete for OurCompany")
+    if @user.role == 'student'
+      mail(:to => @user.parent.email, :subject => "Registration Complete for OurCompany")
+    else 
+      mail(:to => @user.email, :subject => "Registration Complete for OurCompany")
+    end
   end
 
 end
