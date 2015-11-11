@@ -21,6 +21,7 @@ class MyregistrationsController < Devise::RegistrationsController
       respond_to do |format| 
         if @user.save
           flash[:success] = "User was created successfully."
+          UserMailer.registration_confirmation(@user).deliver
           if current_user 
             format.js { redirect_turbo parent_summary_path }
           else
@@ -32,6 +33,7 @@ class MyregistrationsController < Devise::RegistrationsController
       end
     else
       @user.save
+      UserMailer.registration_confirmation(@user).deliver
       redirect_to user_session_path
     end
   end
