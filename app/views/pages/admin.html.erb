@@ -1,23 +1,23 @@
 <div class = 'container'>
 
   <div class = 'subjects'>
-    <%= render 'subjects/index' %>
+    <%= render 'subjects/index', locals: {subjects: Subject.all %>
   </div>
 
   <div class = 'offers' >
-    <%= render 'offers/index' %>
+    <%= render 'offers/index', locals: {offers: Offer.all %>
   </div>
 
   <div class = 'packs'>
-    <%= render 'packs/index' %>  
+    <%= render 'packs/index', locals: {packs: Pack.all %>  
   </div>  
 
   <div class = 'ribbons'>
-    <%= render 'ribbons/index' %>
+    <%= render 'ribbons/index', locals: {ribbons: Ribbon.all %>
   </div>
 
   <div class = 'enclosures'>
-    <%= render 'enclosures/index' %>
+    <%= render 'enclosures/index', locals: {enclosures: Enclosure.all %>
   </div>
 
 </div>
