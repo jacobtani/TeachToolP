@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     get :communications
     get :historical_view
     get :parent_summary
+    get :student_view
   end
 
 end
