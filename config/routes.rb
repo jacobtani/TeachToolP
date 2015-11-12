@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :users do 
     resources :pack_records
     resources :enrolments
+    get 'student_help_required', to: 'myregistrations#student_help_required', as: :help_student
+
   end
 
   resources :packs do
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
   resources :ribbons
   resources :subjects
   resources :offers
+  resources :messages
 
   controller :pages do
     get :home
