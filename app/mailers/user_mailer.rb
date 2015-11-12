@@ -1,4 +1,5 @@
 class UserMailer < ApplicationMailer
+  default from: "tjterminator.dev@gmail.com"
 
   def registration_confirmation_to_user(user)
     @user = user
