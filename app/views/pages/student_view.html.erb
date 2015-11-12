@@ -11,6 +11,9 @@
   </ul>
 </div>
 -->
-<div class = 'academic history'>
+<div class = 'academic-history'>
   <%= render partial: "pack_records/index", locals: {pack_records: current_user.pack_records} %>
+</div>
+<div class = 'test'>
+  <%= render partial: "myregistrations/student_help_required", locals: {message: Message.new, user: current_user} %>
 </div>
