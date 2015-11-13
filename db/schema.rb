@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111101134) do
+ActiveRecord::Schema.define(version: 20151113075943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20151111101134) do
     t.datetime "updated_at",                null: false
     t.integer  "score",       default: 0
     t.float    "reward",      default: 0.0
+    t.datetime "start_date"
   end
 
   add_index "pack_records", ["pack_id"], name: "index_pack_records_on_pack_id", using: :btree
