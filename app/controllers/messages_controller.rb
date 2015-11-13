@@ -6,8 +6,13 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new message_params
     if @message.valid?
-      AdminMailer.student_enquiry(current_user, @message).deliver_now
-      redirect_to student_view_path, notice: "Message sent!"
+      if current_user.role == 'student'
+        AdminMailer.student_enquiry(current_user, @message).deliver_now
+        redirect_to student_view_path, notice: "Message sent!"
+      elsif current_user.role == 'parent'
+        AdminMailer.parent_enquiry(current_user, @message).deliver_now
+        redirect_to parent_summary_path
+      end
     else
       render "new"
     end

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users do 
     resources :enrolments
     get 'student_help_required', to: 'myregistrations#student_help_required', as: :help_student
-
+    get 'parent_help_required', to: 'myregistrations#parent_help_required', as: :help_parent
   end
 
   resources :packs do

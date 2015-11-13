@@ -68,4 +68,7 @@
       <%end%>
     </table>
   </div>
+  <div class = 'test'>
+    <%= render partial: "myregistrations/parent_help_required", locals: {message: Message.new, user: current_user} %>
+  </div>
 </div>

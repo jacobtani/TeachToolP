@@ -60,7 +60,9 @@ class MyregistrationsController < Devise::RegistrationsController
   end
 
   def student_help_required(message)
-    AdminMailer.student_enquiry(current_user, message).deliver_now
+  end
+
+  def parent_help_required(message)
   end
 
   private 
