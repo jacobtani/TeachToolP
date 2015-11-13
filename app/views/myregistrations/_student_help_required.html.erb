@@ -20,7 +20,7 @@
     </div>
     <div class = "col-sm-3">
       <%= f.label :pack_name, "Pack Requiring Help: " %><br />
-      <%= f.collection_select :pack_name, Pack.all, :name, :name, :prompt => "Select pack" %>
+      <%= f.collection_select :pack_name, Pack.all.find(current_user.pack_records.pluck(:pack_id)), :name, :name, :prompt => "Select pack" %>
     </div>
     <div class = "col-sm-3">
       <%= f.label :page_number, "Page Number: " %><br />
