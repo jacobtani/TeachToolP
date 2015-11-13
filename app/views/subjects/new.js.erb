@@ -6,8 +6,8 @@ $(document).trigger('init_placeholder');
 $(".new-subject-form").addClass('hidden');
 
 //if click outside the form, close it and make the button enabled
+var container = $("#new_subject");
 $(document).mouseup(function (e) {
-    var container = $("#new-subject-form");
     if (!container.is(e.target) && container.has(e.target).length === 0) {
         container.hide();
 	       $("#new-subject-link").removeAttr('disabled', 'disabled');
@@ -16,4 +16,5 @@ $(document).mouseup(function (e) {
 //if cancel button is clicked, make button enabled
 $("#add-subject-cancel-button").on("click", function () {
 	$("#new-subject-link").removeAttr('disabled', 'disabled');
+	container.hide();
 });
