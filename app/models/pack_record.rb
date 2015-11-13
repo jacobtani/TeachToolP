@@ -8,6 +8,8 @@ class PackRecord < ActiveRecord::Base
       reward = 1.00
     elsif score >= 90 && score <= 100
       reward = 2.00
+    else
+      reward = 0.00
     end
     reward
   end
