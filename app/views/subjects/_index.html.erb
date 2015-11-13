@@ -24,7 +24,7 @@
       <th> Lowest Taught Grade </th>
       <th> Highest Taught Grade </th>
 
-      <% if current_user.role == 'parent' %>
+      <% if current_user.role == 'admin' %>
         <th> Administration </th>
       <%end%>
     </thead>
@@ -34,7 +34,7 @@
         <td> <%= number_to_currency subject.fee %> </td>
         <td> <%= subject.lowest_grade_taught %> </td>
         <td> <%= subject.highest_grade_taught %> </td>
-        <% if current_user.role == 'parent' %>
+        <% if current_user.role == 'admin' %>
           <td> 
             <%= link_to 'Edit', edit_subject_path(id: subject.id), remote: true, class: "btn btn-success", id: 'edit-subject-link' %> 
             <%= link_to 'Delete', subject_path(subject), method: :delete,
