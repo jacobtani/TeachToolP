@@ -35,7 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #Maintain seed data
 gem 'seed-fu', '~> 2.3'   
 gem 'bootstrap_form'
-
+gem 'active_attr'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,4 +1,4 @@
-class PackRecords < ApplicationController
+class PackRecordsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:index, :show, :create, :new, :update, :destroy, :edit]
   before_action :set_pack_record, only: [:edit, :update, :show, :destroy]
@@ -17,6 +17,9 @@ class PackRecords < ApplicationController
 
   def create
     @pack_record = @user.pack_records.new pack_record_params
+    binding.pry
+    @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
+    binding.pry
     respond_to do |format|
       if @pack_record.save
         flash[:success] = "Pack Record was created successfully."
@@ -54,13 +57,13 @@ class PackRecords < ApplicationController
     end
     
     def set_pack_record
-      @enrolment = Enrolment.find params[:id] rescue nil
-      return not_found! unless @enrolment
+      @pack_record = PackRecord.find params[:id] rescue nil
+      return not_found! unless @pack_record
     end
     
     def set_user
-      @enrolment = User.find params[:user_id] rescue nil
-      return not_found! unless @enrolment
+      @user = User.find params[:user_id] rescue nil
+      return not_found! unless @user
     end
 
 end

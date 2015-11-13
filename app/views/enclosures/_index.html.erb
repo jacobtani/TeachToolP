@@ -1,3 +1,4 @@
+<% @enclosures = enclosures if @enclosures.nil? %> 
 <div class = 'container'>
   <h2> Enclosures</h2>
   <div class= 'pull-right'>
@@ -12,7 +13,6 @@
     <div id="edit-enclosure-form" class="col-sm-6"></div>
   </div>
 
-  <% @enclosures = Enclosure.all if @enclosures.nil? %> 
   <table class = 'table table-striped'>
     <thead>
       <th> Enclosure Name </th>

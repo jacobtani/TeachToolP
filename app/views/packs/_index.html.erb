@@ -1,3 +1,4 @@
+<% @packs = packs if @packs.nil? %> 
 <div class = 'container'>
   <h2> Packs</h2>
   <div class= 'pull-right'>
@@ -12,7 +13,6 @@
     <div id="edit-pack-form" class="col-sm-6"></div>
   </div>
 
-  <% @packs = Pack.all if @packs.nil? %> 
   <table class = 'table table-striped'>
     <thead>
       <th> Pack Name </th>

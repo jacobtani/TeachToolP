@@ -57,6 +57,10 @@ class MyregistrationsController < Devise::RegistrationsController
     redirect_to root_path
   end
 
+  def student_help_required(message)
+    AdminMailer.student_enquiry(current_user, message).deliver_now
+  end
+
   private 
 
   def user_params

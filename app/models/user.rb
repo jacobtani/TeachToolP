@@ -23,4 +23,15 @@ class User < ActiveRecord::Base
     "#{first_name} #{surname}"
   end
 
+  def calculate_total_rewards(user)
+    rewards_value = 0.0
+    if user.role == 'student' && user.pack_records.present?
+      user.pack_records.each do |pack_record| 
+        rewards_value+= pack_record.reward
+      end
+      rewards_value
+    end
+
+  end
+
 end

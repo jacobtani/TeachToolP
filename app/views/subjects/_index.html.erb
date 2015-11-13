@@ -1,3 +1,4 @@
+<% @subjects = subjects if @subjects.nil? %> 
 <div class = 'container'>
   <div class = 'subject-header'>
     <h2> Subjects Offered </h2>
@@ -16,7 +17,6 @@
     <div id="edit-subject-form" class="col-sm-6"></div>
   </div>
 
-  <% @subjects = Subject.all if @subjects.nil? %> 
   <table class = 'table table-striped'>
     <thead>
       <th> Subject </th>
