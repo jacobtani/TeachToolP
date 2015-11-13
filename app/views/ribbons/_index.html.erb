@@ -17,7 +17,7 @@
     <thead>
       <th> Name </th>
       <th> Subject </th>
-        <% if current_user.role == 'parent' %>
+        <% if current_user.role == 'admin' %>
           <th> Administration </th>
         <%end%>
     </thead>
@@ -25,7 +25,7 @@
       <tr>
         <td> <%= ribbon.name %> </td>
         <td> <%= Subject.find(ribbon.subject_id).subject_name %> </td>
-        <% if current_user.role == 'parent' %>
+        <% if current_user.role == 'admin' %>
           <td> 
             <%= link_to 'Edit', edit_ribbon_path(id: ribbon.id), remote: true, class: "btn btn-success", id: 'edit-ribbon-link' %> 
             <%= link_to 'Delete', ribbon_path(ribbon), method: :delete,

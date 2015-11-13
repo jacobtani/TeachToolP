@@ -11,8 +11,8 @@ $(document).trigger('init_placeholder');
 $(".new-pack-form").addClass('hidden');
 
 //if click outside the form, close it and make the button enabled
+var container = $("#new_pack");
 $(document).mouseup(function (e) {
-    var container = $("#new-pack-form");
     if (!container.is(e.target) && container.has(e.target).length === 0) {
         container.hide();
 	       $("#new-pack-link").removeAttr('disabled', 'disabled');
@@ -21,4 +21,5 @@ $(document).mouseup(function (e) {
 //if cancel button is clicked, make button enabled
 $("#add-pack-cancel-button").on("click", function () {
 	$("#new-pack-link").removeAttr('disabled', 'disabled');
+	container.hide();
 });

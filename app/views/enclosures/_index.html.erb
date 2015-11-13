@@ -16,14 +16,14 @@
   <table class = 'table table-striped'>
     <thead>
       <th> Enclosure Name </th>
-      <% if current_user.role == 'parent' %>
+      <% if current_user.role == 'admin' %>
       	<th> Administration </th>
       <%end%>
     </thead>
     <% @enclosures.each do |enclosure| %>
       <tr>
         <td> <%= enclosure.name %> </td>
-        <% if current_user.role == 'parent' %>
+        <% if current_user.role == 'admin' %>
           <td> 
             <%#= link_to 'Edit', edit_enclosure_path(id: enclosure.id), remote: true, class: "btn btn-success", id: 'edit-enclosure-link' %> 
             <%#= link_to 'Delete', enclosure_path(enclosure), method: :delete,
