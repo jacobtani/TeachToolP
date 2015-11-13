@@ -17,8 +17,9 @@ class PackRecordsController < ApplicationController
 
   def create
     @pack_record = PackRecord.new pack_record_params
-    @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
-    binding.pry
+    @user = @pack_record.user_id
+    @pack_record.reward = @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
+   # binding.pry
     respond_to do |format|
       if @pack_record.save
         flash[:success] = "Pack Record was created successfully."
