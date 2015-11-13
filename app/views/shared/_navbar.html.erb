@@ -41,6 +41,9 @@
             <%elsif user_signed_in? && current_user.role == 'student' %>
               <li> <%= link_to 'Student', student_view_path(user_id: current_user.id) %> </li>
             <%end%>
+            <%if user_signed_in? && current_user.role == 'employer' %>
+              <li> <%= link_to 'Employer', employer_view_path %> </li>
+            <%end%>
           </ul>
           <p class="nav navbar-right">
             <% if user_signed_in? %>

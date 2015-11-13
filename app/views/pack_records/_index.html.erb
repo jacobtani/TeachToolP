@@ -1,25 +1,50 @@
 <% @pack_records = pack_records if @pack_records.nil?%>
 <div class = 'container'>
+  
   <h2> Academic Summary </h2>
+  <div class= 'pull-right'>
+      <%= link_to 'Add Pack Record', new_pack_record_path, remote: true, class: "btn btn-primary", id: 'new-packrecord-link' if user_signed_in? && current_user.role == 'admin' || current_user.role == 'employer' %>
+  </div>
+
+  <div class="row">
+    <div id="new-packrecord-form" class="col-sm-6"></div>
+  </div>
+  <div class="row">
+    <div id="edit-packrecord-form" class="col-sm-6"></div>
+  </div>
+
   <table class = 'table table-striped'>
     <thead>
       <th> Pack </th>
+      <th> User </th>
       <th> Score </th>
       <th> Reward </th>
       <th> Comment </th>
       <th> Status </th>
       <th> Due Date </th>
       <th> Last Update </th>
+      <% if current_user.role == 'employer' || current_user.role == 'admin'%>
+        <th> Administration </th>
+      <%end%>
     </thead>
     <% @pack_records.each do |pack_record| %>
       <tr>
         <td> <%= Pack.find(pack_record.pack_id).name %> </td>
+        <td> <%= User.find(pack_record.user_id).full_name %> </td>
         <td> <%= pack_record.score %> </td>
         <td> <%= number_to_currency pack_record.reward %> </td>
         <td> <%= pack_record.comment %> </td>
         <td> <%= pack_record.status %> </td>
         <td> <%= pack_record.due_date.strftime('%c') %> </td>
         <td> <%= pack_record.updated_at.strftime('%c') %> </td>
+        <% if current_user.role == 'employer' || current_user.role == 'admin'%>
+          <td> 
+            <%= link_to 'Edit', edit_pack_record_path(id: pack_record), remote: true, class: "btn btn-success", id: 'edit-packrecord-link' %> 
+            <%= link_to 'Delete', pack_record_path(pack_record), method: :delete,
+                class: "btn btn-danger", id: 'delete-packrecord-link' %>
+          </td>
+
+        <%end%>
       </tr>
     <%end%>
   </table>
