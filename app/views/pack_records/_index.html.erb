@@ -37,7 +37,7 @@
         <td> <%= pack_record.status %> </td>
         <td> <%= pack_record.due_date.strftime('%c') %> </td>
         <td> <%= pack_record.updated_at.strftime('%c') %> </td>
-        <% if current_user.role == 'employer' || current_user.role == 'parent'%>
+        <% if current_user.role == 'employer' || current_user.role == 'admin'%>
           <td> 
             <%= link_to 'Edit', edit_pack_record_path(id: pack_record), remote: true, class: "btn btn-success", id: 'edit-packrecord-link' %> 
             <%= link_to 'Delete', pack_record_path(pack_record), method: :delete,
