@@ -1,4 +1,5 @@
 //do the following actions when creating a new pack recod
+$("#edit-packrecord-form").addClass('hidden');
 $("#new-packrecord-form").removeClass('hidden');
 $("#new-packrecord-form").html('<%= j render("form", pack_record: @pack_record, title: "Add Pack Record", path: pack_records_path()) %>')
 $("#new-packrecord-link").attr('disabled', 'disabled');
