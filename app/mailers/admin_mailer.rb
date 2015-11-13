@@ -9,4 +9,10 @@ class AdminMailer < ApplicationMailer
     end
   end
 
+  def registration_confirmation_to_admin(user)
+    @user = user
+    mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: "A new Registration")
+  end
+
+
 end
