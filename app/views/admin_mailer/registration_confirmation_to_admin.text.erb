@@ -1,0 +1,6 @@
+Admins,
+<% if @user.parent_id.present? %>
+A new enrolment has been done for the student <%=@user.full_name%> by parent <%= @user.parent.full_name%>.
+<% else %>
+A parent has setup their account on OurCompany <%=@user.full_name%> .
+<% end %>

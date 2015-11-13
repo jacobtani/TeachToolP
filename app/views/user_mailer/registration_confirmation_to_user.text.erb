@@ -1,9 +1,13 @@
-<%= @user.role == 'student' ? @user.parent.full_name : @user.full_name%>, 
-
+<%=@user.role == 'student' ? @user.parent.full_name : @user.full_name%>, 
+<% if @user.role == 'student' %>
 Thank you for registering <%= @user.full_name %> with OurCompany. We promise that you will find the tuition we provide your child will help them excel. 
 
 Cheers
 D and O
-
+<% elsif @user.role == 'parent' %> 
+Thank you for registering yourself with OurCompany. Please go to the Parent View after signing up to add your children and enrolments for each one. We promise that you will find the tuition we provide your child will help them excel. 
+Cheers
+D and O
+<% end %> 
 
 
