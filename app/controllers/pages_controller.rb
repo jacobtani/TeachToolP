@@ -45,4 +45,7 @@ class PagesController < ApplicationController
   def parent_summary
   end
 
+  def employer_view
+  end
+
 end

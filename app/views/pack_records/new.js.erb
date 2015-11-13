@@ -1,0 +1,20 @@
+//do the following actions when creating a new pack recod
+$("#new-packrecord-form").removeClass('hidden');
+$("#new-packrecord-form").html('<%= j render("form", pack_record: @pack_record, title: "Add Pack Record", path: pack_records_path()) %>')
+$("#new-packrecord-link").attr('disabled', 'disabled');
+$(document).trigger('init_placeholder');
+$(".new-pack-form").addClass('hidden');
+
+//if click outside the form, close it and make the button enabled
+var container = $("#new_pack_record");
+$(document).mouseup(function (e) {
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        container.hide();
+	       $("#new-packrecord-link").removeAttr('disabled', 'disabled');
+    }
+});
+//if cancel button is clicked, make button enabled
+$("#add-packrecord-cancel-button").on("click", function () {
+	$("#new-packrecord-link").removeAttr('disabled', 'disabled');
+	container.hide();
+});

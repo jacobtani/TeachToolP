@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   root 'pages#home'
    
   resources :users do 
-    resources :pack_records
     resources :enrolments
     get 'student_help_required', to: 'myregistrations#student_help_required', as: :help_student
 
@@ -18,6 +17,7 @@ Rails.application.routes.draw do
   resources :subjects
   resources :offers
   resources :messages
+  resources :pack_records
 
   controller :pages do
     get :home
@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     get :historical_view
     get :parent_summary
     get :student_view
+    get :employer_view
   end
 
 end
