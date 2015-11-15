@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
       user.enrolments.each do |enrolment| 
         total_fees+= enrolment.fees
       end
-      total_fees
     end
+    total_fees
   end
 
   def full_name
