@@ -71,4 +71,15 @@
   <div class = 'test'>
     <%= render partial: "myregistrations/parent_help_required", locals: {message: Message.new, user: current_user} %>
   </div>
+    <div class = 'test'>
+    <%= render partial: "myregistrations/missing_pack", locals: {message: Message.new, user: current_user} %>
+  </div>
+  <div class = 'test'>
+    <%= render partial: "myregistrations/payment_related_enquiry", locals: {message: Message.new, user: current_user} %>
+  </div>
+  <div class = 'test'>
+    <%= render partial: "myregistrations/general_parent_enquiry", locals: {message: Message.new, user: current_user} %>
+  </div>
+
+
 </div>

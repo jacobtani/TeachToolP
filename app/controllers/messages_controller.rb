@@ -6,11 +6,20 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new message_params
     if @message.valid?
-      if current_user.role == 'student'
+      if @message.message_subject == 'Student Help'
         AdminMailer.student_enquiry(current_user, @message).deliver_now
         redirect_to student_view_path, notice: "Message sent!"
-      elsif current_user.role == 'parent'
+      elsif @message.message_subject == 'Parent Help'
         AdminMailer.parent_enquiry(current_user, @message).deliver_now
+        redirect_to parent_summary_path
+      elsif @message.message_subject == 'Missing Pack'
+        AdminMailer.missing_pack(current_user, @message).deliver_now
+        redirect_to parent_summary_path
+      elsif @message.message_subject == 'General Parent Enquiry'
+        AdminMailer.general_parent_enquiry(current_user, @message).deliver_now
+        redirect_to parent_summary_path
+      elsif @message.message_subject == 'Payment Related Enquiry'
+        AdminMailer.payment_related_enquiry(current_user, @message).deliver_now
         redirect_to parent_summary_path
       end
     else
@@ -21,7 +30,7 @@ class MessagesController < ApplicationController
   private 
 
   def message_params
-    params.require(:message).permit(:content, :pack_name, :page_number, :question_number, :subject_name)
+    params.require(:message).permit(:content, :pack_name, :page_number, :question_number, :subject_name, :message_subject)
   end
 
 end

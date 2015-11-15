@@ -37,7 +37,11 @@
       <%= f.text_area :content, :rows => 5 %>
     </div>    
   </div>
-
+  <div class = "row" >
+    <div class = "col-md-6">
+      <%= f.hidden_field :message_subject, value: 'Parent Help'%>
+    </div>
+  </div>
   <div class="actions"><%= f.submit "Send Request" %></div>
 <% end %>
 </div>

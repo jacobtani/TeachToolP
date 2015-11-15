@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :enrolments
     get 'student_help_required', to: 'myregistrations#student_help_required', as: :help_student
     get 'parent_help_required', to: 'myregistrations#parent_help_required', as: :help_parent
+    get 'general_parent_enquiry', to: 'myregistrations#general_parent_enquiry', as: :parent_enquiry
+    get 'missing_pack', to: 'myregistrations#missing_pack', as: :missing_pack
+    get 'payment_related_enquiry', to: 'myregistrations#payment_related_enquiry', as: :payment_related_enquiry
+
   end
 
   resources :packs do

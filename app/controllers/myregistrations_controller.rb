@@ -65,6 +65,15 @@ class MyregistrationsController < Devise::RegistrationsController
   def parent_help_required(message)
   end
 
+  def missing_pack (user, message)
+  end
+
+  def payment_related_enquiry (user, message)
+  end
+
+  def parent_general_question (user, message)
+  end
+
   private 
 
   def user_params
