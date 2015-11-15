@@ -47,7 +47,7 @@ class MyregistrationsController < Devise::RegistrationsController
     respond_to do |format|
       if @user.update_attributes user_params
         flash[:success] = "User was updated successfully."
-        format.js {redirect_turbo users_path}
+        format.js { redirect_turbo parent_summary_path }
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @user}, status: 500 }
       end
@@ -56,8 +56,13 @@ class MyregistrationsController < Devise::RegistrationsController
 
   def destroy
     @user.destroy
-    redirect_to root_path
+    redirect_to parent_summary_path
   end
+
+  def authenticate_scope!
+    flash[:success] = 'Authenticating scope'
+  end
+
 
   def student_help_required(message)
   end

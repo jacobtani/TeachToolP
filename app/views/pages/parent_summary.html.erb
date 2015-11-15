@@ -9,6 +9,9 @@
     <div class="row">
       <div id="new-user-form" class="col-sm-6"></div>
     </div>
+    <div class="row">
+      <div id="edit-user-form" class="col-sm-6"></div>
+    </div>
 
     <% @children = current_user.children %> 
     <table class = 'table table-striped'>
@@ -18,6 +21,7 @@
         <th> Date of Birth</th>
         <th> Coupon Value</th>
         <th> Overdue Fees</th>
+        <th> Total Enrolment Fees </th>
         <% if current_user.role == 'parent'%>
           <th> Administration </th>
         <%end%>
@@ -29,10 +33,11 @@
           <td> <%= child.date_of_birth.strftime('%D') if child.date_of_birth %> </td>
           <td> <%= number_to_currency child.coupon_value %> </td>
           <td> <%= number_to_currency child.overdue_fees %> </td>
+          <td> <%= number_to_currency child.calculate_fees(child) %> </td>
           <%if current_user.role == 'parent'%>
             <td> 
-              <%#= link_to 'Edit', edit_user_registration_path(id: child.id), remote: true, class: "btn btn-success", id: 'edit-user-registration-link' %> 
-              <%#= link_to 'Delete', user_registration_path(child), method: :delete,
+              <%= link_to 'Edit', edit_user_registration_path(id: child.id), remote: true, class: "btn btn-success", id: 'edit-user-registration-link' %> 
+              <%= link_to 'Delete', user_registration_path(id: child.id), method: :delete,
                 class: "btn btn-danger", id: 'delete-user-registration-link' %>
             </td>
           <%end%>
@@ -41,7 +46,6 @@
     </table>
   </div>
   <div class = 'summary-enrolments'>  
-    <h2> Enrolments Summary </h2>
     <div class= 'pull-right'>
       <%= link_to 'Add Enrolment', new_user_enrolment_path(user_id: current_user.id), remote: true, class: "btn btn-primary", id: 'new-enrolment-link' if user_signed_in? %>
     </div>
@@ -49,24 +53,42 @@
     <div class="row">
       <div id="new-enrolment-form" class="col-sm-6"></div>
     </div>
+    <div class="row">
+      <div id="edit-enrolment-form" class="col-sm-6"></div>
+    </div>
 
     <% @children = current_user.children %> 
-    <table class = 'table table-striped'>
-      <thead>
-        <th> Student Name</th>
-        <th> Enrolled Subjects</th>
-        <th> Total Fees</th>
-       </thead>
-      <% @children.each do | child | %>
-        <%if child.enrolments.present? %>
-        <tr>
-          <td> <%= link_to child.full_name, user_enrolment_path(user_id: child.id, id: child.enrolments[0].id) %> </td>
-          <td> <%= child.subjects.pluck(:subject_name).join(' , ')%> </td>
-          <td> <%= number_to_currency child.calculate_fees(child) %> </td>
-        </tr>
-        <% end%>
+    <% @children.each do | child | %>
+      <%if child.enrolments.present? %>
+        <h2> <%= child.full_name + "'s Enrolment" %> </h2>
+        <table class = 'table table-striped'>
+          <thead>
+            <th> Student Name</th>
+            <th> Subject</th>
+            <th> Grade </th>
+            <th> Fees</th>
+            <% if current_user.role == 'parent'%>
+              <th> Administration </th>
+            <%end%>
+          </thead>
+          <% child.enrolments.each do |enrolment| %>
+            <tr>
+              <td> <%= User.find(enrolment.user_id).full_name %> </td>
+              <td> <%= Subject.find(enrolment.subject_id).subject_name %> </td>
+              <td> <%= enrolment.grade %> </td>    
+              <td> <%= number_to_currency enrolment.fees %> </td>
+              <%if current_user.role == 'parent'%>
+                <td> 
+                  <%= link_to 'Edit', edit_user_enrolment_path(user_id: child.id, id: enrolment.id), remote: true, class: "btn btn-success", id: 'edit-enrolment-link' %> 
+                  <%= link_to 'Delete', user_enrolment_path(user_id: child.id, id: enrolment.id), method: :delete,
+                class: "btn btn-danger", id: 'delete-user-registration-link' %>
+                </td>
+              <%end%>
+            </tr>
+          <%end%>
+      </table>
       <%end%>
-    </table>
+    <%end%>
   </div>
   <div class = 'test'>
     <%= render partial: "myregistrations/parent_help_required", locals: {message: Message.new, user: current_user} %>
@@ -80,6 +102,5 @@
   <div class = 'test'>
     <%= render partial: "myregistrations/general_parent_enquiry", locals: {message: Message.new, user: current_user} %>
   </div>
-
 
 </div>

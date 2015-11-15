@@ -58,18 +58,19 @@
         <%= f.text_field :contact_mobile, placeholder: 'Enter contact mobile number', class: 'form-control' %>
       </div>
     </div>
-     <div class = 'row'>
-      <div class = "col-sm-1">
-        <h6> User details: </h6>
+    <%if path == '/users' %>
+      <div class = 'row'>
+        <div class = "col-sm-1">
+          <h6> User details: </h6>
+        </div>
+        <div class="col-sm-6">
+          <%= f.email_field :email, placeholder: 'Enter email', class: 'form-control' %>
+        </div>
+        <div class="col-sm-5">
+          <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
+        </div>
       </div>
-      <div class="col-sm-6">
-        <%= f.email_field :email, placeholder: 'Enter email', class: 'form-control' %>
-      </div>
-      <div class="col-sm-5">
-        <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
-      </div>
-    </div>
-
+    <%end%>
   </div>
 
   <div class="form-group row submit">
