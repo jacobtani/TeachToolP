@@ -1,6 +1,6 @@
 <div class = 'container'>
 <h1> Payment Enquiry </h1>
-
+<% message = Message.new %>
 <%= form_for message do |f| %>
   <% if message.errors.any? %>
     <div class="error_messages">

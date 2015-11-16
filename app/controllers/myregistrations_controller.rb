@@ -64,19 +64,34 @@ class MyregistrationsController < Devise::RegistrationsController
   end
 
 
-  def student_help_required(message)
+  def student_help_required()
+    respond_to do |format|
+      format.js { }
+    end
+      end
+
+  def parent_help_required()
+    respond_to do |format|
+      format.js { }
+    end
   end
 
-  def parent_help_required(message)
+  def missing_pack()
+    respond_to do |format|
+      format.js { }
+    end
   end
 
-  def missing_pack (user, message)
+  def payment_related_enquiry()
+      respond_to do |format|
+      format.js { }
+    end
   end
 
-  def payment_related_enquiry (user, message)
-  end
-
-  def parent_general_question (user, message)
+  def general_parent_enquiry()
+    respond_to do |format|
+      format.js { }
+    end
   end
 
   private 

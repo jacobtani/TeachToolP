@@ -1,0 +1,7 @@
+$(".student-summary").addClass('hidden');
+$(".summary-enrolments").addClass('hidden');
+$(".my-pack").addClass('hidden');
+$(".payment-enquiry").addClass('hidden');
+$(".parent-help").addClass('hidden');
+$(".general-parent").removeClass('hidden');
+$(".general-parent").html("<%=j(render :partial=>"myregistrations/general_parent_enquiry")%>");

@@ -5,15 +5,15 @@ Rails.application.routes.draw do
   root 'pages#home'
   devise_scope :user do
     patch '/users/:id/edit' => "myregistrations#update", as: :edit_rego
+    get '/users/:id/missing_pack' => "myregistrations#missing_pack", as: :missing_pack
+    get '/users/:id/general_parent_enquiry' => "myregistrations#general_parent_enquiry", as: :general_parent_enquiry
+    get '/users/:id/parent_help_required' => "myregistrations#parent_help_required", as: :parent_help
+    get '/users/:id/payment_related_enquiry' => "myregistrations#payment_related_enquiry", as: :payment_related_enquiry
+
   end 
   
   resources :users do 
     resources :enrolments
-    get 'student_help_required', to: 'myregistrations#student_help_required', as: :help_student
-    get 'parent_help_required', to: 'myregistrations#parent_help_required', as: :help_parent
-    get 'general_parent_enquiry', to: 'myregistrations#general_parent_enquiry', as: :parent_enquiry
-    get 'missing_pack', to: 'myregistrations#missing_pack', as: :missing_pack
-    get 'payment_related_enquiry', to: 'myregistrations#payment_related_enquiry', as: :payment_related_enquiry
   end
 
 
