@@ -1,0 +1,35 @@
+<div class = 'container'>
+  <% @user = current_user if @user.nil?%>
+  <% @children = @user.children %> 
+    <% @children.each do | child | %>
+      <%if child.enrolments.present? %>
+        <h2> <%= child.full_name + "'s Enrolment" %> </h2>
+        <table class = 'table table-striped'>
+          <thead>
+            <th> Student Name</th>
+            <th> Subject</th>
+            <th> Grade </th>
+            <th> Fees</th>
+            <% if current_user.role == 'parent'%>
+              <th> Administration </th>
+            <%end%>
+          </thead>
+          <% child.enrolments.each do |enrolment| %>
+            <tr>
+              <td> <%= User.find(enrolment.user_id).full_name %> </td>
+              <td> <%= Subject.find(enrolment.subject_id).subject_name %> </td>
+              <td> <%= enrolment.grade %> </td>    
+              <td> <%= number_to_currency enrolment.fees %> </td>
+              <%if current_user.role == 'parent'%>
+                <td> 
+                  <%= link_to 'Edit', edit_user_enrolment_path(user_id: child.id, id: enrolment.id), remote: true, class: "btn btn-success", id: 'edit-enrolment-link' %> 
+                  <%= link_to 'Delete', user_enrolment_path(user_id: child.id, id: enrolment.id), method: :delete,
+                class: "btn btn-danger", id: 'delete-user-registration-link' %>
+                </td>
+              <%end%>
+            </tr>
+          <%end%>
+      </table>
+      <%end%>
+    <%end%>
+  </div>

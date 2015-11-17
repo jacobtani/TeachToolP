@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
    
-  devise_for :users, :controllers => {:registrations => "myregistrations"}
+  devise_for :users, :controllers => {:registrations => "myregistrations"} 
+
   root 'pages#home'
-   
+  devise_scope :user do
+    patch '/users/:id/edit' => "myregistrations#update", as: :edit_rego
+    get '/users/:id/missing_pack' => "myregistrations#missing_pack", as: :missing_pack
+    get '/users/:id/general_parent_enquiry' => "myregistrations#general_parent_enquiry", as: :general_parent_enquiry
+    get '/users/:id/parent_help_required' => "myregistrations#parent_help_required", as: :parent_help
+    get '/users/:id/payment_related_enquiry' => "myregistrations#payment_related_enquiry", as: :payment_related_enquiry
+    get '/users/:id/children' => "myregistrations#children", as: :children
+  end 
+  
   resources :users do 
     resources :enrolments
-    get 'student_help_required', to: 'myregistrations#student_help_required', as: :help_student
-
   end
 
   resources :packs do

@@ -1,5 +1,5 @@
 class MyregistrationsController < Devise::RegistrationsController
-  before_action :set_user, only: [:edit, :update, :show, :destroy]
+  before_action :set_user, only: [:edit, :update, :show, :destroy, :children]
 #  before_action :admin_only, only: [:new, :create, :update, :destroy]
   
   def index
@@ -47,7 +47,7 @@ class MyregistrationsController < Devise::RegistrationsController
     respond_to do |format|
       if @user.update_attributes user_params
         flash[:success] = "User was updated successfully."
-        format.js {redirect_turbo users_path}
+        format.js { redirect_turbo parent_summary_path }
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @user}, status: 500 }
       end
@@ -56,13 +56,51 @@ class MyregistrationsController < Devise::RegistrationsController
 
   def destroy
     @user.destroy
-    redirect_to root_path
+    redirect_to parent_summary_path
   end
 
-  def student_help_required(message)
-    AdminMailer.student_enquiry(current_user, message).deliver_now
+  def authenticate_scope!
+    flash[:success] = 'Authenticating scope'
   end
 
+
+  def student_help_required()
+    respond_to do |format|
+      format.js { }
+    end
+      end
+
+  def parent_help_required()
+    respond_to do |format|
+      format.js { }
+    end
+  end
+
+  def missing_pack()
+    respond_to do |format|
+      format.js { }
+    end
+  end
+
+  def payment_related_enquiry()
+      respond_to do |format|
+      format.js { }
+    end
+  end
+
+  def general_parent_enquiry()
+    respond_to do |format|
+      format.js { }
+    end
+  end
+
+  def children()
+    @children = @user.children if current_user.role == 'parent'
+    respond_to do |format|
+      format.js {}
+    end
+  end
+  
   private 
 
   def user_params

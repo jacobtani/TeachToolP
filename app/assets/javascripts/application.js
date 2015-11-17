@@ -16,3 +16,12 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() { 
+  $('.my-pack').addClass('hidden');
+  $('.general-parent').addClass('hidden');
+  $('.payment-enquiry').addClass('hidden');
+  $('.parent-help').addClass('hidden');
+  $('.all-enrolments').addClass('hidden');
+});
+

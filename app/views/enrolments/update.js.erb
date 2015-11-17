@@ -1,0 +1,5 @@
+//actions to do when submit button of edit enrolment form has been clicked
+$("#edit-enrolment-link").removeAttr('disabled', 'disabled');
+$("#delete-enrolment-link").attr('data-confirm', 'Are you sure you want to delete this enrolment ?')
+$("#edit-enrolment-form").addClass('hidden');
+$(document).trigger('enrolment:form_disabled');

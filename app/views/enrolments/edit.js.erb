@@ -1,0 +1,24 @@
+//do the following actions when editing an enrolment
+$("#new-enrolment-form").addClass('hidden');
+$("#edit-enrolment-link").attr('disabled', 'disabled');
+$("#edit-enrolment-form").removeClass('hidden');
+$("#edit-enrolment-form").html("<%= j render('form', user: @user, enrolment: @enrolment, remote_mode: true, title: 'Edit Enrolment', path: user_enrolment_path(user_id: @user.id, id: @enrolment.id) ) %>");
+$(document).trigger('init_placeholder');
+//if click outside the form, close it and make the button enabled
+var offer = "#edit_enrolment_" + <%=@enrolment.id%>;
+var container = $(offer);
+
+$(document).mouseup(function (e) {
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+      if ( !$("#new-enrolment-link").is(e.target) ) {
+        container.hide();
+      };
+      $("#edit-enrolment-link").removeAttr('disabled', 'disabled');
+    }
+});
+
+//if cancel button is clicked, make button enabled
+$("#add-enrolment-cancel-button").on("click", function () {
+  $("#edit-enrolment-link").removeAttr('disabled', 'disabled');
+  container.hide();
+});

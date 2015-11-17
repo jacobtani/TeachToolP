@@ -1,0 +1,28 @@
+//do the following actions when editing an user
+$("#edit-user-registration-link").attr('disabled', 'disabled');
+$(".general-parent").addClass('hidden');
+$(".my-children").addClass('hidden');
+$(".parent-help").addClass('hidden');
+$(".payment-enquiry").addClass('hidden');
+$(".my-pack").addClass('hidden');
+$("#edit-user-form").removeClass('hidden');
+$("#edit-user-form").html("<%= j render('form', user: @user, remote_mode: true, title: 'Edit User', path: edit_rego_path(@user) ) %>");
+$(document).trigger('init_placeholder');
+//if click outside the form, close it and make the button enabled
+var user = "#edit_user_" + <%=@user.id%>;
+var container = $(user);
+
+$(document).mouseup(function (e) {
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+      if ( !$("#new-user-link").is(e.target) ) {
+        container.hide();
+      };
+      $("#edit-user-registration-link").removeAttr('disabled', 'disabled');
+    }
+});
+
+//if cancel button is clicked, make button enabled
+$("#add-user-cancel-button").on("click", function () {
+  $("#edit-user-registration-link").removeAttr('disabled', 'disabled');
+  container.hide();
+});

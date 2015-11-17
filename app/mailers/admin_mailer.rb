@@ -9,10 +9,34 @@ class AdminMailer < ApplicationMailer
     end
   end
 
+  def parent_enquiry(user, message)
+    @user = user
+    full_message = user.full_name + "(" + user.id.to_s + ") needs help with " + message.subject_name + ". In particular pack " + message.pack_name + " on page " + message.page_number + ", question number " + message.question_number + ". The following additional details have been given: " + message.content
+    if @user.role == 'parent'
+      mail(from: @user.email, subject: "Help Requested by Parent", body: full_message)
+    end
+  end
+
   def registration_confirmation_to_admin(user)
     @user = user
     mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: "A new Registration")
   end
 
+  def missing_pack(user, message)
+    @user = user
+    full_message = user.full_name + ' wants to report a pack missing: ' + message.pack_name + ' with the following details: ' + message.content
+    mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: message.message_subject, body: full_message)
+  end
 
+  def payment_related_enquiry(user, message)
+    @user = user
+    full_message = @user.full_name + ' has the following payment related enquiry: ' + message.content
+    mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: message.message_subject, body: full_message)
+  end
+
+  def general_parent_enquiry(user, message)
+    @user = user
+    full_message = @user.full_name + ' has the following general question: ' + message.content
+    mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: message.message_subject, body: full_message)
+  end
 end
