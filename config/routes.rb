@@ -16,8 +16,6 @@ Rails.application.routes.draw do
     resources :enrolments
   end
 
-
-
   resources :packs do
     resources :enclosures
   end
