@@ -1,5 +1,10 @@
 //do the following actions when editing an user
 $("#edit-user-registration-link").attr('disabled', 'disabled');
+$(".general-parent").addClass('hidden');
+$(".my-children").addClass('hidden');
+$(".parent-help").addClass('hidden');
+$(".payment-enquiry").addClass('hidden');
+$(".my-pack").addClass('hidden');
 $("#edit-user-form").removeClass('hidden');
 $("#edit-user-form").html("<%= j render('form', user: @user, remote_mode: true, title: 'Edit User', path: edit_rego_path(@user) ) %>");
 $(document).trigger('init_placeholder');

@@ -1,5 +1,5 @@
 class MyregistrationsController < Devise::RegistrationsController
-  before_action :set_user, only: [:edit, :update, :show, :destroy]
+  before_action :set_user, only: [:edit, :update, :show, :destroy, :children]
 #  before_action :admin_only, only: [:new, :create, :update, :destroy]
   
   def index
@@ -94,6 +94,13 @@ class MyregistrationsController < Devise::RegistrationsController
     end
   end
 
+  def children()
+    @children = @user.children if current_user.role == 'parent'
+    respond_to do |format|
+      format.js {}
+    end
+  end
+  
   private 
 
   def user_params

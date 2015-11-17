@@ -22,5 +22,6 @@ $(document).ready(function() {
   $('.general-parent').addClass('hidden');
   $('.payment-enquiry').addClass('hidden');
   $('.parent-help').addClass('hidden');
+  $('.all-enrolments').addClass('hidden');
 });
 

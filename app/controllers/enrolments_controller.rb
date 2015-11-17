@@ -1,11 +1,14 @@
  class EnrolmentsController < ApplicationController
   #before_action :authenticate_user!
   before_action :set_enrolment, only: [:edit, :update, :show, :destroy]
-  before_action :set_user, only: [:new, :create, :edit, :update]
+  before_action :set_user, only: [:new, :create, :edit, :update, :index]
   #before_action :priviliged_only, only: [:new, :create, :update, :destroy]
   
   def index
-    @enrolments = Enrolment.all
+    @enrolments = @user.enrolments
+    respond_to do |format|
+      format.js { }
+    end
   end
 
   def show

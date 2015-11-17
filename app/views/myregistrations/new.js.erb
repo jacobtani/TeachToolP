@@ -1,5 +1,10 @@
 //do the following actions when creating a new user
 $("#new-enrolment-form").addClass('hidden');
+$(".general-parent").addClass('hidden');
+$(".my-children").addClass('hidden');
+$(".parent-help").addClass('hidden');
+$(".payment-enquiry").addClass('hidden');
+$(".my-pack").addClass('hidden');
 $("#new-user-form").removeClass('hidden');
 $("#new-user-form").html('<%= j render("form", user: @user, title: "Add User", path: user_registration_path(@user)) %>')
 //$("#new-user-link").attr('disabled', 'disabled');

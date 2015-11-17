@@ -1,0 +1,34 @@
+<div class = 'container'>
+  <h2> Registered Children </h2>
+  <% @children = current_user.children if @children.nil?%> 
+  <table class = 'table table-striped'>
+    <thead>
+      <th> Name</th>
+      <th> Email</th>
+      <th> Date of Birth</th>
+      <th> Coupon Value</th>
+      <th> Overdue Fees</th>
+      <th> Total Enrolment Fees </th>
+      <% if current_user.role == 'parent'%>
+        <th> Administration </th>
+      <%end%>
+    </thead>
+    <% @children.each do | child | %>
+      <tr>
+        <td> <%= child.full_name %> </td>
+        <td> <%= child.email %> </td>
+        <td> <%= child.date_of_birth.strftime('%D') if child.date_of_birth %> </td>
+        <td> <%= number_to_currency child.coupon_value %> </td>
+        <td> <%= number_to_currency child.overdue_fees %> </td>
+        <td> <%= number_to_currency child.calculate_fees(child) %> </td>
+        <%if current_user.role == 'parent'%>
+          <td> 
+            <%= link_to 'Edit', edit_user_registration_path(id: child.id), remote: true, class: "btn btn-success", id: 'edit-user-registration-link' %> 
+            <%= link_to 'Delete', user_registration_path(id: child.id), method: :delete,
+                class: "btn btn-danger", id: 'delete-user-registration-link' %>
+          </td>
+        <%end%>
+      </tr>
+    <%end%>
+  </table>
+</div>

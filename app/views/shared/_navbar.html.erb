@@ -30,9 +30,12 @@
             </li>
             <li><%= link_to 'Contact', contact_path%></li>
             <% if user_signed_in? && current_user.role == 'parent' %>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Parent<span class="caret"></span></a>
+              <li class= "dropdown">
+                <a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Parents <span class="caret"></span></a> 
                 <ul class="dropdown-menu">
+                  <% current_user.children.each do |child|%>
+                    <li><%= link_to child.full_name, pack_records_path(user_id: child.id), id:'some-link'%></li>
+                  <%end%>
                   <li><%= link_to 'Summary', parent_summary_path %> </li>
                 </ul>
               </li>
@@ -40,8 +43,7 @@
               <li><%= link_to 'Admin', admin_path %></li>
             <%elsif user_signed_in? && current_user.role == 'student' %>
               <li> <%= link_to 'Student', student_view_path(user_id: current_user.id) %> </li>
-            <%end%>
-            <%if user_signed_in? && current_user.role == 'employer' %>
+            <%elsif user_signed_in? && current_user.role == 'employer' %>
               <li> <%= link_to 'Employer', employer_view_path %> </li>
             <%end%>
           </ul>
