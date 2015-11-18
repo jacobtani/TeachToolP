@@ -52,7 +52,7 @@ class PackRecordsController < ApplicationController
   private
 
     def pack_record_params
-      params.require(:pack_record).permit(:pack_id, :user_id, :status, :start_date, :score, :due_date, :comment)
+      params.require(:pack_record).permit(:pack_id, :user_id, :status, :start_date, :posting_number, :score, :due_date, :comment)
     end
     
     def set_pack_record

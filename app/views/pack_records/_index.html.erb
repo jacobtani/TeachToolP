@@ -16,6 +16,7 @@
   <table class = 'table table-striped'>
     <thead>
       <th> Pack </th>
+      <th> Posting Number </th>
       <th> User </th>
       <th> Score </th>
       <th> Reward </th>
@@ -30,6 +31,7 @@
     <% @pack_records.each do |pack_record| %>
       <tr>
         <td> <%= Pack.find(pack_record.pack_id).name %> </td>
+        <td> <%= pack_record.posting_number %> </td>        
         <td> <%= User.find(pack_record.user_id).full_name %> </td>
         <td> <%= pack_record.score %> </td>
         <td> <%= number_to_currency pack_record.reward %> </td>

@@ -15,11 +15,14 @@
 
   <div class="form-group">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <%= f.collection_select :pack_id, Pack.all, :id, :name, prompt: 'Select pack', class: 'form-control' %>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <%= f.select :status, PackRecord.statuses.keys.to_a %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.number_field :posting_number, placeholder: 'Enter posting number' %>
       </div>
     </div>
   </div>
