@@ -1,5 +1,6 @@
 class PackRecord < ActiveRecord::Base
   belongs_to :user
+  enum status: [:DISPATCHED, :RECEIVED, :COMPLETED]
 
   def calculate_reward(user, score, pack_record)
     if score >= 70 && score <= 79

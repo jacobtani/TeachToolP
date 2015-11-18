@@ -17,6 +17,7 @@
     <thead>
       <th> Pack Name </th>
       <th> Description </th>
+      <th> Type </th>
       <th> Action Required </th>
       <th> Subject </th>
      <!-- <th> In Stock </th> -->
@@ -28,6 +29,7 @@
       <tr>
         <td> <%= pack.name %> </td>
         <td> <%= pack.description %> </td>
+        <td> <%= pack.pack_type %> </td>
         <td> <%= pack.action_required %> </td>
         <td> <%= Subject.find(pack.subject_id).subject_name %> </td>
         <% if current_user.role == 'admin' %>
