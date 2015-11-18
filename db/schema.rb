@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118083025) do
+ActiveRecord::Schema.define(version: 20151118084158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20151118083025) do
     t.integer "subject_id",                  null: false
     t.boolean "in_stock?"
     t.integer "pack_type",       default: 0
+    t.integer "priority",        default: 1
   end
 
   add_index "packs", ["subject_id"], name: "index_packs_on_subject_id", using: :btree

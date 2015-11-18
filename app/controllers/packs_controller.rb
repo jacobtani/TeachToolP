@@ -49,7 +49,7 @@ class PacksController < ApplicationController
   private
 
     def pack_params
-      params.require(:pack).permit(:name, :description, :action_required, :subject_id, :pack_type)
+      params.require(:pack).permit(:name, :description, :action_required, :subject_id, :pack_type, :priority)
     end
 
     def set_pack
