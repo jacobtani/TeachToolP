@@ -11,14 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113075943) do
+ActiveRecord::Schema.define(version: 20151118080217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "enclosure_types", force: :cascade do |t|
-    t.integer "type"
-  end
 
   create_table "enclosures", force: :cascade do |t|
     t.string   "name"
@@ -26,6 +22,7 @@ ActiveRecord::Schema.define(version: 20151113075943) do
     t.boolean  "returnable?"
     t.string   "status"
     t.datetime "due_date"
+    t.integer  "enclosure_type", default: 0
   end
 
   create_table "enrolments", force: :cascade do |t|
@@ -53,7 +50,6 @@ ActiveRecord::Schema.define(version: 20151113075943) do
   create_table "pack_records", force: :cascade do |t|
     t.datetime "record_date"
     t.string   "comment"
-    t.string   "status"
     t.datetime "due_date"
     t.integer  "pack_id",                   null: false
     t.integer  "user_id",                   null: false
@@ -62,6 +58,7 @@ ActiveRecord::Schema.define(version: 20151113075943) do
     t.integer  "score",       default: 0
     t.float    "reward",      default: 0.0
     t.datetime "start_date"
+    t.integer  "status",      default: 0
   end
 
   add_index "pack_records", ["pack_id"], name: "index_pack_records_on_pack_id", using: :btree
@@ -71,8 +68,9 @@ ActiveRecord::Schema.define(version: 20151113075943) do
     t.string  "name"
     t.text    "description"
     t.text    "action_required"
-    t.integer "subject_id",      null: false
+    t.integer "subject_id",                  null: false
     t.boolean "in_stock?"
+    t.integer "pack_type",       default: 0
   end
 
   add_index "packs", ["subject_id"], name: "index_packs_on_subject_id", using: :btree
