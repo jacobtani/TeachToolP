@@ -28,13 +28,15 @@
 
   <div class="form-group">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select a subject" %>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <%= f.select :pack_type, Pack.pack_types.keys.to_a %>
       </div>
-
+      <div class="col-sm-4">
+        <%= f.number_field :priority, placeholder: 'Enter priority' %>
+      </div>
     </div>
   </div>
 
