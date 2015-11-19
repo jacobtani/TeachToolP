@@ -9,6 +9,7 @@
       <th> Coupon Value</th>
       <th> Overdue Fees</th>
       <th> Total Enrolment Fees </th>
+      <th> Account Status </th>
       <% if current_user.role == 'parent'%>
         <th> Administration </th>
       <%end%>
@@ -21,6 +22,7 @@
         <td> <%= number_to_currency child.coupon_value %> </td>
         <td> <%= number_to_currency child.overdue_fees %> </td>
         <td> <%= number_to_currency child.calculate_fees(child) %> </td>
+        <td> <%= child.status %> </td>
         <%if current_user.role == 'parent'%>
           <td> 
             <%= link_to 'Edit', edit_user_registration_path(id: child.id), remote: true, class: "btn btn-success", id: 'edit-user-registration-link' %> 
