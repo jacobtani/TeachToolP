@@ -36,12 +36,16 @@
       <div class = "col-sm-1">
         <h6> Role: </h6>
       </div>
-      <div class="col-sm-5">
+      <div class="col-sm-4">
         <%= f.select :role, ['parent', 'student'] %>
       </div>
-      <div class="col-sm-5">
+      <div class="col-sm-4">
         <%= f.label 'DOB:' %>
         <%= f.date_field :date_of_birth %>
+      </div>
+      <div class = "col-sm-3">
+        <%= f.label 'Status:' %>
+        <%= f.select :status, User.statuses.keys.to_a %>
       </div>
     </div>
      <div class = 'row'>
