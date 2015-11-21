@@ -50,6 +50,10 @@ group :development, :test, :staging do
   gem "binding_of_caller"
 end
 
+group :production do
+  gem 'rails_12factor'  
+end   
+
 group :development, :test do
   gem 'quiet_assets'
   gem 'annotate' # run 'annotate -p before' to annotate your models
