@@ -1,16 +1,51 @@
-<h2> Index page </h2> 
 <div class = 'container'>
-  <div class = 'jumbotron'>
-    <h2> Create Enrolment </h2> 
-    <%= link_to 'Add Person', new_user_registration_path, remote: true, class: "btn btn-primary", id: 'new-user-link' if user_signed_in? %>
-        <%= link_to 'Add Enrolment', new_user_enrolment_path(user_id: current_user.id), remote: true, class: "btn btn-primary", id: 'new-enrolment-link' if user_signed_in? %>
+  <div class = 'parents'>
+    <% parents = @users.where(role: 'parent') %>
+    <h2> Parents </h2>
+    <table class = 'table table-striped'>
+      <thead>
+        <th> Parent Name </th>
+        <th> Number of Children </th>
+      </thead>
+      <% parents.each do |parent| %>
+        <tr>
+          <td> <%= parent.full_name %> </td>
+          <td> <%= parent.children.count %> </td>
+        </tr>
+      <%end%>
+    </table>
+  </div>
+  <div class = 'students'>
+    <% students = @users.where(role: 'student') %>
+    <h2> Students </h2>
+    <table class = 'table table-striped'>
+      <thead>
+        <th> Student Id </th>
+        <th> Student Name </th>
+        <th> Parent Name </th>
+        <th> Number of Enrolments </th>
+        <th> Status </th>
+        <th> Administration </th>
+      </thead>
+      <% students.each do |student| %>
+        <tr>
+          <td> <%= student.id%> </td>
+          <td> <%= student.full_name %> </td>
+          <td> <%= student.parent.full_name %> </td>
+          <td> <%= student.enrolments.count %> </td>
+          <td> <%= student.status %> </td>
+          <% if student.needs_suspension? && student.status != 'SUSPENDED'%>
+            <td> 
+              <%= link_to 'Suspend Account', suspend_child_path(id: student.id), class: "btn btn-success", id: 'suspend-child-link' if student.needs_suspension? %> 
+            </td>
+          <%end%>
+        </tr>
+      <%end%>
+    </table>
+  </div>
 
-  </div>
-  <div class="row">
-    <div id="new-user-form" class="col-sm-6"></div>
-  </div>
-  <div class="row">
-    <div id="new-enrolment-form" class="col-sm-6"></div>
-  </div>
 
-</div>
+
+
+
+

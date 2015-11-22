@@ -36,4 +36,8 @@ class User < ActiveRecord::Base
 
   end
 
+  def needs_suspension?
+    self.pack_records.where(status: 0).count >= 2
+  end
+
 end
