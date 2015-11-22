@@ -1,5 +1,5 @@
 class MyregistrationsController < Devise::RegistrationsController
-  before_action :set_user, only: [:edit, :update, :show, :destroy, :children, :suspend]
+  before_action :set_user, only: [:edit, :update, :show, :destroy, :children, :suspend, :cancel_account]
 #  before_action :admin_only, only: [:new, :create, :update, :destroy]
   
   def index
@@ -106,6 +106,13 @@ class MyregistrationsController < Devise::RegistrationsController
     @user.save
     UserMailer.suspension_email(@user).deliver_now
     redirect_to users_path
+  end
+
+  def cancel_account()
+    @user.status = 2
+    @user.save
+    UserMailer.cancellation_email(@user).deliver_now
+    redirect_to parent_summary_path
   end
   
   private 
