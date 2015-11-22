@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get '/users/:id/parent_help_required' => "myregistrations#parent_help_required", as: :parent_help
     get '/users/:id/payment_related_enquiry' => "myregistrations#payment_related_enquiry", as: :payment_related_enquiry
     get '/users/:id/children' => "myregistrations#children", as: :children
+    get '/users/:id/suspend' => "myregistrations#suspend", as: :suspend_child
   end 
   
   resources :users do 

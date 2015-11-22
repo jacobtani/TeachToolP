@@ -43,10 +43,12 @@
         <%= f.label 'DOB:' %>
         <%= f.date_field :date_of_birth %>
       </div>
-      <div class = "col-sm-3">
-        <%= f.label 'Status:' %>
-        <%= f.select :status, User.statuses.keys.to_a %>
-      </div>
+      <% if current_user.role == 'admin'%>
+        <div class = "col-sm-3">
+          <%= f.label 'Status:' %>
+          <%= f.select :status, User.statuses.keys.to_a %>
+        </div>
+      <%end%>
     </div>
      <div class = 'row'>
       <div class = "col-sm-1">
