@@ -17,10 +17,12 @@ class PackRecordsController < ApplicationController
 
   def create
     @pack_record = PackRecord.new pack_record_params
-    @user = @pack_record.user_id
+    @user = User.find(@pack_record.user_id)
+    @pack = Pack.find(@pack_record.pack_id)
     @pack_record.reward = @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
     respond_to do |format|
       if @pack_record.save
+        UserMailer.new_work_email(@user, @pack).deliver_now
         flash[:success] = "Pack Record was created successfully."
         format.js { redirect_turbo employer_view_path}
       else

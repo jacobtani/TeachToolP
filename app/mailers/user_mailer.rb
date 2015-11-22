@@ -20,4 +20,10 @@ class UserMailer < ApplicationMailer
     mail(:to => @user.parent.email, :subject => "Cancellation of MyCompany Account")
   end
 
+  def new_work_email(user, pack)
+    @user = user
+    @pack = pack
+    mail(:to => @user.parent.email, :subject => "New work added to MyCompany Account")
+  end
+
 end
