@@ -26,8 +26,10 @@
         <%if current_user.role == 'parent'%>
           <td> 
             <%= link_to 'Edit', edit_user_registration_path(id: child.id), remote: true, class: "btn btn-success", id: 'edit-user-registration-link' %> 
-            <%= link_to 'Delete', user_registration_path(id: child.id), method: :delete,
-                class: "btn btn-danger", id: 'delete-user-registration-link' %>
+            <% if child.status != 'CANCELLED' %>
+              <%= link_to 'Terminate Account', cancel_child_path(id: child.id),
+                class: "btn btn-danger", id: 'cancel-user-link' %>
+            <%end%>
           </td>
         <%end%>
       </tr>
