@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get '/users/:id/children' => "myregistrations#children", as: :children
     get '/users/:id/suspend' => "myregistrations#suspend", as: :suspend_child
     get '/users/:id/cancel' => "myregistrations#cancel_account", as: :cancel_child
+    get '/users/:id/redeem_reward' => "myregistrations#redeem_reward", as: :redeem_reward
   end 
   
   resources :users do 

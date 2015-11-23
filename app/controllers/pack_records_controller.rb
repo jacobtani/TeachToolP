@@ -1,7 +1,7 @@
 class PackRecordsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:index, :show]
-  before_action :set_pack_record, only: [:edit, :update, :show, :destroy]
+  before_action :set_user, only: [:index, :show, :update_rewards]
+  before_action :set_pack_record, only: [:edit, :update, :show, :destroy, :update_rewards]
   
   def index
     @pack_records = @user.pack_records
@@ -19,7 +19,7 @@ class PackRecordsController < ApplicationController
     @pack_record = PackRecord.new pack_record_params
     @user = User.find(@pack_record.user_id)
     @pack = Pack.find(@pack_record.pack_id)
-    @pack_record.reward = @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
+    update_rewards(@user)
     respond_to do |format|
       if @pack_record.save
         UserMailer.new_work_email(@user, @pack).deliver_now
@@ -35,6 +35,8 @@ class PackRecordsController < ApplicationController
   end
   
   def update
+    @user = User.find(@pack_record.user_id)
+    update_rewards(@user)
     respond_to do |format|
       if @pack_record.update_attributes pack_record_params
         flash[:success] = "Pack Record was updated successfully."
@@ -49,7 +51,6 @@ class PackRecordsController < ApplicationController
     @pack_record.destroy
     redirect_to employer_view_path
   end
-
 
   private
 
@@ -67,4 +68,10 @@ class PackRecordsController < ApplicationController
       return not_found! unless @user
     end
 
+    def update_rewards(user)
+      @user = user
+      @pack_record.reward = @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
+      @user.rewards += @pack_record.reward
+      @user.save
+    end
 end

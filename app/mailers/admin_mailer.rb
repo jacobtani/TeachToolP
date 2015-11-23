@@ -39,4 +39,11 @@ class AdminMailer < ApplicationMailer
     full_message = @user.full_name + ' has the following general question: ' + message.content
     mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: message.message_subject, body: full_message)
   end
+
+  def redeem_reward(user, amount)
+    @user = user
+    full_message = @user.parent.full_name + ' would like to redeem their rewards for ' + user.full_name + ' of $' + amount.to_s
+    mail(from: @user.parent.email, to: 'tjterminator.dev@gmail.com', subject: 'Reward Redeemed', body: full_message)
+  end
+
 end

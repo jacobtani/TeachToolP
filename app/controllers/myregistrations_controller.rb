@@ -1,5 +1,5 @@
 class MyregistrationsController < Devise::RegistrationsController
-  before_action :set_user, only: [:edit, :update, :show, :destroy, :children, :suspend, :cancel_account]
+  before_action :set_user, only: [:edit, :update, :show, :destroy, :children, :suspend, :cancel_account, :redeem_reward]
 #  before_action :admin_only, only: [:new, :create, :update, :destroy]
   
   def index
@@ -17,6 +17,7 @@ class MyregistrationsController < Devise::RegistrationsController
   def create
     @user = User.new user_params
     set_parent if @user.role == 'student'
+    @user.activation_date = Date.today
     if current_user
       respond_to do |format| 
         if @user.save
@@ -63,58 +64,65 @@ class MyregistrationsController < Devise::RegistrationsController
     flash[:success] = 'Authenticating scope'
   end
 
-
-  def student_help_required()
+  def student_help_required
     respond_to do |format|
       format.js { }
     end
       end
 
-  def parent_help_required()
+  def parent_help_required
     respond_to do |format|
       format.js { }
     end
   end
 
-  def missing_pack()
+  def missing_pack
     respond_to do |format|
       format.js { }
     end
   end
 
-  def payment_related_enquiry()
+  def payment_related_enquiry
       respond_to do |format|
       format.js { }
     end
   end
 
-  def general_parent_enquiry()
+  def general_parent_enquiry
     respond_to do |format|
       format.js { }
     end
   end
 
-  def children()
+  def children
     @children = @user.children if current_user.role == 'parent'
     respond_to do |format|
       format.js {}
     end
   end
 
-  def suspend()
+  def suspend
     @user.status = 1
     @user.save
     UserMailer.suspension_email(@user).deliver_now
     redirect_to users_path
   end
 
-  def cancel_account()
+  def cancel_account
     @user.status = 2
     @user.save
     UserMailer.cancellation_email(@user).deliver_now
     redirect_to parent_summary_path
   end
-  
+
+  def redeem_reward
+    AdminMailer.redeem_reward(@user, @user.rewards).deliver_now
+    @user.rewards = 0.00
+    @user.activation_date = Date.today
+    @user.save
+    redirect_to parent_summary_path
+  end
+
   private 
 
   def user_params

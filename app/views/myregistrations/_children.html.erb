@@ -6,7 +6,7 @@
       <th> Name</th>
       <th> Email</th>
       <th> Date of Birth</th>
-      <th> Coupon Value</th>
+      <th> Rewards</th>
       <th> Overdue Fees</th>
       <th> Total Enrolment Fees </th>
       <th> Account Status </th>
@@ -15,17 +15,21 @@
       <%end%>
     </thead>
     <% @children.each do | child | %>
+      <% child.validate_rewards(child)%>
       <tr>
         <td> <%= child.full_name %> </td>
         <td> <%= child.email %> </td>
         <td> <%= child.date_of_birth.strftime('%D') if child.date_of_birth %> </td>
-        <td> <%= number_to_currency child.coupon_value %> </td>
+        <td> <%= number_to_currency child.rewards %> </td>
         <td> <%= number_to_currency child.overdue_fees %> </td>
         <td> <%= number_to_currency child.calculate_fees(child) %> </td>
         <td> <%= child.status %> </td>
         <%if current_user.role == 'parent'%>
           <td> 
             <%= link_to 'Edit', edit_user_registration_path(id: child.id), remote: true, class: "btn btn-success", id: 'edit-user-registration-link' %> 
+            <% if child.rewards > 0.00 %>
+              <%= link_to 'Redeem Reward', redeem_reward_path(id: child.id), class: "btn btn-success", id: 'redeem-reward-link' %> 
+            <%end%>
             <% if child.status != 'CANCELLED' %>
               <%= link_to 'Terminate Account', cancel_child_path(id: child.id),
                 class: "btn btn-danger", id: 'cancel-user-link' %>
