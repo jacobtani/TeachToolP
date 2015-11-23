@@ -27,8 +27,8 @@ class UserMailer < ApplicationMailer
   end
 
   def reward_expiry_reminder(user)
-  	@user = user
-  	mail(:to => @user.parent.email, :subject => "Rewards expiring in 1 month")
+    @user = user
+    mail(:to => @user.parent.email, :subject => "Rewards expiring in 1 month")
   end
 
 end

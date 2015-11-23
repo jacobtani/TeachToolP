@@ -52,7 +52,6 @@ class PackRecordsController < ApplicationController
     redirect_to employer_view_path
   end
 
-
   private
 
     def pack_record_params
@@ -72,7 +71,6 @@ class PackRecordsController < ApplicationController
     def update_rewards(user)
       @user = user
       @pack_record.reward = @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
-      binding.pry
       @user.rewards += @pack_record.reward
       @user.save
     end
