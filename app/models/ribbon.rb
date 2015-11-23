@@ -7,4 +7,5 @@ class Ribbon < ActiveRecord::Base
   def validate_packs
     errors.add(:packs, "not enough packs in the ribbon") if packs.size < 52 
   end
+
 end
