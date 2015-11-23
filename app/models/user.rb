@@ -25,19 +25,18 @@ class User < ActiveRecord::Base
     "#{first_name} #{surname}"
   end
 
-  def calculate_total_rewards(user)
-    rewards_value = 0.0
-    if user.role == 'student' && user.pack_records.present?
-      user.pack_records.each do |pack_record| 
-        rewards_value+= pack_record.reward
-      end
-      rewards_value
-    end
-
-  end
-
   def needs_suspension?
     self.pack_records.where(status: 0).count >= 2
+  end
+
+  def validate_rewards(user)
+    if Date.today == user.activation_date + 6.months
+      user.rewards = 0.00
+      user.activation_date = Date.today
+      user.save 
+    elsif user.activation_date + 5.months == Date.today
+      UserMailer.reward_expiry_reminder(user).deliver_now
+    end 
   end
 
 end
