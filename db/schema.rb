@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124070110) do
+ActiveRecord::Schema.define(version: 20151124093247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,17 +27,31 @@ ActiveRecord::Schema.define(version: 20151124070110) do
 
   create_table "enrolments", force: :cascade do |t|
     t.datetime "date"
-    t.integer  "subject_id",      null: false
+    t.integer  "subject_id",                    null: false
     t.datetime "activation_date"
-    t.float    "fees"
     t.boolean  "deferred?"
     t.datetime "start_date"
-    t.integer  "user_id",         null: false
-    t.integer  "grade",           null: false
+    t.integer  "user_id",                       null: false
+    t.integer  "grade",                         null: false
+    t.integer  "offer_id"
+    t.float    "fees",            default: 0.0
   end
 
+  add_index "enrolments", ["offer_id"], name: "index_enrolments_on_offer_id", using: :btree
   add_index "enrolments", ["subject_id"], name: "index_enrolments_on_subject_id", using: :btree
   add_index "enrolments", ["user_id"], name: "index_enrolments_on_user_id", using: :btree
+
+  create_table "fees", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.float    "amount"
+    t.integer  "fee_type",   default: 0
+    t.integer  "subject_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "fees", ["subject_id"], name: "index_fees_on_subject_id", using: :btree
 
   create_table "offers", force: :cascade do |t|
     t.string   "offer_name"
@@ -45,6 +59,9 @@ ActiveRecord::Schema.define(version: 20151124070110) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.boolean  "includes_free_trial"
+    t.float    "discount_amount",     default: 0.0
+    t.integer  "percentage_discount", default: 0
+    t.integer  "number_of_subjects",  default: 0
   end
 
   create_table "pack_records", force: :cascade do |t|

@@ -1,0 +1,32 @@
+//do the following actions when editing a fee
+$("#new-subject-form").addClass('hidden');
+$("#edit-subject-form").addClass('hidden');
+$("#new-pack-form").addClass('hidden');
+$("#edit-pack-form").addClass('hidden');
+$("#new-offer-form").addClass('hidden');
+$("#new-ribbon-form").addClass('hidden');
+$("#edit-ribbon-form").addClass('hidden');
+$("#edit-fee-link").attr('disabled', 'disabled');
+$("#edit-offer-form").addClass('hidden');
+$("#new-fee-form").addClass('hidden');
+$("#edit-fee-form").removeClass('hidden');
+$("#edit-fee-form").html("<%= j render('form', fee: @fee, remote_mode: true, title: 'Edit Fee', path: fee_path(@fee) ) %>");
+$(document).trigger('init_placeholder');
+//if click outside the form, close it and make the button enabled
+var fee = "#edit_fee_" + <%=@fee.id%>;
+var container = $(fee);
+
+$(document).mouseup(function (e) {
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+      if ( !$("#new-fee-link").is(e.target) ) {
+        container.hide();
+      };
+      $("#edit-fee-link").removeAttr('disabled', 'disabled');
+    }
+});
+
+//if cancel button is clicked, make button enabled
+$("#add-fee-cancel-button").on("click", function () {
+  $("#edit-fee-link").removeAttr('disabled', 'disabled');
+  container.hide();
+});

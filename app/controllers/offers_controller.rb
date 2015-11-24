@@ -17,9 +17,10 @@
 
    def create
     @offer = Offer.new offer_params
+    binding.pry
     respond_to do |format|
       if @offer.save
-        flash[:success] = "Pack was created successfully."
+        flash[:success] = "Offer was created successfully."
         format.js { redirect_turbo admin_path}
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @offer}, status: 500 }
@@ -49,7 +50,7 @@
   private
 
     def offer_params
-      params.require(:offer).permit(:offer_name, :offer_description, :start_date, :end_date, :includes_free_trial)
+      params.require(:offer).permit(:offer_name, :offer_description, :start_date, :end_date, :includes_free_trial, :discount_amount, :percentage_discount, :number_of_subjects)
     end
 
     def set_offer

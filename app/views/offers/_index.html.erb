@@ -19,6 +19,9 @@
       <th> Description </th>
       <th> Start Date </th>
       <th> End Date </th>
+      <th> Disount Amount </th>
+      <th> Percentage Discount </th>
+      <th> Number of Subjects </th>
       <th> Free trial </th>
       <% if current_user.role == 'admin' %>
       	<th> Administration </th>
@@ -30,6 +33,9 @@
         <td> <%= offer.offer_description %> </td>
         <td> <%= offer.start_date %> </td>
         <td> <%= offer.end_date %> </td>
+        <td> <%= number_to_currency offer.discount_amount %> </td>
+        <td> <%= offer.percentage_discount %> </td>
+        <td> <%= offer.number_of_subjects %> </td>
         <td> <%= offer.includes_free_trial %> </td>
         <% if current_user.role == 'admin' %>
           <td> 

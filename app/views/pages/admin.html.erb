@@ -8,6 +8,10 @@
     <%= render partial: 'offers/index', locals: {offers: Offer.all} %>
   </div>
 
+  <div class = 'fees' >
+    <%= render partial: 'fees/index', locals: {fees: Fee.all} %>
+  </div>
+
   <div class = 'packs'>
     <%= render partial: 'packs/index', locals: {packs: Pack.all} %>  
   </div>  
