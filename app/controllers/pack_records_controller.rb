@@ -19,7 +19,8 @@ class PackRecordsController < ApplicationController
     @pack_record = PackRecord.new pack_record_params
     @user = User.find(@pack_record.user_id)
     @pack = Pack.find(@pack_record.pack_id)
-    update_rewards(@user)
+    update_rewards(@user, @pack_record)
+    update_stock(@pack)
     respond_to do |format|
       if @pack_record.save
         UserMailer.new_work_email(@user, @pack).deliver_now
@@ -68,10 +69,17 @@ class PackRecordsController < ApplicationController
       return not_found! unless @user
     end
 
-    def update_rewards(user)
+    def update_rewards(user, pack_record)
       @user = user
+      @pack_record = pack_record
       @pack_record.reward = @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
       @user.rewards += @pack_record.reward
       @user.save
+    end
+
+    def update_stock(pack)
+      pack.number_unassigned = pack.number_unassigned - 1
+      pack.number_assigned += 1
+      pack.save
     end
 end

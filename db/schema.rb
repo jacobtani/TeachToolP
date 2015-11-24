@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151123080339) do
+ActiveRecord::Schema.define(version: 20151124070110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,10 +69,11 @@ ActiveRecord::Schema.define(version: 20151123080339) do
     t.string  "name"
     t.text    "description"
     t.text    "action_required"
-    t.integer "subject_id",                  null: false
-    t.boolean "in_stock?"
-    t.integer "pack_type",       default: 0
-    t.integer "priority",        default: 1
+    t.integer "subject_id",                    null: false
+    t.integer "pack_type",         default: 0
+    t.integer "priority",          default: 1
+    t.integer "number_unassigned", default: 0
+    t.integer "number_assigned",   default: 0
   end
 
   add_index "packs", ["subject_id"], name: "index_packs_on_subject_id", using: :btree
