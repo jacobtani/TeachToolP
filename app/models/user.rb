@@ -11,14 +11,28 @@ class User < ActiveRecord::Base
   #enum role: [:PARENT, :STUDENT, :EMPLOYER, :ADMIN]
   enum status: [:ACTIVE, :SUSPENDED, :CANCELLED]
 
-  def calculate_fees (user)
+  def calculate_total_fees (user)
     total_fees = 0
+    subject_enrolment_fees = calculate_subject_enrolment_fees(user)
+    enrolment_fees = calculate_enrolment_fees
+    total_fees = subject_enrolment_fees + enrolment_fees
+    user.total_fees = total_fees
+    user.save
+    total_fees
+  end
+
+  def calculate_subject_enrolment_fees(user)
+    subject_enrolment_fees = 0
     if user.role == 'student' && user.enrolments.present?
       user.enrolments.each do |enrolment| 
-        total_fees+= enrolment.fees
+        subject_enrolment_fees+= enrolment.fees
       end
     end
-    total_fees
+    subject_enrolment_fees
+  end
+
+  def calculate_enrolment_fees
+    enrolment_fee = Fee.all.where(fee_type: 0).first.amount
   end
 
   def full_name
