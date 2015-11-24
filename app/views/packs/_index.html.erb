@@ -21,7 +21,8 @@
       <th> Priority </th>
       <th> Action Required </th>
       <th> Subject </th>
-     <!-- <th> In Stock </th> -->
+      <th> Assigned </th>
+      <th> Unassigned </th>
       <% if current_user.role == 'admin' %>
         <th> Administration </th>
       <%end%>
@@ -34,6 +35,8 @@
         <td> <%= pack.priority %> </td>
         <td> <%= pack.action_required %> </td>
         <td> <%= Subject.find(pack.subject_id).subject_name %> </td>
+        <td> <%= pack.number_unassigned %> </td>
+        <td> <%= pack.number_assigned %> </td>
         <% if current_user.role == 'admin' %>
           <td> 
             <%= link_to 'Edit', edit_pack_path(id: pack.id), remote: true, class: "btn btn-success", id: 'edit-pack-link' %> 
