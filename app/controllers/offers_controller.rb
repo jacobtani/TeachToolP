@@ -17,7 +17,6 @@
 
    def create
     @offer = Offer.new offer_params
-    binding.pry
     respond_to do |format|
       if @offer.save
         flash[:success] = "Offer was created successfully."
