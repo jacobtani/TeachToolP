@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :ribbons
   resources :subjects
   resources :offers
+  resources :fees
   resources :messages
   resources :pack_records
 
