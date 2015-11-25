@@ -5,6 +5,8 @@ $("#new-pack-form").addClass('hidden');
 $("#edit-pack-form").addClass('hidden');
 $("#new-ribbon-form").addClass('hidden');
 $("#edit-ribbon-form").addClass('hidden');
+$("#new-enclosure-form").addClass('hidden');
+$("#edit-enclosure-form").addClass('hidden');
 $("#edit-offer-form").addClass('hidden');
 $("#new-offer-form").addClass('hidden');
 $("#edit-fee-form").addClass('hidden');
@@ -12,10 +14,9 @@ $("#new-fee-form").removeClass('hidden');
 $("#new-fee-form").html('<%= j render("form", fee: @fee, title: "Add Fee", path: fees_path(@fee)) %>')
 $("#new-fee-link").attr('disabled', 'disabled');
 $(document).trigger('init_placeholder');
-$(".new-fee-form").addClass('hidden');
 
 //if click outside the form, close it and make the button enabled
-var container = $("#new-fee-form");
+var container = $("#new_fee");
 $(document).mouseup(function (e) {
     if (!container.is(e.target) && container.has(e.target).length === 0) {
         container.hide();

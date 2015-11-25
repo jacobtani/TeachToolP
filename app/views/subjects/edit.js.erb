@@ -1,9 +1,20 @@
 //do the following actions when editing a subject
+$("#edit-fee-form").addClass('hidden');
+$("#new-fee-form").addClass('hidden');
+$("#edit-enclosure-form").addClass('hidden');
+$("#new-enclosure-form").addClass('hidden');
+$("#edit-pack-form").addClass('hidden');
+$("#new-pack-form").addClass('hidden');
+$("#edit-offer-form").addClass('hidden');
+$("#new-offer-form").addClass('hidden');
+$("#edit-ribbon-form").addClass('hidden');
+$("#new-ribbon-form").addClass('hidden');
 $("#new-subject-form").addClass('hidden');
 $("#edit-subject-link").attr('disabled', 'disabled');
 $("#edit-subject-form").removeClass('hidden');
 $("#edit-subject-form").html("<%= j render('form', subject: @subject, remote_mode: true, title: 'Edit Subject', path: subject_path(@subject) ) %>");
 $(document).trigger('init_placeholder');
+
 //if click outside the form, close it and make the button enabled
 var subject = "#edit_subject_" + <%=@subject.id%>;
 var container = $(subject);

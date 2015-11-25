@@ -7,16 +7,17 @@ $("#new-ribbon-form").addClass('hidden');
 $("#edit-ribbon-form").addClass('hidden');
 $("#new-offer-form").addClass('hidden');
 $("#edit-offer-form").addClass('hidden');
+$("#edit-fee-form").addClass('hidden');
+$("#new-fee-form").addClass('hidden');
 $("#edit-enclosure-form").addClass('hidden');
 $("#new-enclosure-form").removeClass('hidden');
 $("#new-enclosure-form").html('<%= j render("form", enclosure: @enclosure, title: "Add Enclosure", path: enclosures_path(@enclosure)) %>')
 $("#new-enclosure-link").attr('disabled', 'disabled');
 $(document).trigger('init_placeholder');
-$(".new-enclosure-form").addClass('hidden');
 
 //if click outside the form, close it and make the button enabled
 $(document).mouseup(function (e) {
-    var container = $("#new-enclosure-form");
+    var container = $("#new_enclosure");
     if (!container.is(e.target) && container.has(e.target).length === 0) {
         container.hide();
 	       $("#new-enclosure-link").removeAttr('disabled', 'disabled');

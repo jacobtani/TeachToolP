@@ -4,7 +4,6 @@ $("#new-packrecord-form").removeClass('hidden');
 $("#new-packrecord-form").html('<%= j render("form", pack_record: @pack_record, title: "Add Pack Record", path: pack_records_path()) %>')
 $("#new-packrecord-link").attr('disabled', 'disabled');
 $(document).trigger('init_placeholder');
-$(".new-pack-form").addClass('hidden');
 
 //if click outside the form, close it and make the button enabled
 var container = $("#new_pack_record");
