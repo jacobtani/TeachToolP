@@ -5,7 +5,7 @@ class AdminMailer < ApplicationMailer
     @user = user
     full_message = user.full_name + "(" + user.id.to_s + ") needs help with " + message.subject_name + ". In particular pack " + message.pack_name + " on page " + message.page_number + ", question number " + message.question_number + ". The following additional details have been given: " + message.content
     if @user.role == 'student'
-      mail(from: @user.email, subject: "Help Required", body: full_message)
+      mail(from: @user.email, subject: message.message_subject, body: full_message)
     end
   end
 
@@ -13,7 +13,7 @@ class AdminMailer < ApplicationMailer
     @user = user
     full_message = user.full_name + "(" + user.id.to_s + ") needs help with " + message.subject_name + ". In particular pack " + message.pack_name + " on page " + message.page_number + ", question number " + message.question_number + ". The following additional details have been given: " + message.content
     if @user.role == 'parent'
-      mail(from: @user.email, subject: "Help Requested by Parent", body: full_message)
+      mail(from: @user.email, subject: message.message_subject, body: full_message)
     end
   end
 
@@ -43,7 +43,7 @@ class AdminMailer < ApplicationMailer
   def redeem_reward(user, amount)
     @user = user
     full_message = @user.parent.full_name + ' would like to redeem their rewards for ' + user.full_name + ' of $' + amount.to_s
-    mail(from: @user.parent.email, to: 'tjterminator.dev@gmail.com', subject: 'Reward Redeemed', body: full_message)
+    mail(from: @user.parent.email, to: 'tjterminator.dev@gmail.com', subject: 'REWARD REDEMPTION', body: full_message)
   end
 
 end
