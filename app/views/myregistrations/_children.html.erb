@@ -4,6 +4,7 @@
   <table class = 'table table-striped'>
     <thead>
       <th> Name</th>
+      <th> School Grade</th>
       <th> Email</th>
       <th> Date of Birth</th>
       <th> Rewards</th>
@@ -18,6 +19,7 @@
       <% child.validate_rewards(child)%>
       <tr>
         <td> <%= child.full_name %> </td>
+        <td> <%= child.school_grade %> </td>
         <td> <%= child.email %> </td>
         <td> <%= child.date_of_birth.strftime('%D') if child.date_of_birth %> </td>
         <td> <%= number_to_currency child.rewards %> </td>
