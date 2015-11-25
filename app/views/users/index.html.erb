@@ -22,6 +22,7 @@
       <thead>
         <th> Student Id </th>
         <th> Student Name </th>
+        <th> School Grade </th>
         <th> Parent Name </th>
         <th> Number of Enrolments </th>
         <th> Status </th>
@@ -31,6 +32,7 @@
         <tr>
           <td> <%= student.id%> </td>
           <td> <%= student.full_name %> </td>
+          <td> <%= student.school_grade %> </td>
           <td> <%= student.parent.full_name %> </td>
           <td> <%= student.enrolments.count %> </td>
           <td> <%= student.status %> </td>

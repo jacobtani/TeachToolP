@@ -64,6 +64,12 @@
         <%= f.text_field :contact_mobile, placeholder: 'Enter contact mobile number', class: 'form-control' %>
       </div>
     </div>
+    <div class = "row">
+      <div class="col-sm-4">
+        <%= f.label 'School Grade:' %>
+        <%= f.number_field :school_grade, placeholder: 'Enter school grade', class: 'form-control' %>
+      </div>
+    </div>
     <%if path == '/users' %>
       <div class = 'row'>
         <div class = "col-sm-1">
@@ -78,7 +84,6 @@
       </div>
     <%end%>
   </div>
-
   <div class="form-group row submit">
     <%= button_tag type: "submit", class: "btn btn-primary", name: "commit", value: "Save" do %>
       <a>Save</a>
