@@ -111,8 +111,9 @@ class MyregistrationsController < Devise::RegistrationsController
   def cancel_account
     @user.status = 2
     @user.save
-    UserMailer.cancellation_email(@user).deliver_now
-    redirect_to parent_summary_path
+    respond_to do |format|
+      format.js { }
+    end
   end
 
   def redeem_reward

@@ -21,6 +21,9 @@ class MessagesController < ApplicationController
       elsif @message.message_subject == 'PAYMENT RELATED MATTERS'
         AdminMailer.payment_related_enquiry(current_user, @message).deliver_now
         redirect_to parent_summary_path
+      elsif @message.message_subject == 'TERMINATED ACCOUNT'
+        UserMailer.cancellation_email(current_user, @message).deliver_now
+        redirect_to parent_summary_path
       end
     else
       render "new"
