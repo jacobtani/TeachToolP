@@ -33,7 +33,7 @@
               <%= link_to 'Redeem Reward', redeem_reward_path(id: child.id), class: "btn btn-success", id: 'redeem-reward-link' %> 
             <%end%>
             <% if child.status != 'CANCELLED' %>
-              <%= link_to 'Terminate Account', cancel_child_path(id: child.id),
+              <%= link_to 'Terminate Account', cancel_child_path(id: child.id), remote: true,
                 class: "btn btn-danger", id: 'cancel-user-link' %>
             <%end%>
           </td>
