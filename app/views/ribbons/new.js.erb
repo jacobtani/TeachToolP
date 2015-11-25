@@ -1,16 +1,19 @@
 //do the following actions when creating a new ribbon
+$("#edit-fee-form").addClass('hidden');
+$("#new-fee-form").addClass('hidden');
 $("#new-subject-form").addClass('hidden');
 $("#edit-subject-form").addClass('hidden');
 $("#new-pack-form").addClass('hidden');
 $("#edit-pack-form").addClass('hidden');
 $("#new-offer-form").addClass('hidden');
 $("#edit-offer-form").addClass('hidden');
+$("#new-enclosure-form").addClass('hidden');
+$("#edit-enclosure-form").addClass('hidden');
 $("#edit-ribbon-form").addClass('hidden');
 $("#new-ribbon-form").removeClass('hidden');
 $("#new-ribbon-form").html('<%= j render("form", ribbon: @ribbon, title: "Add Ribbon", path: ribbons_path(@ribbon)) %>')
 $("#new-ribbon-link").attr('disabled', 'disabled');
 $(document).trigger('init_placeholder');
-$(".new-ribbon-form").addClass('hidden');
 
 //if click outside the form, close it and make the button enabled
 var container = $("#new_ribbon");

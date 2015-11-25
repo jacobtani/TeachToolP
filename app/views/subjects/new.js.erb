@@ -1,9 +1,20 @@
 //do the following actions when creating a new subject
+$("#edit-fee-form").addClass('hidden');
+$("#new-fee-form").addClass('hidden');
+$("#edit-enclosure-form").addClass('hidden');
+$("#new-enclosure-form").addClass('hidden');
+$("#edit-pack-form").addClass('hidden');
+$("#new-pack-form").addClass('hidden');
+$("#edit-offer-form").addClass('hidden');
+$("#new-offer-form").addClass('hidden');
+$("#edit-ribbon-form").addClass('hidden');
+$("#new-ribbon-form").addClass('hidden');
+$("#edit-subject-form").addClass('hidden');
+
 $("#new-subject-form").removeClass('hidden');
 $("#new-subject-form").html('<%= j render("form", subject: @subject, title: "Add Subject", path: subjects_path(@subject)) %>')
 $("#new-subject-link").attr('disabled', 'disabled');
 $(document).trigger('init_placeholder');
-$(".new-subject-form").addClass('hidden');
 
 //if click outside the form, close it and make the button enabled
 var container = $("#new_subject");

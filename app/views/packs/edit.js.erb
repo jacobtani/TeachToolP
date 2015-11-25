@@ -1,13 +1,18 @@
 //do the following actions when editing a  pack
+$("#edit-fee-form").addClass('hidden');
+$("#new-fee-form").addClass('hidden');
 $("#new-subject-form").addClass('hidden');
 $("#edit-subject-form").addClass('hidden');
 $("#new-offer-form").addClass('hidden');
 $("#edit-offer-form").addClass('hidden');
+$("#new-enclosure-form").addClass('hidden');
+$("#edit-enclosure-form").addClass('hidden');
 $("#new-pack-form").addClass('hidden');
 $("#edit-pack-link").attr('disabled', 'disabled');
 $("#edit-pack-form").removeClass('hidden');
 $("#edit-pack-form").html("<%= j render('form', pack: @pack, remote_mode: true, title: 'Edit Pack', path: pack_path(@pack) ) %>");
 $(document).trigger('init_placeholder');
+
 //if click outside the form, close it and make the button enabled
 var pack = "#edit_pack_" + <%=@pack.id%>;
 var container = $(pack);

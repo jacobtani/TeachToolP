@@ -1,4 +1,8 @@
 //do the following actions when creating a new pack
+$("#edit-fee-form").addClass('hidden');
+$("#new-fee-form").addClass('hidden');
+$("#new-enclosure-form").addClass('hidden');
+$("#edit-enclosure-form").addClass('hidden');
 $("#new-subject-form").addClass('hidden');
 $("#edit-subject-form").addClass('hidden');
 $("#edit-pack-form").addClass('hidden');
@@ -8,7 +12,6 @@ $("#new-pack-form").removeClass('hidden');
 $("#new-pack-form").html('<%= j render("form", pack: @pack, title: "Add Pack", path: packs_path(@pack)) %>')
 $("#new-pack-link").attr('disabled', 'disabled');
 $(document).trigger('init_placeholder');
-$(".new-pack-form").addClass('hidden');
 
 //if click outside the form, close it and make the button enabled
 var container = $("#new_pack");

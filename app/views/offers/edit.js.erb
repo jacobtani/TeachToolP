@@ -1,8 +1,12 @@
 //do the following actions when editing an offer
+$("#edit-fee-form").addClass('hidden');
+$("#new-fee-form").addClass('hidden');
 $("#new-subject-form").addClass('hidden');
 $("#edit-subject-form").addClass('hidden');
 $("#new-pack-form").addClass('hidden');
 $("#edit-pack-form").addClass('hidden');
+$("#new-enclosure-form").addClass('hidden');
+$("#edit-enclosure-form").addClass('hidden');
 $("#new-offer-form").addClass('hidden');
 $("#new-ribbon-form").addClass('hidden');
 $("#edit-ribbon-form").addClass('hidden');
@@ -10,6 +14,7 @@ $("#edit-offer-link").attr('disabled', 'disabled');
 $("#edit-offer-form").removeClass('hidden');
 $("#edit-offer-form").html("<%= j render('form', offer: @offer, remote_mode: true, title: 'Edit Offer', path: offer_path(@offer) ) %>");
 $(document).trigger('init_placeholder');
+
 //if click outside the form, close it and make the button enabled
 var offer = "#edit_offer_" + <%=@offer.id%>;
 var container = $(offer);
