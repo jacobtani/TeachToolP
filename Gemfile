@@ -23,6 +23,7 @@ gem 'jquery-turbolinks'                         #jQuery plugin for drop-in fix b
 #automatically adds the proper vendor prefixes to your CSS code when it is compiled.
 gem 'autoprefixer-rails'                                
 gem 'font-awesome-sass', '~> 4.3.0' 
+gem 'font-awesome-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
