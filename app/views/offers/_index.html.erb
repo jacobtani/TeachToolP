@@ -2,7 +2,7 @@
 <div class = 'container'>
   <h2> Offers</h2>
   <div class= 'pull-right'>
-        <%= link_to fa_icon("plus", text: 'Add Offer'), new_offer_path, remote: true, class: "btn btn-primary", id: 'new-offer-link' %>
+        <%= link_to fa_icon("plus", text: 'Add Offer'), new_offer_path, remote: true, class: "btn btn-primary", id: 'new-offer-link' if current_user && current_user.role == 'admin' %>
   </div>
 
   <div class="row">
@@ -19,11 +19,11 @@
       <th> Description </th>
       <th> Start Date </th>
       <th> End Date </th>
-      <th> Disount Amount </th>
+      <th> Discount Amount </th>
       <th> Percentage Discount </th>
       <th> Number of Subjects </th>
       <th> Free trial </th>
-      <% if current_user.role == 'admin' %>
+      <% if current_user && current_user.role == 'admin' %>
       	<th> Administration </th>
       <%end%>
     </thead>
@@ -37,7 +37,7 @@
         <td> <%= offer.percentage_discount %> </td>
         <td> <%= offer.number_of_subjects %> </td>
         <td> <%= offer.includes_free_trial %> </td>
-        <% if current_user.role == 'admin' %>
+        <% if current_user && current_user.role == 'admin' %>
           <td> 
             <%= link_to 'Edit', edit_offer_path(id: offer.id), remote: true, class: "btn btn-success", id: 'edit-offer-link' %> 
             <%= link_to 'Delete', offer_path(offer), method: :delete,

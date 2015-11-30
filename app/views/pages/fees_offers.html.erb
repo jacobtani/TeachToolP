@@ -1,27 +1,22 @@
-<div class = 'fees'>
+<div class = 'container'>
   <h2> Fees and Offers </h2>
-  <table class='table table-striped'> 
-    <thead> 
-      <th> Column 1 </th>
-      <th> Column 2</th>
-      <th> Column 3 </th>
-    </thead>
-    <tr> 
-      <td> Row 1a </td>
-      <td> Row 1b </td>
-      <td> Row 1c </td>
-    </tr>
-    <tr> 
-      <td> Row 2a </td>
-      <td> Row 2b </td>
-      <td> Row 2c </td>
-    </tr>
-    <tr> 
-      <td> Row 3a </td>
-      <td> Row 3b </td>
-      <td> Row 3c </td>
-    </tr>
-  </table>
 
+  <ul class = 'fees-blurb'>
+    <li> Tuition is per calendar month paid in advance </li>
+    <li> All other fees and charges are waived for this offer </li>
+    <li> If enrolment occurs on the 18th on a month or after, prorated tuitiion for that month plus the tuition for the next month will be charged at enrolment. Note, there will be no double payment </li>
+    <li> If enrolment happens on the 17th of the month or before, prorated tuition for that month alone will be charged at enrolment </li>
+    <li> Before enrolment is complete, arrangement for recurring automatic payment of tuition on the first of each month should be set up </li>
+    <li> All fees are period specific, and cannot be applied to another period. For example, fees paid for July 2016 would be effective on the 1st of that month and would expire on the 30th/31st of the month </li>
+    <li> You will be presented a detailed account of the payment required at the time of the enrolment </li>
+  </ul>
+  
+  <div class = 'all-fees'>
+    <%= render partial: "fees/index", locals: {fees: Fee.all} %>
+  </div>
+  
+  <div class = 'all-offers'>
+    <%= render partial: "offers/index", locals: {offers: Offer.all} %>
+  </div>
 
 </div>

@@ -4,3 +4,8 @@ Pack.create(name: '5++', description: 'A pack for advanced fifth graders', actio
 Pack.create(name: '5--', description: 'A pack for less competent fifth graders', action_required: 'Nothing', subject_id: 1)
 User.create(first_name: 'Employer', surname: 'User', role: 'employer', postal_address: 'some address', email: 'employer@gmail.com', password: 'tania551')
 User.create(first_name: 'Admin', surname: 'User', role: 'admin', postal_address: 'some address', email: 'admin@gmail.com', password: 'tania551')
+Fee.create(start_date: Date.today , end_date: Date.today + 1.year , amount: 100, fee_type: 1)
+Fee.create(start_date: Date.today , end_date: Date.today + 1.year , amount: 160, fee_type: 0, subject_id: 2)
+Fee.create(start_date: Date.today , end_date: Date.today + 1.year , amount: 160, fee_type: 0, subject_id: 1)
+Offer.create(offer_name: 'Premier Group X English', offer_description: 'Starting English Offer', start_date: Date.today , end_date: Date.today + 1.year , discount_amount: 62)
+Offer.create(offer_name: 'Premier Group X Mathematics', offer_description: 'Starting Maths Offer', start_date: Date.today , end_date: Date.today + 1.year , discount_amount: 62)
