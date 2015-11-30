@@ -2,7 +2,7 @@
 <div class = 'container'>
   <h2> Fees</h2>
   <div class= 'pull-right'>
-        <%= link_to fa_icon("plus", text: 'Add Fee'), new_fee_path, remote: true, class: "btn btn-primary", id: 'new-fee-link' %>
+        <%= link_to fa_icon("plus", text: 'Add Fee'), new_fee_path, remote: true, class: "btn btn-primary", id: 'new-fee-link' if current_user && current_user.role == 'admin' %>
   </div>
 
   <div class="row">
@@ -21,7 +21,7 @@
       <th> Start Date </th>
       <th> End Date </th>
       <th> Amount </th>
-      <% if current_user.role == 'admin' %>
+      <% if current_user && current_user.role == 'admin' %>
       	<th> Administration </th>
       <%end%>
     </thead>
@@ -33,7 +33,7 @@
         <td> <%= fee.start_date %> </td>
         <td> <%= fee.end_date %> </td>
         <td> <%= number_to_currency fee.amount %> </td>
-        <% if current_user.role == 'admin' %>
+        <% if current_user && current_user.role == 'admin' %>
           <td> 
             <%= link_to 'Edit', edit_fee_path(id: fee.id), remote: true, class: "btn btn-success", id: 'edit-fee-link' %> 
             <%= link_to 'Delete', fee_path(fee), method: :delete,
