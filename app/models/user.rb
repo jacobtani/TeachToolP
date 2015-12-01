@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
   has_many :pack_records, dependent: :destroy
   has_many :enrolments, dependent: :destroy
   has_many :subjects, through: :enrolments, source: :subject
-  #enum role: [:PARENT, :STUDENT, :EMPLOYER, :ADMIN]
   enum status: [:ACTIVE, :SUSPENDED, :CANCELLED]
 
   def calculate_total_fees (user)
