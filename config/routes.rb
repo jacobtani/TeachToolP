@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     get :historical_view
     get :parent_summary
     get :student_view
-    get :employer_view
+    get :employee_view
   end
 
 end

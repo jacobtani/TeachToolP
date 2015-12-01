@@ -49,8 +49,8 @@
               </li>
             <%elsif user_signed_in? && current_user.role == 'student' %>
               <li> <%= link_to 'Student', student_view_path(user_id: current_user.id) %> </li>
-            <%elsif user_signed_in? && current_user.role == 'employer' %>
-              <li> <%= link_to 'Employer', employer_view_path %> </li>
+            <%elsif user_signed_in? && current_user.role == 'employee' %>
+              <li> <%= link_to 'Employee', employee_view_path %> </li>
             <%end%>
           </ul>
           <p class="nav navbar-right">

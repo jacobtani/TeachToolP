@@ -25,7 +25,7 @@ class PackRecordsController < ApplicationController
       if @pack_record.save
         UserMailer.new_work_email(@user, @pack).deliver_now
         flash[:success] = "Pack Record was created successfully."
-        format.js { redirect_turbo employer_view_path}
+        format.js { redirect_turbo employee_view_path}
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @pack_record}, status: 500 }
       end
@@ -41,7 +41,7 @@ class PackRecordsController < ApplicationController
     respond_to do |format|
       if @pack_record.update_attributes pack_record_params
         flash[:success] = "Pack Record was updated successfully."
-        format.js {redirect_turbo employer_view_path}
+        format.js {redirect_turbo employee_view_path}
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @pack_records}, status: 500 }
       end
@@ -50,7 +50,7 @@ class PackRecordsController < ApplicationController
 
   def destroy
     @pack_record.destroy
-    redirect_to employer_view_path
+    redirect_to employee_view_path
   end
 
   def work_missing_email
@@ -58,7 +58,7 @@ class PackRecordsController < ApplicationController
     @overdue_packs.each do |overdue_pack|
       UserMailer.work_missing(User.find(overdue_pack.user_id), overdue_pack).deliver_now
     end
-    redirect_to employer_view_path
+    redirect_to employee_view_path
   end 
  
 
