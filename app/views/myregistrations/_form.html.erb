@@ -1,6 +1,13 @@
 <%= form_for @user, url: path, title: title, remote: true, html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>  
   <div id="form-errors"></div>
-  <%= label_tag(:q, title) %>
+
+  <%if current_user.role == 'admin' && path.include?('/users')%>
+    <%= label_tag(:q, 'Add Employee') %>
+  <%elsif current_user.role == 'admin' && path.include?('edit')%>
+    <%= label_tag(:q, 'Edit Employee') %>
+  <%else%>
+    <%= label_tag(:q, title) %>
+  <%end%>
 
   <div class="form-group">
     <div class="row">
@@ -37,7 +44,13 @@
         <h6> Role: </h6>
       </div>
       <div class="col-sm-4">
-        <%= f.select :role, ['parent', 'student'] %>
+        <%if current_user.role == 'admin'%>
+          <%= f.select :role, ['employee', 'admin'] %>
+        <%elsif title == 'Add Child' %>
+          <%= f.hidden_field :role, value: 'student' %>
+        <%else%>
+          <%= f.hidden_field :role, value: 'parent' %>
+        <%end%>
       </div>
       <div class="col-sm-4">
         <%= f.label 'DOB:' %>

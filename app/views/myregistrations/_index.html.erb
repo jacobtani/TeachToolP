@@ -1,0 +1,39 @@
+<% @users = users if @users.nil? %> 
+<% @selected_users = User.employees + User.admins %>
+<div class = 'container'>
+  <h2> Employees and Admins</h2>
+  <div class= 'pull-right'>
+    <%= link_to 'Add Employee', new_user_registration_path, remote: true, class: "btn btn-primary", id: 'new-user-link' if user_signed_in? %>
+  </div>
+
+  <div class="row">
+    <div id="new-user-form" class="col-sm-6"></div>
+  </div>
+
+  <div class="row">
+    <div id="edit-user-form" class="col-sm-6"></div>
+  </div>
+
+  <table class = 'table table-striped'>
+    <thead>
+      <th> Id </th>
+      <th> Name </th>
+      <th> Role </th>
+      <% if current_user && current_user.role == 'admin' %>
+      	<th> Administration </th>
+      <%end%>
+    </thead>
+    <% @selected_users.each do |user| %>
+      <tr>
+        <td> <%= user.id %> </td>
+        <td> <%= user.full_name %> </td>
+        <td> <%= user.role %> </td>
+        <% if current_user && current_user.role == 'admin' %>
+          <td> 
+              <%= link_to 'Edit', edit_user_registration_path(id: user.id), remote: true, class: "btn btn-success", id: 'edit-employee-registration-link' %> 
+          </td>
+        <%end%>
+      </tr>
+    <%end%>
+  </table>
+</div>
