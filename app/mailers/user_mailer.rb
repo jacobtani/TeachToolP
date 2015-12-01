@@ -32,4 +32,10 @@ class UserMailer < ApplicationMailer
     mail(:to => @user.parent.email, :subject => "Rewards expiring in 1 month")
   end
 
+  def work_missing(user, pack_record)
+    @user = user
+    @pack_record = pack_record
+    mail(:to => @user.parent.email, :subject => "Work missing for OurCompany")
+  end
+
 end
