@@ -9,7 +9,11 @@ class User < ActiveRecord::Base
   has_many :enrolments, dependent: :destroy
   has_many :subjects, through: :enrolments, source: :subject
   enum status: [:ACTIVE, :SUSPENDED, :CANCELLED]
-
+  scope :students, -> { where(role: 'student') }
+  scope :all_parents, -> { where(role: 'parent') }
+  scope :admins, -> { where(role: 'admin') }
+  scope :employees, -> { where(role: 'employee') }
+  
   def calculate_total_fees (user)
     total_fees = 0
     subject_enrolment_fees = calculate_subject_enrolment_fees(user)
