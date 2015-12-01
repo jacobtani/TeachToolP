@@ -53,6 +53,15 @@ class PackRecordsController < ApplicationController
     redirect_to employer_view_path
   end
 
+  def work_missing_email
+    @overdue_packs = PackRecord.overdue
+    @overdue_packs.each do |overdue_pack|
+      UserMailer.work_missing(User.find(overdue_pack.user_id), overdue_pack).deliver_now
+    end
+    redirect_to employer_view_path
+  end 
+ 
+
   private
 
     def pack_record_params

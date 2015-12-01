@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :fees
   resources :messages
   resources :pack_records
+  get '/work_missing_email' => "pack_records#work_missing_email", as: :work_missing
 
   controller :pages do
     get :home
