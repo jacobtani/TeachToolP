@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   scope :all_parents, -> { where(role: 'parent') }
   scope :admins, -> { where(role: 'admin') }
   scope :employees, -> { where(role: 'employee') }
+  validates_uniqueness_of :email, message: "is already taken"
   
   def calculate_total_fees (user)
     total_fees = 0
