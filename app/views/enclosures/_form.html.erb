@@ -16,11 +16,16 @@
         <%= f.number_field :barcode, placeholder: 'Enter barcode', class: 'form-control' %>
       </div>
       <div class="col-sm-4">
-        <%= f.datetime_field :due_date, placeholder: 'Enter barcode', class: 'form-control' %>
+        <%= f.date_select :due_date, placeholder: 'Enter due date', class: 'form-control' %>
       </div>
       <div class="col-sm-4">
         <%= f.select :enclosure_type, Enclosure.enclosure_types.keys.to_a %>
       </div>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-md-5">
+      <%= f.collection_select :pack_id, Pack.all, :id, :name, :prompt => "Select Pack" %>
     </div>
   </div>
 
