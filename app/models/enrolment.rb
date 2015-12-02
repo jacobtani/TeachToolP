@@ -1,5 +1,5 @@
 class Enrolment < ActiveRecord::Base
   belongs_to :subject
   belongs_to :user
-  validates :subject_id, uniqueness: {scope: :user_id}
+  validates_uniqueness_of :user_id, scope: :subject_id, message: "can only enrol once per subject"
 end
