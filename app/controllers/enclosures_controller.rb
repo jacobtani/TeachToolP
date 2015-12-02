@@ -42,16 +42,16 @@
   end
   def destroy
     @enclosure.destroy
-    redirect_to root_path
+    redirect_to admin_path
   end
 
   private
 
     def enclosure_params
-      params.require(:enclosure).permit(:name, :subject)
+      params.require(:enclosure).permit(:name, :subject, :pack_id, :barcode, :due_date)
     end
 
-    def set_enrolment
+    def set_enclosure
       @enclosure = Enclosure.find params[:id] rescue nil
       return not_found! unless @enclosure
     end
