@@ -32,7 +32,10 @@
         flash[:success] = "Enrolment was created successfully."
         format.js { redirect_turbo parent_summary_path}
       else
-        #format.js { render partial: 'shared/ajax_form_errors', locals: {model: @enrolment}, status: 500 }
+        binding.pry
+        flash[:error] = 'Enrolment can only be created once per subject per user'
+        format.js { redirect_turbo parent_summary_path } 
+        #render partial: 'shared/ajax_form_errors', locals: {model: @enrolment}, status: 500 }
       end
     end
   end
