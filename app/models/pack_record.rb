@@ -2,6 +2,8 @@ class PackRecord < ActiveRecord::Base
   belongs_to :user
   enum status: [:DISPATCHED, :RECEIVED, :COMPLETED]
   scope :overdue, -> { where("due_date < ?", Date.today ) }
+  store_accessor :comments, :speed, :accuracy, :completion, :presentation
+  validate_presence_of :comments if status == 'RECEIVED'
 
   def calculate_reward(user, score, pack_record)
     if score >= 70 && score <= 79

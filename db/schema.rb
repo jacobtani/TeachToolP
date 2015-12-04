@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202095926) do
+ActiveRecord::Schema.define(version: 20151202105358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "enclosures", force: :cascade do |t|
     t.string   "name"
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 20151202095926) do
     t.datetime "start_date"
     t.integer  "status",         default: 0
     t.integer  "posting_number", default: 0
+    t.hstore   "comments"
   end
 
   add_index "pack_records", ["pack_id"], name: "index_pack_records_on_pack_id", using: :btree
