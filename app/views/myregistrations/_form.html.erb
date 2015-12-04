@@ -40,11 +40,11 @@
       </div>
     </div>
     <div class = 'row'>
-      <div class = "col-sm-1">
-        <h6> Role: </h6>
-      </div>
       <div class="col-sm-4">
         <%if current_user.role == 'admin'%>
+          <div class = "col-sm-1">
+            <h6> Role: </h6>
+          </div>
           <%= f.select :role, ['employee', 'admin'] %>
         <%elsif title == 'Add Child' %>
           <%= f.hidden_field :role, value: 'student' %>
@@ -63,7 +63,7 @@
         </div>
       <%end%>
     </div>
-     <div class = 'row'>
+    <div class = 'row'>
       <div class = "col-sm-1">
         <h6> Contacts: </h6>
       </div>
@@ -83,6 +83,14 @@
         <%= f.number_field :school_grade, placeholder: 'Enter school grade', class: 'form-control' %>
       </div>
     </div>
+    <% if title == 'Add Child' %>
+      <div class = "row">
+        <div class="col-sm-12">
+          <%= f.label 'Additional Information:' %>
+          <%= f.text_field :additional_info, placeholder: 'Enter additional information about student', class: 'form-control' %>
+        </div>
+      </div>
+    <%end%>
     <%if path == '/users' %>
       <div class = 'row'>
         <div class = "col-sm-1">
