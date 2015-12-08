@@ -83,6 +83,14 @@
         <%= f.number_field :school_grade, placeholder: 'Enter school grade', class: 'form-control' %>
       </div>
     </div>
+    <% if current_user.role == 'admin' || current_user.role == 'employee' %>
+      <div class = "row">
+        <div class = "col-md-12">
+        <%= f.label 'Ribbon:' %>
+          <%= f.collection_select :ribbon_id, Ribbon.all, :id, :name, prompt: 'Select ribbon', class: 'form-control' %>
+        </div>
+      </div>
+    <%end%>
     <% if title == 'Add Child' %>
       <div class = "row">
         <div class="col-sm-12">
