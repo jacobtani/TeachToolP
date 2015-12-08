@@ -1,6 +1,6 @@
 <div id = 'student-view-header'>
   <h2> Welcome <%=current_user.full_name %></h2>
-  <h4> <i> Your current rewards is <%= number_to_currency current_user.calculate_total_rewards(current_user) %> .</i> </h4>
+  <h4> <i> Your current rewards is <%= number_to_currency current_user.rewards %> .</i> </h4>
 </div>
 <!--<div class = "col-sm-3 col-md-2 sidebar">
   <ul class = "nav nav-sidebar">

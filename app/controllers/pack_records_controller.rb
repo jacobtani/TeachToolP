@@ -19,6 +19,7 @@ class PackRecordsController < ApplicationController
     @pack_record = PackRecord.new pack_record_params
     @user = User.find(@pack_record.user_id)
     @pack = Pack.find(@pack_record.pack_id)
+    @pack_record.posting_number = @user.pack_records.last.posting_number + 1
     update_rewards(@user, @pack_record)
     update_stock(@pack)
     respond_to do |format|
@@ -37,7 +38,7 @@ class PackRecordsController < ApplicationController
   
   def update
     @user = User.find(@pack_record.user_id)
-    update_rewards(@user)
+    update_rewards(@user, @pack_record)
     respond_to do |format|
       if @pack_record.update_attributes pack_record_params
         flash[:success] = "Pack Record was updated successfully."
