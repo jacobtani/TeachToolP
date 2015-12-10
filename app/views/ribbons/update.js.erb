@@ -1,5 +1,0 @@
-//actions to do when submit button of edit ribbon form has been clicked
-$("#edit-ribbon-link").removeAttr('disabled', 'disabled');
-$("#delete-ribbon-link").attr('data-confirm', 'Are you sure you want to delete <%=@ribbon.name%> ?')
-$("#edit-ribbon-form").addClass('hidden');
-$(document).trigger('ribbon:form_disabled');

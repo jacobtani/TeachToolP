@@ -8,8 +8,6 @@ $("#edit-pack-form").addClass('hidden');
 $("#new-enclosure-form").addClass('hidden');
 $("#edit-enclosure-form").addClass('hidden');
 $("#new-offer-form").addClass('hidden');
-$("#new-ribbon-form").addClass('hidden');
-$("#edit-ribbon-form").addClass('hidden');
 $("#edit-offer-link").attr('disabled', 'disabled');
 $("#edit-offer-form").removeClass('hidden');
 $("#edit-offer-form").html("<%= j render('form', offer: @offer, remote_mode: true, title: 'Edit Offer', path: offer_path(@offer) ) %>");
