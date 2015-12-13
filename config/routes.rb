@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get '/users/:id/suspend' => "myregistrations#suspend", as: :suspend_child
     get '/users/:id/cancel' => "myregistrations#cancel_account", as: :cancel_child
     get '/users/:id/redeem_reward' => "myregistrations#redeem_reward", as: :redeem_reward
+    get '/users/:id/enter_placement_pack' => "myregistrations#enter_placement_pack", as: :enter_placement_pack
   end 
   
   resources :users do 

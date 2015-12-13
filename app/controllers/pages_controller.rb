@@ -48,4 +48,7 @@ class PagesController < ApplicationController
   def employee_view
   end
 
+  def placement_pack
+  end
+
 end

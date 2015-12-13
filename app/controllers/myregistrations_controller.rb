@@ -124,6 +124,11 @@ class MyregistrationsController < Devise::RegistrationsController
     redirect_to parent_summary_path
   end
 
+  def enter_placement_pack
+
+
+  end
+
   private 
 
   def user_params

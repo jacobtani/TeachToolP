@@ -2,5 +2,8 @@
   <div class = "row">
     <%= render partial: "pack_records/index", locals: {pack_records: PackRecord.all} %>
   </div>
+
   <%= link_to fa_icon("plus", text: 'Send Work Missing Email'), work_missing_path(user_id: current_user), class: "btn btn-primary", id: 'work-missing-link' if current_user && current_user.role == 'employee' %>
+  <%= link_to fa_icon("plus", text: 'Enter Placement Pack'), enter_placement_pack_path(id: current_user), class: "btn btn-primary", id: 'placement-pack-link' if current_user && current_user.role == 'employee' %>
+
 </div>
