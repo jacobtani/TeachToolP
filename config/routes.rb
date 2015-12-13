@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   resources :packs
   resources :enclosures
 
-  resources :ribbons
   resources :subjects
   resources :offers
   resources :fees
