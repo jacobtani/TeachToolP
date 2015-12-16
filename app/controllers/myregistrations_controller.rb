@@ -126,25 +126,6 @@ class MyregistrationsController < Devise::RegistrationsController
     redirect_to parent_summary_path
   end
 
-  def sup 
-    respond_to do |format|
-      format.html       
-      format.pdf do
-        data = render_to_string pdf: "filename", template: "/myregistrations/enter_placement_pack.pdf.erb", encoding: "UTF-8", footer: { right: '[page] of [topage]' }
-        filename = "Test--StatusReport--"
-        filename.gsub!(/ /,'-')
-        begin 
-          file = Tempfile.new([filename, '.pdf']) 
-          file.binmode
-          file.write data
-          send_file file.path
-        ensure
-          file.close
-        end
-      end
-    end
-  end
-
   def enter_placement_pack
     @students = User.students
     respond_to do |format|
