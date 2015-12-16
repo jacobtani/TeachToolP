@@ -37,6 +37,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'seed-fu', '~> 2.3'   
 gem 'bootstrap_form'
 gem 'active_attr'
+gem 'wicked_pdf' # serve pdf file to user from html
+gem 'wkhtmltopdf-binary'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
