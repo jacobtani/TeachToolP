@@ -13,10 +13,10 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapsable">
           <ul class="nav navbar-nav foo" id="menu">
-            <li><%= link_to 'About', about_path%></li>
-            <li><%= link_to 'Our Mission', mission_path%></li>
+            <li><%= link_to 'About', about_path, class: 'hvr-bounce-in'%></li>
+            <li><%= link_to 'Our Mission', mission_path, class: 'hvr-bounce-in'%></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More Information <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle admin-header hvr-bounce-in" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More Information <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><%= link_to 'Why Extend?', why_extend_path%></li>
                 <li><%= link_to 'Background', background_path%></li>
@@ -28,10 +28,10 @@
                 <li><%= link_to 'Fees', fees_offers_path%></li>
               </ul>
             </li>
-            <li><%= link_to 'Contact', contact_path%></li>
+            <li><%= link_to 'Contact', contact_path, class: 'hvr-bounce-in'%></li>
             <% if user_signed_in? && current_user.role == 'parent' %>
               <li class= "dropdown">
-                <a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Parents <span class="caret"></span></a> 
+                <a href="#" class="dropdown-toggle admin-header hvr-bounce-in" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Parents <span class="caret"></span></a> 
                 <ul class="dropdown-menu">
                   <% current_user.children.each do |child|%>
                     <li><%= link_to child.full_name, pack_records_path(user_id: child.id), id:'some-link'%></li>
@@ -41,10 +41,10 @@
               </li>
             <%elsif user_signed_in? && current_user.role == 'admin' %>
               <li class= "dropdown">
-                <a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a> 
+                <a href="#" class="dropdown-toggle admin-header hvr-bounce-in" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a> 
                 <ul class="dropdown-menu">
                   <li><%= link_to 'Admin', admin_path %></li>
-                  <li><%= link_to 'ALl users', users_path %> </li>
+                  <li><%= link_to 'All users', users_path %> </li>
                 </ul>
               </li>
             <%elsif user_signed_in? && current_user.role == 'student' %>
@@ -56,10 +56,10 @@
           <p class="nav navbar-right">
             <% if user_signed_in? %>
                  <%= link_to fa_icon("user", text: current_user.email), edit_user_registration_path, class: 'btn btn-primary navbar-btn' %>
-                <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-primary navbar-btn' %>
+                <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-primary navbar-btn hvr-sweep-to-right' %>
             <% else %>
-                <%= link_to 'Login', new_user_session_path, class: "btn btn-success navbar-btn"  %>  
-                <%= link_to fa_icon("user-plus", text: 'Register'), new_user_registration_path, format: :js, class: "btn btn-danger navbar-btn"  %>
+                <%= link_to 'Login', new_user_session_path, class: "btn btn-success navbar-btn hvr-bounce-to-top"  %>  
+                <%= link_to fa_icon("user-plus", text: 'Register'), new_user_registration_path, format: :js, class: "btn btn-danger navbar-btn hvr-push"  %>
             <% end %>
           </div>
         </div>
