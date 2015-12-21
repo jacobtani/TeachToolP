@@ -39,7 +39,7 @@ gem 'bootstrap_form'
 gem 'active_attr'
 gem 'wicked_pdf' # serve pdf file to user from html
 gem 'wkhtmltopdf-binary'
-
+gem "googlecharts", :require => "gchart"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

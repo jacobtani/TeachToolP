@@ -51,4 +51,7 @@ class PagesController < ApplicationController
   def placement_pack
   end
 
+  def student_view
+  end
+
 end
