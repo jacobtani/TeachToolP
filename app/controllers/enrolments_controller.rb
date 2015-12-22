@@ -78,7 +78,7 @@
 
     def set_enrolment_fees(enrolment)
       @fee = Fee.all.where(subject_id: enrolment.subject_id, fee_type: 0).first.amount
-      @enrolment.fees = @fee
+      enrolment.fees = @fee
     end
 
 end
