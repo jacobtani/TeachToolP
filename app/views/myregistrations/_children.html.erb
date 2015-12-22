@@ -33,8 +33,12 @@
               <%= link_to 'Redeem Reward', redeem_reward_path(id: child.id), class: "btn btn-success", id: 'redeem-reward-link' %> 
             <%end%>
             <% if child.status != 'CANCELLED' %>
-              <%= link_to 'Terminate Account', cancel_child_path(id: child.id), remote: true,
-                class: "btn btn-danger", id: 'cancel-user-link' %>
+              <% e=child.enrolments.select { |e| Date.today < (e.date + 1.month) } %>
+              <% if e.present? %>
+                <%= link_to 'End Trial', end_trial_path(id: child.id), remote: true, class: "btn btn-danger", id: 'end-trial-link' %>
+              <%else%>
+                <%= link_to 'Terminate Account', cancel_child_path(id: child.id), remote: true, class: "btn btn-danger", id: 'cancel-user-link' %>
+              <%end%>
             <%end%>
           </td>
         <%end%>

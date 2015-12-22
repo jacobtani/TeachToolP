@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :pack_records, dependent: :destroy
   has_many :enrolments, dependent: :destroy
   has_many :subjects, through: :enrolments, source: :subject
-  enum status: [:ACTIVE, :SUSPENDED, :CANCELLED]
+  enum status: [:ACTIVE, :SUSPENDED, :CANCELLED, :CANCELLED_TRIAL]
   scope :students, -> { where(role: 'student') }
   scope :all_parents, -> { where(role: 'parent') }
   scope :admins, -> { where(role: 'admin') }
@@ -18,9 +18,7 @@ class User < ActiveRecord::Base
   def calculate_total_fees (user)
     total_fees = 0
     subject_enrolment_fees = calculate_subject_enrolment_fees(user)
-    enrolment_fees = calculate_enrolment_fees
-    total_fees = subject_enrolment_fees + enrolment_fees
-    user.total_fees = total_fees
+    user.total_fees += subject_enrolment_fees
     user.save
     total_fees
   end
@@ -33,10 +31,6 @@ class User < ActiveRecord::Base
       end
     end
     subject_enrolment_fees
-  end
-
-  def calculate_enrolment_fees
-    enrolment_fee = Fee.all.where(fee_type: 0).first.amount
   end
 
   def full_name

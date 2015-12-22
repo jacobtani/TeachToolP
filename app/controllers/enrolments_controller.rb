@@ -25,7 +25,7 @@
     @enrolment.user_id = params[:enrolment][:user_id]
     @user_enrolled = User.find(params[:enrolment][:user_id])
     @user_enrolled.enrolments << @enrolment
-    set_enrolment_fees
+    set_enrolment_fees(@enrolment)
     respond_to do |format|
       if @enrolment.save
         @user_enrolled.save
@@ -76,9 +76,9 @@
       return not_found! unless @user
     end
 
-    def set_enrolment_fees
-      @fee = Fee.all.where(subject_id: @enrolment.subject_id, fee_type: 1).first.amount
-      @enrolment.fees = @fee
+    def set_enrolment_fees(enrolment)
+      @fee = Fee.all.where(subject_id: enrolment.subject_id, fee_type: 0).first.amount
+      enrolment.fees = @fee
     end
 
 end
