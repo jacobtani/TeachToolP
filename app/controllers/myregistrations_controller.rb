@@ -18,7 +18,10 @@ class MyregistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.new user_params
-    set_parent if @user.role == 'student'
+    if @user.role == 'student' 
+      set_parent
+      @user.total_fees = Fee.all.where(fee_type: 0).first.amount
+    end
     @user.activation_date = Date.today
     if current_user
       respond_to do |format| 
@@ -112,6 +115,14 @@ class MyregistrationsController < Devise::RegistrationsController
 
   def cancel_account
     @user.status = 2
+    @user.save
+    respond_to do |format|
+      format.js { }
+    end
+  end
+
+  def end_trial
+    @user.status = 3
     @user.save
     respond_to do |format|
       format.js { }
