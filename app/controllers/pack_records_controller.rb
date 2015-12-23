@@ -22,7 +22,7 @@ class PackRecordsController < ApplicationController
     if @user.pack_records.present?
       @pack_record.posting_number = @user.pack_records.last.posting_number + 1
     else 
-      @pack_record.posting_number = 0
+      @pack_record.posting_number = 1
     end
     update_rewards(@user, @pack_record)
     update_stock(@pack)
