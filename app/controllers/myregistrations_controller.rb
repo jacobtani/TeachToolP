@@ -1,7 +1,7 @@
 require 'tempfile'
 
 class MyregistrationsController < Devise::RegistrationsController
-  before_action :set_user, only: [:edit, :update, :show, :destroy, :children, :suspend, :cancel_account, :redeem_reward]
+  before_action :set_user, only: [:edit, :update, :show, :destroy, :children, :suspend, :cancel_account, :end_trial, :redeem_reward]
 #  before_action :admin_only, only: [:new, :create, :update, :destroy]
   
   def index
@@ -125,7 +125,7 @@ class MyregistrationsController < Devise::RegistrationsController
     @user.status = 3
     @user.save
     respond_to do |format|
-      format.js { }
+      format.js { redirect_turbo parent_summary_path }
     end
   end
 
