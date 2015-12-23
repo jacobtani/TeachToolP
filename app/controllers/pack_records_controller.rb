@@ -1,7 +1,7 @@
 class PackRecordsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:index, :show, :update_rewards]
-  before_action :set_pack_record, only: [:edit, :update, :show, :destroy, :update_rewards]
+  before_action :set_user, only: [:index, :show, :update_total_rewards]
+  before_action :set_pack_record, only: [:edit, :update, :show, :destroy]
   
   def index
     @pack_records = @user.pack_records
@@ -24,10 +24,11 @@ class PackRecordsController < ApplicationController
     else 
       @pack_record.posting_number = 1
     end
-    update_rewards(@user, @pack_record)
+    @pack_record.reward = @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
     update_stock(@pack)
     respond_to do |format|
       if @pack_record.save
+        update_total_rewards
         UserMailer.new_work_email(@user, @pack).deliver_now
         flash[:success] = "Pack Record was created successfully."
         format.js { redirect_turbo employee_view_path}
@@ -42,9 +43,11 @@ class PackRecordsController < ApplicationController
   
   def update
     @user = User.find(@pack_record.user_id)
-    update_rewards(@user, @pack_record)
     respond_to do |format|
       if @pack_record.update_attributes pack_record_params
+        @pack_record.reward = @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
+        @pack_record.save
+        update_total_rewards
         flash[:success] = "Pack Record was updated successfully."
         format.js {redirect_turbo employee_view_path}
       else
@@ -66,34 +69,35 @@ class PackRecordsController < ApplicationController
     redirect_to employee_view_path
   end 
  
-
   private
 
-    def pack_record_params
-      params.require(:pack_record).permit(:pack_id, :user_id, :status, :start_date, :posting_number, :score, :due_date, :comment)
-    end
+  def pack_record_params
+    params.require(:pack_record).permit(:pack_id, :user_id, :status, :start_date, :posting_number, :score, :due_date, :comment)
+  end
     
-    def set_pack_record
-      @pack_record = PackRecord.find params[:id] rescue nil
-      return not_found! unless @pack_record
-    end
+  def set_pack_record
+    @pack_record = PackRecord.find params[:id] rescue nil
+    return not_found! unless @pack_record
+  end
     
-    def set_user
-      @user = User.find params[:user_id] rescue nil
-      return not_found! unless @user
-    end
+  def set_user
+    @user = User.find params[:user_id] rescue nil
+    return not_found! unless @user
+  end
 
-    def update_rewards(user, pack_record)
-      @user = user
-      @pack_record = pack_record
-      @pack_record.reward = @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
-      @user.rewards += @pack_record.reward
-      @user.save
-    end
+  def update_stock(pack)
+    pack.number_unassigned = pack.number_unassigned - 1
+    pack.number_assigned += 1
+    pack.save
+  end
 
-    def update_stock(pack)
-      pack.number_unassigned = pack.number_unassigned - 1
-      pack.number_assigned += 1
-      pack.save
+  def update_total_rewards
+    total_rewards = 0
+    @user.pack_records.each do |pr|
+      total_rewards += pr.reward  
     end
+    @user.rewards = total_rewards
+    @user.save
+  end
+
 end
