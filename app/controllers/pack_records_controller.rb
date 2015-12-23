@@ -19,7 +19,11 @@ class PackRecordsController < ApplicationController
     @pack_record = PackRecord.new pack_record_params
     @user = User.find(@pack_record.user_id)
     @pack = Pack.find(@pack_record.pack_id)
-    @pack_record.posting_number = @user.pack_records.last.posting_number + 1
+    if @user.pack_records.present?
+      @pack_record.posting_number = @user.pack_records.last.posting_number + 1
+    else 
+      @pack_record.posting_number = 1
+    end
     update_rewards(@user, @pack_record)
     update_stock(@pack)
     respond_to do |format|
