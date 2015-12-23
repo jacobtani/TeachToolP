@@ -20,7 +20,6 @@ class MyregistrationsController < Devise::RegistrationsController
     @user = User.new user_params
     if @user.role == 'student' 
       set_parent
-      @user.total_fees = Fee.all.where(fee_type: 0).first.amount
     end
     @user.activation_date = Date.today
     if current_user

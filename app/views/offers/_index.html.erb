@@ -19,10 +19,11 @@
       <th> Description </th>
       <th> Start Date </th>
       <th> End Date </th>
-      <th> Discount Amount </th>
-      <th> Percentage Discount </th>
+      <th> Enrolment Discount </th>
+      <th> Enrolment % Reduction </th>
+      <th> Monthly Discount </th>
+      <th> Monthly % Reduction </th>
       <th> Number of Subjects </th>
-      <th> Free trial </th>
       <% if current_user && current_user.role == 'admin' %>
       	<th> Administration </th>
       <%end%>
@@ -33,10 +34,11 @@
         <td> <%= offer.offer_description %> </td>
         <td> <%= offer.start_date %> </td>
         <td> <%= offer.end_date %> </td>
-        <td> <%= number_to_currency offer.discount_amount %> </td>
-        <td> <%= offer.percentage_discount %> </td>
+        <td> <%= number_to_currency offer.discount_enrolment %> </td>
+        <td> <%= offer.percentage_enrolment %> </td>
+        <td> <%= number_to_currency offer.discount_monthly %> </td>
+        <td> <%= offer.percentage_monthly %> </td>
         <td> <%= offer.number_of_subjects %> </td>
-        <td> <%= offer.includes_free_trial %> </td>
         <% if current_user && current_user.role == 'admin' %>
           <td> 
             <%= link_to 'Edit', edit_offer_path(id: offer.id), remote: true, class: "btn btn-success", id: 'edit-offer-link' %> 
