@@ -18,9 +18,9 @@ class User < ActiveRecord::Base
   def calculate_total_fees (user)
     total_fees = 0
     subject_enrolment_fees = calculate_subject_enrolment_fees(user)
-    user.total_fees += subject_enrolment_fees
+    user.total_fees = subject_enrolment_fees
     user.save
-    total_fees
+    subject_enrolment_fees
   end
 
   def calculate_subject_enrolment_fees(user)
