@@ -42,7 +42,8 @@
       <%= f.hidden_field :message_subject, value: 'STUDENT NEEDS HELP'%>
     </div>
   </div>
-
-  <div class="actions"><%= f.submit "Send Request" %></div>
+  <div class = "row">
+    <%= f.button "Send Request", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..."} %>
+  </div>
 <% end %>
 </div>
