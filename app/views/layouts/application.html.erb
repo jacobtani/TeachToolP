@@ -11,9 +11,7 @@
     <%= render 'shared/navbar' %>
   </div>
   <div class = 'row'>
-    <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %> col-sm-6 col-sm-offset-2"><%= value %></div>
-    <% end %>
+    <%= render 'shared/flash_messages', flash: flash %>
   </div>
   <div id = "container">
     <%= yield %>
