@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require flash_messages
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
@@ -25,4 +26,3 @@ $(document).ready(function() {
   $('.cancel-account').addClass('hidden');
   $('.all-enrolments').addClass('hidden');
 });
-
