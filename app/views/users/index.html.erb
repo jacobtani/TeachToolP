@@ -1,6 +1,6 @@
 <div class = 'container'>
   <div class = 'parents'>
-    <% parents = @users.where(role: 'parent') %>
+    <% parents = User.all_parents %>
     <h2> Parents </h2>
     <table class = 'table table-striped'>
       <thead>
@@ -16,7 +16,7 @@
     </table>
   </div>
   <div class = 'students'>
-    <% students = @users.where(role: 'student') %>
+    <% students = User.students %>
     <h2> Students </h2>
     <table class = 'table table-striped'>
       <thead>
@@ -39,6 +39,11 @@
           <% if student.needs_suspension? && student.status != 'SUSPENDED'%>
             <td> 
               <%= link_to 'Suspend Account', suspend_child_path(id: student.id), class: "btn btn-success", id: 'suspend-child-link' if student.needs_suspension? %> 
+            </td>
+          <%end%>
+          <% if student.account_balance > 0 && student.payment_due > Date.today && student.status != 'SUSPENDED'%>
+            <td> 
+              <%= link_to 'Overdue Payment Reminder', missing_payment_path(id: student.id), class: "btn btn-success", id: 'missing-payment-link' %> 
             </td>
           <%end%>
         </tr>
