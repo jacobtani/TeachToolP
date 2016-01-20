@@ -25,6 +25,7 @@
     @enrolment.user_id = params[:enrolment][:user_id]
     @user_enrolled = User.find(params[:enrolment][:user_id])
     @user_enrolled.enrolments << @enrolment
+    @user_enrolled.payment_due = Date.today + 1.month
     respond_to do |format|
       if @enrolment.save
         @user_enrolled.save

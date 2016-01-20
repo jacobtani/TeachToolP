@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     get '/users/:id/end_trial' => "myregistrations#end_trial", as: :end_trial
     get '/users/:id/redeem_reward' => "myregistrations#redeem_reward", as: :redeem_reward
     get '/users/:id/enter_placement_pack' => "myregistrations#enter_placement_pack", as: :enter_placement_pack
+    get '/users/:id/missing_payment' => "myregistrations#missing_payment", as: :missing_payment
+
   end 
   
   resources :users do 

@@ -1,7 +1,7 @@
 require 'tempfile'
 
 class MyregistrationsController < Devise::RegistrationsController
-  before_action :set_user, only: [:edit, :update, :show, :destroy, :children, :suspend, :cancel_account, :end_trial, :redeem_reward]
+  before_action :set_user, only: [:edit, :update, :show, :destroy, :children, :suspend, :cancel_account, :end_trial, :redeem_reward, :missing_payment]
 #  before_action :admin_only, only: [:new, :create, :update, :destroy]
   
   def index
@@ -126,6 +126,11 @@ class MyregistrationsController < Devise::RegistrationsController
     respond_to do |format|
       format.js { redirect_turbo parent_summary_path }
     end
+  end
+
+  def missing_payment
+    UserMailer.missing_payment(@user).deliver_now
+    redirect_to parent_summary_path
   end
 
   def redeem_reward

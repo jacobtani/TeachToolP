@@ -7,5 +7,5 @@ User.create(first_name: 'Admin', surname: 'User', role: 'admin', postal_address:
 Fee.create(start_date: Date.today , end_date: Date.today + 1.year , amount: 100, fee_type: 1)
 Fee.create(start_date: Date.today , end_date: Date.today + 1.year , amount: 160, fee_type: 0, subject_id: 2)
 Fee.create(start_date: Date.today , end_date: Date.today + 1.year , amount: 160, fee_type: 0, subject_id: 1)
-Offer.create(offer_name: 'Premier Group X English', offer_description: 'Starting English Offer', start_date: Date.today , end_date: Date.today + 1.year , discount_amount: 62)
-Offer.create(offer_name: 'Premier Group X Mathematics', offer_description: 'Starting Maths Offer', start_date: Date.today , end_date: Date.today + 1.year , discount_amount: 62)
+Offer.create(offer_name: 'Premier Group X English', offer_description: 'Starting English Offer', start_date: Date.today , end_date: Date.today + 1.year)
+Offer.create(offer_name: 'Premier Group X Mathematics', offer_description: 'Starting Maths Offer', start_date: Date.today , end_date: Date.today + 1.year)

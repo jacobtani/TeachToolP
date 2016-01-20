@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
     total_fees = 0
     subject_enrolment_fees = calculate_subject_enrolment_fees(user)
     user.total_fees = subject_enrolment_fees
+    user.account_balance = user.total_fees
     user.save
     subject_enrolment_fees
   end
