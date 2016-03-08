@@ -24,6 +24,9 @@ class MessagesController < ApplicationController
       elsif @message.message_subject == 'TERMINATED ACCOUNT'
         UserMailer.cancellation_email(current_user, @message).deliver_now
         redirect_to parent_summary_path
+      elsif @message.message_subject == 'SEND EMAIL TO USER'
+        UserMailer.send_email_to_user(@message).deliver_now
+        redirect_to employee_view_path
       end
     else
       render "new"
@@ -33,7 +36,7 @@ class MessagesController < ApplicationController
   private 
 
   def message_params
-    params.require(:message).permit(:content, :pack_name, :page_number, :question_number, :subject_name, :message_subject)
+    params.require(:message).permit(:content, :pack_name, :message_recipient_name, :page_number, :question_number, :subject_name, :subject, :message_subject, :message_recipient)
   end
 
 end

@@ -9,6 +9,9 @@ class Message
   attribute :question_number
   attribute :subject_name
   attribute :message_subject
+  attribute :message_recipient
+  attribute :message_recipient_name
+  attribute :subject
   
   #validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
   validates_presence_of :message_subject, :content
