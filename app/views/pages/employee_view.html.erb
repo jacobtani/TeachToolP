@@ -5,4 +5,55 @@
 
   <%= link_to fa_icon("plus", text: 'Send Work Missing Email'), work_missing_path(user_id: current_user), class: "btn btn-primary hvr-sweep-to-right", id: 'work-missing-link' if current_user && current_user.role == 'employee' %>
   <%= link_to fa_icon("plus", text: 'Enter Placement Pack'), enter_placement_pack_path(id: current_user), class: "btn btn-primary hvr-sweep-to-right", id: 'placement-pack-link' if current_user && current_user.role == 'employee' %>
+    
+    <h1> Send Message </h1>
+    <% message = Message.new%>
+    <%= form_for message do |f| %>
+      <% if message.errors.any? %>
+        <div class="error_messages">
+          <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+          <ul>
+            <% message.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class = "row">
+        <div class = "col-md-2">
+          <%= f.label :message_recipient_name, "Recipient Name:" %><br />
+          <%= f.text_field :message_recipient_name %>
+        </div>
+        <div class = "col-md-6">
+          <%= f.label :message_recipient, "Recipient Email:" %><br />
+          <%= f.text_field :message_recipient %>
+        </div>
+      </div>
+
+      <div class = "row">
+        <div class = "col-md-6">
+          <%= f.label :subject, "Message Subject:" %><br />
+          <%= f.text_field :subject%>
+        </div>
+      </div>
+    
+      <div class = "row">
+        <div class = "col-md-6">
+          <%= f.hidden_field :message_subject, value: 'SEND EMAIL TO USER'%>
+        </div>
+      </div>
+
+      <div class = "row">
+        <div class = "col-md-12">
+          <%= f.label :content, "Details:" %><br />
+          <%= f.text_area :content, :rows => 5 %>
+        </div>    
+      </div>
+      <div class = "row">
+        <%= f.button "Send Email", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..."} %>
+      </div>
+    <% end %>
+
+
 </div>

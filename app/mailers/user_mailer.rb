@@ -43,4 +43,10 @@ class UserMailer < ApplicationMailer
     mail(:to => @user.parent.email, :subject => "Payment Missing for OurCompany")
   end
 
+  def send_email_to_user(message)
+    @message = message
+    mail(:to => message.message_recipient, :subject => message.subject)
+  end
+
+
 end
