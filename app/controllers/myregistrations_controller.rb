@@ -141,6 +141,9 @@ class MyregistrationsController < Devise::RegistrationsController
     redirect_to parent_summary_path
   end
 
+  def send_email_to_user
+  end
+
   def enter_placement_pack
     @students = User.students
     respond_to do |format|
