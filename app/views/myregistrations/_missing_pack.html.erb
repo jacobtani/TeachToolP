@@ -12,23 +12,22 @@
       </ul>
     </div>
   <% end %>
-
-  <div class = "row">
-    <div class = "col-md-6">
-      <%= f.hidden_field :message_subject, value: 'MISSING PACK/WORK'%>
+  <div class = 'form-data'>
+    <div class = "row">
+      <div class = "col-sm-12">
+        <%= f.label :pack_name, "Pack: " %>
+        <%= f.collection_select :pack_name, Pack.all.find(current_user.pack_records.pluck(:pack_id)), :name, :name, :prompt => "Select pack" %>
+        <%= f.hidden_field :message_subject, value: 'MISSING PACK/WORK'%>
+      </div>
     </div>
-    <div class = "col-sm-3">
-      <%= f.label :pack_name, "Pack Missing: " %><br />
-      <%= f.collection_select :pack_name, Pack.all.find(current_user.pack_records.pluck(:pack_id)), :name, :name, :prompt => "Select pack" %>
+    <div class = "row">
+      <div class = "col-md-12">
+        <%= f.text_area :content, rows: '10%', cols: '100%' %>
+      </div>    
     </div>
-  <div class = "row">
-    <div class = "col-md-12">
-      <%= f.label :content, "Details:" %><br />
-      <%= f.text_area :content, :rows => 5 %>
-    </div>    
-  </div>
-  <div class = "row">
-    <%= f.button "Send Request", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..."} %>
+    <div class = "row">
+      <%= f.button "Send Request", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..."} %>
+    </div>
   </div>
 <% end %>
 </div>
