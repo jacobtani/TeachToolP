@@ -61,7 +61,7 @@ class MyregistrationsController < Devise::RegistrationsController
 
   def destroy
     @user.destroy
-    redirect_to parent_summary_path
+    redirect_to users_path  
   end
 
   def authenticate_scope!
