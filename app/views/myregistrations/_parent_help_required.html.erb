@@ -14,27 +14,26 @@
   <% end %>
 
   <div class = "row">
-    <div class = "col-sm-3">
+    <div class = "col-sm-2">
       <%= f.label :subject_name, "Subject: " %><br />
       <%= f.collection_select :subject_name, Subject.all, :subject_name, :subject_name, :prompt => "Select subject" %>
     </div>
-    <div class = "col-sm-3">
-      <%= f.label :pack_name, "Pack Requiring Help: " %><br />
+    <div class = "col-sm-2">
+      <%= f.label :pack_name, "Pack: " %><br />
       <%= f.collection_select :pack_name, Pack.all.find(current_user.pack_records.pluck(:pack_id)), :name, :name, :prompt => "Select pack" %>
     </div>
     <div class = "col-sm-3">
-      <%= f.label :page_number, "Page Number: " %><br />
+      <%= f.label :page_number, "Page: " %><br />
       <%= f.number_field :page_number %>
     </div>
     <div class = "col-sm-3">
-      <%= f.label :question_number, "Question Number: " %><br />
+      <%= f.label :question_number, "Question: " %><br />
       <%= f.number_field :question_number %>
     </div>
   </div>
   <div class = "row">
     <div class = "col-md-12">
-      <%= f.label :content, "Details:" %><br />
-      <%= f.text_area :content, :rows => 5 %>
+      <%= f.text_area :content, rows: '10%', cols: '100%' %>
     </div>    
   </div>
   <div class = "row" >
