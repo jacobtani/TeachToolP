@@ -35,8 +35,8 @@
         <td> <%= pack.priority %> </td>
         <td> <%= pack.action_required %> </td>
         <td> <%= Subject.find(pack.subject_id).subject_name %> </td>
-        <td> <%= pack.number_unassigned %> </td>
         <td> <%= pack.number_assigned %> </td>
+        <td> <%= pack.number_unassigned %> </td>
         <% if current_user.role == 'admin' %>
           <td> 
             <%= link_to 'Edit', edit_pack_path(id: pack.id), remote: true, class: "btn btn-success", id: 'edit-pack-link' %> 
