@@ -11,7 +11,7 @@
 WickedPdf.config = {
   # Path to the wkhtmltopdf executable: This usually isn't needed if using
   # one of the wkhtmltopdf-binary family of gems.
-   exe_path: '/Users/tania/.rvm/gems/ruby-2.2.2/bin/wkhtmltopdf'
+#   exe_path: '/Users/tania/.rvm/gems/ruby-2.2.2/bin/wkhtmltopdf'
   #   or
    #exe_path: '~/.rvm/gems/ruby-2.2.2/bin/wkhtmltopdf'
 
