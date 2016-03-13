@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
    
+  get 'error/not_found'
+
+  get 'error/internal_server_error'
+
+  get 'error/missing_authentication'
+
   devise_for :users, :controllers => {:registrations => "myregistrations"} 
 
   root 'pages#home'
@@ -16,9 +22,12 @@ Rails.application.routes.draw do
     get '/users/:id/redeem_reward' => "myregistrations#redeem_reward", as: :redeem_reward
     get '/users/:id/enter_placement_pack' => "myregistrations#enter_placement_pack", as: :enter_placement_pack
     get '/users/:id/missing_payment' => "myregistrations#missing_payment", as: :missing_payment
+  end
 
-  end 
-  
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
+  match "/401", :to => "errors#not_found", :via => :all
+
   resources :users do 
     resources :enrolments
   end
