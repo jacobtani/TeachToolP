@@ -1,5 +1,5 @@
 <div class = 'container'>
-<h1>Need Help</h1>
+<h1> STUDENT NEEDS HELP </h1>
 
 <%= form_for message do |f| %>
   <% if message.errors.any? %>
@@ -15,11 +15,11 @@
 
   <div class = "row">
     <div class = "col-sm-3">
-      <%= f.label :subject_name, "Subject: " %><br />
+      <%= f.label :subject_name, "Subject needing help: " %><br />
       <%= f.collection_select :subject_name, Subject.all, :subject_name, :subject_name, :prompt => "Select subject" %>
     </div>
     <div class = "col-sm-3">
-      <%= f.label :pack_name, "Pack Requiring Help: " %><br />
+      <%= f.label :pack_name, "Pack Name: " %><br />
       <%= f.collection_select :pack_name, Pack.all.find(current_user.pack_records.pluck(:pack_id)), :name, :name, :prompt => "Select pack" %>
     </div>
     <div class = "col-sm-3">
@@ -33,6 +33,7 @@
   </div>
   <div class = "row">
     <div class = "col-md-12">
+      <%= f.label :content, "Details of difficulty: " %><br />
       <%= f.text_area :content, rows: '10%', cols: '100%' %>
     </div>    
   </div>
@@ -42,7 +43,7 @@
     </div>
   </div>
   <div class = "row">
-    <%= f.button "Send Request", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..."} %>
+    <%= f.button "Send", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..."} %>
   </div>
 <% end %>
 </div>
