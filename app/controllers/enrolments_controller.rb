@@ -56,6 +56,7 @@
 
   def destroy
     @enrolment.destroy
+    UserMailer.send_enrolment_deletion(@enrolment.user).deliver_now
     redirect_to parent_summary_path
   end
 

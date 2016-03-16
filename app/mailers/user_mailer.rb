@@ -48,5 +48,9 @@ class UserMailer < ApplicationMailer
     mail(:to => message.message_recipient, :subject => message.subject)
   end
 
+  def send_enrolment_deletion(user)
+    @user = user
+    mail(:to => @user.parent.email, :subject => "Confirmation of Enrolment Deletion")
+  end
 
 end
