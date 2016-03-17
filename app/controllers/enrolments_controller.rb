@@ -63,7 +63,7 @@
   private
 
     def enrolment_params
-      params.require(:enrolment).permit(:user_id, :grade, :subject_id, :fees, :offer_id)
+      params.require(:enrolment).permit(:user_id, :grade, :subject_id, :fees, :offer_id, :ability_level)
     end
     
     def set_enrolment
