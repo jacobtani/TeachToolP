@@ -150,6 +150,11 @@ class MyregistrationsController < Devise::RegistrationsController
     end
   end
 
+  def nullify_rewards
+    ValidatorMod.nullify_rewards
+    redirect_to employee_view_path
+  end
+
   def enter_placement_pack
     @students = User.students
     respond_to do |format|

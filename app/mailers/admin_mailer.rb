@@ -52,5 +52,9 @@ class AdminMailer < ApplicationMailer
     mail(:to => @user.parent.email, :subject => "NEW ENROLMENT")
   end
 
+  def reminder_nullify_rewards
+    mail(:to => 'tjterminator.dev@gmail.com', from: 'tanzjacob@gmail.com', subject: 'HI')
+  end
+
 
 end
