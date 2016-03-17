@@ -53,4 +53,7 @@ class UserMailer < ApplicationMailer
     mail(:to => @user.parent.email, :subject => "Confirmation of Enrolment Deletion")
   end
 
+  def recommend_us(user, message)
+    mail(:to => message.message_recipient, :subject => "Recommendation of Our Company")
+  end
 end

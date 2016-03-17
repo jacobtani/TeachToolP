@@ -27,6 +27,9 @@ class MessagesController < ApplicationController
       elsif @message.message_subject == 'SEND EMAIL TO USER'
         UserMailer.send_email_to_user(@message).deliver_now
         redirect_to employee_view_path
+      elsif @message.message_subject == 'RECOMMEND US'
+        UserMailer.recommend_us(current_user, @message).deliver_now
+        redirect_to parent_summary_path
       end
     else
       render "new"

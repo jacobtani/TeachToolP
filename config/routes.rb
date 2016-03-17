@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     get '/users/:id/redeem_reward' => "myregistrations#redeem_reward", as: :redeem_reward
     get '/users/:id/enter_placement_pack' => "myregistrations#enter_placement_pack", as: :enter_placement_pack
     get '/users/:id/missing_payment' => "myregistrations#missing_payment", as: :missing_payment
+    get '/users/:id/recommend_us' => "myregistrations#recommend_us", as: :recommend_us
   end
 
   match "/404", :to => "errors#not_found", :via => :all

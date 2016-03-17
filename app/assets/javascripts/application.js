@@ -24,5 +24,6 @@ $(document).ready(function() {
   $('.payment-enquiry').addClass('hidden');
   $('.parent-help').addClass('hidden');
   $('.cancel-account').addClass('hidden');
+  $('.recommend-us').addClass('hidden');
   $('.all-enrolments').addClass('hidden');
 });

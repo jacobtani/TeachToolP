@@ -144,6 +144,12 @@ class MyregistrationsController < Devise::RegistrationsController
   def send_email_to_user
   end
 
+  def recommend_us
+    respond_to do |format|
+      format.js { }
+    end
+  end
+
   def enter_placement_pack
     @students = User.students
     respond_to do |format|
