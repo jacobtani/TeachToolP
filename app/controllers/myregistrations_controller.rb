@@ -152,6 +152,7 @@ class MyregistrationsController < Devise::RegistrationsController
 
   def nullify_rewards
     ValidatorMod.nullify_rewards
+    redirect_to employee_view_path
   end
 
   def enter_placement_pack
