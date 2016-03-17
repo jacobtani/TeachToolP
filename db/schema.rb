@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317072650) do
+ActiveRecord::Schema.define(version: 20160317091728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,11 @@ ActiveRecord::Schema.define(version: 20160317072650) do
     t.integer  "status",         default: 0
     t.integer  "posting_number", default: 0
     t.hstore   "comments"
+    t.integer  "accuracy",       default: 0
+    t.integer  "completion",     default: 0
+    t.integer  "quality",        default: 0
+    t.integer  "presentation",   default: 0
+    t.integer  "consistency",    default: 0
   end
 
   add_index "pack_records", ["pack_id"], name: "index_pack_records_on_pack_id", using: :btree
