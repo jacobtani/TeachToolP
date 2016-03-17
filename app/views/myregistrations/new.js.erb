@@ -5,6 +5,7 @@ $(".my-children").addClass('hidden');
 $(".cancel-account").addClass('hidden');
 $(".parent-help").addClass('hidden');
 $(".payment-enquiry").addClass('hidden');
+$(".recommend-us").addClass('hidden');
 $(".my-pack").addClass('hidden');
 $("#new-user-form").removeClass('hidden');
 $("#new-user-form").html('<%= j render("form", user: @user, title: "Add Child", path: user_registration_path(@user)) %>')

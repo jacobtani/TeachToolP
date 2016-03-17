@@ -17,6 +17,7 @@
               <li><%= link_to 'PARENT GENERAL QUESTIONS', general_parent_enquiry_path(id: current_user.id), remote: true, class: "btn btn-primary hvr-bounce-to-top", id:'general-parent-enquiry-link' if user_signed_in? %></li>
               <li><%= link_to 'PAYMENT RELATED MATTERS', payment_related_enquiry_path(id: current_user.id), remote: true, class: "btn btn-primary hvr-bounce-to-top", id:'payment-enquiry-link' if user_signed_in? %></li>
               <li><%= link_to 'STUDENT NEEDS HELP Help', parent_help_path(id: current_user.id), remote: true, class: "btn btn-primary hvr-bounce-to-top", id:'pack-help-link' if user_signed_in? %></li>
+              <li><%= link_to 'RECOMMEND US', recommend_us_path(id: current_user.id), remote: true, class: "btn btn-primary hvr-bounce-to-top", id:'recommend-us-link' if user_signed_in? %></li>
             </ul>
           </li>
         </div>
@@ -63,6 +64,9 @@
   </div>
   <div class ='my-pack'>
     <%=render :partial=>'myregistrations/missing_pack'%>
+  </div>
+  <div class ='recommend-us'>
+    <%=render :partial=>'myregistrations/recommend_us'%>
   </div>
 
   <div class = "payment-blurb">
