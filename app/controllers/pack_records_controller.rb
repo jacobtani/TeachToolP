@@ -46,6 +46,7 @@ class PackRecordsController < ApplicationController
     respond_to do |format|
       if @pack_record.update_attributes pack_record_params
         @pack_record.reward = @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
+        @pack_record.score = calculate_score(@pack_record)
         @pack_record.save
         update_total_rewards
         flash[:success] = "Pack Record was updated successfully."
@@ -72,7 +73,7 @@ class PackRecordsController < ApplicationController
   private
 
   def pack_record_params
-    params.require(:pack_record).permit(:pack_id, :user_id, :status, :start_date, :posting_number, :score, :due_date, :comment)
+    params.require(:pack_record).permit(:pack_id, :user_id, :status, :start_date, :posting_number, :score, :due_date, :comment, :accuracy, :completion, :quality, :presentation, :consistency)
   end
     
   def set_pack_record
@@ -98,6 +99,15 @@ class PackRecordsController < ApplicationController
     end
     @user.rewards = total_rewards
     @user.save
+  end
+
+  def calculate_score(pack_record)
+    accuracy = pack_record[:accuracy].to_i
+    completion = pack_record[:completion].to_i
+    quality = pack_record[:quality].to_i
+    presentation = pack_record[:presentation].to_i
+    consistency = pack_record[:consistency].to_i
+    score = (0.4 *accuracy + 0.25* completion + 0.15* quality + 0.10*presentation + 0.10*consistency)
   end
 
 end

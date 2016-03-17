@@ -35,7 +35,11 @@
   <div class="form-group">
     <div class="row">
       <div class="col-sm-12">
-        <%= f.number_field :score, placeholder: 'Enter score', min: 0, max: 100, class: 'form-control' %>
+        <%= f.number_field :accuracy, placeholder: 'Enter accuracy', min: 0, max: 100, class: 'form-control' %>
+        <%= f.number_field :completion, placeholder: 'Enter completion', min: 0, max: 100, class: 'form-control' %>
+        <%= f.number_field :quality, placeholder: 'Enter quality', min: 0, max: 100, class: 'form-control' %>
+        <%= f.number_field :presentation, placeholder: 'Enter presentation', min: 0, max: 100, class: 'form-control' %>
+        <%= f.number_field :consistency, placeholder: 'Enter consistency', min: 0, max: 100, class: 'form-control' %>
       </div>
     </div>
   </div>
