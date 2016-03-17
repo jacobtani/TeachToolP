@@ -46,4 +46,11 @@ class AdminMailer < ApplicationMailer
     mail(from: @user.parent.email, to: 'tjterminator.dev@gmail.com', subject: 'REWARD REDEMPTION', body: full_message)
   end
 
+  def new_enrolment(user, enrolment)
+    @user = user
+    @enrolment = enrolment
+    mail(:to => @user.parent.email, :subject => "NEW ENROLMENT")
+  end
+
+
 end

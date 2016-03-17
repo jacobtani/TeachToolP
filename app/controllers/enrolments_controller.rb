@@ -29,6 +29,8 @@
     respond_to do |format|
       if @enrolment.save
         @user_enrolled.save
+        UserMailer.new_enrolment(@user_enrolled, @enrolment).deliver_now
+        AdminMailer.new_enrolment(@user_enrolled, @enrolment).deliver_now
         flash[:success] = "Enrolment was created successfully."
         format.js { redirect_turbo parent_summary_path}
       else
