@@ -17,7 +17,7 @@
         <%= f.number_field :grade, min: 1, max: 7 %>
       </div>
       <div class = "col-md-5">
-        <%= f.collection_select :offer_id, Offer.all, :id, :offer_name, :prompt => "Select Offer" %>
+        <%= f.collection_select :offer_id, Offer.active, :id, :offer_name, :prompt => "Select Offer" %>
       </div>
     </div>
   </div>
