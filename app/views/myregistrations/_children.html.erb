@@ -16,7 +16,7 @@
       <%end%>
     </thead>
     <% @children.each do | child | %>
-      <% child.validate_rewards(child)%>
+      <% ValidatorMod.validate_rewards(child)%>
       <tr>
         <td> <%= child.full_name %> </td>
         <td> <%= child.school_grade %> </td>
@@ -24,7 +24,7 @@
         <td> <%= child.date_of_birth.strftime('%D') if child.date_of_birth %> </td>
         <td> <%= number_to_currency child.rewards %> </td>
         <td> <%= number_to_currency child.overdue_fees %> </td>
-        <td> <%= number_to_currency child.calculate_total_fees(child) %> </td>
+        <td> <%= number_to_currency CalculationMod.calculate_total_fees(child) %> </td>
         <td> <%= child.status %> </td>
         <%if current_user.role == 'parent'%>
           <td> 
