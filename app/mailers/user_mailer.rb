@@ -56,4 +56,11 @@ class UserMailer < ApplicationMailer
   def recommend_us(user, message)
     mail(:to => message.message_recipient, :subject => "Recommendation of Our Company")
   end
+
+  def new_enrolment(user, enrolment)
+    @user = user
+    @enrolment = enrolment
+    mail(:to => @user.parent.email, :subject => "New Enrolment")
+  end
+
 end
