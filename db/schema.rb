@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120201001) do
+ActiveRecord::Schema.define(version: 20160317072650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20160120201001) do
     t.integer  "grade",                         null: false
     t.integer  "offer_id"
     t.float    "fees",            default: 0.0
+    t.integer  "ability_level",   default: 0
   end
 
   add_index "enrolments", ["offer_id"], name: "index_enrolments_on_offer_id", using: :btree
@@ -150,7 +151,8 @@ ActiveRecord::Schema.define(version: 20160120201001) do
     t.integer  "school_grade",           default: 1
     t.text     "additional_info"
     t.float    "account_balance"
-    t.datetime "payment_due",            default: '2016-03-17 00:00:00'
+    t.datetime "payment_date"
+    t.datetime "payment_due",            default: '2016-01-21 00:00:00'
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
