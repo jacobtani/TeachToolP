@@ -11,4 +11,11 @@ module ValidatorMod
     end 
   end
 
+  def nullify_rewards
+    students = User.students 
+    students.each do |student|
+      student.update_attribute(:rewards, 0)
+    end
+  end  
+
 end

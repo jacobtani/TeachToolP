@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     get '/users/:id/enter_placement_pack' => "myregistrations#enter_placement_pack", as: :enter_placement_pack
     get '/users/:id/missing_payment' => "myregistrations#missing_payment", as: :missing_payment
     get '/users/:id/recommend_us' => "myregistrations#recommend_us", as: :recommend_us
+    get '/users/:id/nullify_rewards' => "myregistrations#nullify_rewards", as: :nullify_rewards
   end
 
   match "/404", :to => "errors#not_found", :via => :all
