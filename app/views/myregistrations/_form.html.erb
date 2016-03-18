@@ -77,6 +77,16 @@
         <%= f.text_field :contact_mobile, placeholder: 'Enter contact mobile number', class: 'form-control' %>
       </div>
     </div>
+    <div id="enrolments">
+      <%= f.errors_on :enrolments %>
+      <%= f.fields_for :enrolments do |enrolment| %>
+        <%= render 'enrolment_fields', :f => enrolment  %>
+      <% end -%>
+      <div class="links form-group">
+        <%= link_to_add_association fa_icon(:plus, text: 'Add More Enrolments'), f, :enrolments, class: 'btn btn-default col-sm-2'  %>
+      </div>    
+    </div>
+
     <div class = "row">
       <div class="col-sm-4">
         <%= f.label 'School Grade:' %>

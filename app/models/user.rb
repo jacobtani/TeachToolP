@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   scope :admins, -> { where(role: 'admin') }
   scope :employees, -> { where(role: 'employee') }
   validates_uniqueness_of :email, message: "is already taken"
-  
+  accepts_nested_attributes_for :enrolments, allow_destroy: true
+
   def full_name
     "#{first_name} #{surname}"
   end
