@@ -15,7 +15,7 @@
     @fee  = Fee.new
   end
 
-   def create
+  def create
     @fee = Fee.new fee_params
     respond_to do |format|
       if @fee.save
@@ -34,12 +34,13 @@
     respond_to do |format|
       if @fee.update_attributes fee_params
         flash[:success] = "Fee was updated successfully."
-        format.js {redirect_turbo admin_path}
+        format.html { redirect_to admin_path }
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @fee}, status: 500 }
       end
     end
   end
+
 
   def destroy
     @fee.destroy

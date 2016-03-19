@@ -16,26 +16,21 @@
 
   def create
     @subject = Subject.new subject_params
-    respond_to do |format|
-      if @subject.save
-        flash[:success] = "Subject was created successfully."
-        format.js { redirect_turbo admin_path}
-      else
-        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @subject}, status: 500 }
-      end
+    if @subject.save
+      flash[:success] = "Subject was created successfully."
+      redirect_to admin_path
+    else
+      format.js { render partial: 'shared/ajax_form_errors', locals: {model: @subject}, status: 500 }
     end
-  end
-
-  def edit
   end
 
   def update
     respond_to do |format|
       if @subject.update_attributes subject_params
         flash[:success] = "Subject was updated successfully."
-        format.js {redirect_turbo admin_path}
+        format.html { redirect_to admin_path }
       else
-        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @site}, status: 500 }
+        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @subject}, status: 500 }
       end
     end
   end
@@ -48,7 +43,7 @@
   private
 
     def subject_params
-      params.require(:subject).permit(:subject_name, :fee)
+      params.require(:subject).permit(:subject_name, :fee, :highest_grade_taught, :lowest_grade_taught)
     end
 
     def set_subject

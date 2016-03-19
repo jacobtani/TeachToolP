@@ -1,6 +1,5 @@
-<%= form_for @pack, url: path, title: title, remote: true, html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>
+<%= bootstrap_form_for(@pack, layout: :horizontal)  do |f| %>
   <div id="form-errors"></div>
-  <%= label_tag(:q, title) %>
 
   <div class="form-group">
     <div class="row">
@@ -52,6 +51,6 @@
     <%= button_tag type: "submit", class: "btn btn-primary", name: "commit", value: "Save" do %>
       <a>Save</a>
     <% end %>
-    <a class="btn btn-danger hvr-trim" id='add-pack-cancel-button' data-behaviour="form-dismiss">Cancel</a>
+    <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
   </div>
 <% end %>

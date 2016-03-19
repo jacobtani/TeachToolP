@@ -2,7 +2,7 @@
 <div class = 'container'>
   <h2> Offers</h2>
   <div class= 'pull-right'>
-        <%= link_to fa_icon("plus", text: 'Add Offer'), new_offer_path, remote: true, class: "btn btn-primary", id: 'new-offer-link' if current_user && current_user.role == 'admin' %>
+        <%= link_to fa_icon("plus", text: 'Add Offer'), new_offer_path, class: "btn btn-primary", id: 'new-offer-link' if current_user && current_user.role == 'admin' %>
   </div>
 
   <div class="row">
@@ -41,7 +41,7 @@
         <td> <%= offer.number_of_subjects %> </td>
         <% if current_user && current_user.role == 'admin' %>
           <td> 
-            <%= link_to 'Edit', edit_offer_path(id: offer.id), remote: true, class: "btn btn-success", id: 'edit-offer-link' %> 
+            <%= link_to 'Edit', edit_offer_path(id: offer.id), class: "btn btn-success", id: 'edit-offer-link' %> 
             <%= link_to 'Delete', offer_path(offer), method: :delete,
                 class: "btn btn-danger", id: 'delete-offer-link' %>
           </td>

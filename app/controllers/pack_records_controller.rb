@@ -41,8 +41,9 @@ class PackRecordsController < ApplicationController
   def edit
   end
   
+
   def update
-    @user = User.find(@pack_record.user_id)
+    @user = User.find(@pack_record.user_id)   
     respond_to do |format|
       if @pack_record.update_attributes pack_record_params
         @pack_record.reward = @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
@@ -50,9 +51,9 @@ class PackRecordsController < ApplicationController
         @pack_record.save
         update_total_rewards
         flash[:success] = "Pack Record was updated successfully."
-        format.js {redirect_turbo employee_view_path}
+        format.html { redirect_to employee_view_path }
       else
-        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @pack_records}, status: 500 }
+        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @pack_record}, status: 500 }
       end
     end
   end

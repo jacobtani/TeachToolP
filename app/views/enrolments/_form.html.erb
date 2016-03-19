@@ -1,6 +1,4 @@
-<%= form_for @enrolment, url: path, title: title, remote: true, html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>  
-  <div id="form-errors"></div>
-  <%= label_tag(:q, title) %>
+<%= bootstrap_form_for(@enrolment, layout: :horizontal)  do |f| %>  <div id="form-errors"></div>
 
    <div class="form-group">
     <div class="row">
@@ -36,7 +34,9 @@
   </div>
 
   <div class="form-group row submit">
-    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
-    <a class="btn btn-danger hvr-trim" id='add-enrolment-cancel-button' data-behaviour="form-dismiss">Cancel</a>
+    <%= button_tag type: "submit", class: "btn btn-primary", name: "commit", value: "Save" do %>
+      <a>Save</a>
+    <% end %>
+    <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
   </div>
 <% end %>

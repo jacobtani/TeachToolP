@@ -15,26 +15,21 @@
     @offer  = Offer.new
   end
 
-   def create
+  def create
     @offer = Offer.new offer_params
-    respond_to do |format|
-      if @offer.save
-        flash[:success] = "Offer was created successfully."
-        format.js { redirect_turbo admin_path}
-      else
-        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @offer}, status: 500 }
-      end
+    if @offer.save
+      flash[:success] = "Offer was created successfully."
+      redirect_to admin_path
+    else
+      format.js { render partial: 'shared/ajax_form_errors', locals: {model: @offer}, status: 500 }
     end
-  end
-
-  def edit
   end
   
   def update
     respond_to do |format|
       if @offer.update_attributes offer_params
         flash[:success] = "Offer was updated successfully."
-        format.js {redirect_turbo admin_path}
+        format.html { redirect_to admin_path }
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @offer}, status: 500 }
       end

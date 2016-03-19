@@ -17,13 +17,11 @@ class PacksController < ApplicationController
 
   def create
     @pack = Pack.new pack_params
-    respond_to do |format|
-      if @pack.save
-        flash[:success] = "Pack was created successfully."
-        format.js { redirect_turbo admin_path}
-      else
-        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @pack}, status: 500 }
-      end
+    if @pack.save
+      flash[:success] = "Pack was created successfully."
+      redirect_to admin_path
+    else
+      format.js { render partial: 'shared/ajax_form_errors', locals: {model: @pack}, status: 500 }
     end
   end
 
@@ -34,7 +32,7 @@ class PacksController < ApplicationController
     respond_to do |format|
       if @pack.update_attributes pack_params
         flash[:success] = "Pack was updated successfully."
-        format.js {redirect_turbo admin_path}
+        format.html { redirect_to admin_path }
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @pack}, status: 500 }
       end
