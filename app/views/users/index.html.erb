@@ -6,13 +6,14 @@
       <thead>
         <th> Parent Name </th>
         <th> Number of Children </th>
+        <th> Referrer Email </th>
         <th> Administration </th>
-
       </thead>
       <% parents.each do |parent| %>
         <tr>
           <td> <%= parent.full_name %> </td>
           <td> <%= parent.children.count %> </td>
+          <td> <%= parent.referrer_email %> </td>
           <td> <%= link_to 'Terminate Account', user_registration_path(id: parent.id), class: "btn btn-danger", id: 'cancel-parent-link', method: :delete %> </td>
         </tr>
       <%end%>

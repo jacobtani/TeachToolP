@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319091312) do
+ActiveRecord::Schema.define(version: 20160319093911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,8 @@ ActiveRecord::Schema.define(version: 20160319091312) do
     t.text     "additional_info"
     t.float    "account_balance"
     t.datetime "payment_due",            default: '2016-03-19 00:00:00'
+    t.integer  "referrer_count",         default: 0
+    t.string   "referrer_email"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
