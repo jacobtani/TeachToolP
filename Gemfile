@@ -1,4 +1,4 @@
-ruby '2.2.2'
+ruby '2.2.1'
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'whenever', :require => false
+gem "cocoon"
 
 #Maintain seed data
 gem 'seed-fu', '~> 2.3'   
