@@ -14,6 +14,7 @@ class MyregistrationsController < Devise::RegistrationsController
 
   def new
     @user = User.new
+    @user.enrolments.build
   end
 
   def create
@@ -25,6 +26,7 @@ class MyregistrationsController < Devise::RegistrationsController
     if current_user
       respond_to do |format| 
         if @user.save
+          build_enrolment_user_data(@user)
           flash[:success] = "User was created successfully."
           UserMailer.registration_confirmation_to_user(@user).deliver_now
           AdminMailer.registration_confirmation_to_admin(@user).deliver_now
@@ -179,7 +181,7 @@ class MyregistrationsController < Devise::RegistrationsController
   private 
 
   def user_params
-    params.require(:user).permit(:first_name, :surname, :role, :parent_id, :school_grade, :status, :additional_info, :postal_address, :email, :password, :city, :state, :zip_code, :phone_number, :contact_email, :contact_phone, :contact_mobile, :date_of_birth, enrolments_attributes: [:id, :subject_id])
+    params.require(:user).permit(:first_name, :surname, :role, :parent_id, :school_grade, :status, :additional_info, :postal_address, :email, :password, :city, :state, :zip_code, :phone_number, :contact_email, :contact_phone, :contact_mobile, :date_of_birth, enrolments_attributes: [:id, :subject_id, :grade, :offer_id, :ability_level, :_destroy])
   end
 
   def set_user
@@ -189,6 +191,19 @@ class MyregistrationsController < Devise::RegistrationsController
 
   def set_parent
     @user.parent_id = current_user.id if user_signed_in? && current_user.role == 'parent'
+  end
+
+  def build_enrolment_user_data(user)
+    if user.enrolments
+      user.enrolments.each do |e|
+        e.date = Date.today
+        e.user_id = user.id
+        e.start_date = Date.today
+        user.payment_due = Date.today + 1.month
+        Enrolment.validate_offer(user, e)
+        e.save
+      end
+    end
   end
 
 end
