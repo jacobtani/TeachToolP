@@ -1,18 +1,9 @@
-<% @fees = fees if @fees.nil? %> 
 <div class = 'container'>
+  <% @fees = fees if @fees.nil? %> 
   <h2> Fees</h2>
   <div class= 'pull-right'>
-        <%= link_to fa_icon("plus", text: 'Add Fee'), new_fee_path, class: "btn btn-primary", id: 'new-fee-link' if current_user && current_user.role == 'admin' %>
+    <%= link_to fa_icon("plus", text: 'Add Fee'), new_fee_path, class: "btn btn-primary", id: 'new-fee-link' if current_user && current_user.role == 'admin' %>
   </div>
-
-  <div class="row">
-    <div id="new-fee-form" class="col-sm-6"></div>
-  </div>
-
-  <div class="row">
-    <div id="edit-fee-form" class="col-sm-6"></div>
-  </div>
-
   <table class = 'table table-striped'>
     <thead>
       <th> Id </th>

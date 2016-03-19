@@ -1,18 +1,9 @@
-<% @offers = offers if @offers.nil? %> 
 <div class = 'container'>
+  <% @offers = offers if @offers.nil? %> 
   <h2> Offers</h2>
   <div class= 'pull-right'>
-        <%= link_to fa_icon("plus", text: 'Add Offer'), new_offer_path, class: "btn btn-primary", id: 'new-offer-link' if current_user && current_user.role == 'admin' %>
+    <%= link_to fa_icon("plus", text: 'Add Offer'), new_offer_path, class: "btn btn-primary", id: 'new-offer-link' if current_user && current_user.role == 'admin' %>
   </div>
-
-  <div class="row">
-    <div id="new-offer-form" class="col-sm-6"></div>
-  </div>
-
-  <div class="row">
-    <div id="edit-offer-form" class="col-sm-6"></div>
-  </div>
-
   <table class = 'table table-striped'>
     <thead>
       <th> Offer Name </th>

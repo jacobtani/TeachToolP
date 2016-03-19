@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>TeachTool</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body class = "body-style">
-  <div id = 'navbar' >
-    <%= render 'shared/navbar' %>
-  </div>
-  <div class = 'row'>
-    <%= render 'shared/flash_messages', flash: flash %>
-  </div>
-  <div id = "container">
-    <%= yield %>
-  </div>
-</body>
+  <head>
+    <title>TeachTool</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class = "body-style">
+    <div id = 'navbar' >
+      <%= render 'shared/navbar' %>
+    </div>
+    <div class = 'row'>
+      <%= render 'shared/flash_messages', flash: flash %>
+    </div>
+    <div id = "container">
+      <%= yield %>
+    </div>
+  </body>
 </html>
