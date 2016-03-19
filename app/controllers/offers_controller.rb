@@ -1,7 +1,7 @@
  class OffersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_offer, only: [:edit, :update, :show, :destroy]
- # before_action :admin_only, only: [:new, :create, :update, :destroy]
+  before_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
   
   def index
     @offers = Offer.all

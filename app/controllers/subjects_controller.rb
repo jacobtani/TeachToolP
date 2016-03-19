@@ -1,6 +1,6 @@
  class SubjectsController < ApplicationController
   before_action :set_subject, only: [:edit, :update, :show, :destroy]
-  #before_action :admin_only, only: [:new, :create, :update, :destroy]
+  before_action :admin_only, only: [:new, :create, :update, :edit, :destroy]
   
   def index
     @subjects = Subject.all
