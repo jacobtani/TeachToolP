@@ -2,7 +2,7 @@ class Enrolment < ActiveRecord::Base
   belongs_to :subject
   belongs_to :user
   validates_uniqueness_of :user_id, scope: :subject_id, message: "can only enrol once per subject"
-  #validate :validate_offer 
+  validate :validate_enrolment #ensure enrolment subject is same as offer applied for subject
   
   def self.validate_offer(user, enrolment)
     @offer = Offer.find(enrolment.offer_id) if enrolment.offer_id
@@ -18,6 +18,12 @@ class Enrolment < ActiveRecord::Base
       self.calculate_enrolment_fees(new_enrolment_fee, new_monthly_fee, enrolment)
     else
       self.calculate_enrolment_fees(enrolment_fee, monthly_fee, enrolment)
+    end
+  end
+
+  def validate_enrolment
+    if self.subject_id != Offer.find(self.offer_id).subject_id
+      errors.add(:enrolment, 'Offer subject id not same as enrolment subject')
     end
   end
 
