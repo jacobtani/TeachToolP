@@ -4,15 +4,10 @@
 
   <div class="form-group">
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-md-6">
         <%= f.text_field :name, placeholder: 'Enter pack name ', class: 'form-control' %>
       </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-12">
+      <div class="col-md-6">
         <%= f.text_field :description, placeholder: 'Enter pack description ', class: 'form-control' %>
       </div>
     </div>
@@ -20,15 +15,10 @@
 
   <div class="form-group">
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-md-6">
         <%= f.text_field :action_required, placeholder: 'Enter action required ', class: 'form-control' %>
       </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-12">
+      <div class="col-md-6">
         <%= f.number_field :number_unassigned, placeholder: 'Enter no of unassigned packs ', class: 'form-control' %>
       </div>
     </div>
@@ -40,7 +30,7 @@
         <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select a subject" %>
       </div>
       <div class="col-sm-4">
-        <%= f.select :pack_type, Pack.pack_types.keys.to_a %>
+        <%= f.select :pack_type, Pack.pack_types.keys.to_a, label: 'Type' %>
       </div>
       <div class="col-sm-4">
         <%= f.number_field :priority, placeholder: 'Enter priority' %>

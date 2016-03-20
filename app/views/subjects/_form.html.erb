@@ -4,31 +4,21 @@
 
   <div class="form-group">
     <div class="row">
-      <div class="col-sm-12">
-        <%= f.text_field :subject_name, placeholder: 'Enter subject name ', class: 'form-control', autofocus: true %>
+      <div class="col-md-6">
+        <%= f.text_field :subject_name, placeholder: 'Enter subject name ', class: 'form-control', autofocus: true, label: 'Name' %>
+      </div>
+      <div class="col-md-6">
+        <%= f.number_field :fee, placeholder: 'Enter monthly fee', class: 'form-control', label: 'Monthly Fee' %>
       </div>
     </div>
   </div>
 
   <div class="form-group">
     <div class="row">
-      <div class="col-sm-12">
-        <%= f.number_field :fee, placeholder: 'Enter monthly fee', class: 'form-control' %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-12">
+      <div class="col-md-6">
         <%= f.number_field :lowest_grade_taught, placeholder: 'Enter lowest grade taught', class: 'form-control' %>
       </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-12">
+      <div class="col-md-6">
         <%= f.number_field :highest_grade_taught, placeholder: 'Enter highest grade taught', class: 'form-control' %>
       </div>
     </div>
