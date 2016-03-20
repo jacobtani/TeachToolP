@@ -18,20 +18,15 @@ class PackRecordsController < ApplicationController
   def create
     @pack_record = PackRecord.new pack_record_params
     @user = User.find(@pack_record.user_id)
-    @pack = Pack.find(@pack_record.pack_id)
-    if @user.pack_records.present?
-      @pack_record.posting_number = @user.pack_records.last.posting_number + 1
-    else 
-      @pack_record.posting_number = 1
-    end
-    @pack_record.reward = @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
-    update_stock(@pack)
+    compute_pack_record_logic(@user, @pack_record)
+    @pack_record.posting_number = PackRecord.compute_posting_number(@user)
     respond_to do |format|
       if @pack_record.save
-        update_total_rewards
+        User.update_total_rewards(@user)
+        Pack.update_stock(Pack.find(pack_record.pack_id))
         UserMailer.new_work_email(@user, @pack).deliver_now
         flash[:success] = "Pack Record was created successfully."
-        format.js { redirect_turbo employee_view_path}
+        format.html { redirect_to employee_view_path}
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @pack_record}, status: 500 }
       end
@@ -41,15 +36,12 @@ class PackRecordsController < ApplicationController
   def edit
   end
   
-
   def update
-    @user = User.find(@pack_record.user_id)   
+    @user = User.find(@pack_record.user_id)
     respond_to do |format|
       if @pack_record.update_attributes pack_record_params
-        @pack_record.reward = @pack_record.calculate_reward(@user, @pack_record.score, @pack_record)
-        @pack_record.score = calculate_score(@pack_record)
-        @pack_record.save
-        update_total_rewards
+        @pack_record = compute_pack_record_logic(@user, @pack_record)
+        User.update_total_rewards(@user)
         flash[:success] = "Pack Record was updated successfully."
         format.html { redirect_to employee_view_path }
       else
@@ -64,8 +56,7 @@ class PackRecordsController < ApplicationController
   end
 
   def work_missing_email
-    @overdue_packs = PackRecord.overdue
-    @overdue_packs.each do |overdue_pack|
+    PackRecord.overdue.each do |overdue_pack|
       UserMailer.work_missing(User.find(overdue_pack.user_id), overdue_pack).deliver_now
     end
     redirect_to employee_view_path
@@ -87,28 +78,15 @@ class PackRecordsController < ApplicationController
     return not_found! unless @user
   end
 
-  def update_stock(pack)
-    pack.number_unassigned = pack.number_unassigned - 1
-    pack.number_assigned += 1
-    pack.save
-  end
-
-  def update_total_rewards
-    total_rewards = 0
-    @user.pack_records.each do |pr|
-      total_rewards += pr.reward  
-    end
-    @user.rewards = total_rewards
-    @user.save
-  end
-
-  def calculate_score(pack_record)
-    accuracy = pack_record[:accuracy].to_i
-    completion = pack_record[:completion].to_i
-    quality = pack_record[:quality].to_i
-    presentation = pack_record[:presentation].to_i
-    consistency = pack_record[:consistency].to_i
-    score = (0.4 *accuracy + 0.25* completion + 0.15* quality + 0.10*presentation + 0.10*consistency)
+  def compute_pack_record_logic(user, pack_record)
+    pack_record.score = PackRecord.calculate_score(pack_record)
+    pack_record.reward = PackRecord.calculate_reward(pack_record.score)
+    binding.pry
+    #if it is an update action call save
+    if (request.env['PATH_INFO'] =~ /\d/) != nil
+      pack_record.save
+    end 
+    pack_record
   end
 
 end
