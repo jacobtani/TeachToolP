@@ -81,7 +81,6 @@ class PackRecordsController < ApplicationController
   def compute_pack_record_logic(user, pack_record)
     pack_record.score = PackRecord.calculate_score(pack_record)
     pack_record.reward = PackRecord.calculate_reward(pack_record.score)
-    binding.pry
     #if it is an update action call save
     if (request.env['PATH_INFO'] =~ /\d/) != nil
       pack_record.save
