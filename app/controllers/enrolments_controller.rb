@@ -33,7 +33,7 @@
     end
 
     def set_user
-      @user = User.find params[:user_id] 
+      @user = User.find params[:users_admin_id] 
       return not_found! unless @user
     end
 

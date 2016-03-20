@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'error/missing_authentication'
 
   devise_for :users, :controllers => {:registrations => "myregistrations"} 
-
+  
   root 'pages#home'
   devise_scope :user do
     patch '/users/:id/edit' => "myregistrations#update", as: :edit_rego
@@ -30,9 +30,11 @@ Rails.application.routes.draw do
   match "/500", :to => "errors#internal_server_error", :via => :all
   match "/401", :to => "errors#not_found", :via => :all
 
-  resources :users do 
+  resources :users_admin, :controller => 'users' do 
     resources :enrolments
   end
+
+  post '/users_admin/create' => "users#create", as: :create_user
 
   resources :packs
   resources :enclosures

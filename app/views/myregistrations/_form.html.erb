@@ -1,135 +1,61 @@
-<%= form_for @user, url: path, title: title, remote: true, html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>  
-  <div id="form-errors"></div>
+<% if request.url == "http://localhost:3000/users/sign_up" %>
+  <%path = user_registration_path(@user) %>
+<%end%>
 
-  <%if current_user.role == 'admin' && path.include?('/users')%>
-    <%= label_tag(:q, 'Add Employee') %>
-  <%elsif current_user.role == 'admin' && path.include?('edit')%>
-    <%= label_tag(:q, 'Edit Employee') %>
-  <%else%>
-    <%= label_tag(:q, title) %>
-  <%end%>
+<%= form_for @user, url: path, html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>  
+  <h2> Add/Edit User </h2>
+  <div id="form-errors"></div>
 
   <div class="form-group">
     <div class="row">
-      <div class = "col-sm-1">
-        <h6> Name: </h6>
-      </div>
-      <div class="col-sm-6">
+      <div class="col-md-6">
         <%= f.text_field :first_name, placeholder: 'Enter first name', class: 'form-control' %>
       </div>
-      <div class="col-sm-5">
+      <div class="col-md-6">
         <%= f.text_field :surname, placeholder: 'Enter surname', class: 'form-control' %>
       </div>
     </div>
-    <br/>
+  </div>
+
+  <div class="form-group">
     <div class = 'row'>
-      <div class = "col-sm-1">
-        <h6> Address: </h6>
+      <div class="col-md-6">
+        <%= f.text_field :postal_address, placeholder: 'Enter postal address', class: 'form-control' %>
       </div>
-      <div class="col-sm-4">
-        <%= f.text_field :postal_address, placeholder: 'Enter mailing address', class: 'form-control' %>
+      <div class="col-md-6">
       </div>
-      <div class="col-sm-3">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-4">
         <%= f.text_field :city, placeholder: 'Enter city', class: 'form-control' %>
       </div>
-      <div class="col-sm-2">
-        <%= f.select :state, [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY','OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',  'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'] %>      
+      <div class="col-md-4">
+        <%= f.select :state, [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY','OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',  'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'] %>            
       </div>
-      <div class="col-sm-2">
+      <div class="col-md-4">
         <%= f.number_field :zip_code, placeholder: 'Enter zipcode', class: 'form-control' %>
       </div>
     </div>
+  </div>
+ 
+  <div class="form-group">
     <div class = 'row'>
-      <div class="col-sm-4">
-        <%= f.label 'DOB:' %>
-        <%= f.date_field :date_of_birth %>
+      <div class="col-sm-6">
+        <%= f.email_field :email, placeholder: 'Enter email', class: 'form-control' %>
       </div>
-      <div class = "col-sm-4">
-        <%= f.label 'Referrer Email: ' %>
-        <%= f.text_field :referrer_email %>
+      <div class="col-sm-6">
+        <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
       </div>
-      <% if current_user.role == 'admin'%>
-        <div class = "col-sm-3">
-          <%= f.label 'Status:' %>
-          <%= f.select :status, User.statuses.keys.to_a %>
-        </div>
-      <%end%>
-    </div>
-    <div class = 'row'>
-      <div class = "col-sm-1">
-        <h6> Contacts: </h6>
-      </div>
-      <div class="col-sm-4">
-        <%= f.text_field :contact_email, placeholder: 'Enter contact email', class: 'form-control' %>
-      </div>
-      <div class="col-sm-4">
-        <%= f.text_field :contact_phone, placeholder: 'Enter contact phone number', class: 'form-control' %>
-      </div>
-      <div class="col-sm-3">
-        <%= f.text_field :contact_mobile, placeholder: 'Enter contact mobile number', class: 'form-control' %>
-      </div>
-    </div>
-    <div class = "row">
-      <div class="col-sm-4">
-        <%= f.label 'School Grade:' %>
-        <%= f.number_field :school_grade, placeholder: 'Enter school grade', class: 'form-control' %>
-      </div>
-    </div>
-    <% if title == 'Add Child' %>
-      <div class = "row">
-        <div class="col-sm-12">
-          <%= f.label 'Additional Information:' %>
-          <%= f.text_field :additional_info, placeholder: 'Enter additional information about student', class: 'form-control' %>
-        </div>
-      </div>
-    <%end%>
-    <%if path == '/users' %>
-      <div class = 'row'>
-        <div class = "col-sm-1">
-          <h6> User details: </h6>
-        </div>
-        <div class="col-sm-6">
-          <%= f.email_field :email, placeholder: 'Enter email', class: 'form-control' %>
-        </div>
-        <div class="col-sm-5">
-          <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
-        </div>
-      </div>
-    <%end%>
-    <div class = 'row'>
-      <div class="col-sm-4">
-        <%if current_user.role == 'admin'%>
-          <div class = "col-sm-1">
-            <h6> Role: </h6>
-          </div>
-          <%= f.select :role, ['employee', 'admin'] %>
-        <%elsif title == 'Add Child' %>
-          <%= f.hidden_field :role, value: 'student' %>
-        <%else%>
-          <%= f.hidden_field :role, value: 'parent' %>
-        <%end%>
-      </div>
-      <% if current_user.role == 'admin'%>
-        <div class = "col-sm-3">
-          <%= f.label 'Status:' %>
-          <%= f.select :status, User.statuses.keys.to_a %>
-        </div>
-      <%end%>
-    </div>
-    <div class = "row">
-      <div id="enrolments">
-      <%= f.fields_for :enrolments do |enrolment| %>
-        <%= render 'enrolment_fields', :f => enrolment  %>
-      <% end -%>
-      <div class="links form-group">
-        <%= link_to_add_association fa_icon(:plus, text: 'Add More Enrolments'), f, :enrolments, class: 'btn btn-info col-md-4'  %>
-      </div>    
     </div>
   </div>
-  <br>
-  <%= javascript_tag "resetCocoonDestroyed();" if @user.errors[:enrolments].present? %>
-    <div class="form-group row submit">
-      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
-      <a class="btn btn-danger hvr-trim" id='add-user-cancel-button' data-behaviour="form-dismiss">Cancel</a>
-    </div>
+ 
+  <%= f.hidden_field :role, value: 'parent' %>
+  
+  <div class="form-group row submit">
+    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
+    <a class="btn btn-danger hvr-trim" id='add-user-cancel-button' data-behaviour="form-dismiss">Cancel</a>
+  </div>
 <% end %>

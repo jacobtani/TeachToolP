@@ -19,33 +19,44 @@ class MyregistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.new user_params
-    if @user.role == 'student' 
-      set_parent
-    end
-    @user.activation_date = Date.today
-    if current_user
-      respond_to do |format| 
-        if @user.save
-          build_enrolment_user_data(@user)
-          flash[:success] = "User was created successfully."
-          UserMailer.registration_confirmation_to_user(@user).deliver_now
-          AdminMailer.registration_confirmation_to_admin(@user).deliver_now
-          if current_user 
-            format.js { redirect_turbo parent_summary_path }
-          else
-            format.js { redirect_turbo root_path }
-          end
-        else
-          format.js { render partial: 'shared/ajax_form_errors', locals: {model: @user}, status: 500 }
-        end
-      end
+    if @user.save
+      flash[:success] = "User was created successfully."
+      redirect_to root_path
     else
-      @user.save
-      UserMailer.registration_confirmation_to_user(@user).deliver_now
-      AdminMailer.registration_confirmation_to_admin(@user).deliver_now
-      redirect_to user_session_path
+      format.js { render partial: 'shared/ajax_form_errors', locals: {model: @user}, status: 500 }
     end
   end
+
+  # def create
+  #   @user = User.new user_params
+  #   if @user.role == 'student' 
+  #     set_parent
+  #   end
+  #   @user.activation_date = Date.today
+  #   if current_user
+  #       if @user.save
+  #         build_enrolment_user_data(@user)
+  #         flash[:success] = "User was created successfully."
+  #         #UserMailer.registration_confirmation_to_user(@user).deliver_now
+  #         #AdminMailer.registration_confirmation_to_admin(@user).deliver_now
+  #         if current_user
+  #           binding.pry 
+  #           redirect_to parent_summary_path
+  #         else
+  #   #        format.js { redirect_turbo root_path }
+  #         end
+  #       else
+  #    #     format.js { render partial: 'shared/ajax_form_errors', locals: {model: @user}, status: 500 }
+  #       end
+  #     end
+  #   else
+  #     @user.save
+  #     binding.pry
+  #     #UserMailer.registration_confirmation_to_user(@user).deliver_now
+  #     #AdminMailer.registration_confirmation_to_admin(@user).deliver_now
+  #     redirect_to user_session_path
+  #   end
+  # end
 
   def edit
   end

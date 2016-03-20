@@ -1,5 +1,0 @@
-//actions to do when submit button of edit user form has been clicked
-$("#edit-user-link").removeAttr('disabled', 'disabled');
-$("#delete-user-registration-link").attr('data-confirm', 'Are you sure you want to delete <%=@user.full_name%> ?')
-$("#edit-user-form").addClass('hidden');
-$(document).trigger('user:form_disabled');
