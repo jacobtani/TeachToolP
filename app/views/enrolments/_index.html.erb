@@ -24,7 +24,7 @@
               <td> <%= number_to_currency enrolment.fees %> </td>
               <%if current_user.role == 'parent'%>
                 <td> 
-                  <%= link_to 'Edit', edit_user_enrolment_path(user_id: child.id, id: enrolment.id), remote: true, class: "btn btn-success", id: 'edit-enrolment-link' %> 
+                  <%= link_to 'Edit', edit_user_enrolment_path(user_id: child.id, id: enrolment.id), class: "btn btn-success", id: 'edit-enrolment-link' %> 
                   <%= link_to 'Delete', user_enrolment_path(user_id: child.id, id: enrolment.id), method: :delete,
                 class: "btn btn-danger", id: 'delete-user-registration-link' %>
                 </td>

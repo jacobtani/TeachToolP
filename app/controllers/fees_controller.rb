@@ -1,7 +1,7 @@
  class FeesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_fee, only: [:edit, :update, :show, :destroy]
- # before_action :admin_only, only: [:new, :create, :update, :destroy]
+  before_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
   
   def index
     @fees = Fee.all
@@ -15,7 +15,7 @@
     @fee  = Fee.new
   end
 
-   def create
+  def create
     @fee = Fee.new fee_params
     respond_to do |format|
       if @fee.save
@@ -34,12 +34,13 @@
     respond_to do |format|
       if @fee.update_attributes fee_params
         flash[:success] = "Fee was updated successfully."
-        format.js {redirect_turbo admin_path}
+        format.html { redirect_to admin_path }
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @fee}, status: 500 }
       end
     end
   end
+
 
   def destroy
     @fee.destroy

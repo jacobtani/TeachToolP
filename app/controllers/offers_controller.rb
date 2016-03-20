@@ -1,7 +1,7 @@
  class OffersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_offer, only: [:edit, :update, :show, :destroy]
- # before_action :admin_only, only: [:new, :create, :update, :destroy]
+  before_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
   
   def index
     @offers = Offer.all
@@ -15,26 +15,21 @@
     @offer  = Offer.new
   end
 
-   def create
+  def create
     @offer = Offer.new offer_params
-    respond_to do |format|
-      if @offer.save
-        flash[:success] = "Offer was created successfully."
-        format.js { redirect_turbo admin_path}
-      else
-        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @offer}, status: 500 }
-      end
+    if @offer.save
+      flash[:success] = "Offer was created successfully."
+      redirect_to admin_path
+    else
+      format.js { render partial: 'shared/ajax_form_errors', locals: {model: @offer}, status: 500 }
     end
-  end
-
-  def edit
   end
   
   def update
     respond_to do |format|
       if @offer.update_attributes offer_params
         flash[:success] = "Offer was updated successfully."
-        format.js {redirect_turbo admin_path}
+        format.html { redirect_to admin_path }
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @offer}, status: 500 }
       end

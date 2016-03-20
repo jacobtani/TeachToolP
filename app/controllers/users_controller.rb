@@ -28,10 +28,9 @@ class UsersController < ApplicationController
       if @user.update_attributes user_params
         flash[:success] = "User was updated successfully."
         redirect_to root_path
-        #format.js {}
       else
         redirect_to root_path
-        #format.js { render partial: 'shared/ajax_form_errors', locals: {model: @site}, status: 500 }
+        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @user}, status: 500 }
       end
     end
   end
@@ -51,6 +50,5 @@ class UsersController < ApplicationController
     @user = User.find params[:id] rescue nil
     return not_found! unless @user
   end
-
 
 end

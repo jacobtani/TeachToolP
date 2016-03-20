@@ -1,27 +1,14 @@
-<%= form_for @fee, url: path, title: title, remote: true, html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>
+<%= bootstrap_form_for(@fee, layout: :horizontal)  do |f| %>
+
   <div id="form-errors"></div>
-  <%= label_tag(:q, title) %>
 
   <div class="form-group">
     <div class="row">
-      <div class="col-sm-12">
-        <%= f.date_select :start_date, placeholder: 'Enter start date', class: 'form-control' %>
+      <div class="col-md-6">
+        <%= f.date_field :start_date, placeholder: 'Enter start date', class: 'form-control' %>
       </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-12">
-        <%= f.date_select :end_date, placeholder: 'Enter end date', class: 'form-control' %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-12">
-        <%= f.number_field :amount, placeholder: 'Enter amount', class: 'form-control' %>
+      <div class="col-md-6">
+        <%= f.date_field :end_date, placeholder: 'Enter end date', class: 'form-control' %>
       </div>
     </div>
   </div>
@@ -29,8 +16,16 @@
   <div class="form-group">
     <div class="row">
       <div class="col-sm-6">
-        <%= f.select :fee_type, Fee.fee_types.keys.to_a %>
+        <%= f.number_field :amount, placeholder: 'Enter amount', class: 'form-control' %>
       </div>
+      <div class="col-sm-6">
+        <%= f.select :fee_type, Fee.fee_types.keys.to_a, label: 'Type' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
       <div class="col-sm-6">
         <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select Subject" %>
       </div>
@@ -38,9 +33,8 @@
   </div>
 
   <div class="form-group row submit">
-    <%= button_tag type: "submit", class: "btn btn-primary", name: "commit", value: "Save" do %>
-      <a>Save</a>
-    <% end %>
-    <a class="btn btn-danger hvr-trim" id='add-fee-cancel-button' data-behaviour="form-dismiss">Cancel</a>
+    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
+    <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
   </div>
+
 <% end %>

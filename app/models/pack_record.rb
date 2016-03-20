@@ -3,7 +3,7 @@ class PackRecord < ActiveRecord::Base
   enum status: [:DISPATCHED, :RECEIVED, :COMPLETED]
   scope :overdue, -> { where("due_date < ?", Date.today ) }
 
-  def calculate_reward(user, score, pack_record)
+  def self.calculate_reward(score)
     if score >= 70 && score <= 79
       reward = 0.50
     elsif score >= 80 && score <= 89
@@ -15,4 +15,21 @@ class PackRecord < ActiveRecord::Base
     end
     reward
   end
+
+  def self.calculate_score(pack_record)
+    accuracy = pack_record.accuracy
+    completion = pack_record.completion
+    quality = pack_record.quality
+    presentation = pack_record.presentation
+    consistency = pack_record.consistency
+    score = (0.4 *accuracy + 0.25* completion + 0.15* quality + 0.10*presentation + 0.10*consistency)
+    score
+  end
+
+  def self.compute_posting_number(user)
+    posting_number = user.pack_records.present? ? user.pack_records.last.posting_number + 1 : 1
+  end
+
+
+
 end

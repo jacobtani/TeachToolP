@@ -1,18 +1,13 @@
-<%= form_for @pack, url: path, title: title, remote: true, html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>
+<%= bootstrap_form_for(@pack, layout: :horizontal)  do |f| %>
+
   <div id="form-errors"></div>
-  <%= label_tag(:q, title) %>
 
   <div class="form-group">
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-md-6">
         <%= f.text_field :name, placeholder: 'Enter pack name ', class: 'form-control' %>
       </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-12">
+      <div class="col-md-6">
         <%= f.text_field :description, placeholder: 'Enter pack description ', class: 'form-control' %>
       </div>
     </div>
@@ -20,15 +15,10 @@
 
   <div class="form-group">
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-md-6">
         <%= f.text_field :action_required, placeholder: 'Enter action required ', class: 'form-control' %>
       </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-12">
+      <div class="col-md-6">
         <%= f.number_field :number_unassigned, placeholder: 'Enter no of unassigned packs ', class: 'form-control' %>
       </div>
     </div>
@@ -40,7 +30,7 @@
         <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select a subject" %>
       </div>
       <div class="col-sm-4">
-        <%= f.select :pack_type, Pack.pack_types.keys.to_a %>
+        <%= f.select :pack_type, Pack.pack_types.keys.to_a, label: 'Type' %>
       </div>
       <div class="col-sm-4">
         <%= f.number_field :priority, placeholder: 'Enter priority' %>
@@ -49,9 +39,7 @@
   </div>
 
   <div class="form-group row submit">
-    <%= button_tag type: "submit", class: "btn btn-primary", name: "commit", value: "Save" do %>
-      <a>Save</a>
-    <% end %>
-    <a class="btn btn-danger hvr-trim" id='add-pack-cancel-button' data-behaviour="form-dismiss">Cancel</a>
+    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
+    <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
   </div>
 <% end %>

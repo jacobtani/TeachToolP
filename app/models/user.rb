@@ -20,6 +20,16 @@ class User < ActiveRecord::Base
     "#{first_name} #{surname}"
   end
 
+  def self.update_total_rewards(user)
+    total_rewards = 0
+    user.pack_records.each do |pr|
+      total_rewards += pr.reward  
+    end
+    user.rewards = total_rewards
+    user.save
+  end
+
+
   def needs_suspension?
     self.pack_records.where(status: 0).count >= 2
   end
