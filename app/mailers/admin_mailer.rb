@@ -3,17 +3,17 @@ class AdminMailer < ApplicationMailer
 
   def student_enquiry(user, message)
     @user = user
-    full_message = user.full_name + "(" + user.id.to_s + ") needs help with " + message.subject_name + ". In particular pack " + message.pack_name + " on page " + message.page_number + ", question number " + message.question_number + ". The following additional details have been given: " + message.content
+    @message = message
     if @user.role == 'student'
-      mail(from: @user.email, subject: message.subject, body: full_message)
+      mail(from: @user.email, subject: @message.subject)
     end
   end
 
   def parent_help_required(user, message)
     @user = user
-    full_message = user.full_name + "(" + user.id.to_s + ") needs help with " + message.subject_name + ". In particular pack " + message.pack_name + " on page " + message.page_number + ", question number " + message.question_number + ". The following additional details have been given: " + message.content
+    @message = message
     if @user.role == 'parent'
-      mail(from: @user.email, subject: message.subject, body: full_message)
+      mail(from: @user.email, subject: @message.subject)
     end
   end
 
@@ -24,26 +24,26 @@ class AdminMailer < ApplicationMailer
 
   def missing_pack(user, message)
     @user = user
-    full_message = user.full_name + ' wants to report a pack missing: ' + message.pack_name + ' with the following details: ' + message.content
-    mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: message.subject, body: full_message)
+    @message = message
+    mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: @message.subject)
   end
 
   def payment_related_enquiry(user, message)
     @user = user
-    full_message = @user.full_name + ' has the following payment related enquiry: ' + message.content
-    mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: message.subject, body: full_message)
+    @message = message
+    mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: @message.subject)
   end
 
   def general_parent_enquiry(user, message)
     @user = user
-    full_message = @user.full_name + ' has the following general question: ' + message.content
-    mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: 'GENERAL CORRESPONDENCE', body: full_message)
+    @message = message
+    mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: @message.subject)
   end
 
   def redeem_reward(user, amount)
     @user = user
-    full_message = @user.parent.full_name + ' would like to redeem their rewards for ' + user.full_name + ' of $' + amount.to_s
-    mail(from: @user.parent.email, to: 'tjterminator.dev@gmail.com', subject: 'REWARD REDEMPTION', body: full_message)
+    @amount = amount
+    mail(from: @user.parent.email, to: 'tjterminator.dev@gmail.com', subject: 'REWARD REDEMPTION')
   end
 
   def new_enrolment(user, enrolment)

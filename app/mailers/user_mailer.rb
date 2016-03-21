@@ -17,8 +17,8 @@ class UserMailer < ApplicationMailer
 
   def cancellation_email(user, message)
     @user = user
-    full_message = 'The user account was cancelled because ' + message.content
-    mail(:to => @user.email, :subject => message.message_subject, body: full_message)
+    @message = message
+    mail(:to => @user.email, :subject => @message.message_subject)
   end
 
   def new_work_email(user, pack)
