@@ -1,4 +1,4 @@
 <div class = 'container'>
   <h1>New User</h1>
-  <%= render 'form', locals: {path: create_user_path(@user)} %>
+  <%= render 'form', :locals => {:path => create_user_path(id: @user)} %>
 </div>

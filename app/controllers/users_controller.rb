@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:update, :show, :destroy]
-  before_action :admin_only, only: [:new, :create, :update, :destroy]
+  before_action :set_user, only: [:update, :show, :destroy, :edit]
   
   def index
     @users = User.all
@@ -28,17 +27,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
     respond_to do |format|
       if @user.update_attributes user_params
         flash[:success] = "User was updated successfully."
-        redirect_to root_path
+        format.html { redirect_to parent_summary_path }
       else
-        redirect_to root_path
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @user}, status: 500 }
       end
     end
   end
+
 
   def destroy
     @user.destroy
@@ -52,6 +54,7 @@ class UsersController < ApplicationController
   end
 
   def set_user
+    binding.pry
     @user = User.find params[:id] rescue nil
     return not_found! unless @user
   end

@@ -27,7 +27,7 @@
         <td> <%= child.status %> </td>
         <%if current_user.role == 'parent'%>
           <td> 
-            <%= link_to 'Edit', edit_user_registration_path(id: child.id), remote: true, class: "btn btn-success", id: 'edit-user-registration-link' %> 
+            <%= link_to 'Edit', edit_users_admin_path(id: child.id), class: "btn btn-success", id: 'edit-user-registration-link' %> 
             <% if child.rewards > 0.00 %>
               <%= link_to 'Redeem Reward', redeem_reward_path(id: child.id), class: "btn btn-success", id: 'redeem-reward-link' %> 
             <%end%>

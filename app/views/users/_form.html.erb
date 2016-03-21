@@ -1,5 +1,4 @@
-<%binding.pry%>
-<%= form_for @user, url: create_user_path(id: @user.id), html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>  
+<%= form_for @user, url: locals[:path], html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>  
   <h2> Add/Edit User </h2>
   <div id="form-errors"></div>
 
