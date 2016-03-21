@@ -1,6 +1,8 @@
 <div class = 'container'>
   <h1> REQUEST HELP FOR MY CHILD </h1>
-  <%= form_for @message do |f| %>
+
+  <%= bootstrap_form_for(@message, layout: :horizontal)  do |f| %>
+
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
 
     <div class = "row">
@@ -34,7 +36,7 @@
         <%= f.text_area :content, rows: '10%', cols: '100%' %>
       </div>
     </div>
- 
+
     <div class = "row">
       <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
       <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>

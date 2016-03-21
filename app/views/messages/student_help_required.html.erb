@@ -1,8 +1,10 @@
 <div class = 'container'>
   <h1> STUDENT NEEDS HELP </h1>
-  <%= form_for @message do |f| %>
+
+  <%= bootstrap_form_for(@message, layout: :horizontal)  do |f| %>
+
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
-    
+
     <div class = "row">
       <div class = "col-md-3">
         <%= f.label :subject_name, "Subject needing help: " %><br />
@@ -21,7 +23,7 @@
         <%= f.number_field :question_number %>
       </div>    
     </div>
-    
+
     <div class = "row">
       <div class = "col-md-12">
         <%= f.label :content, "Details of difficulty: " %><br />

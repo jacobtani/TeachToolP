@@ -1,14 +1,16 @@
 <div class = 'container'>
   <h1> GENERAL PARENT ENQUIRY </h1>
-  <%= form_for @message do |f| %>
+
+  <%= bootstrap_form_for(@message, layout: :horizontal)  do |f| %>
+
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
-    
+
     <div class = "row">
       <div class = "col-md-12">
         <%= f.text_area :content, rows: '10%', cols: '100%' %>
       </div>    
     </div>
-    
+
     <div class = "row">
       <div class = "col-sm-12">
         <%= f.hidden_field :message_subject, value: 'GENERAL CORRESPONDENCE'%>
