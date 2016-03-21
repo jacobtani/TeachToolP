@@ -17,11 +17,13 @@
 
   def create
     @offer = Offer.new offer_params
-    if @offer.save
-      flash[:success] = "Offer was created successfully."
-      redirect_to admin_path
-    else
-      format.js { render partial: 'shared/ajax_form_errors', locals: {model: @offer}, status: 500 }
+    respond_to do |format|
+      if @offer.save
+        flash[:success] = "Offer was created successfully."
+        format.html { redirect_to admin_path }
+      else
+        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @offer}, status: 500 }
+      end
     end
   end
   

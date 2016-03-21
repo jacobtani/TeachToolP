@@ -16,11 +16,13 @@
 
   def create
     @subject = Subject.new subject_params
-    if @subject.save
-      flash[:success] = "Subject was created successfully."
-      redirect_to admin_path
-    else
-      format.js { render partial: 'shared/ajax_form_errors', locals: {model: @subject}, status: 500 }
+    respond_to do |format|
+      if @subject.save
+        flash[:success] = "Subject was created successfully."
+        format.html { redirect_to admin_path }
+      else
+        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @subject}, status: 500 }
+      end
     end
   end
 

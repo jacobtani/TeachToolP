@@ -155,7 +155,7 @@ class MyregistrationsController < Devise::RegistrationsController
   private 
 
   def user_params
-    params.require(:user).permit(:first_name, :surname, :role, :parent_id, :school_grade, :status, :additional_info, :postal_address, :email, :password, :city, :state, :zip_code, :phone_number, :contact_email, :contact_phone, :contact_mobile, :date_of_birth, :referrer_email, enrolments_attributes: [:id, :subject_id, :grade, :offer_id, :ability_level, :_destroy])
+    params.require(:user).permit(:first_name, :surname, :role, :status, :email, :password, :postal_address, :city, :state, :zip_code, :phone_number)
   end
 
   def set_user

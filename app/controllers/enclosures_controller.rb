@@ -17,11 +17,13 @@
 
   def create
     @enclosure = Enclosure.new enclosure_params
-    if @enclosure.save
-      flash[:success] = "Enclosure was created successfully."
-      redirect_to admin_path
-    else
-      format.js { render partial: 'shared/ajax_form_errors', locals: {model: @enclosure}, status: 500 }
+    respond_to do |format|
+      if @enclosure.save
+        flash[:success] = "Enclosure was created successfully."
+        format.html { redirect_to admin_path }
+      else
+        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @enclosure}, status: 500 }
+      end
     end
   end
 

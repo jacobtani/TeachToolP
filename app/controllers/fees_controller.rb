@@ -20,7 +20,7 @@
     respond_to do |format|
       if @fee.save
         flash[:success] = "Fee was created successfully."
-        format.js { redirect_turbo admin_path}
+        format.html { redirect_to admin_path }
       else
         format.js { render partial: 'shared/ajax_form_errors', locals: {model: @fee}, status: 500 }
       end

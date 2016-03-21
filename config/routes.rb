@@ -11,24 +11,25 @@ Rails.application.routes.draw do
   root 'pages#home'
   devise_scope :user do
     patch '/users/:id/edit' => "myregistrations#update", as: :edit_rego
-    get '/users/:id/missing_pack' => "myregistrations#missing_pack", as: :missing_pack
-    get '/users/:id/general_parent_enquiry' => "myregistrations#general_parent_enquiry", as: :general_parent_enquiry
-    get '/users/:id/parent_help_required' => "myregistrations#parent_help_required", as: :parent_help
-    get '/users/:id/payment_related_enquiry' => "myregistrations#payment_related_enquiry", as: :payment_related_enquiry
     get '/users/:id/children' => "myregistrations#children", as: :children
     get '/users/:id/suspend' => "myregistrations#suspend", as: :suspend_child
     get '/users/:id/cancel' => "myregistrations#cancel_account", as: :cancel_child
     get '/users/:id/end_trial' => "myregistrations#end_trial", as: :end_trial
     get '/users/:id/redeem_reward' => "myregistrations#redeem_reward", as: :redeem_reward
     get '/users/:id/enter_placement_pack' => "myregistrations#enter_placement_pack", as: :enter_placement_pack
-    get '/users/:id/missing_payment' => "myregistrations#missing_payment", as: :missing_payment
-    get '/users/:id/recommend_us' => "myregistrations#recommend_us", as: :recommend_us
     get '/users/:id/nullify_rewards' => "myregistrations#nullify_rewards", as: :nullify_rewards
   end
 
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
   match "/401", :to => "errors#not_found", :via => :all
+
+  get '/messages/missing_pack' => "messages#missing_pack", as: :missing_pack
+  get '/users/:id/general_parent_enquiry' => "messages#general_parent_enquiry", as: :general_parent_enquiry
+  get '/users/:id/parent_help_required' => "messages#parent_help_required", as: :parent_help
+  get '/users/:id/payment_related_enquiry' => "messages#payment_related_enquiry", as: :payment_related_enquiry
+  get '/users/:id/missing_payment' => "messages#missing_payment", as: :missing_payment
+  get '/users/:id/recommend_us' => "messages#recommend_us", as: :recommend_us
 
   resources :users_admin, :controller => 'users' do 
     resources :enrolments
