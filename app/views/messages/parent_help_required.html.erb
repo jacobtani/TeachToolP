@@ -4,30 +4,26 @@
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
 
     <div class = "row">
-      <div class = "col-md-4">
+      <div class = "col-md-6">
         <%= f.label :subject_name, "Subject: " %><br />
         <%= f.collection_select :subject_name, Subject.all, :subject_name, :subject_name, :prompt => "Select subject"%>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-6">
         <%= f.label :pack_name, "Pack: " %><br />
         <%= f.collection_select :pack_name, Pack.all.find(current_user.pack_records.pluck(:pack_id)), :name, :name, :prompt => "Select pack" %>
-      </div>
-      <div class="col-md-4">
-        <%= f.label :page_number, "Page: " %><br />
-        <%= f.number_field :page_number %>
       </div>
     </div>
 
     <div class = "row">
-      <div class = "col-md-4">
+      <div class = "col-md-6">
         <%= f.label :question_number, "Question: " %><br />
         <%= f.number_field :question_number %>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-5">
         <%= f.label :page_number, "Page: " %><br />
         <%= f.number_field :page_number %>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-1">
         <%= f.hidden_field :message_subject, value: 'PARENT NEEDS HELP'%>
         </div>
     </div>
@@ -41,7 +37,7 @@
  
     <div class = "row">
       <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
-      <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
+      <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
     </div>
 
   <% end %>
