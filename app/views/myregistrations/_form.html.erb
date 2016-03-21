@@ -1,7 +1,6 @@
 <%= form_for @user, url: user_registration_path(@user), html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>  
   <div id="form-errors"></div>
 
-  <div class="form-group">
     <div class="row">
       <div class="col-md-6">
         <%= f.text_field :first_name, placeholder: 'Enter first name', class: 'form-control' %>
@@ -10,19 +9,16 @@
         <%= f.text_field :surname, placeholder: 'Enter surname', class: 'form-control' %>
       </div>
     </div>
-  </div>
 
-  <div class="form-group">
     <div class = 'row'>
+      <div class="col-md-6">
+        <%= f.number_field :phone_number, placeholder: 'Enter phone number' %>
+      </div>
       <div class="col-md-6">
         <%= f.text_field :postal_address, placeholder: 'Enter postal address', class: 'form-control' %>
       </div>
-      <div class="col-md-6">
-      </div>
     </div>
-  </div>
 
-  <div class="form-group">
     <div class="row">
       <div class="col-md-4">
         <%= f.text_field :city, placeholder: 'Enter city', class: 'form-control' %>
@@ -34,9 +30,7 @@
         <%= f.number_field :zip_code, placeholder: 'Enter zipcode', class: 'form-control' %>
       </div>
     </div>
-  </div>
- 
-  <div class="form-group">
+
     <div class = 'row'>
       <div class="col-sm-6">
         <%= f.email_field :email, placeholder: 'Enter email', class: 'form-control' %>
@@ -45,12 +39,12 @@
         <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
       </div>
     </div>
-  </div>
  
-  <%= f.hidden_field :role, value: 'parent' %>
+    <%= f.hidden_field :role, value: 'parent' %>
   
-  <div class="form-group row submit">
-    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
-    <a class="btn btn-danger hvr-trim" id='add-user-cancel-button' data-behaviour="form-dismiss">Cancel</a>
-  </div>
+    <div class="form-group row submit">
+      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
+      <a class="btn btn-info hvr-trim" id='add-user-cancel-button' data-behaviour="form-dismiss">Cancel</a>
+    </div>
+
 <% end %>
