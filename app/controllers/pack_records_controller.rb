@@ -18,12 +18,13 @@ class PackRecordsController < ApplicationController
   def create
     @pack_record = PackRecord.new pack_record_params
     @user = User.find(@pack_record.user_id)
+    @pack = Pack.find(@pack_record.pack_id)
     compute_pack_record_logic(@user, @pack_record)
     @pack_record.posting_number = PackRecord.compute_posting_number(@user)
     respond_to do |format|
       if @pack_record.save
         User.update_total_rewards(@user)
-        Pack.update_stock(Pack.find(pack_record.pack_id))
+        Pack.update_stock(Pack.find(@pack))
         UserMailer.new_work_email(@user, @pack).deliver_now
         flash[:success] = "Pack Record was created successfully."
         format.html { redirect_to employee_view_path}
