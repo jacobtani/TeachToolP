@@ -87,7 +87,7 @@ class UsersController < ApplicationController
 
   def end_trial
     @user.update(status: 3)
-    redirect_to parent_summary_path }
+    redirect_to parent_summary_path
   end
 
   def send_email_to_user

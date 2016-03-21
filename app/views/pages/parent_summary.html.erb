@@ -5,11 +5,10 @@
         <div class = "col-sm-4 btn btn-primary"> 
           <li class= "dropdown"><a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Children <span class="caret"></span></a> 
             <ul class="dropdown-menu">
-              <li class="active"><%= link_to 'View Children', children_path(id: current_user.id), remote: true, class: "btn btn-primary hvr-push", id: 'view-enrolment-link' if user_signed_in? %></li>
               <li>  <%= link_to 'Add Child', new_users_admin_path, class: "btn btn-primary hvr-push", id: 'new-user-link' if user_signed_in? %></li>
             </ul>
           </li>
-        </div> <!-- div -->
+        </div>
         <div class = "col-sm-4 btn btn-primary"> 
           <li class= "dropdown"><a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Send Email <span class="caret"></span></a> 
             <ul class="dropdown-menu">
