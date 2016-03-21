@@ -5,15 +5,15 @@ class AdminMailer < ApplicationMailer
     @user = user
     full_message = user.full_name + "(" + user.id.to_s + ") needs help with " + message.subject_name + ". In particular pack " + message.pack_name + " on page " + message.page_number + ", question number " + message.question_number + ". The following additional details have been given: " + message.content
     if @user.role == 'student'
-      mail(from: @user.email, subject: 'STUDENT NEEDS HELP', body: full_message)
+      mail(from: @user.email, subject: message.subject, body: full_message)
     end
   end
 
-  def parent_enquiry(user, message)
+  def parent_help_required(user, message)
     @user = user
     full_message = user.full_name + "(" + user.id.to_s + ") needs help with " + message.subject_name + ". In particular pack " + message.pack_name + " on page " + message.page_number + ", question number " + message.question_number + ". The following additional details have been given: " + message.content
     if @user.role == 'parent'
-      mail(from: @user.email, subject: 'GENERAL CORRESPONDENCE', body: full_message)
+      mail(from: @user.email, subject: message.subject, body: full_message)
     end
   end
 
@@ -25,13 +25,13 @@ class AdminMailer < ApplicationMailer
   def missing_pack(user, message)
     @user = user
     full_message = user.full_name + ' wants to report a pack missing: ' + message.pack_name + ' with the following details: ' + message.content
-    mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: 'MISSING PACK/WORK', body: full_message)
+    mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: message.subject, body: full_message)
   end
 
   def payment_related_enquiry(user, message)
     @user = user
     full_message = @user.full_name + ' has the following payment related enquiry: ' + message.content
-    mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: 'PAYMENT RELATED', body: full_message)
+    mail(from: @user.email, to: 'tjterminator.dev@gmail.com', subject: message.subject, body: full_message)
   end
 
   def general_parent_enquiry(user, message)
@@ -53,7 +53,7 @@ class AdminMailer < ApplicationMailer
   end
 
   def reminder_nullify_rewards
-    mail(:to => 'tjterminator.dev@gmail.com', from: 'tanzjacob@gmail.com', subject: 'HI')
+    mail(:to => 'tjterminator.dev@gmail.com', from: 'tanzjacob@gmail.com', subject: 'Please nullify rewards')
   end
 
 
