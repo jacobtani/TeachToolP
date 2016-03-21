@@ -13,11 +13,11 @@
         <div class = "col-sm-4 btn btn-primary"> 
           <li class= "dropdown"><a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Send Email <span class="caret"></span></a> 
             <ul class="dropdown-menu">
-              <li><%= link_to 'MISSING PACK/WORK', missing_pack_path(id: current_user.id), remote: true, class: "btn btn-primary hvr-push", id:'missing-pack-link' if user_signed_in? %></li>
-              <li><%= link_to 'PARENT GENERAL QUESTIONS', general_parent_enquiry_path(id: current_user.id), remote: true, class: "btn btn-primary hvr-bounce-to-top", id:'general-parent-enquiry-link' if user_signed_in? %></li>
-              <li><%= link_to 'PAYMENT RELATED MATTERS', payment_related_enquiry_path(id: current_user.id), remote: true, class: "btn btn-primary hvr-bounce-to-top", id:'payment-enquiry-link' if user_signed_in? %></li>
-              <li><%= link_to 'STUDENT NEEDS HELP Help', parent_help_path(id: current_user.id), remote: true, class: "btn btn-primary hvr-bounce-to-top", id:'pack-help-link' if user_signed_in? %></li>
-              <li><%= link_to 'RECOMMEND US', recommend_us_path(id: current_user.id), remote: true, class: "btn btn-primary hvr-bounce-to-top", id:'recommend-us-link' if user_signed_in? %></li>
+              <li><%= link_to 'MISSING PACK/WORK', missing_pack_path(id: current_user.id), class: "btn btn-primary hvr-push", id:'missing-pack-link' if user_signed_in? %></li>
+              <li><%= link_to 'PARENT GENERAL QUESTIONS', general_parent_enquiry_path(id: current_user.id), class: "btn btn-primary hvr-bounce-to-top", id:'general-parent-enquiry-link' if user_signed_in? %></li>
+              <li><%= link_to 'PAYMENT RELATED MATTERS', payment_related_enquiry_path(id: current_user.id), class: "btn btn-primary hvr-bounce-to-top", id:'payment-enquiry-link' if user_signed_in? %></li>
+              <li><%= link_to 'STUDENT NEEDS HELP Help', parent_help_path(id: current_user.id), class: "btn btn-primary hvr-bounce-to-top", id:'pack-help-link' if user_signed_in? %></li>
+              <li><%= link_to 'RECOMMEND US', recommend_us_path(id: current_user.id), class: "btn btn-primary hvr-bounce-to-top", id:'recommend-us-link' if user_signed_in? %></li>
             </ul>
           </li>
         </div>
@@ -31,36 +31,6 @@
       </div>
     </ul>
   </div> 
-  <div class="row">
-    <div id="new-user-form" class="col-sm-10"></div>
-  </div>
-  <div class="row">
-    <div id="edit-user-form" class="col-sm-6"></div>
-  </div>
-  <div class ='cancel-account'>
-    <%=render :partial=>'myregistrations/cancel_account'%>
-  </div>
-  <div class = 'my-children'>
-    <%= render :partial => 'myregistrations/children'%>
-  </div>
-  <div class = 'all-enrolments'>
-    <%= render :partial => 'enrolments/index'%>
-  </div>
-  <div class = 'parent-help'>
-    <%= render :partial => 'myregistrations/parent_help_required' %>
-  </div>
-  <div class = 'payment-enquiry'>
-    <%= render :partial => 'myregistrations/payment_related_enquiry' %>
-  </div>
-  <div class = 'general-parent'>
-    <%= render :partial => 'myregistrations/general_parent_enquiry' %>
-  </div>
-  <div class ='my-pack'>
-    <%=render :partial=>'myregistrations/missing_pack'%>
-  </div>
-  <div class ='recommend-us'>
-    <%=render :partial=>'myregistrations/recommend_us'%>
-  </div>
 
   <div class = "payment-blurb">
     <p><i> Please make your payments to 11-5922-2924259-01 - account number TEACH TOOL </i></p>

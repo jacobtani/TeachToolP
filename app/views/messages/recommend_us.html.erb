@@ -1,0 +1,27 @@
+<div class = 'container'>
+  <h1> RECOMMEND US </h1>
+  <h4> We would appreciate if you could spread the word about OurCompany if you are happy with our services. Please fill in the email address of someone you would like to recommend OurCompany to </h4>
+
+  <%= form_for @message do |f| %>
+    <% render 'messages/message_errors_template', locals: {:message => @message} %>
+    
+    <div class = "row">
+      <div class = "col-md-12">
+        <%= f.text_field :message_recipient %>
+      </div>
+    </div>
+    
+    <div class = "row">
+      <div class = "col-md-12">
+        <%= f.hidden_field :message_subject, value: 'RECOMMEND US'%>
+      </div>    
+    </div>
+    
+    <div class = "row">
+      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
+      <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
+    </div>
+
+  <% end %>
+
+</div>

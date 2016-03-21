@@ -1,0 +1,45 @@
+<div class = 'container'>
+  <h1> STUDENT NEEDS HELP </h1>
+  <%= form_for @message do |f| %>
+    <% render 'messages/message_errors_template', locals: {:message => @message} %>
+    
+    <div class = "row">
+      <div class = "col-md-3">
+        <%= f.label :subject_name, "Subject needing help: " %><br />
+        <%= f.collection_select :subject_name, Subject.all, :subject_name, :subject_name, :prompt => "Select subject"%>      
+      </div>
+      <div class="col-md-3">
+        <%= f.label :pack_name, "Pack Name: " %><br />
+        <%= f.collection_select :pack_name, Pack.all, :name, :name, :prompt => "Select pack" %>
+      </div>
+      <div class="col-md-3">
+        <%= f.label :page_number, "Page Number: " %><br />
+        <%= f.number_field :page_number %>
+      </div>
+      <div class="col-md-3">
+        <%= f.label :question_number, "Question Number: " %><br />
+        <%= f.number_field :question_number %>
+      </div>    
+    </div>
+    
+    <div class = "row">
+      <div class = "col-md-12">
+        <%= f.label :content, "Details of difficulty: " %><br />
+        <%= f.text_area :content, rows: '10%', cols: '100%' %>
+      </div>    
+    </div>
+
+    <div class = "row">
+      <div class = "col-sm-12">
+        <%= f.hidden_field :message_subject, value: 'STUDENT NEEDS HELP'%>
+      </div>
+    </div>
+
+    <div class = "row">
+      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
+      <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
+    </div>
+
+  <% end %>
+
+</div>
