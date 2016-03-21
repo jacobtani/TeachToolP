@@ -1,4 +1,5 @@
-<%= form_for @user, url: locals[:path], html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>  
+<%= bootstrap_form_for(@user, url: locals[:path], layout: :horizontal)  do |f| %>
+
   <div id="form-errors"></div>
 
   <div class="form-group">
@@ -39,10 +40,10 @@
  
   <div class="form-group">
     <div class = 'row'>
-      <div class="col-sm-6">
+      <div class="col-md-6">
         <%= f.email_field :email, placeholder: 'Enter email', class: 'form-control' %>
       </div>
-      <div class="col-sm-6">
+      <div class="col-md-6">
         <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
       </div>
     </div>
@@ -59,7 +60,7 @@
           <%= f.number_field :school_grade, placeholder: 'Enter school grade', class: 'form-control' %>
         </div>
         <div class="col-md-4">
-          <%= f.text_field :additional_info, placeholder: 'Enter additional information about student', class: 'form-control' %>
+          <%= f.text_field :additional_info, placeholder: 'Enter additional information about student', class: 'form-control', label: 'Other Info' %>
         </div>
       </div>
     </div>
@@ -103,11 +104,11 @@
   <%end%>
 
   <%= f.hidden_field :activation_date, value: Date.today %>
-
   
   <%= javascript_tag "resetCocoonDestroyed();" if @user.errors[:enrolments].present? %>
   <div class="form-group row submit">
     <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
-    <a class="btn btn-danger hvr-trim" id='add-user-cancel-button' data-behaviour="form-dismiss">Cancel</a>
+    <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
   </div>
+
 <% end %>
