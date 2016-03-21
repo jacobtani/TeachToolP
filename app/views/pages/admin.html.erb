@@ -1,27 +1,27 @@
 <div class = 'container'>
 
   <div class = 'subjects'>
-    <%= render partial: 'subjects/index', locals: {subjects: Subject.all} %>
+    <%= render 'subjects/index', :locals => {:subjects => Subject.all } %>
   </div>
 
   <div class = 'offers' >
-    <%= render partial: 'offers/index', locals: {offers: Offer.all} %>
+    <%= render 'offers/index', :locals => {:offers => Offer.all } %>
   </div>
 
   <div class = 'fees' >
-    <%= render partial: 'fees/index', locals: {fees: Fee.all} %>
+    <%= render 'fees/index', :locals => {:fees => Fee.all } %>
   </div>
 
   <div class = 'packs'>
-    <%= render partial: 'packs/index', locals: {packs: Pack.all} %>  
+    <%= render 'packs/index', :locals => {:packs => Pack.all } %>  
   </div>  
 
   <div class = 'enclosures'>
-    <%= render partial: 'enclosures/index', locals: {enclosures: Enclosure.all} %>
+    <%= render 'enclosures/index', :locals => {:enclosures => Enclosure.all } %>
   </div>
 
   <div class = 'myregistrations'>
-    <%= render partial: 'myregistrations/index', locals: {users: User.all} %>
+    <%= render 'myregistrations/index', :locals => {:users => User.all } %>
   </div>
 
 </div>

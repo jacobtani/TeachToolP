@@ -1,5 +1,5 @@
 <div class = 'container'>
-  <% @enclosures = enclosures if @enclosures.nil? %> 
+  <% @enclosures = locals[:enclosures] if @enclosures.nil? %> 
   <h2> Enclosures</h2>
   <div class= 'pull-right'>
     <%= link_to 'Add Enclosure', new_enclosure_path, class: "btn btn-primary", id: 'new-enclosure-link' %>

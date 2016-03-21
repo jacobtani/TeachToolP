@@ -1,4 +1,4 @@
-<% @users = users if @users.nil? %> 
+<% @users = locals[:users] if @users.nil? %> 
 <% @selected_users = User.employees + User.admins %>
 <div class = 'container'>
   <h2> Employees and Admins</h2>
