@@ -1,3 +1,5 @@
+require 'tempfile'
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy, :edit, :update, :children, :suspend, :cancel_account, :end_trial, :redeem_reward, :missing_payment]
   

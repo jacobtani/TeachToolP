@@ -1,4 +1,3 @@
-require 'tempfile'
 class MyregistrationsController < Devise::RegistrationsController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
   
