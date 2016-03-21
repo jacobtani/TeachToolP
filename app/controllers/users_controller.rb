@@ -118,12 +118,9 @@ class UsersController < ApplicationController
     def build_enrolment_user_data(user)
       if user.enrolments && user.role == 'student'
         user.enrolments.each do |e|
-          e.date = Date.today
-          e.user_id = user.id
-          e.start_date = Date.today
+          e.update(date: Date.today, start_date: Date.today, user_id: user.id)
           user.payment_due = Date.today + 1.month
           Enrolment.validate_offer(user, e)
-          e.save
         end
       end
     end
