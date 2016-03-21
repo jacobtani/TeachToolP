@@ -1,63 +1,31 @@
 <div class = 'container'>
-  <div class = 'parents'>
-    <% parents = User.all_parents %>
-    <h2> Parents </h2>
-    <table class = 'table table-striped'>
-      <thead>
-        <th> Parent Name </th>
-        <th> Number of Children </th>
-        <th> Referrer Email </th>
-        <th> Administration </th>
-      </thead>
-      <% parents.each do |parent| %>
-        <tr>
-          <td> <%= parent.full_name %> </td>
-          <td> <%= parent.children.count %> </td>
-          <td> <%= parent.referrer_email %> </td>
-          <td> <%= link_to 'Terminate Account', user_registration_path(id: parent.id), class: "btn btn-danger", id: 'cancel-parent-link', method: :delete %> </td>
-        </tr>
-      <%end%>
-    </table>
-  </div>
-  <div class = 'students'>
-    <% students = User.students %>
-    <h2> Students </h2>
-    <table class = 'table table-striped'>
-      <thead>
-        <th> Student Id </th>
-        <th> Student Name </th>
-        <th> School Grade </th>
-        <th> Parent Name </th>
-        <th> Number of Enrolments </th>
-        <th> Status </th>
-        <th> Administration </th>
-      </thead>
-      <% students.each do |student| %>
-        <tr>
-          <td> <%= student.id%> </td>
-          <td> <%= student.full_name %> </td>
-          <td> <%= student.school_grade %> </td>
-          <td> <%= student.parent.full_name %> </td>
-          <td> <%= student.enrolments.count %> </td>
-          <td> <%= student.status %> </td>
-          <% if student.needs_suspension? && student.status != 'SUSPENDED'%>
-            <td> 
-              <%= link_to 'Suspend Account', suspend_child_path(id: student.id), class: "btn btn-success", id: 'suspend-child-link' if student.needs_suspension? %> 
-            </td>
+  <table class = 'table table-striped'>
+    <thead>
+      <th> Id </th>
+      <th> Name </th>
+      <th> Status </th>
+      <th> Role </th>
+      <th> Administration </th>
+    </thead>
+    <% users.each do |user| %>
+      <tr>
+        <td> <%= user.id%> </td>
+        <td> <%= user.full_name %> </td>
+        <td> <%= user.role %> </td>
+        <td> <%= user.status %> </td>
+        <% if current_user.role == 'admin' | current_user.role == 'admin'%>
+          <% if user.needs_suspension? && user.status != 'SUSPENDED'%>
+              <%= link_to 'Suspend Account', suspend_child_path(id: user.id), class: "btn btn-success", id: 'suspend-user-link' if user.needs_suspension? %> 
           <%end%>
-          <% if student.account_balance > 0 && student.payment_due > Date.today && student.status != 'SUSPENDED'%>
-            <td> 
-              <%= link_to 'Overdue Payment Reminder', missing_payment_path(id: student.id), class: "btn btn-success", id: 'missing-payment-link' %> 
-            </td>
+          <% if user.account_balance > 0 && user.payment_due > Date.today && user.status != 'SUSPENDED'%>
+              <%= link_to 'Overdue Payment Reminder', missing_payment_path(id: user.id), class: "btn btn-success", id: 'missing-payment-link' %> 
           <%end%>
-          <td> <%= link_to 'Terminate Account', user_registration_path(id: student.id), class: "btn btn-danger", id: 'cancel-student-link', method: :delete %> </td>
-        </tr>
-      <%end%>
-    </table>
-  </div>
-
-
-
-
-
-
+        <%end%>
+        <% if current_user.role == 'parent' | current_user.role == 'admin' | current_user.role == 'employee'%>
+          <%= link_to 'Edit', edit_users_admin_path(id: user.id), class: "btn btn-success", id: 'edit-user-registration-link' %> 
+          <%= link_to 'Terminate Account', users_admin_path(id: user.id), class: "btn btn-danger", id: 'cancel-user-link', method: :delete %>
+        <%end%>
+      </tr>
+    <%end%>
+  </table>
+</div>

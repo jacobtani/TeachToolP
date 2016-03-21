@@ -1,9 +1,5 @@
-<% if request.url == "http://localhost:3000/users/sign_up" %>
-  <%path = user_registration_path(@user) %>
-<%end%>
-
-<%= form_for @user, url: path, html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>  
-  <h2> Add/Edit User </h2>
+<%= form_for @user, url: user_registration_path(@user), html: {mulitpart: true, class: 'well', role: 'form'} do |f| %>  
+  <h2> Register Parent </h2>
   <div id="form-errors"></div>
 
   <div class="form-group">
