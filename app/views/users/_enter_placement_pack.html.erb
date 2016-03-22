@@ -1,72 +1,16 @@
 <%= wicked_pdf_stylesheet_link_tag "pdf.css" %> 
-
 <div class = 'container'>
- 
   <h2>Placement Pack Results for <%= User.find(params[:student]).full_name %> </h2>
- 
-  <div class="placement-form">
- 
-  <%= form_tag(enter_placement_pack_path(id: current_user.id, :format => 'pdf')) do %>
-
-    <div class = "row">
-      <div class = "previous-comparison col-md-12">
-        <%= label_tag(:q, "How did the student do from earlier years?") %>
-        <div class = "col-md-12">
-          <% value1 = params.map(&:first)[2] %>
-          <%= "Level: " + value1 + " Comments: " + params.values[3] %>
-        </div>
-      </div>    
-    </div>
-
-    <div class = "row">
-      <div class = "nominal-school-comparison col-md-12">
-        <%= label_tag(:q, "How did the student do from the nominal school level?") %>
-        <div class = "col-md-12">
-          <% value2 = params.map(&:first)[4] %>
-          <%= "Level: " + value2 + " Comments: " + params.values[5] %>
-        </div>
-      </div>    
-    </div>
-
-    <div class = "row">
-      <div class = "proficiency col-md-12">
-        <%= label_tag(:q, "What proficiency level was displayed in work that normally belongs to higher grades?") %>
-        <div class = "col-md-12">
-          <% value3 = params.map(&:first)[6] %>
-          <%= "Level: " + value3 + " Comments: " + params.values[7] %>
-        </div>
-      </div>    
-    </div>
-    <div class = "row">
-      <div class = "fundamental col-md-12">
-        <%= label_tag(:q, "How are the fundamental skills?") %>
-        <div class = "col-md-12">
-          <% value4 = params.map(&:first)[8] %>
-          <%= "Level: " + value4 + " Comments: " + params.values[9] %>
-        </div>
-      </div>    
-    </div>
-
-    <div class = "row">
-      <div class = "impression col-md-12">
-        <%= label_tag(:q, "What is your impression about the student's approach to Maths from the answers?") %>
-        <div class = "col-md-12">
-          <% value5 = params.map(&:first)[10] %>
-          <%= "Level: " + value5 + "Comments: " + params.values[11] %>
-        </div>
-      </div>    
-    </div>
-
-    <div class = "row">
-      <div class = "thoughts col-md-12">
-        <%= label_tag(:q, "What are your thoughts about where the student's work should start and progress?") %>
-      </div>
-      <div class = "col-md-12">
-        <% value6 = params.map(&:first)[12] %>
-        <%= "Level: " + value6 + " Comments: " + params.values[13] %>
-      </div>
-    </div>
-
-  <% end %>
-  </div>
+  <h4> Q1: How did the student do from earlier years? </h4>
+  <p> <%= 'RATING: ' + params[:q1] + '    COMMENTS: ' + params[:q1comments] %> </p>
+  <h4> Q2: How did the student do from the nominal school level? </h4>
+  <p> <%= 'RATING: ' + params[:q2] + '     COMMENTS: ' + params[:q2comments] %> </p>
+  <h4> Q3: What proficiency level was displayed in work that normally belongs to higher grades? </h4>
+  <p> <%= 'RATING: ' + params[:q3] + '     Comments: ' + params[:q3comments] %> </p>
+  <h4> Q4: How are the fundamental skills? </h4>
+  <p> <%= 'RATING: ' + params[:q4] + '     COMMENTS: ' + params[:q4comments] %> </p>
+  <h4> Q5: What is your impression about the student's approach to Maths from the answers? </h4>
+  <p> <%= 'RATING: ' + params[:q5] + '     COMMENTS: ' + params[:q5comments] %> </p>
+  <h4> Q6: What are your thoughts about where the student's work should start and progress? </h4>
+  <p> <%= 'RATING: ' + params[:q6] + '     COMMENTS: ' + params[:q6comments] %> </p>
 </div>

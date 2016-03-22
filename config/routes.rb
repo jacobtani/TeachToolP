@@ -18,7 +18,10 @@ Rails.application.routes.draw do
   get '/users/:id/cancel' => "users#cancel_account", as: :cancel_child
   get '/users/:id/end_trial' => "users#end_trial", as: :end_trial
   get '/users/:id/nullify_rewards' => "users#nullify_rewards", as: :nullify_rewards
-  get '/users/:id/enter_placement_pack' => "users#enter_placement_pack", as: :enter_placement_pack
+
+  get '/enter_placement_pack' => "users#enter_placement_pack", as: :enter_placement_pack
+  post '/enter_placement_pack' => "users#enter_placement_pack"
+
   post '/users_admin/create' => "users#create", as: :create_user
 
   match "/404", :to => "errors#not_found", :via => :all

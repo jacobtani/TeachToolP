@@ -54,11 +54,12 @@ class UsersController < ApplicationController
 
   def enter_placement_pack
     @students = User.students
+    @user = User.find(params[:student]).full_name if params[:student]
     respond_to do |format|
       format.html       
       format.pdf do
-        data = render_to_string pdf: "filename", template: "/myregistrations/enter_placement_pack.pdf.erb", encoding: "UTF-8", footer: { right: '[page] of [topage]' }
-        filename = "Test--StatusReport--"
+        data = render_to_string pdf: "filename", template: "/users/enter_placement_pack.pdf.erb", encoding: "UTF-8", footer: { right: '[page] of [topage]' }
+        filename = "PlacementPack--" + @user
         filename.gsub!(/ /,'-')
         begin 
           file = Tempfile.new([filename, '.pdf']) 

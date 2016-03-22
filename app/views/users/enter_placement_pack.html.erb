@@ -1,151 +1,68 @@
 <%= wicked_pdf_stylesheet_link_tag "pdf.css" %> 
 <div class = 'container'>
   <h2>Placement Pack Results </h2>
-  <div class="placement-form">
-  <%= form_tag(enter_placement_pack_path(id: current_user.id, :format => 'pdf'), method: :get) do %>
+  <%= bootstrap_form_tag url: enter_placement_pack_path(id: current_user.id, :format => 'pdf') do |f| %>
     <%= select_tag "student", options_from_collection_for_select(User.students, "id", "full_name")%>
-    <div class = "row">
-      <div class = "previous-comparison col-md-12">
-        <%= label_tag(:q, "How did the student do from earlier years?") %>
-        <div class = "col-md-12">
-        <%= check_box_tag(:very_poor) %>
-        <%= label_tag(:very_poor, "Very poorly") %>
-        <%= check_box_tag(:fair_poor) %>
-        <%= label_tag(:fair_poor, "Fairly poorly") %>
-        <%= check_box_tag(:passing_grade) %>
-        <%= label_tag(:passing_grade, "Passing Grade") %>
-        <%= check_box_tag(:very_well) %>
-        <%= label_tag(:very_well, "Very Well") %>
-        <%= check_box_tag(:outstanding) %>
-        <%= label_tag(:outstanding, "Outstanding") %>
-          <div class = "col-md-12 comments-style">
-            <%= label_tag(:item1comments, "Comments:") %>
-            <%= text_field_tag(:item1comments) %>
-          </div>
-    </div>
-      </div>    
-    </div>
+    
+    <%= f.form_group :q1, label: { text: "How did the student do from earlier years" } do %>
+      <%= f.radio_button :q1, 'very_poor' , label: "Very Poor", inline: true %>
+      <%= f.radio_button :q1, 'fair_poor', label: "Fair Poor", inline: true %>
+      <%= f.radio_button :q2, 'passing_grade',  label: "Passing Grade", inline: true %>
+      <%= f.radio_button :q1, 'very_well', label: "Very Well", inline: true %>
+      <%= f.radio_button :q1, 'outstanding', label: "Outstanding", inline: true %>
+      <%= f.text_field :q1comments, label: 'Comments'%>
+    <% end %>
+
+    <%= f.form_group :q2, label: { text: "How did the student do from the nominal school level?" } do %>
+      <%= f.radio_button :q2, 'very_poor' , label: "Very Poor", inline: true %>
+      <%= f.radio_button :q2, 'fair_poor', label: "Fair Poor", inline: true %>
+      <%= f.radio_button :q2, 'passing_grade',  label: "Passing Grade", inline: true %>
+      <%= f.radio_button :q2, 'very_well', label: "Very Well", inline: true %>
+      <%= f.radio_button :q2, 'outstanding', label: "Outstanding", inline: true %>
+      <%= f.text_field :q2comments, label: 'Comments'%>
+    <% end %>
+
+    <%= f.form_group :q3, label: { text: "What proficiency level was displayed in work that normally belongs to higher grades?"} do %>
+      <%= f.radio_button :q3, 'very_poor' , label: "Very Poor", inline: true %>
+      <%= f.radio_button :q3, 'fair_poor', label: "Fair Poor", inline: true %>
+      <%= f.radio_button :q3, 'passing_grade',  label: "Passing Grade", inline: true %>
+      <%= f.radio_button :q3, 'very_well', label: "Very Well", inline: true %>
+      <%= f.radio_button :q3, 'outstanding', label: "Outstanding", inline: true %>
+      <%= f.text_field :q3comments, label: 'Comments'%>
+    <% end %>
+
+    <%= f.form_group :q4, label: { text: "How are the fundamental skills?"} do %>
+      <%= f.radio_button :q4, 'very_poor' , label: "Very Poor", inline: true %>
+      <%= f.radio_button :q4, 'fair_poor', label: "Fair Poor", inline: true %>
+      <%= f.radio_button :q4, 'passing_grade',  label: "Passing Grade", inline: true %>
+      <%= f.radio_button :q4, 'very_well', label: "Very Well", inline: true %>
+      <%= f.radio_button :q4, 'outstanding', label: "Outstanding", inline: true %>
+      <%= f.text_field :q4comments, label: 'Comments'%>
+    <% end %>
+
+    <%= f.form_group :q5, label: { text: "What is your impression about the student's approach to Maths from the answers?"} do %>
+      <%= f.radio_button :q5, 'very_poor' , label: "Very Poor", inline: true %>
+      <%= f.radio_button :q5, 'fair_poor', label: "Fair Poor", inline: true %>
+      <%= f.radio_button :q5, 'passing_grade',  label: "Passing Grade", inline: true %>
+      <%= f.radio_button :q5, 'very_well', label: "Very Well", inline: true %>
+      <%= f.radio_button :q5, 'outstanding', label: "Outstanding", inline: true %>
+      <%= f.text_field :q5comments, label: 'Comments'%>
+    <% end %>
+
+    <%= f.form_group :q6, label: { text: "What are your thoughts about where the student's work should start and progress?"} do %>
+      <%= f.radio_button :q6, 'very_weak' , label: 'Student is very weak in basic skills; must spend a lot of time on basic skills such as'%>
+      <%= f.radio_button :q6, 'basic_skill_refreshing', label: "Needs some basic skills refreshing then should progress after 3- 4 months to a level lower than the current nominal level"%>
+      <%= f.radio_button :q6, 'quick_revision_needed',  label: "Needs some quick revision of lower level but then would cope with work at nominal level" %>
+      <%= f.radio_button :q6, 'start_nominal', label: "Start at nominal level, stay and finish that level in half year"  %>
+      <%= f.radio_button :q6, 'pr1_then_next', label: "Do PR1 packs at the nominal level and then move to the next level" %>
+      <%= f.text_field :q6comments, label: 'Comments'%>
+    <% end %>
 
     <div class = "row">
-      <div class = "nominal-school-comparison col-md-12">
-        <%= label_tag(:q, "How did the student do from the nominal school level?") %>
-        <div class = "col-md-12">
-          <%= check_box_tag(:very_poor) %>
-          <%= label_tag(:very_poor, "Very poorly") %>
-          <%= check_box_tag(:fair_poor) %>
-          <%= label_tag(:fair_poor, "Fairly poorly") %>
-          <%= check_box_tag(:passing_grade) %>
-          <%= label_tag(:passing_grade, "Passing Grade") %>
-          <%= check_box_tag(:very_well) %>
-          <%= label_tag(:very_well, "Very Well") %>
-          <%= check_box_tag(:outstanding) %>
-          <%= label_tag(:outstanding, "Outstanding") %>
-          <div class = "col-md-12 comments-style">
-            <%= label_tag(:item2comments, "Comments:") %>
-            <%= text_field_tag(:item2comments) %>
-          </div>
-        </div>
-      </div>    
+      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
+      <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
     </div>
 
-    <div class = "row">
-      <div class = "proficiency col-md-12">
-        <%= label_tag(:q, "What proficiency level was displayed in work that normally belongs to higher grades?") %>
-        <div class = "col-md-12">
-          <%= check_box_tag(:very_poor) %>
-          <%= label_tag(:very_poor, "Very poorly") %>
-          <%= check_box_tag(:fair_poor) %>
-          <%= label_tag(:fair_poor, "Fairly poorly") %>
-          <%= check_box_tag(:passing_grade) %>
-          <%= label_tag(:passing_grade, "Passing Grade") %>
-          <%= check_box_tag(:very_well) %>
-          <%= label_tag(:very_well, "Very Well") %>
-          <%= check_box_tag(:outstanding) %>
-          <%= label_tag(:outstanding, "Outstanding") %>
-          <div class = "col-md-12 comments-style">
-            <%= label_tag(:item3comments, "Comments:") %>
-            <%= text_field_tag(:item3comments) %>
-          </div>
-        </div>
-      </div>    
-    </div>
-
-    <div class = "row">
-      <div class = "fundamental col-md-12">
-        <%= label_tag(:q, "How are the fundamental skills?") %>
-        <div class = "col-md-12">
-          <%= check_box_tag(:very_poor) %>
-          <%= label_tag(:very_poor, "Very poorly") %>
-          <%= check_box_tag(:fair_poor) %>
-          <%= label_tag(:fair_poor, "Fairly poorly") %>
-          <%= check_box_tag(:passing_grade) %>
-          <%= label_tag(:passing_grade, "Passing Grade") %>
-          <%= check_box_tag(:very_well) %>
-          <%= label_tag(:very_well, "Very Well") %>
-          <%= check_box_tag(:outstanding) %>
-          <%= label_tag(:outstanding, "Outstanding") %>
-          <div class = "col-md-12 comments-style">
-            <%= label_tag(:item4comments, "Comments:") %>
-            <%= text_field_tag(:item4comments) %>
-          </div>
-        </div>
-      </div>    
-    </div>
-
-    <div class = "row">
-      <div class = "impression col-md-12">
-        <%= label_tag(:q, "What is your impression about the student's approach to Maths from the answers?") %>
-        <div class = "col-md-12">
-          <%= check_box_tag(:very_poor) %>
-          <%= label_tag(:very_poor, "Very poorly") %>
-          <%= check_box_tag(:fair_poor) %>
-          <%= label_tag(:fair_poor, "Fairly poorly") %>
-          <%= check_box_tag(:passing_grade) %>
-          <%= label_tag(:passing_grade, "Passing Grade") %>
-          <%= check_box_tag(:very_well) %>
-          <%= label_tag(:very_well, "Very Well") %>
-          <%= check_box_tag(:outstanding) %>
-          <%= label_tag(:outstanding, "Outstanding") %>
-          <div class = "col-md-12">
-            <%= label_tag(:item5comments, "Comments:") %>
-            <%= text_field_tag(:item5comments) %>
-          </div>
-        </div>
-      </div>    
-    </div>
-
-    <div class = "row">
-      <div class = "thoughts col-md-12">
-        <%= label_tag(:q, "What are your thoughts about where the student's work should start and progress?") %>
-      </div>
-      <div class = "col-md-12">
-        <%= check_box_tag(:weak_basic_skills) %>
-        <%= label_tag(:weak_basic_skills, "Student is very weak in basic skills; must spend a lot of time on basic skills such as:") %>
-      </div>
-      <div class = "col-md-12">
-        <%= check_box_tag(:basic_skillrefreshing) %>
-        <%= label_tag(:basic_skill_refreshing, "Needs some basic skills refreshing then should progress after 3- 4 months to a level lower than the current nominal level") %>
-      </div>
-      <div class = "col-md-12">
-        <%= check_box_tag(:quick_revision_needed) %>
-        <%= label_tag(:quick_revision_needed, "Needs some quick revision of lower level but then would cope with work at nominal level") %>
-      </div>
-
-      <div class = "col-md-12">
-        <%= check_box_tag(:start_nominal) %>
-        <%= label_tag(:start_nominal, "Start at nominal level, stay and finish that level in half year") %>
-      </div>
-
-      <div class = "col-md-12">
-        <%= check_box_tag(:PR1_then_next) %>
-        <%= label_tag(:PR1_then_next, "Do PR1 packs at the nominal level and then move to the next level") %>
-      </div>
-      <div class = "col-md-12">
-        <%= label_tag(:item6comments, "Comments:") %>
-        <%= text_field_tag(:item6comments) %>
-      </div>
-
-    <%= submit_tag("Submit") %>
   <% end %>
-  </div>
+
 </div>
