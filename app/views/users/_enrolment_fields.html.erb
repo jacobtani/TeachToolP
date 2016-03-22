@@ -1,30 +1,8 @@
 <div class="nested-fields">
-
-  <div class = "row">
-    <div class = "col-md-6">
-      <h3> Add Enrolment </h3>
-    </div>
-  </div>
-
-  <div class = "row">
-    <div class = "col-md-4">
-      <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select Subject" %>
-    </div>
-    <div class = "col-md-4">
-      <%= f.number_field :grade, min: 1, max: 7 %>
-    </div>
-    <div class = "col-md-4">
-      <%= f.number_field :ability_level, min: 1, max: 10 %>
-    </div>
-  </div>
-
-  <div class = "row">
-    <div class = "col-md-6">
-      <%= f.collection_select :offer_id, Offer.all, :id, :offer_name, :prompt => "Select Offer" %>
-    </div>
-    <div class = "col-md-6">
-      <%= link_to_remove_association(fa_icon('trash', text: 'Remove'), f, class: 'btn btn-danger') %>
-    </div>
-  </div>
-
+  <h3> Add Enrolment </h3>
+  <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select Subject" %>
+  <%= f.number_field :grade, min: 1, max: 7, placeholder: 'Enter school grade' %>
+  <%= f.number_field :ability_level, min: 1, max: 10, placeholder: 'Enter ability level rating' %>
+  <%= f.collection_select :offer_id, Offer.all, :id, :offer_name, :prompt => "Select Offer" %>
+  <%= link_to_remove_association(fa_icon('trash', text: 'Remove Enrolment'), f, class: 'btn btn-danger') %>
 </div>
