@@ -65,28 +65,28 @@ class PackRecordsController < ApplicationController
  
   private
 
-  def pack_record_params
-    params.require(:pack_record).permit(:pack_id, :user_id, :status, :start_date, :posting_number, :score, :due_date, :comment, :accuracy, :completion, :quality, :presentation, :consistency)
-  end
-    
-  def set_pack_record
-    @pack_record = PackRecord.find params[:id] rescue nil
-    return not_found! unless @pack_record
-  end
-    
-  def set_user
-    @user = User.find params[:user_id] rescue nil
-    return not_found! unless @user
-  end
+    def pack_record_params
+      params.require(:pack_record).permit(:pack_id, :user_id, :status, :start_date, :posting_number, :score, :due_date, :comment, :accuracy, :completion, :quality, :presentation, :consistency)
+    end
+      
+    def set_pack_record
+      @pack_record = PackRecord.find params[:id] rescue nil
+      return not_found! unless @pack_record
+    end
+      
+    def set_user
+      @user = User.find params[:user_id] rescue nil
+      return not_found! unless @user
+    end
 
-  def compute_pack_record_logic(user, pack_record)
-    pack_record.score = PackRecord.calculate_score(pack_record)
-    pack_record.reward = PackRecord.calculate_reward(pack_record.score)
-    #if it is an update action call save
-    if (request.env['PATH_INFO'] =~ /\d/) != nil
-      pack_record.save
-    end 
-    pack_record
-  end
+    def compute_pack_record_logic(user, pack_record)
+      pack_record.score = PackRecord.calculate_score(pack_record)
+      pack_record.reward = PackRecord.calculate_reward(pack_record.score)
+      #if it is an update action call save
+      if (request.env['PATH_INFO'] =~ /\d/) != nil
+        pack_record.save
+      end 
+      pack_record
+    end
 
 end
