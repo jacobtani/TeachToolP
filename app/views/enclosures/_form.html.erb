@@ -1,34 +1,9 @@
 <%= bootstrap_form_for(@enclosure, layout: :horizontal)  do |f| %>
-
-  <div id="form-errors"></div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.text_field :name, placeholder: 'Enter enclosure name ', class: 'form-control' %>
-      </div>
-      <div class="col-md-6">
-        <%= f.select :enclosure_type, Enclosure.enclosure_types.keys.to_a, label: "Type" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-6">
-        <%= f.number_field :barcode, placeholder: 'Enter barcode', class: 'form-control' %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.date_field :due_date, placeholder: 'Enter due date', class: 'form-control' %>
-      </div>
-    </div>
-  </div>
-  
-  <div class = "row">
-    <div class = "col-md-5">
-      <%= f.collection_select :pack_id, Pack.all, :id, :name, :prompt => "Select Pack" %>
-    </div>
-  </div>
+  <%= f.text_field :name, placeholder: 'Enter enclosure name ', class: 'form-control' %>
+  <%= f.select :enclosure_type, Enclosure.enclosure_types.keys.to_a, label: "Type" %>
+  <%= f.number_field :barcode, placeholder: 'Enter barcode', class: 'form-control' %>
+  <%= f.date_field :due_date, placeholder: 'Enter due date', class: 'form-control' %>
+  <%= f.collection_select :pack_id, Pack.all, :id, :name, :prompt => "Select Pack" %>
 
   <div class="form-group row submit">
     <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    

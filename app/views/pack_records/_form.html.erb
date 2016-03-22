@@ -1,68 +1,19 @@
 <%= bootstrap_form_for(@pack_record, layout: :horizontal)  do |f| %>
-
-  <div id="form-errors"></div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.date_field :start_date, placeholder: 'Enter start date ', class: 'form-control' %>
-      </div>
-      <div class="col-md-6">
-        <%= f.date_field :due_date, placeholder: 'Enter due date ', class: 'form-control' %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-4">
-        <%= f.collection_select :pack_id, Pack.all, :id, :name, prompt: 'Select pack', class: 'form-control' %>
-      </div>
-      <div class="col-md-4">
-        <%= f.select :status, PackRecord.statuses.keys.to_a %>
-      </div>
-      <div class="col-md-4">
-        <%= f.collection_select :user_id, User.all.where(role: 'student'), :id, :first_name, prompt: 'Select user', class: 'form-control' %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.number_field :accuracy, placeholder: 'Enter accuracy', min: 0, max: 100, class: 'form-control' %>
-      </div>
-      <div class="col-md-6">
-        <%= f.number_field :presentation, placeholder: 'Enter presentation', min: 0, max: 100, class: 'form-control' %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.number_field :quality, placeholder: 'Enter quality', min: 0, max: 100, class: 'form-control' %>
-      </div>
-      <div class = "col-md-6">
-        <%= f.number_field :completion, placeholder: 'Enter completion', min: 0, max: 100, class: 'form-control'%>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.number_field :consistency, placeholder: 'Enter consistency', min: 0, max: 100, class: 'form-control' %>
-      </div>
-      <div class = "col-md-6">
-        <%= f.text_field :comment, placeholder: 'Enter comments', class: 'form-control' %>
-      </div>
-    </div>
-  </div>
+  <%= f.date_field :start_date, placeholder: 'Enter start date ', class: 'form-control' %>
+  <%= f.date_field :due_date, placeholder: 'Enter due date ', class: 'form-control' %>
+  <%= f.collection_select :pack_id, Pack.all, :id, :name, prompt: 'Select pack', class: 'form-control' %>
+  <%= f.select :status, PackRecord.statuses.keys.to_a %>
+  <%= f.collection_select :user_id, User.all.where(role: 'student'), :id, :first_name, prompt: 'Select user', class: 'form-control' %>
+  <%= f.number_field :accuracy, placeholder: 'Enter accuracy', min: 0, max: 100, class: 'form-control' %>
+  <%= f.number_field :presentation, placeholder: 'Enter presentation', min: 0, max: 100, class: 'form-control' %>
+  <%= f.number_field :quality, placeholder: 'Enter quality', min: 0, max: 100, class: 'form-control' %>
+  <%= f.number_field :completion, placeholder: 'Enter completion', min: 0, max: 100, class: 'form-control'%>
+  <%= f.number_field :consistency, placeholder: 'Enter consistency', min: 0, max: 100, class: 'form-control' %>
+  <%= f.text_field :comment, placeholder: 'Enter comments', class: 'form-control' %>
 
   <div class="form-group row submit">
     <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
-    <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
+    <%= link_to 'Cancel', employee_path, class: 'btn btn-info' %>
   </div>
 
 <% end %>

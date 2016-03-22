@@ -1,36 +1,9 @@
 <%= bootstrap_form_for(@fee, layout: :horizontal)  do |f| %>
-
-  <div id="form-errors"></div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.date_field :start_date, placeholder: 'Enter start date', class: 'form-control' %>
-      </div>
-      <div class="col-md-6">
-        <%= f.date_field :end_date, placeholder: 'Enter end date', class: 'form-control' %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-6">
-        <%= f.number_field :amount, placeholder: 'Enter amount', class: 'form-control' %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.select :fee_type, Fee.fee_types.keys.to_a, label: 'Type' %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-6">
-        <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select Subject" %>
-      </div>
-    </div>
-  </div>
+  <%= f.date_field :start_date, placeholder: 'Enter start date', class: 'form-control' %>
+  <%= f.date_field :end_date, placeholder: 'Enter end date', class: 'form-control' %>
+  <%= f.number_field :amount, placeholder: 'Enter amount', class: 'form-control' %>
+  <%= f.select :fee_type, Fee.fee_types.keys.to_a, label: 'Type' %>
+  <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select Subject" %>
 
   <div class="form-group row submit">
     <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    

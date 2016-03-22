@@ -1,42 +1,11 @@
 <%= bootstrap_form_for(@pack, layout: :horizontal)  do |f| %>
-
-  <div id="form-errors"></div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.text_field :name, placeholder: 'Enter pack name ', class: 'form-control' %>
-      </div>
-      <div class="col-md-6">
-        <%= f.text_field :description, placeholder: 'Enter pack description ', class: 'form-control' %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.text_field :action_required, placeholder: 'Enter action required ', class: 'form-control' %>
-      </div>
-      <div class="col-md-6">
-        <%= f.number_field :number_unassigned, placeholder: 'Enter no of unassigned packs ', class: 'form-control' %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-4">
-        <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select a subject" %>
-      </div>
-      <div class="col-sm-4">
-        <%= f.select :pack_type, Pack.pack_types.keys.to_a, label: 'Type' %>
-      </div>
-      <div class="col-sm-4">
-        <%= f.number_field :priority, placeholder: 'Enter priority' %>
-      </div>
-    </div>
-  </div>
+  <%= f.text_field :name, placeholder: 'Enter pack name ', class: 'form-control' %>
+  <%= f.text_field :description, placeholder: 'Enter pack description ', class: 'form-control' %>
+  <%= f.text_field :action_required, placeholder: 'Enter action required ', class: 'form-control' %>
+  <%= f.number_field :number_unassigned, placeholder: 'Enter no of unassigned packs ', class: 'form-control' %>
+  <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select a subject" %>
+  <%= f.select :pack_type, Pack.pack_types.keys.to_a, label: 'Type' %>
+  <%= f.number_field :priority, placeholder: 'Enter priority' %>
 
   <div class="form-group row submit">
     <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
