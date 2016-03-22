@@ -9,10 +9,6 @@
   <%= f.email_field :email, placeholder: 'Enter email', class: 'form-control' %>
   <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
   <%= f.hidden_field :role, value: 'parent' %>
-  
-  <div class="form-group row submit">
-    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
-    <%= link_to 'Cancel', root_path, class: 'btn btn-info' %>
-  </div>
-
+  <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
+  <%= link_to 'Cancel', root_path, class: 'btn btn-info' %>
 <% end %>

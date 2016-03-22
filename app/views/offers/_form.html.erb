@@ -1,17 +1,13 @@
 <%= bootstrap_form_for(@offer, layout: :horizontal)  do |f| %>  
-    <%= f.text_field :offer_name, placeholder: 'Enter offer name ', class: 'form-control', label: 'Name' %>
-    <%= f.text_field :offer_description, placeholder: 'Enter offer description ', class: 'form-control', label: 'Description' %>
-    <%= f.number_field :number_of_subjects, placeholder: 'Enter number of subjects', class: 'form-control', label: 'Subject Count' %>
-    <%= f.date_field :start_date, placeholder: 'Enter start date ', class: 'form-control' %>
-    <%= f.date_field :end_date, placeholder: 'Enter end date ', class: 'form-control' %>
-    <%= f.number_field :discount_monthly, placeholder: 'Enter monthly discount amount', class: 'form-control' %>
-    <%= f.number_field :discount_enrolment, placeholder: 'Enter enrolment discount amount', class: 'form-control' %>
-    <%= f.number_field :percentage_monthly, placeholder: 'Enter monthly percentage discount', class: 'form-control' %>
-    <%= f.number_field :percentage_enrolment, placeholder: 'Enter enrolment percentage discount', class: 'form-control' %>
-
-  <div class="form-group row submit">
-    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
-    <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
-  </div>
-
+  <%= f.text_field :offer_name, placeholder: 'Enter offer name ', class: 'form-control', label: 'Name' %>
+  <%= f.text_field :offer_description, placeholder: 'Enter offer description ', class: 'form-control', label: 'Description' %>
+  <%= f.number_field :number_of_subjects, placeholder: 'Enter number of subjects', class: 'form-control', label: 'Subject Count' %>
+  <%= f.date_field :start_date, placeholder: 'Enter start date ', class: 'form-control' %>
+  <%= f.date_field :end_date, placeholder: 'Enter end date ', class: 'form-control' %>
+  <%= f.number_field :discount_monthly, placeholder: 'Enter monthly discount amount', class: 'form-control' %>
+  <%= f.number_field :discount_enrolment, placeholder: 'Enter enrolment discount amount', class: 'form-control' %>
+  <%= f.number_field :percentage_monthly, placeholder: 'Enter monthly percentage discount', class: 'form-control' %>
+  <%= f.number_field :percentage_enrolment, placeholder: 'Enter enrolment percentage discount', class: 'form-control' %>
+  <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
+  <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
 <% end %>

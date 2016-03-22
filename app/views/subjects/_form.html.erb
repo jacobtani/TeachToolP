@@ -3,10 +3,6 @@
   <%= f.number_field :fee, placeholder: 'Enter monthly fee', class: 'form-control', label: 'Monthly Fee' %>
   <%= f.number_field :lowest_grade_taught, placeholder: 'Enter lowest grade taught', class: 'form-control' %>
   <%= f.number_field :highest_grade_taught, placeholder: 'Enter highest grade taught', class: 'form-control' %>
-
-  <div class="form-group row submit">
-    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
-    <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
-  </div>
-
+  <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
+  <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
 <% end %>

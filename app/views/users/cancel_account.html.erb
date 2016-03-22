@@ -13,14 +13,8 @@
       <%= f.radio_button :content, 'Student has activities after school/weekends', label: 'Student has activities after school/weekend' %>
       <%= f.radio_button :content, 'Other', label: 'Other' %>
     <% end %>
-    
     <%= f.hidden_field :message_subject, value: 'TERMINATED ACCOUNT'%>
-
-    <div class = "row">
-      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
+    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
       <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
-    </div>
-  
   <% end %>
-
 </div>

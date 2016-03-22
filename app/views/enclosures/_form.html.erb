@@ -4,10 +4,6 @@
   <%= f.number_field :barcode, placeholder: 'Enter barcode', class: 'form-control' %>
   <%= f.date_field :due_date, placeholder: 'Enter due date', class: 'form-control' %>
   <%= f.collection_select :pack_id, Pack.all, :id, :name, :prompt => "Select Pack" %>
-
-  <div class="form-group row submit">
-    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
-    <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
-  </div>
-
+  <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
+  <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
 <% end %>

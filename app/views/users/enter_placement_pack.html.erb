@@ -57,12 +57,8 @@
       <%= f.radio_button :q6, 'pr1_then_next', label: "Do PR1 packs at the nominal level and then move to the next level" %>
       <%= f.text_field :q6comments, label: 'Comments'%>
     <% end %>
-
-    <div class = "row">
-      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
-      <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
-    </div>
-
+    
+    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
+    <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
   <% end %>
-
 </div>
