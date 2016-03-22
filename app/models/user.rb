@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
     user.pack_records.each do |pr|
       total_rewards += pr.reward  
     end
-    user.update(rewards: total_rewards)e
+    user.update(rewards: total_rewards)
   end
 
   def needs_suspension?
