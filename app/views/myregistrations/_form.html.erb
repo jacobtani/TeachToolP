@@ -1,14 +1,16 @@
-<%= bootstrap_form_for(@user, url: user_registration_path(@user), layout: :horizontal)  do |f| %>
-  <%= f.text_field :first_name, placeholder: 'Enter first name', class: 'form-control' %>
-  <%= f.text_field :surname, placeholder: 'Enter surname', class: 'form-control' %>
-  <%= f.number_field :phone_number, placeholder: 'Enter phone number' %>
-  <%= f.text_field :postal_address, placeholder: 'Enter postal address', class: 'form-control' %>
-  <%= f.text_field :city, placeholder: 'Enter city', class: 'form-control' %>
-  <%= f.select :state, [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY','OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',  'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'] %>            
-  <%= f.number_field :zip_code, placeholder: 'Enter zipcode', class: 'form-control' %>
-  <%= f.email_field :email, placeholder: 'Enter email', class: 'form-control' %>
-  <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
-  <%= f.hidden_field :role, value: 'parent' %>
-  <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
-  <%= link_to 'Cancel', root_path, class: 'btn btn-info' %>
-<% end %>
+<div class='container'>
+  <%= bootstrap_form_for(@user, url: user_registration_path(@user), layout: :horizontal)  do |f| %>
+    <%= f.text_field :first_name, placeholder: 'Enter first name', class: 'form-control' %>
+    <%= f.text_field :surname, placeholder: 'Enter surname', class: 'form-control' %>
+    <%= f.number_field :phone_number, placeholder: 'Enter phone number' %>
+    <%= f.text_field :postal_address, placeholder: 'Enter postal address', class: 'form-control' %>
+    <%= f.text_field :city, placeholder: 'Enter city', class: 'form-control' %>
+    <%= f.select :state, [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY','OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',  'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'] %>            
+    <%= f.number_field :zip_code, placeholder: 'Enter zipcode', class: 'form-control' %>
+    <%= f.email_field :email, placeholder: 'Enter email', class: 'form-control' %>
+    <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
+    <%= f.hidden_field :role, value: 'parent' %>
+    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
+    <%= link_to 'Cancel', root_path, class: 'btn btn-info' %>
+  <% end %>
+</div>

@@ -1,16 +1,11 @@
 <div class = 'container'>
-  <h1> RECOMMEND US </h1>
+  <h1> RECOMMEND OurCompany </h1>
   <h4> We would appreciate if you could spread the word about OurCompany if you are happy with our services. Please fill in the email address of someone you would like to recommend OurCompany to </h4>
-
   <%= bootstrap_form_for(@message, layout: :horizontal)  do |f| %>
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
     <%= f.text_field :message_recipient %>
     <%= f.hidden_field :message_subject, value: 'RECOMMEND US'%>
-
-    <div class = "row">
-      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
-      <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
-    </div>
+    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
+    <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
   <% end %>
-
 </div>

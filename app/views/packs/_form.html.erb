@@ -1,11 +1,13 @@
-<%= bootstrap_form_for(@pack, layout: :horizontal)  do |f| %>
-  <%= f.text_field :name, placeholder: 'Enter pack name ', class: 'form-control' %>
-  <%= f.text_field :description, placeholder: 'Enter pack description ', class: 'form-control' %>
-  <%= f.text_field :action_required, placeholder: 'Enter action required ', class: 'form-control' %>
-  <%= f.number_field :number_unassigned, placeholder: 'Enter no of unassigned packs ', class: 'form-control' %>
-  <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select a subject" %>
-  <%= f.select :pack_type, Pack.pack_types.keys.to_a, label: 'Type' %>
-  <%= f.number_field :priority, placeholder: 'Enter priority' %>
-  <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
-  <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
-<% end %>
+<div class='container'>
+  <%= bootstrap_form_for(@pack, layout: :horizontal)  do |f| %>
+    <%= f.text_field :name, placeholder: 'Enter pack name ', class: 'form-control' %>
+    <%= f.text_field :description, placeholder: 'Enter pack description ', class: 'form-control' %>
+    <%= f.text_field :action_required, placeholder: 'Enter action required ', class: 'form-control' %>
+    <%= f.number_field :number_unassigned, placeholder: 'Enter no of unassigned packs ', class: 'form-control' %>
+    <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select a subject" %>
+    <%= f.select :pack_type, Pack.pack_types.keys.to_a, label: 'Type' %>
+    <%= f.number_field :priority, placeholder: 'Enter priority' %>
+    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
+    <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
+  <% end %>
+</div>

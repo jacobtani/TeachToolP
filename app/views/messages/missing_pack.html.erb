@@ -1,16 +1,11 @@
 <div class = 'container'>
   <h1> MISSING PACK/WORK </h1>
-
   <%= bootstrap_form_for(@message, layout: :horizontal)  do |f| %>
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
     <%= f.collection_select :pack_name, Pack.all, :name, :name, :prompt => "Select pack", label: 'Pack Name' %>
     <%= f.hidden_field :message_subject, value: 'MISSING PACK/WORK'%>
     <%= f.text_area :content, rows: '10%', cols: '100%', label: 'Please describe what is missing' %>
-
-    <div class = "row">
-      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
-      <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
-    </div>
+    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
+    <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
   <% end %>
-
 </div>
