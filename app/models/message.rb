@@ -14,4 +14,5 @@ class Message
   attribute :subject
   
   validates_presence_of :message_subject
+
 end

@@ -21,6 +21,7 @@ class Enrolment < ActiveRecord::Base
     end
   end
 
+  #Check enrolment's subject id is the same as that of the offer being used for the enrolment
   def validate_enrolment
     if self.subject_id != Offer.find(self.offer_id).subject_id
       errors.add(:enrolment, 'Offer subject id not same as enrolment subject')

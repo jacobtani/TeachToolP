@@ -4,6 +4,7 @@ class Pack < ActiveRecord::Base
   validates :name, :description, presence: true
   enum pack_type: [:NORMAL, :GLOBAL, :HIGH_INTENSITY]
 
+  #Update the stock of unassigned vs assigned of a pack
   def self.update_stock(pack)
     pack.number_unassigned = pack.number_unassigned - 1
     pack.number_assigned += 1

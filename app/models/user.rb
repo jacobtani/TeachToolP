@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :children, class_name: "User", foreign_key: "parent_id", dependent: :destroy
@@ -25,10 +23,8 @@ class User < ActiveRecord::Base
     user.pack_records.each do |pr|
       total_rewards += pr.reward  
     end
-    user.rewards = total_rewards
-    user.save
+    user.update(rewards: total_rewards)e
   end
-
 
   def needs_suspension?
     self.pack_records.where(status: 0).count >= 2
@@ -37,9 +33,7 @@ class User < ActiveRecord::Base
   def calculate_total_fees (user)
     total_fees = 0
     subject_enrolment_fees = calculate_subject_enrolment_fees(user)
-    user.total_fees = subject_enrolment_fees
-    user.account_balance = user.total_fees
-    user.save
+    user.update(total_fees: subject_enrolment_fees, account_balance: user.total_fees)
     subject_enrolment_fees
   end
 
