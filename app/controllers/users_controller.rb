@@ -84,7 +84,7 @@ class UsersController < ApplicationController
 
   def cancel_account
     @user.update(status: 2)
-    redirect_to parent_summary_path
+    @message = Message.new
   end
 
   def end_trial

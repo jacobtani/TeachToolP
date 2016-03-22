@@ -1,6 +1,12 @@
 class AdminMailer < ApplicationMailer
   default :to => "tjterminator.dev@gmail.com"
 
+  def student_cancelled_acount(user, message)
+    @user = user
+    @message = message
+    mail(from: => @user.email, :subject => @message.message_subject)
+  end
+
   def student_enquiry(user, message)
     @user = user
     @message = message

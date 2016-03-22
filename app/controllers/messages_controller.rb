@@ -32,6 +32,7 @@ class MessagesController < ApplicationController
       redirect_to parent_summary_path
     elsif @message.message_subject == 'TERMINATED ACCOUNT'
       UserMailer.cancellation_email(current_user, @message).deliver_now
+      AdminMailer.student_cancelled_acount(current_user, @message).deliver_now
       redirect_to parent_summary_path
     elsif @message.message_subject == 'SEND EMAIL TO USER'
       UserMailer.send_email_to_user(@message).deliver_now

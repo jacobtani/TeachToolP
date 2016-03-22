@@ -1,72 +1,25 @@
 <div class = 'container'>
   <h1> CANCEL ACCOUNT </h1>
-  <%= form_for @message do |f| %>
+  <%= bootstrap_form_for @message do |f| %>
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
     
-    <div class = "row">
-      <%= f.label 'Why are you terminating the account?' %>
-      <div class = "col-md-12">
-        <%= f.radio_button :content, 'Student is not cooperating'  %>
-        <%= f.label 'Student is not cooperating', inline: true, checked: true  %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class = "col-md-12">
-        <%= f.radio_button :content, 'Student is not coping'  %>
-        <%= f.label 'Student is not coping', inline: true  %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class = "col-md-12">
-        <%= f.radio_button :content, 'Financial Reasons'  %>
-        <%= f.label 'Financial Reasons', inline: true  %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class = "col-md-12">
-        <%= f.radio_button :content, 'Adults under time pressure'  %>
-        <%= f.label 'Adults under time pressure', inline: true  %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class = "col-md-12">
-       <%= f.radio_button :content, 'Students under time pressure'  %>
-      <%= f.label 'Student under time pressure', inline: true  %>
-     </div>
-    </div>
-
-    <div class="row">
-      <div class = "col-md-12">
-        <%= f.radio_button :content, 'Student has a lot of homework from school'  %>
-        <%= f.label 'Student has a lot of homework from school', inline: true  %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class = "col-md-12">
-        <%= f.radio_button :content, 'Student has activities after school/weekends'  %>
-        <%= f.label 'Student has activities after school/weekends', inline: true  %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class = "col-md-12">
-      <%= f.radio_button :content, 'Other'  %>
-      <%= f.label 'Other', inline: true  %>
-      </div>
-    </div>
+    <%= f.form_group :content, label: { text: "Cancellation Reason" } do %>
+      <%= f.radio_button :content, 'Student is not cooperating', checked: true, label: 'Student is not cooperating'  %>
+      <%= f.radio_button :content, 'Student is not coping', label: 'Student is not coping' %>
+      <%= f.radio_button :content, 'Financial Reasons', label: 'Financial Reasons' %>
+      <%= f.radio_button :content, 'Adults under time pressure', label: 'Adults under time pressure' %>
+      <%= f.radio_button :content, 'Students under time pressure', label: 'Students under time pressure' %>
+      <%= f.radio_button :content, 'Student has a lot of homework from school', label: 'Student has alot of homework from school' %>
+      <%= f.radio_button :content, 'Student has activities after school/weekends', label: 'Student has activities after school/weekend' %>
+      <%= f.radio_button :content, 'Other', label: 'Other' %>
+    <% end %>
+    
+    <%= f.hidden_field :message_subject, value: 'TERMINATED ACCOUNT'%>
 
     <div class = "row">
-      <div class = "col-md-6">
-        <%= f.hidden_field :message_subject, value: 'TERMINATED ACCOUNT'%>
-      </div>
+      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
+      <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
     </div>
-  
-    <div class="actions"><%= f.submit "Submit" %></div>
   
   <% end %>
 
