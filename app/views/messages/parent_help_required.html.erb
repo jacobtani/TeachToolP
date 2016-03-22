@@ -2,41 +2,18 @@
   <h1> REQUEST HELP FOR MY CHILD </h1>
 
   <%= bootstrap_form_for(@message, layout: :horizontal)  do |f| %>
-
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
-
-    <div class = "row">
-      <div class = "col-md-6">
-        <%= f.collection_select :subject_name, Subject.all, :subject_name, :subject_name, :prompt => "Select subject", label: 'Subject'%>
-      </div>
-      <div class="col-md-6">
-        <%= f.collection_select :pack_name, Pack.all.find(current_user.pack_records.pluck(:pack_id)), :name, :name, :prompt => "Select pack", label: 'Pack Name' %>
-      </div>
-    </div>
-
-    <div class = "row">
-      <div class = "col-md-6">
-        <%= f.number_field :question_number, label: 'Question Number' %>
-      </div>
-      <div class="col-md-5">
-        <%= f.number_field :page_number, label: 'Page Number' %>
-      </div>
-      <div class="col-md-1">
-        <%= f.hidden_field :message_subject, value: 'PARENT NEEDS HELP'%>
-        </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <%= f.text_area :content, rows: '10%', cols: '100%', label: 'Details' %>
-      </div>
-    </div>
+    <%= f.collection_select :subject_name, Subject.all, :subject_name, :subject_name, :prompt => "Select subject", label: 'Subject'%>
+    <%= f.collection_select :pack_name, Pack.all.find(current_user.pack_records.pluck(:pack_id)), :name, :name, :prompt => "Select pack", label: 'Pack Name' %>
+    <%= f.number_field :question_number, label: 'Question Number' %>
+    <%= f.number_field :page_number, label: 'Page Number' %>
+    <%= f.text_area :content, rows: '10%', cols: '100%', label: 'Details' %>
+    <%= f.hidden_field :message_subject, value: 'PARENT NEEDS HELP'%>
 
     <div class = "row">
       <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
       <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
     </div>
-
   <% end %>
 
 </div>
