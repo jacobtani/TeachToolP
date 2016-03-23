@@ -73,10 +73,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def children
-    @children = @user.children if current_user.role == 'parent'
-  end
-
   def suspend
     @user.update(status: 1)
     UserMailer.suspension_email(@user).deliver_now
@@ -99,6 +95,13 @@ class UsersController < ApplicationController
   def nullify_rewards
     ValidatorMod.nullify_rewards
     redirect_to employee_view_path
+  end
+
+  def login_as
+    return unless current_user.role == 'admin'
+    sign_in(:user, User.find(params[:id]))
+    flash[:success]= 'Logged in successfully'
+    redirect_to root_path
   end
 
   private 

@@ -32,7 +32,9 @@
   </div> 
   
   <div class='users'>
-    <%= render 'users/index' %>
+    <h2> My Children </h2>
+    <% @users = current_user.children %>
+    <%= render 'users/index', :locals => {:users => @users } %>
   </div>
   
   <div class = "payment-blurb">

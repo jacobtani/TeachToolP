@@ -1,0 +1,61 @@
+<div class = 'container'>
+
+  <p id="notice"><%= notice %></p>
+  <div class="jumbotron"> <h2> User Profile for <%= @user.full_name%> at OurCompany </h2> </div>
+
+  <p>
+    <strong>School Grade:</strong>
+    <%= @user.school_grade %>
+  </p>
+
+  <p>
+    <strong>DOB:</strong>
+    <%= @user.date_of_birth.strftime('%D') if @user.date_of_birth  %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= @user.status %>
+  </p>
+
+  <p>
+    <strong>Account Balance:</strong>
+    <%= number_to_currency @user.account_balance %>
+  </p>
+
+  <p>
+    <strong>Account Balance:</strong>
+    <%= number_to_currency @user.overdue_fees %>
+  </p>
+
+  <p>
+    <strong>Account Balance:</strong>
+    <%= number_to_currency @user.calculate_total_fees(@user) %>
+  </p>
+
+  <p>
+    <strong>Account Balance:</strong>
+    <%= number_to_currency @user.rewards %>
+  </p>
+
+  <p>
+    <strong>Enrolments:</strong>
+    <%= @user.enrolments.collect(&:subject_id).join(', ') if @user.role == 'student' %>
+  </p>
+
+  <%= link_to 'Edit', edit_users_admin_path(id: @user.id), class: "btn btn-success", id: 'edit-user-link' %> 
+   <% if @user.rewards > 0.00 %>
+      <%= link_to 'Redeem Reward', redeem_reward_path(id: @user.id), class: "btn btn-success", id: 'redeem-reward-link' %> 
+   <%end%>
+  <% if @user.status != 'CANCELLED' %>
+    <% e=@user.enrolments.select { |e| Date.today < (e.date + 1.month) } %>
+    <% if e.present? && child.status != 'CANCELLED_TRIAL' %>
+      <%= link_to 'End Trial', end_trial_path(id: @user.id), class: "btn btn-danger", id: 'end-trial-link' %>
+    <%else%>
+      <%= link_to 'Terminate Account', cancel_child_path(id: @user.id), class: "btn btn-danger", id: 'cancel-user-link' %>
+    <%end%>
+  <%end%>
+  <%= link_to 'Cancel', root_path, class: 'btn btn-info' %>
+
+
+</div>

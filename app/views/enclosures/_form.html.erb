@@ -1,4 +1,4 @@
-<div class='container'>
+<div class='container form-scrollable'>
   <%= bootstrap_form_for(@enclosure, layout: :horizontal)  do |f| %>
     <%= f.text_field :name, placeholder: 'Enter enclosure name ', class: 'form-control' %>
     <%= f.select :enclosure_type, Enclosure.enclosure_types.keys.to_a, label: "Type" %>

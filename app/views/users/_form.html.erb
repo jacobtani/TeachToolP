@@ -1,4 +1,4 @@
-<div class='container'>
+<div class='container form-scrollable'>
   <%= bootstrap_form_for(@user, url: locals[:path], layout: :horizontal)  do |f| %>
     <%= f.text_field :first_name, placeholder: 'Enter first name', class: 'form-control' %>
     <%= f.text_field :surname, placeholder: 'Enter surname', class: 'form-control' %>
@@ -14,7 +14,7 @@
     <%if current_user && current_user.role =='admin'%>
       <%= f.hidden_field :role, value: 'admin' %>
       <%= f.select :status, User.statuses.keys.to_a, label: 'Account Status' %>
-      <%= f.select :role, ['employee', 'admin'] %>
+      <%= f.select :role, ['employee', 'admin', 'student', 'parent'] %>
     <%end%>
 
     <%if current_user && current_user.role == 'parent'%>

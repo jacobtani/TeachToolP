@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/users/:id/cancel' => "users#cancel_account", as: :cancel_child
   get '/users/:id/end_trial' => "users#end_trial", as: :end_trial
   get '/users/:id/nullify_rewards' => "users#nullify_rewards", as: :nullify_rewards
+  get  '/users/:id/login_as' => "users#login_as", as: :login_as_user
 
   get '/enter_placement_pack' => "users#enter_placement_pack", as: :enter_placement_pack
   post '/enter_placement_pack' => "users#enter_placement_pack"

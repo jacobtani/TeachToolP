@@ -1,4 +1,4 @@
-<div class='container'>
+<div class='container form-scrollable'>
   <%= bootstrap_form_for(@subject, layout: :horizontal)  do |f| %>
     <%= f.text_field :subject_name, placeholder: 'Enter subject name ', class: 'form-control', autofocus: true, label: 'Name' %>
     <%= f.number_field :fee, placeholder: 'Enter monthly fee', class: 'form-control', label: 'Monthly Fee' %>
