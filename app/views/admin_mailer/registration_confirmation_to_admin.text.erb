@@ -1,6 +1,12 @@
-Admins,
-<% if @user.parent_id.present? %>
-A new enrolment has been done for the student <%=@user.full_name%> by parent <%= @user.parent.full_name%>.
-<% else %>
-A parent has setup their account on OurCompany <%=@user.full_name%> .
-<% end %>
+Dear D and O,
+
+A new student has been added.
+
+<% if !@student.parent_id.nil? %>
+   Student Id: <%=@student.id%>
+   Student Name: <%=@student.full_name%>
+   Parent Id: <%=@student.parent.id%>
+   Parent Name: <%=@student.parent.full_name%>
+   Parent Email: <%=@student.parent.email%>
+   Number of Enrolments: <%=@student.enrolments.count%>
+<%end%>

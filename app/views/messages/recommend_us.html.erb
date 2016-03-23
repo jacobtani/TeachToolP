@@ -4,6 +4,7 @@
   <%= bootstrap_form_for(@message, layout: :horizontal)  do |f| %>
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
     <%= f.text_field :message_recipient %>
+    <%= f.text_field :message_recipient_name %>
     <%= f.hidden_field :message_subject, value: 'RECOMMEND US'%>
     <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
     <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>

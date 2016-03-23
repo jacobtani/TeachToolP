@@ -1,4 +1,4 @@
-<div class='container form-scrollable'>
+<div class='container'>
   <%= bootstrap_form_for(@user, url: locals[:path], layout: :horizontal)  do |f| %>
     <%= f.text_field :first_name, placeholder: 'Enter first name', class: 'form-control' %>
     <%= f.text_field :surname, placeholder: 'Enter surname', class: 'form-control' %>

@@ -1,3 +1,11 @@
 Dear D and O,
 
-<%=@user.parent.full_name%> would like to redeem their rewards for <%=user.full_name%> of $ <%=@amount.to_s%>.
+The following student wants to redeem their rewards:
+
+Student Id: <%=@student.id%>
+Student Name: <%=@student.full_name%>
+Student Status: <%=@student.status%>
+Parent Id: <%=@child.parent.id%>
+Parent Name: <%=@child.parent.full_name%>
+Parent Email: <%=@child.parent.email%>
+Rewards Balance: <%=@amount.to_s%>

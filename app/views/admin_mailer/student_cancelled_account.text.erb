@@ -1,3 +1,11 @@
 Dear D and O,
 
-<%=@user.full_name%> has cancelled their account because of the reason: <%=@message.content%>
+A student has cancelled their account:
+
+Student Id: <%=@student.id%>
+Student Name: <%=@student.full_name%>
+Student Status: <%=@student.status%>
+Parent Id: <%=@student.parent.id%>
+Parent Name: <%=@student.parent.full_name%>
+Parent Email: <%=@student.parent.id%>
+Reason: <%=@message.content%>

@@ -14,7 +14,7 @@
       <%= f.radio_button :content, 'Other', label: 'Other' %>
     <% end %>
     <%= f.hidden_field :message_subject, value: 'TERMINATED ACCOUNT'%>
-    <%= f.hidden_field :message_recipient, value: @user.id%>
+    <%= f.hidden_field :child, value: @user.id %>
     <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
       <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
   <% end %>

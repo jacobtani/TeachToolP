@@ -1,7 +1,7 @@
 class UserMailer < ApplicationMailer
   default from: "tjterminator.dev@gmail.com"
 
-  def registration_confirmation_to_user(user)
+  def registration_confirmation_to_user(child)
     @user = user
     if @user.role == 'student'
       mail(:to => @user.parent.email, :subject => "Registration Complete for OurCompany")
@@ -10,57 +10,59 @@ class UserMailer < ApplicationMailer
     end
   end
 
-  def suspension_email(user)
-    @user = user
-    mail(:to => @user.parent.email, :subject => "Suspension of MyCompany Account")
+  def suspension_email(student)
+    @student = student
+    mail(:to => @student.parent.email, :subject => "Suspension of MyCompany Account")
   end
 
-  def cancellation_email(user, message)
-    @user = user
+  def cancel_child_account(student, message)
+    @student = student
     @message = message
-    mail(:to => @user.email, :subject => @message.message_subject)
+    mail(:to => @student.parent.email, :subject => @message.message_subject)
   end
 
-  def new_work_email(user, pack)
-    @user = user
+  def new_work_email(student, pack)
+    @student = student
     @pack = pack
-    mail(:to => @user.parent.email, :subject => "New work added to MyCompany Account")
+    mail(:to => @student.parent.email, :subject => "New work added to MyCompany Account")
   end
 
-  def reward_expiry_reminder(user)
-    @user = user
-    mail(:to => @user.parent.email, :subject => "Rewards expiring in 1 month")
+  def reward_expiry_reminder(student)
+    @student = student
+    mail(:to => @student.parent.email, :subject => "Rewards expiring in 1 month")
   end
 
-  def work_missing(user, pack_record)
-    @user = user
+  def work_missing(student, pack_record)
+    @student = student
     @pack_record = pack_record
-    mail(:to => @user.parent.email, :subject => "Work missing for OurCompany")
+    mail(:to => @student.parent.email, :subject => "Work missing for OurCompany")
   end
 
-  def missing_payment(user)
-    @user = user
-    mail(:to => @user.parent.email, :subject => "Payment Missing for OurCompany")
+  def missing_payment(student)
+    @student = student
+    mail(:to => @student.parent.email, :subject => "Payment Missing for OurCompany")
   end
 
   def send_email_to_user(message)
     @message = message
-    mail(:to => message.message_recipient, :subject => message.subject)
+    mail(:to => @message.message_recipient, :subject => @message.subject)
   end
 
-  def send_enrolment_deletion(user)
-    @user = user
-    mail(:to => @user.parent.email, :subject => "Confirmation of Enrolment Deletion")
+  def send_enrolment_deletion(student)
+    @student = student
+    mail(:to => @student.parent.email, :subject => "Confirmation of Enrolment Deletion")
   end
 
-  def recommend_us(user, message)
-    mail(:to => message.message_recipient, :subject => "Recommendation of Our Company")
+  def recommend_us(parent, message)
+    @parent = parent
+    @message = message
+    mail(:to => @message.message_recipient, :subject => "Recommendation of Our Company")
   end
 
-  def new_enrolment(user, enrolment)
-    @user = user
+  def new_enrolment(student, enrolment)
+    @student = student
     @enrolment = enrolment
-    mail(:to => @user.parent.email, :subject => "New Enrolment")
+    mail(:to => @student.parent.email, :subject => "New Enrolment")
   end
 
 end

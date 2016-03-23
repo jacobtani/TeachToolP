@@ -1,8 +1,8 @@
-Dear <%= @user.parent.first_name%>
+Dear <%= @student.parent.first_name%>,
 
-The pack <%= Pack.find(@pack_record.pack_id).name %> for <%= User.find(@pack_record.user_id).full_name %> has not been received by us. The pack is past its due date(<%= @pack_record.due_date.strftime('%m\%d\%Y') %>). Please send it as soon as possible.
+The pack <%= Pack.find(@pack_record.pack_id).name %> for <%=@student.full_name %> has not been received by us. The pack is past its due date(<%= @pack_record.due_date.strftime('%m\%d\%Y') %>). Please send it back completed to us soon as possible.
 
 Please remember if three consecutive pieces of work are not received, your account will be suspended until the work is returned.
 
-Cheers
+Cheers,
 D and O
