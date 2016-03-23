@@ -1,3 +1,15 @@
 Dear D and O,
 
-<%=@user.full_name%> (<%=@user.id.to_s%>) needs help with <%=@message.subject_name%>. In particular pack <%=message.pack_name%> on page <%= @message.page_number%>, question number <%=message.question_number%>. The following additional details have been given: <%=message.content%>.
+The following parent needs help for their child's work:
+
+Parent Id: <%=@parent.id%>
+Parent Name: <%=@parent.full_name%>
+Parent Email: <%=@parent.email%>
+Child Id: <%=@child.id%>
+Child Name: <%=@child.full_name%>
+Child Status: <%=@child.status%>
+Subject: <%=@message.subject_name%>
+Pack: <%=@message.pack_name%>
+Page: <%= @message.page_number%>
+Question Number: <%=@message.question_number%>
+Details: <%=@message.content%>.

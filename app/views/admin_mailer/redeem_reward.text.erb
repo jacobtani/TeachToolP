@@ -1,3 +1,11 @@
 Dear D and O,
 
-<%=@user.parent.full_name%> would like to redeem their rewards for <%=user.full_name%> of $ <%=@amount.to_s%>.
+The following child wants to redeem their rewards:
+
+Child Id: <%=@child.id%>
+Child Name: <%=@child.full_name%>
+Child Status: <%=@child.status%>
+Parent Id: <%=@child.parent.id%>
+Parent Name: <%=@child.parent.full_name%>
+Parent Email: <%=@child.parent.email%>
+Rewards Balance: <%=@amount.to_s%>

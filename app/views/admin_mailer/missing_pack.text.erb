@@ -1,3 +1,13 @@
 Dear D and O,
 
-<%=@user.full_name%> wants to report a pack missing: <%=@message.pack_name%> with the following details: <%=@message.content%>
+The following parent wants to report a pack missing for their child:
+
+Parent Id: <%=@parent.id%>
+Parent Name: <%=@parent.full_name%>
+Parent Email: <%=@parent.email%>
+Child Id: <%=@child.id%>
+Child Name: <%=@child.full_name%>
+Child Status: <%=@child.status%>
+Subject: <%=@message.subject_name%>
+Pack: <%=@message.pack_name%>
+Details: <%=@message.content%>.

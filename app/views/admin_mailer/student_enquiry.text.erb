@@ -1,3 +1,14 @@
 Dear D and O,
 
-<%=@user.full_name%> (<%=@user.id.to_s%>) needs help with <%=@message.subject_name%>. In particular pack <%=@message.pack_name%> on page <%=@message.page_number%>, question number <%=@message.question_number%>.The following additional details have been given: <%=@message.content%>
+The following student needs help:
+
+Student Id: <%=@student.id%>
+Student Name: <%=@student.full_name%>
+Parent Id: <%=@student.parent.id%>
+Parent Name: <%=@student.parent.full_name%>
+Parent Email: <%=@student.parent.email%>
+Subject: <%=@message.subject_name%>
+Pack: <%=@message.pack_name%>
+Page: <%= @message.page_number%>
+Question Number: <%=@message.question_number%>
+Details: <%=@message.content%>.

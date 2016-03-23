@@ -44,9 +44,9 @@ class AdminMailer < ApplicationMailer
     mail(from: @student.email, subject: @message.message_subject)
   end
 
-  def registration_confirmation_to_admin(parent)
-    @parent = parent
-    mail(from: @parent.email, to: 'tjterminator.dev@gmail.com', subject: "ADDING NEW USER")
+  def registration_confirmation_to_admin(child)
+    @child = child
+    mail(from: @child.parent.email, to: 'tjterminator.dev@gmail.com', subject: "ADDING NEW USER")
   end
 
   def redeem_reward(child, amount)
