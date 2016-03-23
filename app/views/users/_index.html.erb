@@ -1,5 +1,4 @@
 <div class = 'container'>
-  <h2> Users </h2>
   <table class = 'table table-striped'>
     <thead>
       <th> Id </th>
@@ -10,7 +9,7 @@
     </thead>
     <% @users.each do |user| %>
       <tr>
-        <td> <%= user.id%> </td>
+        <td> <%= user.id %> </td>
         <td> <%= user.full_name %> </td>
         <td> <%= user.role %> </td>
         <td> <%= user.status %> </td>
@@ -19,8 +18,9 @@
           <% if user.needs_suspension? && user.status != 'SUSPENDED'%>
             <%= link_to 'Suspend Account', suspend_child_path(id: user.id), class: "btn btn-success", id: 'suspend-user-link' if user.needs_suspension? %>
           <%end%>  
-        <%end%>
-        <% if current_user.role == 'parent'%>
+        <%elsif current_user.role == 'parent'%>
+          <td><%= link_to 'Edit', edit_users_admin_path(id: user.id), class: "btn btn-success", id: 'edit-user-registration-link' %></td> 
+          <td><%= link_to 'Terminate Account', cancel_child_path(id: user.id), class: "btn btn-danger", id: 'cancel-user-link' %></td>
         <%end%>
       </tr>
     <%end%>
