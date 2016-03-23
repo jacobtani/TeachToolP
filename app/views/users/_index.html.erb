@@ -8,9 +8,9 @@
       <th> Administration </th>
     </thead>
     <% @users.each do |user| %>
-      <tr data-link="<%= users_admin_path(user) %>">
+      <tr>
         <td> <%= user.id %> </td>
-        <td> <%= user.full_name %> </td>
+        <td><%= link_to user.full_name, users_admin_path(user) %>
         <td> <%= user.role %> </td>
         <td> <%= user.status %> </td>
         <% if current_user.role == 'admin'%>
