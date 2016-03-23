@@ -183,3 +183,14 @@
     color: rgb(97, 97, 0);
   }
 }
+
+a {
+  color: #000;
+  &:visited {
+    color: #666;
+  }
+  &:hover {
+    color: #fff;
+    background-color: #000;
+  }
+}
