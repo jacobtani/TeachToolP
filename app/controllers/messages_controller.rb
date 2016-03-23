@@ -31,9 +31,9 @@ class MessagesController < ApplicationController
       AdminMailer.payment_related_enquiry(current_user, @message).deliver_now
       redirect_to parent_summary_path
     elsif @message.message_subject == 'TERMINATED ACCOUNT'
-      binding.pry
-      UserMailer.cancellation_email(current_user, @message).deliver_now
-      AdminMailer.student_cancelled_acount(current_user, @message).deliver_now
+      @user = User.find(params[:message][:message_recipient].to_i)
+      UserMailer.cancellation_email(@user, @message).deliver_now
+      AdminMailer.student_cancelled_account(@user, @message).deliver_now
       redirect_to parent_summary_path
     elsif @message.message_subject == 'SEND EMAIL TO USER'
       UserMailer.send_email_to_user(@message).deliver_now
