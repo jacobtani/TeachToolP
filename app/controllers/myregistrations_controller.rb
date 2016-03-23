@@ -41,7 +41,8 @@ class MyregistrationsController < Devise::RegistrationsController
 
   def destroy
     @user.destroy
-    redirect_to users_path  
+    flash[:success] = 'User account deleted successfully'
+    redirect_to root_path  
   end
 
   private 
