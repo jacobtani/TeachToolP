@@ -101,6 +101,13 @@ class UsersController < ApplicationController
     redirect_to employee_view_path
   end
 
+  def login_as
+    return unless current_user.role == 'admin'
+    sign_in(:user, User.find(params[:id]))
+    flash[:success]= 'Logged in successfully'
+    redirect_to root_path
+  end
+
   private 
 
     def user_params
