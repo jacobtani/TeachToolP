@@ -20,4 +20,10 @@
     <%= render 'enclosures/index', :locals => {:enclosures => Enclosure.all } %>
   </div>
 
+  <div class = 'users'>
+    <%@users = User.employees + User.admins %>
+    <%= render 'users/index', :locals => {:users => @users } %>
+  </div>
+
+
 </div>
