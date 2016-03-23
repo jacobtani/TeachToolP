@@ -9,25 +9,25 @@ class AdminMailer < ApplicationMailer
     end
   end
 
-  def parent_needs_help(parent, child, message)
+  def parent_needs_help(parent, student, message)
     @parent = parent
-    @child = child
+    @student = student
     @message = message
     if @parent.role == 'parent'
       mail(from: @parent.email, subject: @message.subject)
     end
   end
 
-  def missing_pack(parent, child, message)
+  def missing_pack(parent, student, message)
     @parent = parent
-    @child = child
+    @student = student
     @message = message
     mail(from: @parent.email, to: 'tjterminator.dev@gmail.com', subject: @message.subject)
   end
 
-  def payment_related_enquiry(parent, child, message)
+  def payment_related_enquiry(parent, student, message)
     @parent = parent
-    @child = child
+    @student = student
     @message = message
     mail(from: @parent.email, to: 'tjterminator.dev@gmail.com', subject: @message.subject)
   end
@@ -44,15 +44,15 @@ class AdminMailer < ApplicationMailer
     mail(from: @student.email, subject: @message.message_subject)
   end
 
-  def registration_confirmation_to_admin(child)
-    @child = child
-    mail(from: @child.parent.email, to: 'tjterminator.dev@gmail.com', subject: "ADDING NEW USER")
+  def registration_confirmation_to_admin(student)
+    @student = student
+    mail(from: @student.parent.email, to: 'tjterminator.dev@gmail.com', subject: "ADDING NEW USER")
   end
 
-  def redeem_reward(child, amount)
-    @child = child
+  def redeem_reward(student, amount)
+    @student = student
     @amount = amount
-    mail(from: @child.parent.email, to: 'tjterminator.dev@gmail.com', subject: 'REWARD REDEMPTION')
+    mail(from: @student.parent.email, to: 'tjterminator.dev@gmail.com', subject: 'REWARD REDEMPTION')
   end
 
   def reminder_nullify_rewards

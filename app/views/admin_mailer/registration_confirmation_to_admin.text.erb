@@ -2,11 +2,11 @@ Dear D and O,
 
 A new student has been added.
 
-<% if !@child.parent_id.nil? %>
-   Child Id: <%=@child.id%>
-   Child Name: <%=@child.full_name%>
-   Parent Id: <%=@child.parent.id%>
-   Parent Name: <%=@child.parent.full_name%>
-   Parent Email: <%=@child.parent.email%>
-   Number of Enrolments: <%=@child.enrolments.count%>
+<% if !@student.parent_id.nil? %>
+   Student Id: <%=@student.id%>
+   Student Name: <%=@student.full_name%>
+   Parent Id: <%=@student.parent.id%>
+   Parent Name: <%=@student.parent.full_name%>
+   Parent Email: <%=@student.parent.email%>
+   Number of Enrolments: <%=@student.enrolments.count%>
 <%end%>
