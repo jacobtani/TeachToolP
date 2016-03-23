@@ -14,7 +14,7 @@
     <%if current_user && current_user.role =='admin'%>
       <%= f.hidden_field :role, value: 'admin' %>
       <%= f.select :status, User.statuses.keys.to_a, label: 'Account Status' %>
-      <%= f.select :role, ['employee', 'admin'] %>
+      <%= f.select :role, ['employee', 'admin', 'student', 'parent'] %>
     <%end%>
 
     <%if current_user && current_user.role == 'parent'%>

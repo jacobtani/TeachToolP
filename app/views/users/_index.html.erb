@@ -8,7 +8,7 @@
       <th> Administration </th>
     </thead>
     <% @users.each do |user| %>
-      <tr>
+      <tr data-link="<%= users_admin_path(user) %>">
         <td> <%= user.id %> </td>
         <td> <%= user.full_name %> </td>
         <td> <%= user.role %> </td>
