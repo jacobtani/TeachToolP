@@ -22,7 +22,7 @@
         flash[:success] = "Offer was created successfully."
         format.html { redirect_to admin_path }
       else
-        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @offer}, status: 500 }
+        format.html { render :new }
       end
     end
   end
@@ -33,7 +33,7 @@
         flash[:success] = "Offer was updated successfully."
         format.html { redirect_to admin_path }
       else
-        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @offer}, status: 500 }
+        format.html { render :edit }
       end
     end
   end

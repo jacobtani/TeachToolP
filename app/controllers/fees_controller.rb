@@ -22,7 +22,7 @@
         flash[:success] = "Fee was created successfully."
         format.html { redirect_to admin_path }
       else
-        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @fee}, status: 500 }
+        format.html { render :new }
       end
     end
   end
@@ -36,7 +36,7 @@
         flash[:success] = "Fee was updated successfully."
         format.html { redirect_to admin_path }
       else
-        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @fee}, status: 500 }
+        format.html { render :edit }
       end
     end
   end

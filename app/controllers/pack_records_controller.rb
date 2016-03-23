@@ -29,7 +29,7 @@ class PackRecordsController < ApplicationController
         flash[:success] = "Pack Record was created successfully."
         format.html { redirect_to employee_view_path}
       else
-        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @pack_record}, status: 500 }
+        format.html { render :new }
       end
     end
   end
@@ -46,7 +46,7 @@ class PackRecordsController < ApplicationController
         flash[:success] = "Pack Record was updated successfully."
         format.html { redirect_to employee_view_path }
       else
-        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @pack_record}, status: 500 }
+        format.html { render :edit }
       end
     end
   end

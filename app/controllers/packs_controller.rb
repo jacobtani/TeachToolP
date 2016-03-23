@@ -22,7 +22,7 @@ class PacksController < ApplicationController
         flash[:success] = "Pack was created successfully."
         format.html { redirect_to admin_path }
       else
-        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @pack}, status: 500 }
+        format.html { render :new }
       end
     end
   end
@@ -36,7 +36,7 @@ class PacksController < ApplicationController
         flash[:success] = "Pack was updated successfully."
         format.html { redirect_to admin_path }
       else
-        format.js { render partial: 'shared/ajax_form_errors', locals: {model: @pack}, status: 500 }
+        format.html { render :edit }
       end
     end
   end
