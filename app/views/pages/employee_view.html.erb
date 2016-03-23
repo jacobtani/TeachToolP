@@ -7,52 +7,16 @@
   <%= link_to fa_icon("plus", text: 'Enter Placement Pack'), enter_placement_pack_path(id: current_user), class: "btn btn-primary hvr-sweep-to-right", id: 'placement-pack-link' if current_user && current_user.role == 'employee' %>
   <%= link_to fa_icon("plus", text: 'Nullify Rewards'), nullify_rewards_path(id: current_user), class: "btn btn-primary hvr-sweep-to-right", id: 'nullify-rewards-link' if current_user && current_user.role == 'employee' %>
 
-    <h1> Send Message </h1>
-    <% message = Message.new%>
-    <%= form_for message do |f| %>
-      <% if message.errors.any? %>
-        <div class="error_messages">
-          <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
-          <ul>
-            <% message.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <div class = "row">
-        <div class = "col-md-6">
-          <%= f.label :message_recipient_name, "Recipient Name:" %><br />
-          <%= f.text_area :message_recipient_name, cols: '100%' %>
-          <%= f.label :message_recipient, "Recipient Email:" %><br />
-          <%= f.text_area :message_recipient, cols: '100%' %>
-        </div>
-      </div>
-
-      <div class = "row">
-        <div class = "col-md-12">
-          <%= f.label :subject, "Message Subject:" %><br />
-          <%= f.text_area :subject, cols: '100%'%>
-        </div>
-      </div>
-    
-      <div class = "row">
-        <div class = "col-md-12">
-          <%= f.hidden_field :message_subject, value: 'SEND EMAIL TO USER'%>
-        </div>
-      </div>
-
-      <div class = "row">
-        <div class = "col-md-12">
-          <%= f.label :content, "Details:" %><br />
-          <%= f.text_area :content, rows: '10%', cols: '100%' %>
-        </div>    
-      </div>
-      <div class = "row">
-        <%= f.button "Send Email", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..."} %>
-      </div>
-    <% end %>
-
-
+  <h1> Send Message </h1>
+  <% @message = Message.new%>
+  <%= bootstrap_form_for(@message, layout: :horizontal)  do |f| %>
+    <% render 'messages/message_errors_template', locals: {:message => @message} %>
+    <%= f.text_area :message_recipient_name, rows: '10%', cols: '100%', label: 'Message Recipient Name' %>
+    <%= f.text_area :message_recipient, rows: '10%', cols: '100%', label: 'Message Recipient' %>
+    <%= f.text_area :subject, cols: '100%', label: 'Message Subject'%>
+    <%= f.hidden_field :message_subject, value: 'SEND EMAIL TO USER'%>
+    <%= f.text_area :content, rows: '10%', cols: '100%', label: 'Details' %>
+    <%= f.button "Send Email", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..."} %>    
+    <%= link_to 'Cancel', employee_path, class: 'btn btn-info' %>
+  <% end %>
 </div>
