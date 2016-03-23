@@ -33,6 +33,4 @@ class PackRecord < ActiveRecord::Base
     posting_number = user.pack_records.present? ? user.pack_records.last.posting_number + 1 : 1
   end
 
-
-
 end

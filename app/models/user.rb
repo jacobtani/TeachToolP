@@ -20,9 +20,7 @@ class User < ActiveRecord::Base
 
   def self.update_total_rewards(user)
     total_rewards = 0
-    user.pack_records.each do |pr|
-      total_rewards += pr.reward  
-    end
+    user.pack_records.each {|pr| total_rewards = pr.reward  }
     user.update(rewards: total_rewards)
   end
 
@@ -33,16 +31,14 @@ class User < ActiveRecord::Base
   def calculate_total_fees (user)
     total_fees = 0
     subject_enrolment_fees = calculate_subject_enrolment_fees(user)
-    user.update(total_fees: subject_enrolment_fees, account_balance: user.total_fees)
+    user.update(total_fees: subject_enrolment_fees)
     subject_enrolment_fees
   end
 
   def calculate_subject_enrolment_fees(user)
     subject_enrolment_fees = 0
     if user.role == 'student' && user.enrolments.present?
-      user.enrolments.each do |enrolment| 
-        subject_enrolment_fees+= enrolment.fees
-      end
+      user.enrolments.each {|enrolment| subject_enrolment_fees+= enrolment.fees  }
     end
     subject_enrolment_fees
   end

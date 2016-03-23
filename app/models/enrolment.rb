@@ -9,15 +9,11 @@ class Enrolment < ActiveRecord::Base
     if @offer
       enrolment_fee = Fee.all.where(fee_type: 1).first.amount
       monthly_fee = Fee.all.where(subject_id: enrolment.subject_id, fee_type: 0).first.amount
-      if user.enrolments.present?
-        new_enrolment_fee = 0
-      else
-        new_enrolment_fee = self.apply_enrolment_fee_adjustments(enrolment_fee, @offer.discount_enrolment, @offer.percentage_enrolment)
-      end
+      new_enrolment_fee = user.enrolments.present? ? 0 : self.apply_enrolment_fee_adjustments(enrolment_fee, @offer.discount_enrolment, @offer.percentage_enrolment)
       new_monthly_fee = self.apply_monthly_fee_adjustments(monthly_fee, @offer.discount_monthly, @offer.percentage_monthly)
-      self.calculate_enrolment_fees(new_enrolment_fee, new_monthly_fee, enrolment)
+      self.calculate_total_enrolment_fees(new_enrolment_fee, new_monthly_fee, enrolment)
     else
-      self.calculate_enrolment_fees(enrolment_fee, monthly_fee, enrolment)
+      self.calculate_total_enrolment_fees(enrolment_fee, monthly_fee, enrolment)
     end
   end
 
@@ -28,28 +24,30 @@ class Enrolment < ActiveRecord::Base
     end
   end
 
+  #Calculate enrolment fee based on offer discounts
   def self.apply_enrolment_fee_adjustments(enrolment_fee, discount_amount, percentage)
     if discount_amount.present?
       enrolment_fee = enrolment_fee - discount_amount
     elsif percentage.present?
-      enrolment_fee = enrolment_fee * percentage/100
+      enrolment_fee = enrolment_fee - (enrolment_fee * percentage/100)
     end
     enrolment_fee
   end
 
+  #Calculate monthly fee based on discount
   def self.apply_monthly_fee_adjustments(monthly_fee, discount_amount, percentage)
     if discount_amount.present?
       monthly_fee = monthly_fee - discount_amount
     elsif percentage.present?
-      monthly_fee = monthly_fee * percentage/100
+      monthly_fee = monthly_fee - (monthly_fee * percentage/100)
     end
     monthly_fee
   end
 
-  def self.calculate_enrolment_fees (enrolment_fee, monthly_fee, enrolment)
+  #Calculate total enrolment fees
+  def self.calculate_total_enrolment_fees (enrolment_fee, monthly_fee, enrolment)
     if enrolment.fees == 0 
-      enrolment.fees = enrolment_fee + monthly_fee
-      enrolment.save
+      enrolment.update(fees: enrolment_fee + monthly_fee)
     end
   end
 
