@@ -15,31 +15,39 @@ class MessagesController < ApplicationController
   end
 
   def send_message(user, message)
-    if @message.message_subject == 'STUDENT NEEDS HELP'
-      AdminMailer.student_enquiry(current_user, @message).deliver_now
+    @child = User.find(params[:message][:child]
+
+    if message.message_subject == 'STUDENT NEEDS HELP'
+      AdminMailer.student_needs_help(current_user, message).deliver_now
       redirect_to student_view_path
-    elsif @message.message_subject == 'MISSING PACK/WORK'
-      AdminMailer.missing_pack(current_user, @message).deliver_now
+
+    elsif message.message_subject == 'PARENT NEEDS HELP'
+      AdminMailer.parent_help_required(current_user, @child, message).deliver_now
       redirect_to parent_summary_path
-    elsif @message.message_subject == 'GENERAL CORRESPONDENCE'
-      AdminMailer.general_parent_enquiry(current_user, @message).deliver_now
+    
+    elsif message.message_subject == 'MISSING PACK/WORK'
+      AdminMailer.missing_pack(current_user, @child, message).deliver_now
       redirect_to parent_summary_path
-    elsif @message.message_subject == 'PARENT NEEDS HELP'
-      AdminMailer.parent_help_required(current_user, @message).deliver_now
+    
+    elsif message.message_subject == 'PAYMENT RELATED'
+      AdminMailer.payment_related_enquiry(current_user, @child, message).deliver_now
       redirect_to parent_summary_path
-    elsif @message.message_subject == 'PAYMENT RELATED'
-      AdminMailer.payment_related_enquiry(current_user, @message).deliver_now
+
+    elsif message.message_subject == 'GENERAL CORRESPONDENCE'
+      AdminMailer.general_parent_enquiry(current_user, message).deliver_now
       redirect_to parent_summary_path
-    elsif @message.message_subject == 'TERMINATED ACCOUNT'
-      @user = User.find(params[:message][:message_recipient].to_i)
-      UserMailer.cancellation_email(@user, @message).deliver_now
-      AdminMailer.student_cancelled_account(@user, @message).deliver_now
+    
+   elsif message.message_subject == 'TERMINATED ACCOUNT'
+      UserMailer.cancel_child_account(@child, message).deliver_now
+      AdminMailer.student_cancelled_account(@child, message).deliver_now
       redirect_to parent_summary_path
-    elsif @message.message_subject == 'SEND EMAIL TO USER'
-      UserMailer.send_email_to_user(@message).deliver_now
+    
+    elsif message.message_subject == 'SEND EMAIL TO USER'
+      UserMailer.send_email_to_user(message).deliver_now
       redirect_to employee_view_path
-    elsif @message.message_subject == 'RECOMMEND US'
-      UserMailer.recommend_us(current_user, @message).deliver_now
+    
+    elsif message.message_subject == 'RECOMMEND US'
+      UserMailer.recommend_us(current_user, message).deliver_now
       redirect_to parent_summary_path
     end
   end
@@ -82,7 +90,7 @@ class MessagesController < ApplicationController
   private 
 
     def message_params
-      params.require(:message).permit(:content, :pack_name, :message_recipient_name, :page_number, :question_number, :subject_name, :subject, :message_subject, :message_recipient)
+      params.require(:message).permit(:content, :pack_name, :message_recipient_name, :child, :page_number, :question_number, :subject_name, :subject, :message_subject, :message_recipient)
     end
 
 end

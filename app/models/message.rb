@@ -12,6 +12,7 @@ class Message
   attribute :message_recipient
   attribute :message_recipient_name
   attribute :subject
+  attribute :child
   
   validates_presence_of :message_subject
 

@@ -15,7 +15,7 @@ class UserMailer < ApplicationMailer
     mail(:to => @user.parent.email, :subject => "Suspension of MyCompany Account")
   end
 
-  def cancellation_email(user, message)
+  def cancel_child_account(user, message)
     @user = user
     @message = message
     mail(:to => @user.email, :subject => @message.message_subject)
