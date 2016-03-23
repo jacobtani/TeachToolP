@@ -73,10 +73,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def children
-    @children = @user.children if current_user.role == 'parent'
-  end
-
   def suspend
     @user.update(status: 1)
     UserMailer.suspension_email(@user).deliver_now
