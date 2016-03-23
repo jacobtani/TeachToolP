@@ -17,6 +17,6 @@
     <%= f.hidden_field :message_subject, value: 'SEND EMAIL TO USER'%>
     <%= f.text_area :content, rows: '10%', cols: '100%', label: 'Details' %>
     <%= f.button "Send Email", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..."} %>    
-    <%= link_to 'Cancel', employee_path, class: 'btn btn-info' %>
+    <%= link_to 'Cancel', employee_view_path, class: 'btn btn-info' %>
   <% end %>
 </div>

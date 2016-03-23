@@ -12,6 +12,6 @@
     <%= f.number_field :consistency, placeholder: 'Enter consistency', min: 0, max: 100, class: 'form-control' %>
     <%= f.text_field :comment, placeholder: 'Enter comments', class: 'form-control' %>
     <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
-    <%= link_to 'Cancel', employee_path, class: 'btn btn-info' %>
+    <%= link_to 'Cancel', employee_view_path, class: 'btn btn-info' %>
   <% end %>
 </div>
