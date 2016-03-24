@@ -6,19 +6,19 @@
 
 ### Setup 
 
-* Install all required gems: `bundle install`
+* Install all required gems: ```bundle install```
 
 * Update the database configuration file 'database.yml'.
 
-* Create database: `rake db:create`
+* Create database: ```rake db:create```
 
-* Run all migrations: `rake db:migrate`
+* Run all migrations: ```rake db:migrate```
 
-* Seed the database: `rake db:seed`
+* Seed the database: ```rake db:seed```
 
-* Update the cron jobs: `whenever --update-crontab`
+* Update the cron jobs: ```whenever --update-crontab```
 
-* Run application server: `rails s`
+* Run application server: ```rails s```
 
 ### Database
 
