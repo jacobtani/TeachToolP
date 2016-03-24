@@ -21,8 +21,8 @@
         <td> <%= fee.id %> </td>
         <td> <%= fee.fee_type %> </td>
         <td> <%= Subject.find(fee.subject_id).subject_name if fee.subject_id %> </td>
-        <td> <%= fee.start_date %> </td>
-        <td> <%= fee.end_date %> </td>
+        <td> <%= fee.start_date.strftime('%c') %> </td>
+        <td> <%= fee.end_date.strftime('%c') %> </td>
         <td> <%= number_to_currency fee.amount %> </td>
         <% if current_user && current_user.role == 'admin' %>
           <td> 
