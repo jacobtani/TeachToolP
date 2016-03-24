@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def priviliged_only
-    user_signed_in? && current_user.role == 'parent'  || current_user.role == 'admin'
+    user_signed_in? && current_user.role == 'employee'  || current_user.role == 'admin'
   end
 
   def student_only

@@ -2,7 +2,8 @@ class PackRecordsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:index, :show, :update_total_rewards]
   before_action :set_pack_record, only: [:edit, :update, :show, :destroy]
-  
+  before_action :privileged_only, only: [:new, :create, :edit, :update, :destroy]
+
   def index
     @pack_records = @user.pack_records
   end
