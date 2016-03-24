@@ -13,6 +13,10 @@
         <td><%= link_to user.full_name, users_admin_path(user) %>
         <td> <%= user.role %> </td>
         <td> <%= user.status %> </td>
+        <% if user.payment_due < Date.today %>
+          <%= link_to 'Send Missing Payment Email', missing_payment_path(id: user.id), class: "btn btn-success", id: 'missing-payment-link' %>
+        <%end%>
+        <%= link_to 'Payment Received', payment_received_path(id: user.id), class: "btn btn-success", id: 'payment-received-link' %>
         <% if current_user.role == 'admin'%>
           <td><%= link_to 'Sign in as', login_as_user_path(id: user.id), class: 'btn btn-primary' %></td>
           <% if user.needs_suspension? && user.status != 'SUSPENDED'%>

@@ -1,7 +1,7 @@
 require 'tempfile'
 
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :destroy, :edit, :update, :children, :suspend, :cancel_account, :end_trial, :redeem_reward, :missing_payment]
+  before_action :set_user, only: [:show, :destroy, :edit, :update, :children, :suspend, :cancel_account, :end_trial, :redeem_reward, :missing_payment, :payment_received]
   before_action :authenticate_user!  
  
   def index
@@ -104,6 +104,13 @@ class UsersController < ApplicationController
     flash[:success]= 'Logged in successfully'
     redirect_to root_path
   end
+
+  def payment_received
+    payment_due = @user.payment_due
+    @user.update(last_payment_date: Date.today, payment_due: payment_due + 1.month)
+    redirect_to root_path
+  end
+
 
   private 
 
