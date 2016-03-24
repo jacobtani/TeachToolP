@@ -16,7 +16,7 @@ class MessagesController < ApplicationController
   end
 
   def send_message(user, message)
-    @child = User.find(params[:message][:child]
+    @child = User.find(params[:message][:child])
 
     if message.message_subject == 'STUDENT NEEDS HELP'
       AdminMailer.student_needs_help(current_user, message).deliver_now
