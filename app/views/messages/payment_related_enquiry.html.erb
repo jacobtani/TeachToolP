@@ -2,8 +2,8 @@
   <h1> PAYMENT ENQUIRY </h1>
   <%= bootstrap_form_for(@message, layout: :horizontal)  do |f| %>
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
-    <%= f.collection_select :child, current_user.children, :id, :full_name, :prompt => "Select child", label: 'Child Name' %>
-    <%= f.collection_select :pack_name, Pack.all, :name, :name, :prompt => "Select pack", label: 'Pack Name' %>
+    <%= f.collection_select :child, current_user.children, :id, :full_name, :prompt => "Select student", label: 'Student Name' %>
+    <%= f.collection_select :subject_name, Subject.all, :subject_name, :subject_name, :prompt => "Select subject", label: 'Pack Name' %>
     <%= f.text_area :content, rows: '10%', cols: '100%', label: 'Comments' %>
     <%= f.hidden_field :message_subject, value: 'PAYMENT RELATED'%>
     <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
@@ -11,5 +11,4 @@
     <% end %>
     <%= link_to fa_icon("undo", text: 'Cancel'), parent_summary_path, class: 'btn btn-danger' %>
   <% end %>
-
 </div>

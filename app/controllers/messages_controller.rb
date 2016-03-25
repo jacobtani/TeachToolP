@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
       redirect_to student_view_path
 
     elsif message.message_subject == 'PARENT NEEDS HELP'
-      AdminMailer.parent_help_required(current_user, @child, message).deliver_now
+      AdminMailer.parent_needs_help(current_user, @child, message).deliver_now
       redirect_to parent_summary_path
     
     elsif message.message_subject == 'MISSING PACK/WORK'
