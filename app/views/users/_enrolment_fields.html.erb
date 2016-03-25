@@ -1,4 +1,4 @@
-<div class="nested-fields">
+<div class="nested-fields level-header">
   <h3> Add Enrolment </h3>
   <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select Subject" %>
   <%= f.number_field :grade, min: 1, max: 7, placeholder: 'Enter school grade' %>

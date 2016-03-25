@@ -1,15 +1,15 @@
 <div class = 'container'>
   <div class = 'row'>
-    <ul class="nav nav-sidebar pull-right">
-      <div class ='row navbuttons pull-right'>
-        <div class = "col-sm-4 btn btn-primary"> 
+    <ul class="nav nav-sidebar pull-right level-header">
+      <div class ='row navbuttons pull-right level-header'>
+        <div class = "col-sm-4 btn btn-success level-header"> 
           <li class= "dropdown"><a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Children <span class="caret"></span></a> 
             <ul class="dropdown-menu">
-              <li>  <%= link_to 'Add Child', new_users_admin_path, class: "btn btn-primary hvr-push", id: 'new-user-link' if user_signed_in? %></li>
+              <li>  <%= link_to 'Add Child', new_users_admin_path, class: "btn btn-info hvr-push", id: 'new-user-link' if user_signed_in? %></li>
             </ul>
           </li>
         </div>
-        <div class = "col-sm-4 btn btn-primary"> 
+        <div class = "col-sm-4 btn btn-success level-header"> 
           <li class= "dropdown"><a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Send Email <span class="caret"></span></a> 
             <ul class="dropdown-menu">
               <li><%= link_to 'MISSING PACK/WORK', missing_pack_path(id: current_user.id), class: "btn btn-primary hvr-push", id:'missing-pack-link' if user_signed_in? %></li>
@@ -20,7 +20,7 @@
             </ul>
           </li>
         </div>
-          <div class = "col-sm-4 btn btn-primary"> 
+          <div class = "col-sm-4 btn btn-success level-header"> 
             <li class= "dropdown"><a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Enrolments <span class="caret"></span></a> 
               <ul class="dropdown-menu">
                 <li><%= link_to 'View Enrolments', users_admin_enrolments_path(users_admin_id: current_user.id), class: "btn btn-primary hvr-push", id: 'view-enrolment-link' if user_signed_in? %></li>

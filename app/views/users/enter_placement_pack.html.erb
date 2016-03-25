@@ -1,5 +1,5 @@
 <%= wicked_pdf_stylesheet_link_tag "pdf.css" %> 
-<div class = 'container form-scrollable'>
+<div class = 'container form-scrollable level-header'>
   <h2>Placement Pack Results </h2>
   <%= bootstrap_form_tag url: enter_placement_pack_path(id: current_user.id, :format => 'pdf') do |f| %>
     <%= select_tag "student", options_from_collection_for_select(User.students, "id", "full_name")%>
@@ -59,6 +59,6 @@
     <% end %>
     
     <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
-    <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
+    <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-danger' %>
   <% end %>
 </div>

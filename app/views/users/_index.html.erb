@@ -1,4 +1,4 @@
-<div class = 'container'>
+<div class = 'container level-header'>
   <table class = 'table table-striped'>
     <thead>
       <th> Id </th>
@@ -22,12 +22,12 @@
         <%end%>
         <td><%= link_to 'Payment Received', payment_received_path(id: user.id), class: "btn btn-success", id: 'payment-received-link' %></td>
         <% if current_user.role == 'admin'%>
-          <td><%= link_to 'Sign in as', login_as_user_path(id: user.id), class: 'btn btn-primary' %></td>
+          <td><%= link_to 'Sign in as', login_as_user_path(id: user.id), class: 'btn btn-info' %></td>
           <% if user.needs_suspension? && user.status != 'SUSPENDED'%>
             <td><%= link_to 'Suspend Account', suspend_child_path(id: user.id), class: "btn btn-success", id: 'suspend-user-link' if user.needs_suspension? %></td>
           <%end%>  
         <%elsif current_user.role == 'parent'%>
-          <td><%= link_to 'Edit', edit_users_admin_path(id: user.id), class: "btn btn-success", id: 'edit-user-registration-link' %></td> 
+          <td><%= link_to 'Edit', edit_users_admin_path(id: user.id), class: "btn btn-info", id: 'edit-user-registration-link' %></td> 
           <td><%= link_to 'Terminate Account', cancel_child_path(id: user.id), class: "btn btn-danger", id: 'cancel-user-link' %></td>
         <%end%>
       </tr>

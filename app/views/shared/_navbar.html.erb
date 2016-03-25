@@ -62,10 +62,10 @@
               <li> <%= link_to 'Employee', employee_view_path %> </li>
             <%end%>
           </ul>
-          <p class="nav navbar-right">
+          <div class="nav navbar-right header">
             <% if user_signed_in? %>
-                 <%= link_to fa_icon("user", text: current_user.email), edit_user_registration_path, class: 'btn btn-primary navbar-btn' %>
-                <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-primary navbar-btn hvr-sweep-to-right' %>
+                 <%= link_to fa_icon("user", text: current_user.email), edit_user_registration_path, class: 'btn btn-success navbar-btn' %>
+                <%= link_to fa_icon("sign-out", text: "Logout"), destroy_user_session_path, :method => :delete, class: 'btn btn-danger navbar-btn' %>
             <% else %>
                 <%= link_to 'Login', new_user_session_path, class: "btn btn-success navbar-btn hvr-bounce-to-top"  %>  
                 <%= link_to fa_icon("user-plus", text: 'Register'), new_user_registration_path, class: "btn btn-danger navbar-btn hvr-push"  %>

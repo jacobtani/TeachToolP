@@ -1,4 +1,4 @@
-<div class = 'container form-scrollable'>
+<div class = 'container form-scrollable level-header'>
   <h1> STUDENT NEEDS HELP </h1>
   <%= bootstrap_form_for(@message, layout: :horizontal)  do |f| %>
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
@@ -9,6 +9,6 @@
     <%= f.text_area :content, rows: '10%', cols: '100%', label: 'Details of Difficulty' %>
     <%= f.hidden_field :message_subject, value: 'STUDENT NEEDS HELP'%>
     <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
-    <%= link_to 'Cancel', student_path, class: 'btn btn-info' %>
+    <%= link_to 'Cancel', student_path, class: 'btn btn-danger' %>
   <% end %>
 </div>

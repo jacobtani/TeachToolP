@@ -7,8 +7,9 @@
     <% if devise_mapping.rememberable? -%>
       <%= f.check_box :remember_me %>
     <% end -%>
-
+    <div class ='level-header'>
     <%= f.button "Login", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Logging in..."} %>    
-    <%= link_to "Forgot your password?", new_password_path(resource_name), class: "btn btn-info" %>
+    <%= link_to "Forgot your password?", new_password_path(resource_name), class: "btn btn-info level-header" %>
+    </div>
   <% end %>
 </div>

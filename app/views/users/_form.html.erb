@@ -1,4 +1,4 @@
-<div class='container'>
+<div class='container level-header'>
   <%= bootstrap_form_for(@user, url: locals[:path], layout: :horizontal)  do |f| %>
     <%= f.text_field :first_name, placeholder: 'Enter first name', class: 'form-control' %>
     <%= f.text_field :surname, placeholder: 'Enter surname', class: 'form-control' %>
@@ -32,6 +32,6 @@
 
     <%= javascript_tag "resetCocoonDestroyed();" if @user.errors[:enrolments].present? %>
     <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
-    <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
+    <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-danger' %>
   <% end %>
 </div>

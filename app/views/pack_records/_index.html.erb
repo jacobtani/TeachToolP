@@ -1,4 +1,4 @@
-<div class = 'container'>
+<div class = 'container level-header'>
   <% @pack_records = locals[:pack_records] if @pack_records.nil?%>
   <% if current_user.role == 'student'%>
     <h2> Academic Record for <%= current_user.full_name %> </h2>

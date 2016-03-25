@@ -1,4 +1,4 @@
-<div class = 'container form-scrollable'>
+<div class = 'container form-scrollable level-header'>
   <h1> CANCEL ACCOUNT </h1>
   <%= bootstrap_form_for @message do |f| %>
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
@@ -15,7 +15,7 @@
     <% end %>
     <%= f.hidden_field :message_subject, value: 'TERMINATED ACCOUNT'%>
     <%= f.hidden_field :child, value: @user.id %>
-    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
-      <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-info' %>
+    <%= f.button "Terminate", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Terminating..."} %>    
+      <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-danger' %>
   <% end %>
 </div>

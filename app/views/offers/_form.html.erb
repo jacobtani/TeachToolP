@@ -9,7 +9,9 @@
     <%= f.number_field :discount_enrolment, placeholder: 'Enter enrolment discount amount', class: 'form-control' %>
     <%= f.number_field :percentage_monthly, placeholder: 'Enter monthly percentage discount', class: 'form-control' %>
     <%= f.number_field :percentage_enrolment, placeholder: 'Enter enrolment percentage discount', class: 'form-control' %>
-    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
-    <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
+    <div class='level-header'>
+      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>  
+      <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
+    </div>
   <% end %>
 </div>

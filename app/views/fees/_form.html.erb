@@ -5,7 +5,9 @@
     <%= f.number_field :amount, placeholder: 'Enter amount', class: 'form-control' %>
     <%= f.select :fee_type, Fee.fee_types.keys.to_a, label: 'Type' %>
     <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select Subject" %>
-    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>    
-    <%= link_to 'Cancel', admin_path, class: 'btn btn-info' %>
+    <div class='level-header'>
+      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>  
+      <%= link_to 'Cancel', admin_path, class: 'btn btn-danger' %>
+    </div>
   <% end %>
 </div>

@@ -195,28 +195,120 @@ a {
   }
 }
 
-.btn {
-    padding: 10px 15px;
-    border: 0 none;
-    font-weight: 200;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+@mixin heading-bar{
+  font: {
+    family: "Avenir Next";
+    size: 1.5em;
+    weight: 500;
+  }
+  letter-spacing: .5px;
+  background-color: $blue;
+  padding: 6px 1px 2px 2px;
+  color: $white;
+  .btn{
+    font-family: "roboto";
+    letter-spacing: 0;
+    font-weight: 300;
+  }
 }
- 
-.btn:focus, .btn:active:focus, .btn.active:focus {
-    outline: 0 none;
+
+@mixin blue-button{
+  color: $light-gray;
+  border: 0px solid $light-gray;
+  border-radius: 0px;
+  background-color: $blue;
+  &:hover{
+    background-color: darken($blue, 5%)
+  }
 }
- 
-.btn-primary {
-    background: #0099cc;
-    color: #ffffff;
+
+@mixin red-button{
+  color: $light-gray;
+  border: 0px solid $light-gray;
+  border-radius: 0px;
+  background-color: $red;
+  &:hover{
+    background-color: darken($red, 8%)
+  }
 }
- 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-    background: #33a6cc;
+
+@mixin pinkred-button{
+  color: $light-gray;
+  border: 0px solid $light-gray;
+  border-radius: 0px;
+  background-color: $pinkred;
+  &:hover{
+    background-color: darken($pinkred, 8%)
+  }
 }
- 
-.btn-primary:active, .btn-primary.active {
-    background: #007299;
-    box-shadow: none;
+
+.level-header{
+  .btn{
+    border-color: $light-gray;
+    color: $light-gray;
+    padding: 8px 15px;
+    border-radius: 2px;
+  }
+  .btn-danger{
+    @include red-button;
+  }
+  .btn-success{
+    @include pinkred-button;
+  }
+  .btn-info{
+    @include blue-button;
+  }
+
+}
+
+/*******************
+Header with buttons
+*******************/
+.header{
+  .btn{
+    position: initial;
+  }
+  .btn.btn-info{
+    @include blue-button;
+    margin-left: 0em;
+    padding: 5px 2em 2.5px 1em;
+    vertical-align: middle;
+    .fa{
+      padding-right: 4px;
+    }
+  }
+  .btn.btn-success{
+    @include pinkred-button;
+    margin-left: 0em;
+    padding: 5px 2em 2.5px 1em;
+    vertical-align: middle;
+    .fa{
+      padding-right: 4px;
+    }
+  }
+  .btn.btn-danger{
+    @include red-button;
+    margin-left: 0em;
+    vertical-align: middle;
+    padding: 5px 2em 2.5px 1em;
+    .fa{
+      padding-right: 4px;
+    }
+  }
+  .hvr-icon-up:before {
+    right: 8.7em;
+  }
+}
+
+.name-header {
+  @include heading-bar;
+  margin: 0;
+}
+
+.button-group{
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+  top: 9px;
+  right: 15px;
 }
