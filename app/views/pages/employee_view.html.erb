@@ -5,11 +5,11 @@
   <div class = "col-sm-4 btn btn-success level-header"> 
     <a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Utilities <span class="caret"></span></a> 
     <ul class="dropdown-menu">
-      <li><%= link_to fa_icon("plus", text: 'Send Work Missing Email'), work_missing_path(user_id: current_user), class: "btn btn-info hvr-sweep-to-right", id: 'work-missing-link' if current_user && current_user.role == 'employee' %></li>
-      <li><%= link_to fa_icon("plus", text: 'Enter Placement Pack'), enter_placement_pack_path(id: current_user), class: "btn btn-info hvr-sweep-to-right", id: 'placement-pack-link' if current_user && current_user.role == 'employee' %></li>
-      <li><%= link_to fa_icon("plus", text: 'Nullify Rewards'), nullify_rewards_path(id: current_user), class: "btn btn-info hvr-sweep-to-right", id: 'nullify-rewards-link' if current_user && current_user.role == 'employee' %></li>
-      <li><%= link_to fa_icon("plus", text: 'Pack Records'), pack_records_path(user_id: current_user), class: "btn btn-info hvr-sweep-to-right", id: 'pack-records-link' if current_user && current_user.role == 'employee' %></li>
-        <li><%= link_to fa_icon("plus", text: 'Send Message'), send_user_message_path(user_id: current_user), class: "btn btn-info hvr-sweep-to-right", id: 'send-user-message-link' if current_user && current_user.role == 'employee' %></li>
+      <li><%= link_to 'Send Work Missing Email', work_missing_path(user_id: current_user), class: "btn btn-info hvr-sweep-to-right", id: 'work-missing-link' if current_user && current_user.role == 'employee' %></li>
+      <li><%= link_to 'Enter Placement Pack', enter_placement_pack_path(id: current_user), class: "btn btn-info hvr-sweep-to-right", id: 'placement-pack-link' if current_user && current_user.role == 'employee' %></li>
+      <li><%= link_to 'Nullify Rewards', nullify_rewards_path(id: current_user), class: "btn btn-info hvr-sweep-to-right", id: 'nullify-rewards-link' if current_user && current_user.role == 'employee' %></li>
+      <li><%= link_to 'Pack Records', pack_records_path(user_id: current_user), class: "btn btn-info hvr-sweep-to-right", id: 'pack-records-link' if current_user && current_user.role == 'employee' %></li>
+        <li><%= link_to 'Send Message', send_user_message_path(user_id: current_user), class: "btn btn-info hvr-sweep-to-right", id: 'send-user-message-link' if current_user && current_user.role == 'employee' %></li>
       </ul>
     </li>
   </div>
