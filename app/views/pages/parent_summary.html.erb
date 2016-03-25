@@ -5,6 +5,9 @@
         <div class = "col-sm-4 btn btn-success level-header"> 
           <li class= "dropdown"><a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Children <span class="caret"></span></a> 
             <ul class="dropdown-menu">
+              <% current_user.children.each do |child|%>
+                <li><%= link_to child.full_name, pack_records_path(user_id: child.id), id:'some-link'%></li>
+              <%end%>
               <li>  <%= link_to 'Add Child', new_users_admin_path, class: "btn btn-info hvr-push", id: 'new-user-link' if user_signed_in? %></li>
             </ul>
           </li>
@@ -29,16 +32,8 @@
           </div> 
       </div>
     </ul>
+  </div>
+  <div class='show-me'>
+  <%= render 'users/show', locals: { user: current_user} %>
   </div> 
-  
-  <div class='users'>
-    <h2> My Children </h2>
-    <% @users = current_user.children %>
-    <%= render 'users/index', :locals => {:users => @users } %>
-  </div>
-  
-  <div class = "payment-blurb">
-    <p><i> Please make your payments to 11-5922-2924259-01 - account number TEACH TOOL </i></p>
-  </div>
-
 </div>

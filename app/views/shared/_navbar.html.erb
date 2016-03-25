@@ -43,9 +43,6 @@
               <li class= "dropdown">
                 <a href="#" class="dropdown-toggle admin-header hvr-bounce-in" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Parent Portal <span class="caret"></span></a> 
                 <ul class="dropdown-menu">
-                  <% current_user.children.each do |child|%>
-                    <li><%= link_to child.full_name, pack_records_path(user_id: child.id), id:'some-link'%></li>
-                  <%end%>
                   <li><%= link_to 'Summary', parent_summary_path %> </li>
                 </ul>
               </li>
