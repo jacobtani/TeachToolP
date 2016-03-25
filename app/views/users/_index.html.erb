@@ -12,7 +12,7 @@
       <th> Payment Due </th>     
       <th> Administration </th>
     </thead>
-    <% @users.each do |user| %>
+    <% @users.sort_by(&:"#{'id'}").each do |user| %>
       <tr>
         <td> <%= user.id %> </td>
         <td><%= link_to user.full_name, users_admin_path(user) %>

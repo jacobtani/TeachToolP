@@ -14,7 +14,7 @@
       	<th> Administration </th>
       <%end%>
     </thead>
-    <% @enclosures.each do |enclosure| %>
+    <% @enclosures.sort_by(&:"#{'id'}").each do |enclosure| %>
       <tr>
         <td> <%= enclosure.name %> </td>
         <td> <%= enclosure.barcode %> </td>

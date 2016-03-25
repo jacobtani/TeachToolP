@@ -23,7 +23,7 @@
         <th> Administration </th>
       <%end%>
     </thead>
-    <% @pack_records.each do |pack_record| %>
+    <% @pack_records.sort_by(&:"#{'id'}").each do |pack_record| %>
       <tr>
         <td> <%= Pack.find(pack_record.pack_id).name %> </td>
         <td> <%= pack_record.posting_number %> </td>        

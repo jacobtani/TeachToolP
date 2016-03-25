@@ -16,7 +16,7 @@
       	<th> Administration </th>
       <%end%>
     </thead>
-    <% @fees.each do |fee| %>
+    <% @fees.sort_by(&:"#{'id'}").each do |fee| %>
       <tr>
         <td> <%= fee.id %> </td>
         <td> <%= fee.fee_type %> </td>

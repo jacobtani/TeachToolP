@@ -19,7 +19,7 @@
       	<th> Administration </th>
       <%end%>
     </thead>
-    <% @offers.each do |offer| %>
+    <% @offers.sort_by(&:"#{'id'}").each do |offer| %>
       <tr>
         <td> <%= offer.offer_name %> </td>
         <td> <%= offer.offer_description %> </td>
