@@ -4,7 +4,7 @@
     <h2> Subjects Offered </h2>
     <div class='btn-toolbar pull-right' id='toolbars'>
       <div class="btn-group button-group" role="group" aria-label="a">
-        <%= link_to fa_icon("plus", text: 'Add Subject'), new_subject_path, class: "btn btn-primary", id: 'new-subject-link' %>
+        <%= link_to fa_icon("plus", text: 'Add Subject'), new_subject_path, class: "btn btn-info", id: 'new-subject-link' %>
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
         <td> <%= subject.highest_grade_taught %> </td>
         <% if current_user.role == 'admin' %>
           <td> 
-            <%= link_to 'Edit', edit_subject_path(id: subject.id), class: "btn btn-success", id: 'edit-subject-link' %> 
+            <%= link_to fa_icon("pencil", text: 'Edit'), edit_subject_path(id: subject.id), class: "btn btn-success", id: 'edit-subject-link' %> 
             <%= link_to 'Delete', subject_path(subject), method: :delete,
                 class: "btn btn-danger", id: 'delete-subject-link' %>
           </td>

@@ -1,37 +1,46 @@
-<div class='container level-header'>
-  <%= bootstrap_form_for(@user, url: locals[:path], layout: :horizontal)  do |f| %>
-    <%= f.text_field :first_name, placeholder: 'Enter first name', class: 'form-control' %>
-    <%= f.text_field :surname, placeholder: 'Enter surname', class: 'form-control' %>
-    <%= f.email_field :email, placeholder: 'Enter email', class: 'form-control' %>
-    <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
-    <%= f.text_field :postal_address, placeholder: 'Enter postal address', class: 'form-control' %>
-    <%= f.text_field :city, placeholder: 'Enter city', class: 'form-control' %>
-    <%= f.select :state, [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY','OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',  'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'] %>            
-    <%= f.number_field :zip_code, placeholder: 'Enter zipcode', class: 'form-control' %>
-    <%= f.number_field :phone_number, placeholder: 'Enter phone number' %>
-    <%= f.hidden_field :activation_date, value: Date.today %>
+<div class='container'>
+  <div class='user-form'>
+    <%= bootstrap_form_for(@user, url: locals[:path], layout: :horizontal)  do |f| %>
+      <%= f.text_field :first_name, placeholder: 'Enter first name', class: 'form-control' %>
+      <%= f.text_field :surname, placeholder: 'Enter surname', class: 'form-control' %>
+      <%= f.email_field :email, placeholder: 'Enter email', class: 'form-control' %>
+      <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
+      <%= f.text_field :postal_address, placeholder: 'Enter postal address', class: 'form-control' %>
+      <%= f.text_field :city, placeholder: 'Enter city', class: 'form-control' %>
+      <%= f.select :state, [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY','OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',  'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'] %>            
+      <%= f.number_field :zip_code, placeholder: 'Enter zipcode', class: 'form-control' %>
+      <%= f.number_field :phone_number, placeholder: 'Enter phone number' %>
+      <%= f.hidden_field :activation_date, value: Date.today %>
 
-    <%if current_user && current_user.role =='admin'%>
-      <%= f.hidden_field :role, value: 'admin' %>
-      <%= f.select :status, User.statuses.keys.to_a, label: 'Account Status' %>
-      <%= f.select :role, ['employee', 'admin', 'student', 'parent'] %>
+      <%if current_user && current_user.role =='admin'%>
+        <%= f.hidden_field :role, value: 'admin' %>
+        <%= f.select :status, User.statuses.keys.to_a, label: 'Account Status' %>
+        <%= f.select :role, ['employee', 'admin', 'student', 'parent'] %>
+      <%end%>
+
+      <%if current_user && current_user.role == 'parent'%>
+        <%= f.hidden_field :role, value: 'student' %>
+        <%= f.date_field :date_of_birth, label: 'DOB' %>
+        <%= f.number_field :school_grade, placeholder: 'Enter school grade', class: 'form-control' %>
+        <%= f.text_field :additional_info, placeholder: 'Enter additional information about student', class: 'form-control', label: 'Other Info' %>
+        <%= f.text_field :contact_email, placeholder: 'Enter contact email', class: 'form-control', label: 'Parent Email' %>
+        <%= f.text_field :referrer_email %>
+      <%end%>
+    </div>
+
+    <div class='enrolment-form'>
+      <% if current_user && current_user.role == 'parent'%>  
+        <%= f.fields_for :enrolments do |enrolment| %>
+          <%= render 'enrolment_fields', :f => enrolment  %>
+        <% end %>
+        <%= link_to_add_association fa_icon(:plus, text: 'Add More Enrolments'), f, :enrolments, class: 'btn btn-info'  %>
+    </div>
     <%end%>
-
-    <%if current_user && current_user.role == 'parent'%>
-      <%= f.hidden_field :role, value: 'student' %>
-      <%= f.date_field :date_of_birth, label: 'DOB' %>
-      <%= f.number_field :school_grade, placeholder: 'Enter school grade', class: 'form-control' %>
-      <%= f.text_field :additional_info, placeholder: 'Enter additional information about student', class: 'form-control', label: 'Other Info' %>
-      <%= f.text_field :contact_email, placeholder: 'Enter contact email', class: 'form-control', label: 'Parent Email' %>
-      <%= f.text_field :referrer_email %>
-      <%= f.fields_for :enrolments do |enrolment| %>
-        <%= render 'enrolment_fields', :f => enrolment  %>
-      <% end %>
-      <%= link_to_add_association fa_icon(:plus, text: 'Add More Enrolments'), f, :enrolments, class: 'btn btn-info'  %>
-    <%end%>
-
     <%= javascript_tag "resetCocoonDestroyed();" if @user.errors[:enrolments].present? %>
-    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
-    <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-danger' %>
+    <div class='level-header'>
+      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
+      <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-danger' %>
+    </div>
   <% end %>
+</div>
 </div>

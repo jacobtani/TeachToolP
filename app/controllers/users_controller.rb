@@ -26,7 +26,7 @@ class UsersController < ApplicationController
         #UserMailer.registration_confirmation_to_user(@user).deliver_now
         #AdminMailer.registration_confirmation_to_admin(@user).deliver_now
         flash[:success] = "User was created successfully."
-        format.html { redirect_to parent_summary_path }
+        format.html { redirect_to root_path }
       else
         format.html { render :new }
       end
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes user_params
         flash[:success] = "User was updated successfully."
-        format.html { redirect_to parent_summary_path }
+        format.html { redirect_to root_path }
       else
         format.html { render :edit }
       end

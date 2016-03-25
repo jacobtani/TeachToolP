@@ -2,7 +2,7 @@
   <% @packs = locals[:packs] if @packs.nil? %> 
   <h2> Packs </h2>
   <div class= 'pull-right'>
-    <%= link_to fa_icon("plus", text: 'Add Pack'), new_pack_path, class: "btn btn-primary", id: 'new-pack-link' %>
+    <%= link_to fa_icon("plus", text: 'Add Pack'), new_pack_path, class: "btn btn-info", id: 'new-pack-link' %>
   </div>
   <table class = 'table table-striped'>
     <thead>
@@ -30,7 +30,7 @@
         <td> <%= pack.number_unassigned %> </td>
         <% if current_user.role == 'admin' %>
           <td> 
-            <%= link_to 'Edit', edit_pack_path(id: pack.id), class: "btn btn-success", id: 'edit-pack-link' %> 
+            <%= link_to fa_icon("pencil", text: "Edit"), edit_pack_path(id: pack.id), class: "btn btn-success", id: 'edit-pack-link' %> 
             <%= link_to 'Delete', pack_path(pack), method: :delete,
                 class: "btn btn-danger", id: 'delete-pack-link' %>
           </td>

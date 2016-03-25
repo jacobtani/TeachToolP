@@ -212,23 +212,23 @@ a {
   }
 }
 
-@mixin blue-button{
+@mixin pinkpurple-button{
   color: $light-gray;
   border: 0px solid $light-gray;
   border-radius: 0px;
-  background-color: $blue;
+  background-color: $pinkpurple;
   &:hover{
-    background-color: darken($blue, 5%)
+    background-color: darken($pinkpurple, 5%)
   }
 }
 
-@mixin red-button{
+@mixin orange-button{
   color: $light-gray;
   border: 0px solid $light-gray;
   border-radius: 0px;
-  background-color: $red;
+  background-color: $orange;
   &:hover{
-    background-color: darken($red, 8%)
+    background-color: darken($orange, 8%)
   }
 }
 
@@ -249,14 +249,14 @@ a {
     padding: 8px 15px;
     border-radius: 2px;
   }
-  .btn-danger{
-    @include red-button;
+  .btn-info{
+    @include orange-button;
   }
   .btn-success{
     @include pinkred-button;
   }
-  .btn-info{
-    @include blue-button;
+  .btn-danger{
+    @include pinkpurple-button;
   }
 
 }
@@ -269,7 +269,7 @@ Header with buttons
     position: initial;
   }
   .btn.btn-info{
-    @include blue-button;
+    @include pinkpurple-button;
     margin-left: 0em;
     padding: 5px 2em 2.5px 1em;
     vertical-align: middle;
@@ -287,7 +287,7 @@ Header with buttons
     }
   }
   .btn.btn-danger{
-    @include red-button;
+    @include orange-button;
     margin-left: 0em;
     vertical-align: middle;
     padding: 5px 2em 2.5px 1em;

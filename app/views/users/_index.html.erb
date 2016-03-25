@@ -1,4 +1,7 @@
 <div class = 'container level-header'>
+  <div class= 'pull-right'>
+    <%= link_to fa_icon("plus", text: 'Add User'), new_users_admin_path, class: "btn btn-info", id: 'new-offer-link' if current_user && current_user.role == 'admin' %>
+  </div>
   <table class = 'table table-striped'>
     <thead>
       <th> Id </th>
@@ -20,14 +23,14 @@
         <% if user.payment_due < Date.today && current_user.role == 'admin' || current_user.role == 'employee' %>
           <td><%= link_to 'Payment Missing', missing_payment_path(id: user.id), class: "btn btn-success", id: 'missing-payment-link' %></td>
         <%end%>
-        <td><%= link_to 'Payment Received', payment_received_path(id: user.id), class: "btn btn-success", id: 'payment-received-link' %></td>
+        <td><%= link_to 'Payment Received', payment_received_path(id: user.id), class: "btn btn-info", id: 'payment-received-link' %></td>
         <% if current_user.role == 'admin'%>
-          <td><%= link_to 'Sign in as', login_as_user_path(id: user.id), class: 'btn btn-info' %></td>
+          <td><%= link_to 'Sign in as', login_as_user_path(id: user.id), class: 'btn btn-danger' %></td>
           <% if user.needs_suspension? && user.status != 'SUSPENDED'%>
             <td><%= link_to 'Suspend Account', suspend_child_path(id: user.id), class: "btn btn-success", id: 'suspend-user-link' if user.needs_suspension? %></td>
           <%end%>  
         <%elsif current_user.role == 'parent'%>
-          <td><%= link_to 'Edit', edit_users_admin_path(id: user.id), class: "btn btn-info", id: 'edit-user-registration-link' %></td> 
+          <td><%= link_to fa_icon("pencil", text: 'Edit'), edit_users_admin_path(id: user.id), class: "btn btn-info", id: 'edit-user-registration-link' %></td> 
           <td><%= link_to 'Terminate Account', cancel_child_path(id: user.id), class: "btn btn-danger", id: 'cancel-user-link' %></td>
         <%end%>
       </tr>

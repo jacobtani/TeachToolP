@@ -3,9 +3,9 @@
     <%= render partial: "pack_records/index", locals: {pack_records: PackRecord.all} %>
   </div>
 
-  <%= link_to fa_icon("plus", text: 'Send Work Missing Email'), work_missing_path(user_id: current_user), class: "btn btn-primary hvr-sweep-to-right", id: 'work-missing-link' if current_user && current_user.role == 'employee' %>
-  <%= link_to fa_icon("plus", text: 'Enter Placement Pack'), enter_placement_pack_path(id: current_user), class: "btn btn-primary hvr-sweep-to-right", id: 'placement-pack-link' if current_user && current_user.role == 'employee' %>
-  <%= link_to fa_icon("plus", text: 'Nullify Rewards'), nullify_rewards_path(id: current_user), class: "btn btn-primary hvr-sweep-to-right", id: 'nullify-rewards-link' if current_user && current_user.role == 'employee' %>
+  <%= link_to fa_icon("plus", text: 'Send Work Missing Email'), work_missing_path(user_id: current_user), class: "btn btn-info hvr-sweep-to-right", id: 'work-missing-link' if current_user && current_user.role == 'employee' %>
+  <%= link_to fa_icon("plus", text: 'Enter Placement Pack'), enter_placement_pack_path(id: current_user), class: "btn btn-info hvr-sweep-to-right", id: 'placement-pack-link' if current_user && current_user.role == 'employee' %>
+  <%= link_to fa_icon("plus", text: 'Nullify Rewards'), nullify_rewards_path(id: current_user), class: "btn btn-info hvr-sweep-to-right", id: 'nullify-rewards-link' if current_user && current_user.role == 'employee' %>
 
   <h1> Send Message </h1>
   <% @message = Message.new%>
@@ -17,6 +17,6 @@
     <%= f.hidden_field :message_subject, value: 'SEND EMAIL TO USER'%>
     <%= f.text_area :content, rows: '10%', cols: '100%', label: 'Details' %>
     <%= f.button "Send Email", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..."} %>    
-    <%= link_to 'Cancel', employee_view_path, class: 'btn btn-info' %>
+    <%= link_to 'Cancel', employee_view_path, class: 'btn btn-danger' %>
   <% end %>
 </div>
