@@ -18,7 +18,7 @@
       <tr>
         <td> <%= enclosure.name %> </td>
         <td> <%= enclosure.barcode %> </td>
-        <td> <%= enclosure.due_date.strftime('%c') %> </td>
+        <td> <%= enclosure.due_date.strftime('%D') %> </td>
         <td> <%= Pack.find(enclosure.pack_id).name %> </td>
         <% if current_user.role == 'admin' %>
           <td> 

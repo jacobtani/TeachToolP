@@ -23,8 +23,8 @@
       <tr>
         <td> <%= offer.offer_name %> </td>
         <td> <%= offer.offer_description %> </td>
-        <td> <%= offer.start_date.strftime('%c') %> </td>
-        <td> <%= offer.end_date.strftime('%c') %> </td>
+        <td> <%= offer.start_date.strftime('%D') %> </td>
+        <td> <%= offer.end_date.strftime('%D') %> </td>
         <td> <%= number_to_currency offer.discount_enrolment %> </td>
         <td> <%= offer.percentage_enrolment %> </td>
         <td> <%= number_to_currency offer.discount_monthly %> </td>

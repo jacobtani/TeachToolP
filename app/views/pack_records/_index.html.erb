@@ -31,7 +31,7 @@
         <td> <%= pack_record.score %> </td>
         <td> <%= number_to_currency pack_record.reward %> </td>
         <td> <%= pack_record.comment %> </td>
-        <td> <%= pack_record.due_date.strftime('%c') %> </td>
+        <td> <%= pack_record.due_date.strftime('%D') %> </td>
         <td> <%= pack_record.status %> </td>
         <td> <%= pack_record.updated_at.strftime('%c') %> </td>
         <% if current_user.role == 'employee' || current_user.role == 'admin'%>
