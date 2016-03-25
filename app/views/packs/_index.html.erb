@@ -31,7 +31,7 @@
         <% if current_user.role == 'admin' %>
           <td> 
             <%= link_to fa_icon("pencil", text: "Edit"), edit_pack_path(id: pack.id), class: "btn btn-success", id: 'edit-pack-link' %> 
-            <%= link_to 'Delete', pack_path(pack), method: :delete,
+            <%= link_to fa_icon("trash", text: 'Delete'), pack_path(pack), method: :delete,
                 class: "btn btn-danger", id: 'delete-pack-link' %>
           </td>
         <%end%>

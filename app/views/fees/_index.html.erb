@@ -27,7 +27,7 @@
         <% if current_user && current_user.role == 'admin' %>
           <td> 
             <%= link_to fa_icon("pencil", text:'Edit'), edit_fee_path(id: fee.id), class: "btn btn-success", id: 'edit-fee-link' %> 
-            <%= link_to 'Delete', fee_path(fee), method: :delete,
+            <%= link_to fa_icon("trash", text: 'Delete'), fee_path(fee), method: :delete,
                 class: "btn btn-danger", id: 'delete-fee-link' %>
           </td>
         <%end%>

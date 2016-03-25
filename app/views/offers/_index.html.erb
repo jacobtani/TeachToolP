@@ -33,7 +33,7 @@
         <% if current_user && current_user.role == 'admin' %>
           <td> 
             <%= link_to fa_icon("pencil", text: 'Edit'), edit_offer_path(id: offer.id), class: "btn btn-success", id: 'edit-offer-link' %> 
-            <%= link_to 'Delete', offer_path(offer), method: :delete,
+            <%= link_to fa_icon("trash", text: 'Delete'), offer_path(offer), method: :delete,
                 class: "btn btn-danger", id: 'delete-offer-link' %>
           </td>
         <%end%>

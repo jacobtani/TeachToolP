@@ -2,7 +2,7 @@
   <% @enclosures = locals[:enclosures] if @enclosures.nil? %> 
   <h2> Enclosures</h2>
   <div class= 'pull-right'>
-    <%= link_to 'Add Enclosure', new_enclosure_path, class: "btn btn-info", id: 'new-enclosure-link' %>
+    <%= link_to fa_icon("plus", text: 'Add Enclosure'), new_enclosure_path, class: "btn btn-info", id: 'new-enclosure-link' %>
   </div>
   <table class = 'table table-striped'>
     <thead>
@@ -23,7 +23,7 @@
         <% if current_user.role == 'admin' %>
           <td> 
             <%= link_to fa_icon("pencil", text: 'Edit'), edit_enclosure_path(id: enclosure.id), class: "btn btn-success", id: 'edit-enclosure-link' %> 
-            <%= link_to 'Delete', enclosure_path(enclosure), method: :delete,
+            <%= link_to fa_icon("trash", text: 'Delete'), enclosure_path(enclosure), method: :delete,
                 class: "btn btn-danger", id: 'delete-enclosure-link' %>
           </td>
         <%end%>

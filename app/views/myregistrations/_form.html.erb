@@ -10,8 +10,10 @@
     <%= f.email_field :email, placeholder: 'Enter email', class: 'form-control' %>
     <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
     <%= f.hidden_field :role, value: 'parent' %>
-    <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
-    <%= link_to 'Cancel', root_path, class: 'btn btn-danger' %>
-    <%= link_to "Terminate Account", registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-info" %></p>
+    <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
+      <i class="fa fa-save"></i> Save
+    <% end %>
+    <%= link_to fa_icon("undo", text: 'Cancel'), root_path, class: 'btn btn-danger' %>
+    <%= link_to fa_icon("trash", text: "Terminate Account"), registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-info" %></p>
   <% end %>
 </div>

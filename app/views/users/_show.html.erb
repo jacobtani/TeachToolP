@@ -9,7 +9,7 @@
     <%= @user.status %>
   </p>
 
-  <% if !@user.role == 'student'%>
+  <% if @user.role == 'student'%>
     <p>
       <strong>School Grade:</strong>
       <%= @user.school_grade %>
@@ -39,26 +39,24 @@
       <strong>Rewards Balance:</strong>
       <%= number_to_currency @user.rewards %>
     </p>
+    <p>
+      <strong>Enrolments:</strong>
+        <%= @user.enrolments.count %>
+    </p>
   <%end%>
-  <p>
-    <strong>Enrolments:</strong>
-    <%= @user.enrolments.collect(&:subject_id).join(', ') if @user.role == 'student' %>
-  </p>
-
-  <%= link_to fa_icon("pencil", text: 'Edit'), edit_users_admin_path(id: @user.id), class: "btn btn-success", id: 'edit-user-link' %> 
-  <%= link_to 'Cancel', root_path, class: 'btn btn-danger' %>
-
-  <% if @user.rewards > 0.00 %>
-      <%= link_to 'Redeem Reward', redeem_reward_path(id: @user.id), class: "btn btn-info", id: 'redeem-reward-link' %> 
+  <% if current_user && current_user.role == 'parent' || current_user.role == 'admin' || current_user.role == 'employee'%>
+    <%= link_to fa_icon("pencil", text: 'Edit'), edit_users_admin_path(id: @user.id), class: "btn btn-success", id: 'edit-user-link' %> 
+    <%= link_to fa_icon("undo", text: 'Cancel'), root_path, class: 'btn btn-danger' %>
+  <%end%>
+  <% if @user.rewards > 0.00 && current_user.role == 'parent' || current_user.role == 'student' %>
+      <%= link_to fa_icon("bank", text: 'Redeem Reward'), redeem_reward_path(id: @user.id), class: "btn btn-info", id: 'redeem-reward-link' %> 
   <%end%>
   <% if @user.status != 'CANCELLED' %>
     <% e=@user.enrolments.select { |e| Date.today < (e.date + 1.month) } %>
     <% if e.present? && child.status != 'CANCELLED_TRIAL' %>
-      <%= link_to 'End Trial', end_trial_path(id: @user.id), class: "btn btn-info", id: 'end-trial-link' %>
+      <%= link_to fa_icon("stop-circle", text: 'End Trial'), end_trial_path(id: @user.id), class: "btn btn-info", id: 'end-trial-link' %>
     <%else%>
-      <%= link_to 'Terminate Account', cancel_child_path(id: @user.id), class: "btn btn-info", id: 'cancel-user-link' %>
+      <%= link_to fa_icon("trash", text: 'Delete'), cancel_child_path(id: @user.id), class: "btn btn-info", id: 'cancel-user-link' %>
     <%end%>
   <%end%>
-
-
 </div>

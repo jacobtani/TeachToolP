@@ -54,7 +54,7 @@
                  <%= link_to fa_icon("user", text: current_user.email), edit_user_registration_path, class: 'btn btn-success navbar-btn' %>
                 <%= link_to fa_icon("sign-out", text: "Logout"), destroy_user_session_path, :method => :delete, class: 'btn btn-info navbar-btn' %>
             <% else %>
-                <%= link_to 'Login', new_user_session_path, class: "btn btn-success navbar-btn hvr-bounce-to-top"  %>  
+                <%= link_to fa_icon("lock", text: 'Login'), new_user_session_path, class: "btn btn-success navbar-btn hvr-bounce-to-top"  %>  
                 <%= link_to fa_icon("user-plus", text: 'Register'), new_user_registration_path, class: "btn btn-danger navbar-btn hvr-push"  %>
             <% end %>
           </div>

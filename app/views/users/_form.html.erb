@@ -38,8 +38,10 @@
     <%end%>
     <%= javascript_tag "resetCocoonDestroyed();" if @user.errors[:enrolments].present? %>
     <div class='level-header'>
-      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>
-      <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-danger' %>
+      <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
+        <i class="fa fa-save"></i> Save
+      <% end %>
+      <%= link_to fa_icon("undo", text: 'Cancel'), root_path, class: 'btn btn-danger' %>    </div>
     </div>
   <% end %>
 </div>

@@ -21,17 +21,17 @@
         <td> <%= number_to_currency user.rewards %> </td>
         <td> <%= user.payment_due.strftime('%c') %> </td>
         <% if user.payment_due < Date.today && current_user.role == 'admin' || current_user.role == 'employee' %>
-          <td><%= link_to 'Payment Missing', missing_payment_path(id: user.id), class: "btn btn-success", id: 'missing-payment-link' %></td>
+          <td><%= link_to fa_icon("money", text:'Payment Missing'), missing_payment_path(id: user.id), class: "btn btn-success", id: 'missing-payment-link' %></td>
         <%end%>
-        <td><%= link_to 'Payment Received', payment_received_path(id: user.id), class: "btn btn-info", id: 'payment-received-link' %></td>
+        <td><%= link_to fa_icon("money", text: 'Payment Received'), payment_received_path(id: user.id), class: "btn btn-info", id: 'payment-received-link' %></td>
         <% if current_user.role == 'admin'%>
-          <td><%= link_to 'Sign in as', login_as_user_path(id: user.id), class: 'btn btn-danger' %></td>
+          <td><%= link_to fa_icon("lock", text: 'Sign in as'), login_as_user_path(id: user.id), class: 'btn btn-danger' %></td>
           <% if user.needs_suspension? && user.status != 'SUSPENDED'%>
-            <td><%= link_to 'Suspend Account', suspend_child_path(id: user.id), class: "btn btn-success", id: 'suspend-user-link' if user.needs_suspension? %></td>
+            <td><%= link_to fa_icon("lock", text: 'Suspend Account'), suspend_child_path(id: user.id), class: "btn btn-success", id: 'suspend-user-link' if user.needs_suspension? %></td>
           <%end%>  
         <%elsif current_user.role == 'parent'%>
           <td><%= link_to fa_icon("pencil", text: 'Edit'), edit_users_admin_path(id: user.id), class: "btn btn-info", id: 'edit-user-registration-link' %></td> 
-          <td><%= link_to 'Terminate Account', cancel_child_path(id: user.id), class: "btn btn-danger", id: 'cancel-user-link' %></td>
+          <td><%= link_to fa_icon("stop-circle", text: 'Delete'), cancel_child_path(id: user.id), class: "btn btn-danger", id: 'cancel-user-link' %></td>
         <%end%>
       </tr>
     <%end%>

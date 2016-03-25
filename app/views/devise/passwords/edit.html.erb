@@ -1,4 +1,4 @@
-<div class='container'>
+<div class='container level-header'>
   <h2>Change your password</h2>
   <%= bootstrap_form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :put } do |f| %>
     <%= devise_error_messages! %>
@@ -8,6 +8,8 @@
     <% end %>
     <%= f.password_field :password, autofocus: true, autocomplete: "off", label: 'New password' %>
     <%= f.password_field :password_confirmation, autocomplete: "off", label: 'Confirm new password' %>
-    <%= f.submit "Change my password", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Changing..."} %>    
+    <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Changing..."}) do %>
+      <i class="fa fa-save"></i> Change Password
+    <% end %>
   <%end%>
 </div>

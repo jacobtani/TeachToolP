@@ -8,8 +8,10 @@
     <%= f.select :pack_type, Pack.pack_types.keys.to_a, label: 'Type' %>
     <%= f.number_field :priority, placeholder: 'Enter priority' %>
     <div class='level-header'>
-      <%= f.button "Save", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>  
-      <%= link_to 'Cancel', admin_path, class: 'btn btn-danger' %>
+      <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
+        <i class="fa fa-save"></i> Save
+      <% end %>
+      <%= link_to fa_icon("undo", text: 'Cancel'), admin_path, class: 'btn btn-danger' %>
     </div>
- <% end %>
+  <% end %>
 </div>
