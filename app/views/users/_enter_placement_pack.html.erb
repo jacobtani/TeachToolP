@@ -1,16 +1,17 @@
-<%= wicked_pdf_stylesheet_link_tag "pdf.css" %> 
-  <div class = 'container'>
-    <h2>Placement Pack Results for <%= User.find(params[:student]).full_name %> </h2>
-    <h4> Q1: How did the student do from earlier years? </h4>
-    <p> <%= 'RATING: ' + params[:q1] + '    COMMENTS: ' + params[:q1comments] %> </p>
-    <h4> Q2: How did the student do from the nominal school level? </h4>
-    <p> <%= 'RATING: ' + params[:q2] + '     COMMENTS: ' + params[:q2comments] %> </p>
-    <h4> Q3: What proficiency level was displayed in work that normally belongs to higher grades? </h4>
-    <p> <%= 'RATING: ' + params[:q3] + '     Comments: ' + params[:q3comments] %> </p>
-    <h4> Q4: How are the fundamental skills? </h4>
-    <p> <%= 'RATING: ' + params[:q4] + '     COMMENTS: ' + params[:q4comments] %> </p>
-    <h4> Q5: What is your impression about the student's approach to Maths from the answers? </h4>
-    <p> <%= 'RATING: ' + params[:q5] + '     COMMENTS: ' + params[:q5comments] %> </p>
-    <h4> Q6: What are your thoughts about where the student's work should start and progress? </h4>
-    <p> <%= 'RATING: ' + params[:q6] + '     COMMENTS: ' + params[:q6comments] %> </p>
+<div class = 'container'>
+  <%= wicked_pdf_stylesheet_link_tag "pdf.css" %> 
+  <%@student = User.find(params[:student]) %>
+  <h2>Placement Pack Results for <%= @student.full_name (@student.id) %> </h2>
+  <h4> Q1: How did the student do from earlier years? </h4>
+  <p> <%= 'RATING: ' + params[:q1] + '    COMMENTS: ' + params[:q1comments] %> </p>
+  <h4> Q2: How did the student do from the nominal school level? </h4>
+  <p> <%= 'RATING: ' + params[:q2] + '     COMMENTS: ' + params[:q2comments] %> </p>
+  <h4> Q3: What proficiency level was displayed in work that normally belongs to higher grades? </h4>
+  <p> <%= 'RATING: ' + params[:q3] + '     Comments: ' + params[:q3comments] %> </p>
+  <h4> Q4: How are the fundamental skills? </h4>
+  <p> <%= 'RATING: ' + params[:q4] + '     COMMENTS: ' + params[:q4comments] %> </p>
+  <h4> Q5: What is your impression about the student's approach to Maths from the answers? </h4>
+  <p> <%= 'RATING: ' + params[:q5] + '     COMMENTS: ' + params[:q5comments] %> </p>
+  <h4> Q6: What are your thoughts about where the student's work should start and progress? </h4>
+  <p> <%= 'RATING: ' + params[:q6] + '     COMMENTS: ' + params[:q6comments] %> </p>
   </div>
