@@ -2,7 +2,7 @@
   <div class= 'pull-right'>
     <%= link_to fa_icon("plus", text: 'Add User'), new_users_admin_path, class: "btn btn-info", id: 'new-offer-link' if current_user && current_user.role == 'admin' %>
   </div>
-  <table class = 'table table-striped'>
+  <table class = 'table table-striped my-text-box'>
     <thead>
       <th> Id </th>
       <th> Name </th>

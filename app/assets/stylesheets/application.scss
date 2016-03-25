@@ -74,7 +74,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: #2098d1;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transform-origin: 0 50%;
@@ -118,7 +117,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: #2098d1;
   -webkit-transform: scaleY(0);
   transform: scaleY(0);
   -webkit-transform-origin: 50% 100%;
@@ -187,11 +185,10 @@
 a {
   color: #0000;
   &:visited {
-    color: #ffff;
+    color: #000000;
   }
   &:hover {
-    color: #FFFFFF;
-    background-color: #000;
+    color: #000000;
   }
 }
 
@@ -311,4 +308,8 @@ Header with buttons
   position: relative;
   top: 9px;
   right: 15px;
+}
+
+.my-text-box{
+  color: #000000;
 }
