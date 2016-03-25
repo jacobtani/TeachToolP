@@ -44,6 +44,12 @@
         <%= @user.enrolments.count %>
     </p>
   <%end%>
+  <% if current_user.role == 'parent'%>
+    <p>
+      <strong>Number of Children:</strong>
+        <%= @user.children.count %>
+    </p>
+  <%end%>
   <% if current_user && current_user.role == 'parent' || current_user.role == 'admin' || current_user.role == 'employee'%>
     <%= link_to fa_icon("pencil", text: 'Edit'), edit_users_admin_path(id: @user.id), class: "btn btn-success", id: 'edit-user-link' %> 
     <%= link_to fa_icon("undo", text: 'Cancel'), root_path, class: 'btn btn-danger' %>

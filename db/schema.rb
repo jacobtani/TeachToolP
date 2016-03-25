@@ -159,7 +159,7 @@ ActiveRecord::Schema.define(version: 20160324060822) do
     t.integer  "school_grade",           default: 1
     t.text     "additional_info"
     t.float    "account_balance"
-    t.datetime "payment_due",            default: '2016-03-24 00:00:00'
+    t.datetime "payment_due",            default: '2016-03-25 00:00:00'
     t.integer  "referrer_count",         default: 0
     t.string   "referrer_email"
     t.datetime "last_payment_date"

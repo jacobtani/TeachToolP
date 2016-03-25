@@ -28,7 +28,7 @@
       <%end%>
     </div>
 
-    <div class='enrolment-form'>
+    <div class='enrolment-form level-header'>
       <% if current_user && current_user.role == 'parent'%>  
         <%= f.fields_for :enrolments do |enrolment| %>
           <%= render 'enrolment_fields', :f => enrolment  %>

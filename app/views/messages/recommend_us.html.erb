@@ -1,10 +1,10 @@
 <div class = 'container form-scrollable level-header'>
-  <h1> RECOMMEND OurCompany </h1>
+  <h1> Recommend OurCompany </h1>
   <h4> We would appreciate if you could spread the word about OurCompany if you are happy with our services. Please fill in the email address of someone you would like to recommend OurCompany to </h4>
   <%= bootstrap_form_for(@message, layout: :horizontal)  do |f| %>
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
-    <%= f.text_field :message_recipient %>
-    <%= f.text_field :message_recipient_name %>
+    <%= f.text_field :message_recipient, label: 'Message Recipient Email' %>
+    <%= f.text_field :message_recipient_name, label: 'Message Recipient Name' %>
     <%= f.hidden_field :message_subject, value: 'RECOMMEND US'%>
     <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
       <i class="fa fa-save"></i> Save
