@@ -61,6 +61,7 @@ class PackRecordsController < ApplicationController
     PackRecord.overdue.each do |overdue_pack|
       UserMailer.work_missing(User.find(overdue_pack.user_id), overdue_pack).deliver_now
     end
+    flash[:success] = 'Work missing emails are sent'
     redirect_to employee_view_path
   end 
  

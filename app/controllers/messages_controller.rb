@@ -77,6 +77,10 @@ class MessagesController < ApplicationController
     @message = Message.new
   end
 
+  def send_user_message
+    @message = Message.new
+  end
+
   def missing_payment
     UserMailer.missing_payment(@user).deliver_now
     redirect_to parent_summary_path

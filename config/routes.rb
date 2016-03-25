@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     patch '/users/:id/edit' => "myregistrations#update", as: :edit_rego
   end
 
-  get '/users/:id/children' => "users#children", as: :children
   get '/users/:id/suspend' => "users#suspend", as: :suspend_child
   get '/users/:id/cancel' => "users#cancel_account", as: :cancel_child
   get '/users/:id/end_trial' => "users#end_trial", as: :end_trial
@@ -37,6 +36,7 @@ Rails.application.routes.draw do
   get '/messages/missing_payment' => "messages#missing_payment", as: :missing_payment
   get '/messages/recommend_us' => "messages#recommend_us", as: :recommend_us
   get '/messages/redeem_reward' => "messages#redeem_reward", as: :redeem_reward
+  get '/messages/send_user_message' => "messages#send_user_message", as: :send_user_message
 
   resources :users_admin, :controller => 'users' do 
     resources :enrolments

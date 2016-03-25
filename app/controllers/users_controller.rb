@@ -90,11 +90,9 @@ class UsersController < ApplicationController
     redirect_to parent_summary_path
   end
 
-  def send_email_to_user
-  end
-
   def nullify_rewards
     ValidatorMod.nullify_rewards
+    flash[:success] = "Rewards have been successfully put to $0.00"
     redirect_to employee_view_path
   end
 
