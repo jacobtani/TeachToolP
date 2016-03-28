@@ -4,7 +4,7 @@
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
     <%= f.text_area :content, rows: '10%', cols: '100%', label: 'Comments' %>
     <%= f.hidden_field :message_subject, value: 'GENERAL CORRESPONDENCE'%>
-    <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
+    <%= button_tag(type: 'submit', class: "btn btn-success hvr-sweep-to-right", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
       <i class="fa fa-save"></i> Save
     <% end %>
     <%= link_to fa_icon("undo", text: 'Cancel'), parent_summary_path, class: 'btn btn-danger' %>

@@ -7,7 +7,7 @@
     <%= f.text_field :subject, label: 'Message Subject'%>
     <%= f.hidden_field :message_subject, value: 'SEND EMAIL TO USER'%>
     <%= f.text_area :content, label: 'Details' %>
-    <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..."}) do %>
+    <%= button_tag(type: 'submit', class: "btn btn-success hvr-sweep-to-right", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending..."}) do %>
       <i class="fa fa-save"></i> Send
     <% end %>
     <%= link_to fa_icon("undo", text: 'Cancel'), employee_view_path, class: 'btn btn-danger' %>

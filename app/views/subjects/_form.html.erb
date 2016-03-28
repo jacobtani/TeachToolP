@@ -5,7 +5,7 @@
     <%= f.number_field :lowest_grade_taught, placeholder: 'Enter lowest grade taught', class: 'form-control' %>
     <%= f.number_field :highest_grade_taught, placeholder: 'Enter highest grade taught', class: 'form-control' %>
     <div class='level-header'>
-      <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
+      <%= button_tag(type: 'submit', class: "btn btn-success hvr-sweep-to-right", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
         <i class="fa fa-save"></i> Save
       <% end %>
       <%= link_to fa_icon("undo", text: 'Cancel'), admin_path, class: 'btn btn-danger' %>

@@ -10,7 +10,7 @@
     <%= f.number_field :zip_code, placeholder: 'Enter zipcode', class: 'form-control' %>
     <%= f.number_field :phone_number, placeholder: 'Enter phone number' %>
         <%= f.hidden_field :role, value: 'parent' %>
-    <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
+    <%= button_tag(type: 'submit', class: "btn btn-success hvr-sweep-to-right", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
       <i class="fa fa-save"></i> Save
     <% end %>
     <%= link_to fa_icon("undo", text: 'Cancel'), root_path, class: 'btn btn-danger' %>

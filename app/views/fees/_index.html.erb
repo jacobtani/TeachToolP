@@ -2,7 +2,7 @@
   <% @fees = locals[:fees] if @fees.nil? %> 
   <h2> Fees</h2>
   <div class= 'pull-right'>
-    <%= link_to fa_icon("plus", text: 'Add Fee'), new_fee_path, class: "btn btn-add", id: 'new-fee-link' if current_user && current_user.role == 'admin' %>
+    <%= link_to fa_icon("plus", text: 'Add Fee'), new_fee_path, class: "btn btn-add hvr-sweep-to-right", id: 'new-fee-link' if current_user && current_user.role == 'admin' %>
   </div>
   <table class = 'table table-striped'>
     <thead>

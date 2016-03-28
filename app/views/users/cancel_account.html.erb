@@ -15,7 +15,7 @@
     <% end %>
     <%= f.hidden_field :message_subject, value: 'TERMINATED ACCOUNT'%>
     <%= f.hidden_field :child, value: @user.id %>
-    <%= f.button "Terminate", class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Terminating..."} %>    
+    <%= f.button "Terminate", class: "btn btn-success hvr-sweep-to-right", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Terminating..."} %>    
       <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-danger' %>
   <% end %>
 </div>
