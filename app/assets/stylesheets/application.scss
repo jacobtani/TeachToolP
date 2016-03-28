@@ -128,9 +128,7 @@
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-.hvr-bounce-to-top:hover, .hvr-bounce-to-top:focus, .hvr-bounce-to-top:active {
-  color: white;
-}
+
 .hvr-bounce-to-top:hover:before, .hvr-bounce-to-top:focus:before, .hvr-bounce-to-top:active:before {
   -webkit-transform: scaleY(1);
   transform: scaleY(1);
@@ -177,18 +175,8 @@
     color: #564444;
   }
   &.warning-alert{
-    background-color: rgba(150, 150, 0, 0.18);
-    color: rgb(97, 97, 0);
-  }
-}
-
-a {
-  color: #0000;
-  &:visited {
-    color: #000000;
-  }
-  &:hover {
-    color: #000000;
+    background-color: lighten($pinkpurple, 5%);
+    color: $white;
   }
 }
 
@@ -210,7 +198,7 @@ a {
 }
 
 @mixin pinkpurple-button{
-  color: $light-gray;
+  color: $white;
   border: 0px solid $light-gray;
   border-radius: 0px;
   background-color: $pinkpurple;
@@ -220,7 +208,7 @@ a {
 }
 
 @mixin orange-button{
-  color: $light-gray;
+  color: $white;
   border: 0px solid $light-gray;
   border-radius: 0px;
   background-color: $orange;
@@ -230,7 +218,7 @@ a {
 }
 
 @mixin pinkred-button{
-  color: $light-gray;
+  color: $white;
   border: 0px solid $light-gray;
   border-radius: 0px;
   background-color: $pinkred;
@@ -239,10 +227,31 @@ a {
   }
 }
 
+@mixin grey-button{
+  color: $white;
+  border: 0px solid $dark-gray;
+  border-radius: 0px;
+  background-color: $dark-gray;
+  &:hover{
+    background-color: darken($dark-gray, 8%)
+  }
+}
+
+@mixin teal-button{
+  color: $white;
+  border: 0px solid $light-gray;
+  border-radius: 0px;
+  background-color: $teal;
+  &:hover{
+    background-color: darken($teal, 8%)
+  }
+}
+
+
 .level-header{
   .btn{
     border-color: $light-gray;
-    color: $light-gray;
+    color: $white;
     padding: 8px 15px;
     border-radius: 2px;
   }
@@ -252,10 +261,15 @@ a {
   .btn-success{
     @include pinkred-button;
   }
-  .btn-danger{
+  .btn-blue{
     @include pinkpurple-button;
   }
-
+  .btn-danger{
+    @include grey-button;
+  }
+  .btn-add{
+    @include teal-button;
+  }
 }
 
 /*******************
@@ -283,7 +297,7 @@ Header with buttons
       padding-right: 4px;
     }
   }
-  .btn.btn-danger{
+  .btn.btn-blue{
     @include orange-button;
     margin-left: 0em;
     vertical-align: middle;
@@ -292,6 +306,24 @@ Header with buttons
       padding-right: 4px;
     }
   }
+  .btn.btn-danger{
+    @include grey-button;
+    margin-left: 0em;
+    vertical-align: middle;
+    padding: 5px 2em 2.5px 1em;
+    .fa{
+      padding-right: 4px;
+    }
+  }
+  .btn.btn-add{
+    @include teal-button;
+    margin-left: 0em;
+    vertical-align: middle;
+    padding: 5px 2em 2.5px 1em;
+    .fa{
+      padding-right: 4px;
+    }
+  }  
   .hvr-icon-up:before {
     right: 8.7em;
   }
@@ -312,4 +344,16 @@ Header with buttons
 
 .my-text-box{
   color: #000000;
+}
+
+.btn-default{
+  background-color: $teal;
+}
+
+.form-control{
+  border: 1px solid $teal;
+}
+
+h2 {
+  color: $teal;
 }

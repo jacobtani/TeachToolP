@@ -1,7 +1,7 @@
 <div class = 'container level-header'>
   <% @pack_records = locals[:pack_records] if @pack_records.nil?%>
   <div class= 'pull-right'>
-    <%= link_to fa_icon("plus", text: 'Add Pack Record'), new_pack_record_path, class: "btn btn-info", id: 'new-packrecord-link' if user_signed_in? && current_user.role == 'admin' || current_user.role == 'employee' %>
+    <%= link_to fa_icon("plus", text: 'Add Pack Record'), new_pack_record_path, class: "btn btn-add", id: 'new-packrecord-link' if user_signed_in? && current_user.role == 'admin' || current_user.role == 'employee' %>
   </div>
   <table class = 'table table-striped'>
     <thead>

@@ -2,7 +2,7 @@
   <% @packs = locals[:packs] if @packs.nil? %> 
   <h2> Packs </h2>
   <div class= 'pull-right'>
-    <%= link_to fa_icon("plus", text: 'Add Pack'), new_pack_path, class: "btn btn-info", id: 'new-pack-link' %>
+    <%= link_to fa_icon("plus", text: 'Add Pack'), new_pack_path, class: "btn btn-add", id: 'new-pack-link' %>
   </div>
   <table class = 'table table-striped'>
     <thead>

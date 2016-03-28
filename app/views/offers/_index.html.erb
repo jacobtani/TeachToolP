@@ -2,7 +2,7 @@
   <% @offers = locals[:offers] if @offers.nil? %> 
   <h2> Offers</h2>
   <div class= 'pull-right'>
-    <%= link_to fa_icon("plus", text: 'Add Offer'), new_offer_path, class: "btn btn-info", id: 'new-offer-link' if current_user && current_user.role == 'admin' %>
+    <%= link_to fa_icon("plus", text: 'Add Offer'), new_offer_path, class: "btn btn-add", id: 'new-offer-link' if current_user && current_user.role == 'admin' %>
   </div>
   <table class = 'table table-striped'>
     <thead>

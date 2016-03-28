@@ -1,6 +1,6 @@
 <div class = 'container level-header'>
   <div class= 'pull-right'>
-    <%= link_to fa_icon("plus", text: 'Add User'), new_users_admin_path, class: "btn btn-info", id: 'new-offer-link' if current_user && current_user.role == 'admin' %>
+    <%= link_to fa_icon("plus", text: 'Add User'), new_users_admin_path, class: "btn btn-add", id: 'new-offer-link' if current_user && current_user.role == 'admin' %>
   </div>
   <table class = 'table table-striped my-text-box'>
     <thead>
@@ -30,7 +30,7 @@
             <td><%= link_to fa_icon("lock", text: 'Suspend Account'), suspend_child_path(id: user.id), class: "btn btn-success", id: 'suspend-user-link' if user.needs_suspension? %></td>
           <%end%>  
         <%elsif current_user.role == 'parent'%>
-          <td><%= link_to fa_icon("pencil", text: 'Edit'), edit_users_admin_path(id: user.id), class: "btn btn-info", id: 'edit-user-registration-link' %></td> 
+          <td><%= link_to fa_icon("pencil", text: 'Edit'), edit_users_admin_path(id: user.id), class: "btn btn-success", id: 'edit-user-registration-link' %></td> 
           <td><%= link_to fa_icon("stop-circle", text: 'Delete'), cancel_child_path(id: user.id), class: "btn btn-danger", id: 'cancel-user-link' %></td>
         <%end%>
       </tr>
