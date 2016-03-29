@@ -14,7 +14,7 @@
               <% current_user.children.each do |child|%>
                 <li><%= link_to child.full_name, parent_student_view_path(id: child.id), class: "btn btn-info", id:'some-link'%></li>
               <%end%>
-              <li>  <%= link_to 'Add Child', new_users_admin_path, class: "btn btn-info hvr-sweep-to-right", id: 'new-user-link' if user_signed_in? %></li>
+              <li>  <%= link_to 'Add Child', new_users_admin_path, class: "btn btn-add hvr-sweep-to-right", id: 'new-user-link' if user_signed_in? %></li>
             </ul>
           </li>
         </div>
@@ -22,11 +22,11 @@
         <div class = "col-md-8 btn btn-success level-header"> 
           <li class= "dropdown"><a href="#" class="dropdown-toggle admin-header hvr-sweep-to-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Email Enquiries <span class="caret"></span></a> 
             <ul class="dropdown-menu pull-right">
-              <li><%= link_to 'MISSING PACK/WORK', missing_pack_path(id: current_user.id), class: "btn btn-info hvr-sweep-to-right", id:'missing-pack-link' if user_signed_in? %></li>
-              <li><%= link_to 'PARENT GENERAL QUESTIONS', general_parent_enquiry_path(id: current_user.id), class: "btn btn-info hvr-sweep-to-right", id:'general-parent-enquiry-link' if user_signed_in? %></li>
-              <li><%= link_to 'PAYMENT RELATED MATTERS', payment_related_enquiry_path(id: current_user.id), class: "btn btn-info hvr-sweep-to-right", id:'payment-enquiry-link' if user_signed_in? %></li>
-              <li><%= link_to 'STUDENT NEEDS HELP', parent_help_path(id: current_user.id), class: "btn btn-info hvr-sweep-to-right", id:'pack-help-link' if user_signed_in? %></li>
-              <li><%= link_to 'RECOMMEND US', recommend_us_path(id: current_user.id), class: "btn btn-info hvr-sweep-to-right", id:'recommend-us-link' if user_signed_in? %></li>
+              <li><%= link_to 'MISSING PACK/WORK', missing_pack_path(id: current_user.id), class: "btn btn-add hvr-sweep-to-right", id:'missing-pack-link' if user_signed_in? %></li>
+              <li><%= link_to 'PARENT GENERAL QUESTIONS', general_parent_enquiry_path(id: current_user.id), class: "btn btn-add hvr-sweep-to-right", id:'general-parent-enquiry-link' if user_signed_in? %></li>
+              <li><%= link_to 'PAYMENT RELATED MATTERS', payment_related_enquiry_path(id: current_user.id), class: "btn btn-add hvr-sweep-to-right", id:'payment-enquiry-link' if user_signed_in? %></li>
+              <li><%= link_to 'STUDENT NEEDS HELP', parent_help_path(id: current_user.id), class: "btn btn-add hvr-sweep-to-right", id:'pack-help-link' if user_signed_in? %></li>
+              <li><%= link_to 'RECOMMEND US', recommend_us_path(id: current_user.id), class: "btn btn-add hvr-sweep-to-right", id:'recommend-us-link' if user_signed_in? %></li>
             </ul>
           </li>
         </div>

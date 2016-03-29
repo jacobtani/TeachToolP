@@ -8,10 +8,10 @@
       <%= f.check_box :remember_me %>
     <% end -%>
     <div class ='level-header'>
-      <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Logging in..."}) do %>
+      <%= button_tag(type: 'submit', class: "btn btn-success hvr-sweep-to-right", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Logging in..."}) do %>
         <i class="fa fa-save"></i> Login
       <% end %>
-      <%= link_to fa_icon("question", text: "Forgot your password?"), new_password_path(resource_name), class: "btn btn-info level-header" %>
+      <%= link_to fa_icon("question", text: "Forgot your password?"), new_password_path(resource_name), class: "btn btn-info level-header hvr-sweep-to-right" %>
     </div>
   <% end %>
 </div>

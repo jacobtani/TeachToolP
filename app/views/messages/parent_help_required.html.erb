@@ -9,9 +9,9 @@
     <%= f.number_field :page_number, label: 'Page Number' %>
     <%= f.text_area :content, rows: '10%', cols: '100%', label: 'Details' %>
     <%= f.hidden_field :message_subject, value: 'PARENT NEEDS HELP'%>
-    <%= button_tag(type: 'submit', class: "btn btn-success hvr-sweep-to-right", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
+    <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
       <i class="fa fa-save"></i> Save
     <% end %>
-    <%= link_to fa_icon("undo", text: 'Cancel'), parent_summary_path, class: 'btn btn-danger' %>
+    <%= link_to fa_icon("undo", text: 'Cancel'), parent_summary_path, class: 'btn btn-danger hvr-sweep-to-right' %>
   <% end %>
 </div>

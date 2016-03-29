@@ -2,7 +2,8 @@
   <h1> CANCEL ACCOUNT </h1>
   <%= bootstrap_form_for @message do |f| %>
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
-    
+    <%= f.collection_select :child, current_user.children, :id, :full_name, :prompt => "Select student", label: 'Student Name' %>
+
     <%= f.form_group :content, label: { text: "Cancellation Reason" } do %>
       <%= f.radio_button :content, 'Student is not cooperating', checked: true, label: 'Student is not cooperating'  %>
       <%= f.radio_button :content, 'Student is not coping', label: 'Student is not coping' %>
@@ -14,8 +15,11 @@
       <%= f.radio_button :content, 'Other', label: 'Other' %>
     <% end %>
     <%= f.hidden_field :message_subject, value: 'TERMINATED ACCOUNT'%>
-    <%= f.hidden_field :child, value: @user.id %>
-    <%= f.button "Terminate", class: "btn btn-success hvr-sweep-to-right", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Terminating..."} %>    
-      <%= link_to 'Cancel', parent_summary_path, class: 'btn btn-danger' %>
+    <div class='level-header'>
+      <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Terminating..."}) do %>
+        <i class="fa fa-trash"></i> Terminate
+      <% end %>
+      <%= link_to fa_icon("undo", text: 'Cancel'), admin_path, class: 'btn btn-danger hvr-sweep-to-right' %>
+    </div>
   <% end %>
 </div>

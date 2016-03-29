@@ -43,13 +43,13 @@
           <div class="nav navbar-right header">
             <% if user_signed_in? %>
               <% if current_user.role == 'parent' %>
-                <li><%= link_to 'Parent Portal', parent_summary_path, class: 'hvr-sweep-to-right' %> </li>
+                <%= link_to 'Parent Portal', parent_summary_path, class: 'hvr-sweep-to-right' %>
               <%elsif current_user.role == 'admin' %>
-                <li><%= link_to 'Admin Portal', admin_path, class: 'hvr-sweep-to-right' %></li>
+                <%= link_to 'Admin Portal', admin_path, class: 'hvr-sweep-to-right' %>
               <%elsif current_user.role == 'student' %>
-                <li> <%= link_to 'Student Portal', student_view_path(user_id: current_user.id), class: 'hvr-sweep-to-right' %> </li>
+                <%= link_to 'Student Portal', student_view_path(user_id: current_user.id), class: 'hvr-sweep-to-right' %>
               <%elsif current_user.role == 'employee' %>
-                <li> <%= link_to 'Employee Portal', employee_view_path, class: 'hvr-sweep-to-right' %> </li>
+                <%= link_to 'Employee Portal', employee_view_path, class: 'hvr-sweep-to-right' %>
               <%end%>
               <%= link_to fa_icon("user", text: current_user.email), edit_user_registration_path, class: 'btn btn-success navbar-btn hvr-sweep-to-right' %>
               <%= link_to fa_icon("sign-out", text: "Logout"), destroy_user_session_path, :method => :delete, class: 'btn btn-danger hvr-sweep-to-right navbar-btn' %>

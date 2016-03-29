@@ -8,7 +8,7 @@
     <% end %>
     <%= f.password_field :password, autofocus: true, autocomplete: "off", label: 'New password' %>
     <%= f.password_field :password_confirmation, autocomplete: "off", label: 'Confirm new password' %>
-    <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Changing..."}) do %>
+    <%= button_tag(type: 'submit', class: "btn btn-success hvr-sweep-to-right", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Changing..."}) do %>
       <i class="fa fa-save"></i> Change Password
     <% end %>
   <%end%>

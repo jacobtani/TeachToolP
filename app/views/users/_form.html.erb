@@ -27,7 +27,7 @@
         <%= f.text_field :referrer_email %>
       <%end%>
 
-      <div class='enrolment-form level-header'>
+     <div class='enrolment-form level-header'>
         <% if current_user && current_user.role == 'parent'%>  
           <%= f.fields_for :enrolments do |enrolment| %>
             <%= render 'enrolment_fields', :f => enrolment  %>

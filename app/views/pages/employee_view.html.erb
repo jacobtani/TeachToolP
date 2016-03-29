@@ -3,7 +3,7 @@
     <h2> EMPLOYEE PORTAL </h2>
   </div>
   <div class = "col-md-3 level-header btn-default"> 
-    <a href="#" class="dropdown-toggle hvr-sweep-to-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Utilities <span class="caret"></span></a> 
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Utilities <span class="caret"></span></a> 
     <ul class="dropdown-menu">
       <li><%= link_to 'Send Work Missing Email', work_missing_path(user_id: current_user), class: "btn-default hvr-sweep-to-right", id: 'work-missing-link' if current_user && current_user.role == 'employee' %></li>
       <li><%= link_to 'Enter Placement Pack', enter_placement_pack_path(id: current_user), class: "btn-default hvr-sweep-to-right", id: 'placement-pack-link' if current_user && current_user.role == 'employee' %></li>

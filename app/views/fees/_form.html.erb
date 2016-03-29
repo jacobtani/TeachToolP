@@ -6,10 +6,10 @@
     <%= f.select :fee_type, Fee.fee_types.keys.to_a, label: 'Type' %>
     <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select Subject" %>
     <div class='level-header'>
-      <%= button_tag(type: 'submit', class: "btn btn-success hvr-sweep-to-right", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
+      <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
         <i class="fa fa-save"></i> Save
       <% end %>      
-      <%= link_to fa_icon("undo", text: 'Cancel'), admin_path, class: 'btn btn-danger' %>
+      <%= link_to fa_icon("undo", text: 'Cancel'), admin_path, class: 'btn btn-danger hvr-sweep-to-right' %>
     </div>
   <% end %>
 </div>

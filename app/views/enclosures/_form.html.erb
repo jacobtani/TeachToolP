@@ -6,10 +6,10 @@
     <%= f.date_field :due_date, placeholder: 'Enter due date', class: 'form-control' %>
     <%= f.collection_select :pack_id, Pack.all, :id, :name, :prompt => "Select Pack" %>
     <div class='level-header'>
-      <%= button_tag(type: 'submit', class: "btn btn-success hvr-sweep-to-right", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
+      <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
         <i class="fa fa-save"></i> Save
       <% end %>
-      <%= link_to fa_icon("undo", text: 'Cancel'), admin_path, class: 'btn btn-danger' %>
+      <%= link_to fa_icon("undo", text: 'Cancel'), admin_path, class: 'btn btn-danger hvr-sweep-to-right' %>
     </div>
   <% end %>
 </div>
