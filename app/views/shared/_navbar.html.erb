@@ -14,48 +14,48 @@
         <div class="collapse navbar-collapse" id="navbar-collapsable">
           <ul class="nav navbar-nav foo" id="menu">
              <li class="dropdown">
-              <a href="#" class="dropdown-toggle admin-header hvr-bounce-in" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Context <span class="caret"></span></a>
+              <a href="/about" class="dropdown-toggle admin-header hvr-sweep-to-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> About Us <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><%= link_to 'Our Mission', mission_path, class: 'hvr-bounce-in'%></li>
-                <li><%= link_to 'About Us', about_path, class: 'hvr-bounce-in'%></li>
-                <li><%= link_to 'Why Extend?', why_extend_path%></li>
-                <li><%= link_to 'Background', background_path%></li>
-                <li><%= link_to 'Historial View', historical_view_path%></li>
+                <li><%= link_to 'Why Extend?', why_extend_path, class: 'hvr-sweep-to-right'%></li>
+                <li><%= link_to 'Our Mission', mission_path, class: 'hvr-sweep-to-right'%></li>
+                <li><%= link_to 'OurCompany', about_path, class: 'hvr-sweep-to-right'%></li>
+                <li><%= link_to 'Background', background_path, class: 'hvr-sweep-to-right'%></li>
+                <li><%= link_to 'Historial View', historical_view_path, class: 'hvr-sweep-to-right'%></li>
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle admin-header hvr-bounce-in" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Process <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle admin-header hvr-sweep-to-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">The Process <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><%= link_to 'Expected Roles', expected_roles_path%></li>
-                <li><%= link_to 'Communication', communications_path%></li>
-                <li><%= link_to 'Contact Us', contact_path, class: 'hvr-bounce-in'%></li>
+                <li><%= link_to 'Expected Roles', expected_roles_path, class: 'hvr-sweep-to-right'%></li>
+                <li><%= link_to 'Communication', communications_path, class: 'hvr-sweep-to-right'%></li>
                 <li><%= link_to 'FAQ', questions_path%></li>
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle admin-header hvr-bounce-in" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Get Started <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle admin-header hvr-sweep-to-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Get Started <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><%= link_to 'Fees and Offers', fees_offers_path%></li>
-                <li><%= link_to 'Terms and Conditions', terms_conditions_path%></li>
+                <li><%= link_to 'Fees and Offers', fees_offers_path, class: 'hvr-sweep-to-right'%></li>
+                <li><%= link_to 'Terms and Conditions', terms_conditions_path, class: 'hvr-sweep-to-right'%></li>
+                <li><%= link_to 'Contact Us', contact_path, class: 'hvr-sweep-to-right'%></li>
               </ul>
             </li>
-            <% if user_signed_in? && current_user.role == 'parent' %>
-              <li><%= link_to 'Parent Portal', parent_summary_path %> </li>
-            <%elsif user_signed_in? && current_user.role == 'admin' %>
-              <li><%= link_to 'Admin Portal', admin_path %></li>
-            <%elsif user_signed_in? && current_user.role == 'student' %>
-              <li> <%= link_to 'Student Portal', student_view_path(user_id: current_user.id) %> </li>
-            <%elsif user_signed_in? && current_user.role == 'employee' %>
-              <li> <%= link_to 'Employee Portal', employee_view_path %> </li>
-            <%end%>
           </ul>
           <div class="nav navbar-right header">
             <% if user_signed_in? %>
-                 <%= link_to fa_icon("user", text: current_user.email), edit_user_registration_path, class: 'btn btn-success navbar-btn' %>
-                <%= link_to fa_icon("sign-out", text: "Logout"), destroy_user_session_path, :method => :delete, class: 'btn btn-info navbar-btn' %>
+              <% if current_user.role == 'parent' %>
+                <%= link_to 'Parent Portal', parent_summary_path, class: 'hvr-sweep-to-right' %>
+              <%elsif current_user.role == 'admin' %>
+                <%= link_to 'Admin Portal', admin_path, class: 'hvr-sweep-to-right' %>
+              <%elsif current_user.role == 'student' %>
+                <%= link_to 'Student Portal', student_view_path(user_id: current_user.id), class: 'hvr-sweep-to-right' %>
+              <%elsif current_user.role == 'employee' %>
+                <%= link_to 'Employee Portal', employee_view_path, class: 'hvr-sweep-to-right' %>
+              <%end%>
+              <%= link_to fa_icon("user", text: current_user.email), edit_user_registration_path, class: 'btn btn-success navbar-btn hvr-sweep-to-right' %>
+              <%= link_to fa_icon("sign-out", text: "Logout"), destroy_user_session_path, :method => :delete, class: 'btn btn-danger hvr-sweep-to-right navbar-btn' %>
             <% else %>
-                <%= link_to fa_icon("lock", text: 'Login'), new_user_session_path, class: "btn btn-success navbar-btn hvr-bounce-to-top"  %>  
-                <%= link_to fa_icon("user-plus", text: 'Register'), new_user_registration_path, class: "btn btn-danger navbar-btn hvr-push"  %>
+              <%= link_to fa_icon("lock", text: 'Login'), new_user_session_path, class: "btn btn-success navbar-btn hvr-sweep-to-right"  %>  
+              <%= link_to fa_icon("user-plus", text: 'Register'), new_user_registration_path, class: "btn btn-info navbar-btn hvr-sweep-to-right"  %>
             <% end %>
           </div>
         </div>

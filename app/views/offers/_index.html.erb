@@ -1,8 +1,7 @@
-<div class = 'container level-header'>
+<div class = 'container level-header offer-page'>
   <% @offers = locals[:offers] if @offers.nil? %> 
-  <h2> Offers</h2>
   <div class= 'pull-right'>
-    <%= link_to fa_icon("plus", text: 'Add Offer'), new_offer_path, class: "btn btn-info", id: 'new-offer-link' if current_user && current_user.role == 'admin' %>
+    <%= link_to fa_icon("plus", text: 'Add Offer'), new_offer_path, class: "btn btn-add hvr-sweep-to-right", id: 'new-offer-link' if current_user && current_user.role == 'admin' %>
   </div>
   <table class = 'table table-striped'>
     <thead>
@@ -32,9 +31,9 @@
         <td> <%= offer.number_of_subjects %> </td>
         <% if current_user && current_user.role == 'admin' %>
           <td> 
-            <%= link_to fa_icon("pencil", text: 'Edit'), edit_offer_path(id: offer.id), class: "btn btn-success", id: 'edit-offer-link' %> 
+            <%= link_to fa_icon("pencil", text: 'Edit'), edit_offer_path(id: offer.id), class: "btn btn-success hvr-sweep-to-right", id: 'edit-offer-link' %> 
             <%= link_to fa_icon("trash", text: 'Delete'), offer_path(offer), method: :delete,
-                class: "btn btn-danger", id: 'delete-offer-link' %>
+                class: "btn btn-danger hvr-sweep-to-right", id: 'delete-offer-link' %>
           </td>
         <%end%>
       </tr>

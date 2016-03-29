@@ -1,8 +1,7 @@
-<div class = 'container level-header'>
+<div class = 'container level-header fee-page'>
   <% @fees = locals[:fees] if @fees.nil? %> 
-  <h2> Fees</h2>
   <div class= 'pull-right'>
-    <%= link_to fa_icon("plus", text: 'Add Fee'), new_fee_path, class: "btn btn-info", id: 'new-fee-link' if current_user && current_user.role == 'admin' %>
+    <%= link_to fa_icon("plus", text: 'Add Fee'), new_fee_path, class: "btn btn-add hvr-sweep-to-right", id: 'new-fee-link' if current_user && current_user.role == 'admin' %>
   </div>
   <table class = 'table table-striped'>
     <thead>
@@ -26,9 +25,9 @@
         <td> <%= number_to_currency fee.amount %> </td>
         <% if current_user && current_user.role == 'admin' %>
           <td> 
-            <%= link_to fa_icon("pencil", text:'Edit'), edit_fee_path(id: fee.id), class: "btn btn-success", id: 'edit-fee-link' %> 
+            <%= link_to fa_icon("pencil", text:'Edit'), edit_fee_path(id: fee.id), class: "btn btn-success hvr-sweep-to-right", id: 'edit-fee-link' %> 
             <%= link_to fa_icon("trash", text: 'Delete'), fee_path(fee), method: :delete,
-                class: "btn btn-danger", id: 'delete-fee-link' %>
+                class: "btn btn-danger hvr-sweep-to-right", id: 'delete-fee-link' %>
           </td>
         <%end%>
       </tr>

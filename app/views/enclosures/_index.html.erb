@@ -1,8 +1,7 @@
-<div class = 'container level-header'>
+<div class = 'container level-header enclosure-page'>
   <% @enclosures = locals[:enclosures] if @enclosures.nil? %> 
-  <h2> Enclosures</h2>
   <div class= 'pull-right'>
-    <%= link_to fa_icon("plus", text: 'Add Enclosure'), new_enclosure_path, class: "btn btn-info", id: 'new-enclosure-link' %>
+    <%= link_to fa_icon("plus", text: 'Add Enclosure'), new_enclosure_path, class: "btn btn-add hvr-sweep-to-right", id: 'new-enclosure-link' %>
   </div>
   <table class = 'table table-striped'>
     <thead>
@@ -22,9 +21,9 @@
         <td> <%= Pack.find(enclosure.pack_id).name %> </td>
         <% if current_user.role == 'admin' %>
           <td> 
-            <%= link_to fa_icon("pencil", text: 'Edit'), edit_enclosure_path(id: enclosure.id), class: "btn btn-success", id: 'edit-enclosure-link' %> 
+            <%= link_to fa_icon("pencil", text: 'Edit'), edit_enclosure_path(id: enclosure.id), class: "btn btn-success hvr-sweep-to-right", id: 'edit-enclosure-link' %> 
             <%= link_to fa_icon("trash", text: 'Delete'), enclosure_path(enclosure), method: :delete,
-                class: "btn btn-danger", id: 'delete-enclosure-link' %>
+                class: "btn btn-danger hvr-sweep-to-right", id: 'delete-enclosure-link' %>
           </td>
         <%end%>
       </tr>

@@ -1,7 +1,7 @@
 <div class = 'container level-header'>
   <% @pack_records = locals[:pack_records] if @pack_records.nil?%>
   <div class= 'pull-right'>
-    <%= link_to fa_icon("plus", text: 'Add Pack Record'), new_pack_record_path, class: "btn btn-info", id: 'new-packrecord-link' if user_signed_in? && current_user.role == 'admin' || current_user.role == 'employee' %>
+    <%= link_to fa_icon("plus", text: 'Add Pack Record'), new_pack_record_path, class: "btn btn-add hvr-sweep-to-right", id: 'new-packrecord-link' if user_signed_in? && current_user.role == 'admin' || current_user.role == 'employee' %>
   </div>
   <table class = 'table table-striped'>
     <thead>
@@ -31,8 +31,8 @@
         <td> <%= pack_record.updated_at.strftime('%c') %> </td>
         <% if current_user.role == 'employee' || current_user.role == 'admin'%>
           <td> 
-            <%= link_to fa_icon("pencil", text: 'Edit'), edit_pack_record_path(id: pack_record), class: "btn btn-success", id: 'edit-packrecord-link' %> 
-            <%= link_to fa_icon("trash", text: 'Delete'), pack_record_path(pack_record), method: :delete, class: "btn btn-danger", id: 'delete-packrecord-link' %>
+            <%= link_to fa_icon("pencil", text: 'Edit'), edit_pack_record_path(id: pack_record), class: "btn btn-success hvr-sweep-to-right", id: 'edit-packrecord-link' %> 
+            <%= link_to fa_icon("trash", text: 'Delete'), pack_record_path(pack_record), method: :delete, class: "btn btn-danger hvr-sweep-to-right", id: 'delete-packrecord-link' %>
           </td>
         <%end%>
       </tr>
