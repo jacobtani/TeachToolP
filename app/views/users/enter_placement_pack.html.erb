@@ -2,8 +2,9 @@
 <div class = 'container level-header'>
   <h2>Placement Pack Results </h2>
   <%= bootstrap_form_tag url: enter_placement_pack_path(id: current_user.id, :format => 'pdf') do |f| %>
-    <%= select_tag "student", options_from_collection_for_select(User.students, "id", "full_name")%>
-    
+
+    <%= f.select :student, User.students.collect {|p| [ p.full_name, p.id ] }, { label: "Select Student:" }%>
+
     <%= f.form_group :q1, label: { text: "How did the student do from earlier years" } do %>
       <%= f.radio_button :q1, 'very_poor' , label: "Very Poor", inline: true %>
       <%= f.radio_button :q1, 'fair_poor', label: "Fair Poor", inline: true %>
