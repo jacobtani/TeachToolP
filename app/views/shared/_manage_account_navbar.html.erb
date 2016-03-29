@@ -1,0 +1,22 @@
+  <ul class="nav nav-sidebar level-header">
+      <div class = "col-md-2 btn btn-success level-header pull-right"> 
+        <li class= "dropdown"><a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage Account <span class="caret"></span></a> 
+          <ul class="dropdown-menu pull-left">
+            <% if current_user && current_user.role == 'parent' || current_user.role == 'admin' || current_user.role == 'employee'%>
+              <li><%= link_to fa_icon("pencil", text: 'Edit'), edit_users_admin_path(id: @user.id), class: "btn btn-success", id: 'edit-user-link' %></li>
+            <%end%>
+            <% if @user.status != 'CANCELLED' %>
+              <% e=@user.enrolments.select { |e| Date.today < (e.date + 1.month) } %>
+              <% if e.present? && @user.status != 'CANCELLED_TRIAL' %>
+                <li><%= link_to fa_icon("stop-circle", text: 'End Trial'), end_trial_path(id: @user.id), class: "btn btn-info", id: 'end-trial-link' %></li>
+              <%else%>
+                <li><%= link_to fa_icon("trash", text: 'Delete Account'), cancel_child_path(id: @user.id), class: "btn btn-info", id: 'cancel-user-link' %></li>
+              <%end%>
+            <%end%>
+            <% if @user.rewards > 0.00 && current_user.role == 'parent' || current_user.role == 'student' %>
+              <%= link_to fa_icon("bank", text: 'Redeem Reward'), redeem_reward_path(id: @user.id), class: "btn btn-info", id: 'redeem-reward-link' %>
+            <%end%>
+          </ul>
+        </li>
+      </div>
+</ul>

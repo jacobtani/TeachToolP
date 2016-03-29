@@ -39,6 +39,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update_attributes user_params
+        build_enrolment_user_data(@user)
         flash[:success] = "User was updated successfully."
         format.html { redirect_to root_path }
       else

@@ -5,7 +5,11 @@ class PackRecordsController < ApplicationController
   before_action :privileged_only, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @pack_records = @user.pack_records
+    if current_user.role == 'employee'
+      @pack_records = PackRecord.all
+    else
+      @pack_records = @user.pack_records
+    end
   end
 
   def show
@@ -25,7 +29,7 @@ class PackRecordsController < ApplicationController
     respond_to do |format|
       if @pack_record.save
         User.update_total_rewards(@user)
-        Pack.update_stock(Pack.find(@pack))
+        Pack.update_stock(@pack)
         UserMailer.new_work_email(@user, @pack).deliver_now
         flash[:success] = "Pack Record was created successfully."
         format.html { redirect_to employee_view_path}

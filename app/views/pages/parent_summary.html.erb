@@ -1,7 +1,9 @@
 <div class = 'container'>
+  
   <div class='jumbotron'>
     <h2> PARENT PORTAL </h2>
   </div>
+  
   <div class = 'row'>
     <ul class="nav nav-sidebar pull-right level-header">
       <div class ='row navbuttons pull-right level-header'>
@@ -10,7 +12,7 @@
           <li class= "dropdown"><a href="#" class="dropdown-toggle admin-header hvr-bounce-to-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Children <span class="caret"></span></a> 
             <ul class="dropdown-menu">
               <% current_user.children.each do |child|%>
-                <li><%= link_to child.full_name, pack_records_path(user_id: child.id), class: "btn btn-info", id:'some-link'%></li>
+                <li><%= link_to child.full_name, parent_student_view_path(id: child.id), class: "btn btn-info", id:'some-link'%></li>
               <%end%>
               <li>  <%= link_to 'Add Child', new_users_admin_path, class: "btn btn-info hvr-push", id: 'new-user-link' if user_signed_in? %></li>
             </ul>

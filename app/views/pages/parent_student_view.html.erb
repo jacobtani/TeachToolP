@@ -1,0 +1,26 @@
+<div class='container'>
+  <% @user = User.find(params[:id]) %>
+  
+  <div class ='jumbotron'>
+    <h2> Student Profile - <%=@user.full_name%> </h2> 
+  </div>
+  
+  <h2 class='details-title'> Profile </h2>
+
+  <div class='student-details'>
+    <%= render 'users/show', locals: { user: @user } %>
+  </div>
+
+  <h2 class='records-title'> Academic Records </h2>
+    
+  <div class='student-pack-records'>
+    <%= render 'pack_records/index', locals: { pack_records: @user.pack_records} %>
+  </div>
+
+  <h2 class='enrolments-title'> Enrolments </h2>
+    
+  <div class='student-enrolments'>
+    <%= render 'enrolments/index', locals: { enrolments: @user.enrolments} if @user.enrolments.present? %>
+  </div>
+  
+</div>
