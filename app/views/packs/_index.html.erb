@@ -1,6 +1,5 @@
-<div class = 'container level-header'>
+<div class = 'container level-header pack-page'>
   <% @packs = locals[:packs] if @packs.nil? %> 
-  <h2> Packs </h2>
   <div class= 'pull-right'>
     <%= link_to fa_icon("plus", text: 'Add Pack'), new_pack_path, class: "btn btn-add hvr-sweep-to-right", id: 'new-pack-link' %>
   </div>

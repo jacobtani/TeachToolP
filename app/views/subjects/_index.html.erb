@@ -1,7 +1,6 @@
 <% @subjects = locals[:subjects] if @subjects.nil? %> 
-<div class = 'container level-header'>
+<div class = 'container level-header subject-page'>
   <div class = 'subject-header'>
-    <h2> Subjects Offered </h2>
     <div class='btn-toolbar pull-right' id='toolbars'>
       <div class="btn-group button-group" role="group" aria-label="a">
         <%= link_to fa_icon("plus", text: 'Add Subject'), new_subject_path, class: "btn btn-add hvr-sweep-to-right", id: 'new-subject-link' %>

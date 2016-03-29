@@ -5,41 +5,51 @@
   </div>
 
   <div class = 'subjects'>
+    <h2 class='subject-a'> Subjects </h2>
     <%= render 'subjects/index', :locals => {:subjects => Subject.all } %>
   </div>
 
   <div class = 'offers' >
+    <h2 class='offer-a'> Offers </h2>
     <%= render 'offers/index', :locals => {:offers => Offer.all } %>
   </div>
 
   <div class = 'fees' >
+    <h2 class='fee-a'> Fees </h2>
     <%= render 'fees/index', :locals => {:fees => Fee.all } %>
   </div>
 
   <div class = 'packs'>
+    <h2 class='pack-a'> Packs </h2>
     <%= render 'packs/index', :locals => {:packs => Pack.all } %>  
   </div>  
 
   <div class = 'enclosures'>
+    <h2 class='enclosure-a'> Enclosures </h2>
     <%= render 'enclosures/index', :locals => {:enclosures => Enclosure.all } %>
   </div>
 
-  <div class = 'employees-admins'>
-    <%@users = User.employees + User.admins %>
-    <h2> Employees and Admins </h2>
-    <%= render 'users/index', :locals => {:users => @users } %>
-  </div>
+  <div class='users-group'>
+    <h2 class='user-admin'> Users </h2>
+    <div class='all-users'>
+      <div class = 'employees-admins'>
+        <%@users = User.employees + User.admins %>
+        <h2> Employees and Admins </h2>
+        <%= render 'users/index', :locals => {:users => @users } %>
+      </div>
 
-  <div class = 'parents'>
-    <%@users = User.all_parents %>
-    <h2> Parents </h2>
-    <%= render 'users/index', :locals => {:users => @users } %>
-  </div>
+      <div class = 'parents'>
+        <%@users = User.all_parents %>
+        <h2> Parents </h2>
+        <%= render 'users/index', :locals => {:users => @users } %>
+      </div>
 
-  <div class = 'students'>
-    <%@users = User.students %>
-    <h2> Students </h2>
-    <%= render 'users/index', :locals => {:users => @users } %>
+      <div class = 'students'>
+        <%@users = User.students %>
+        <h2> Students </h2>
+        <%= render 'users/index', :locals => {:users => @users } %>
+      </div>
+    </div>
   </div>
 
 </div>
