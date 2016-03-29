@@ -3,11 +3,11 @@
   
   <div class ='jumbotron level-header'>
     <h2> Student Profile - <%=@user.full_name%> </h2>
-    <ul class="nav nav-sidebar level-header pull-right">
-        <h4 class='reset-student-page btn btn-add'> Reset Page </h4>
+      <div class ='row button-group pull-right level-header'>
         <%= link_to "Back", parent_summary_path, class: 'btn btn-add'%>
-    </ul>
-  </div>
+        <button type="button" class="btn btn-add reset-student-page">Reset Page</button>
+      </div>
+    </div>
   
   <h2 class='details-title'> Profile </h2>
 
