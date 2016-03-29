@@ -25,5 +25,26 @@ $(document).ready(function() {
         window.location = $(this).data('link');
  });
 
+ $('.student-pack-records').addClass('hidden');
+ $('.student-details').addClass('hidden');
+ $('.student-enrolments').addClass('hidden');
+
+ $('.records-title').on("click", function() {
+    $('.student-pack-records').removeClass('hidden');
+    $('.student-details').addClass('hidden');
+    $('.student-enrolments').addClass('hidden');
+
+ })
+ $('.details-title').on("click", function() {
+    $('.student-pack-records').addClass('hidden');
+    $('.student-details').removeClass('hidden');
+    $('.student-enrolments').addClass('hidden');
+ })
+ $('.enrolments-title').on("click", function() {
+    $('.student-pack-records').addClass('hidden');
+    $('.student-details').addClass('hidden');
+    $('.student-enrolments').removeClass('hidden');
+ })
+
 });
 

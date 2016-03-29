@@ -54,4 +54,7 @@ class PagesController < ApplicationController
   def student_view
   end
 
+  def parent_student_view
+  end
+
 end

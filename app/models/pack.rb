@@ -6,7 +6,9 @@ class Pack < ActiveRecord::Base
 
   #Update the stock of unassigned vs assigned of a pack
   def self.update_stock(pack)
-    pack.update(number_unassigned: (pack.number_unassigned -1), number_assigned: (number_assigned + 1))
+  	number_unassigned = pack.number_unassigned - 1
+  	number_assigned = pack.number_assigned + 1
+  	pack.update(number_assigned: number_assigned, number_unassigned: number_unassigned)
   end
 
 end

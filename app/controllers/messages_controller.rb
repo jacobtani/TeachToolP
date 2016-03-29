@@ -87,8 +87,9 @@ class MessagesController < ApplicationController
   end
 
   def redeem_reward
-    AdminMailer.redeem_reward(@user, @user.rewards).deliver_now
-    @user.update(rewards: 0, activation_date: Date.today)
+    @student = User.find(params[:id])
+    AdminMailer.redeem_reward(@student, @student.rewards).deliver_now
+    @student.update(rewards: 0, activation_date: Date.today)
     redirect_to parent_summary_path
   end
 

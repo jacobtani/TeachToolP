@@ -71,6 +71,7 @@ Rails.application.routes.draw do
     get :parent_summary
     get :student_view
     get :employee_view
+    get '/users/:id/parent_student_view' => 'pages#parent_student_view', as: :parent_student_view
   end
 
 end

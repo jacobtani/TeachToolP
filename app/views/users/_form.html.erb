@@ -26,23 +26,21 @@
         <%= f.text_field :contact_email, placeholder: 'Enter contact email', class: 'form-control', label: 'Parent Email' %>
         <%= f.text_field :referrer_email %>
       <%end%>
-    </div>
 
-    <div class='enrolment-form level-header'>
-      <% if current_user && current_user.role == 'parent'%>  
-        <%= f.fields_for :enrolments do |enrolment| %>
-          <%= render 'enrolment_fields', :f => enrolment  %>
-        <% end %>
-        <%= link_to_add_association fa_icon(:plus, text: 'Add More Enrolments'), f, :enrolments, class: 'btn btn-info'  %>
-    </div>
-    <%end%>
-    <%= javascript_tag "resetCocoonDestroyed();" if @user.errors[:enrolments].present? %>
-    <div class='level-header'>
-      <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
-        <i class="fa fa-save"></i> Save
-      <% end %>
-      <%= link_to fa_icon("undo", text: 'Cancel'), root_path, class: 'btn btn-danger' %>    </div>
-    </div>
-  <% end %>
-</div>
+      <div class='enrolment-form level-header'>
+        <% if current_user && current_user.role == 'parent'%>  
+          <%= f.fields_for :enrolments do |enrolment| %>
+            <%= render 'enrolment_fields', :f => enrolment  %>
+          <% end %>
+          <%= link_to_add_association fa_icon(:plus, text: 'Add More Enrolments'), f, :enrolments, class: 'btn btn-info'  %>
+        <%end%>
+      </div>
+  
+      <%= javascript_tag "resetCocoonDestroyed();" if @user.errors[:enrolments].present? %>
+      <div class='level-header'>
+        <%= f.button "Save", class: "btn btn-success level-header", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."} %>  
+        <%= link_to fa_icon("undo", text: 'Cancel'), root_path, class: 'btn btn-danger' %>
+      </div>
+    <% end %>
+  </div>
 </div>
