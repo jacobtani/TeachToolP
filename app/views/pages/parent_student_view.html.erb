@@ -1,8 +1,12 @@
 <div class='container'>
   <% @user = User.find(params[:id]) %>
   
-  <div class ='jumbotron'>
-    <h2> Student Profile - <%=@user.full_name%> </h2> 
+  <div class ='jumbotron level-header'>
+    <h2> Student Profile - <%=@user.full_name%> </h2>
+    <ul class="nav nav-sidebar level-header pull-right">
+        <h4 class='reset-student-page btn btn-add'> Reset Page </h4>
+        <%= link_to "Back", parent_summary_path, class: 'btn btn-add'%>
+    </ul>
   </div>
   
   <h2 class='details-title'> Profile </h2>

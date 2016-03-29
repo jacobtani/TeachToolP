@@ -47,6 +47,12 @@ $(document).ready(function() {
     $('.student-enrolments').removeClass('hidden');
 });
 
+ $('.reset-student-page').on('click', function (){
+    $('.student-pack-records').addClass('hidden');
+    $('.student-details').addClass('hidden');
+    $('.student-enrolments').addClass('hidden');
+});
+
  $(".subject-page").addClass('hidden');
  $(".offer-page").addClass('hidden');
  $(".pack-page").addClass('hidden');

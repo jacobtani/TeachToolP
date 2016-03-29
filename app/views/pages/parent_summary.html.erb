@@ -8,18 +8,18 @@
     <ul class="nav nav-sidebar pull-right level-header">
       <div class ='row navbuttons pull-right level-header'>
         
-        <div class = "col-md-4 btn btn-success level-header"> 
+        <div class = "col-md-4 btn btn-add level-header">
           <li class= "dropdown"><a href="#" class="dropdown-toggle admin-header hvr-sweep-to-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Children <span class="caret"></span></a> 
             <ul class="dropdown-menu pull-right">
               <% current_user.children.each do |child|%>
-                <li><%= link_to child.full_name, parent_student_view_path(id: child.id), class: "btn btn-info", id:'some-link'%></li>
+                <li><%= link_to child.full_name, parent_student_view_path(id: child.id), class: "btn btn-add", id:'some-link'%></li>
               <%end%>
               <li>  <%= link_to 'Add Child', new_users_admin_path, class: "btn btn-add hvr-sweep-to-right", id: 'new-user-link' if user_signed_in? %></li>
             </ul>
           </li>
         </div>
         
-        <div class = "col-md-8 btn btn-success level-header"> 
+        <div class = "col-md-8 btn btn-add level-header">
           <li class= "dropdown"><a href="#" class="dropdown-toggle admin-header hvr-sweep-to-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Email Enquiries <span class="caret"></span></a> 
             <ul class="dropdown-menu pull-right">
               <li><%= link_to 'MISSING PACK/WORK', missing_pack_path(id: current_user.id), class: "btn btn-add hvr-sweep-to-right", id:'missing-pack-link' if user_signed_in? %></li>
