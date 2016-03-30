@@ -4,19 +4,19 @@
     <%= link_to "Reset Page", student_view_path, class: 'btn btn-add pull-right'%>
   </div>
   
-  <h2 class='my-profile-title'> Profile </h2>
+  <h2 class='my-profile-title'> My Details </h2>
 
   <div class='profile-student'>
     <%= render 'users/show', locals: { user: current_user } %>
   </div>
 
-  <h2 class='my-pack-records-title'> Academic Records </h2>
+  <h2 class='my-pack-records-title'> My Academic Records </h2>
     
   <div class='my-pack-records'>
     <%= render 'pack_records/index', locals: { pack_records: current_user.pack_records} %>
   </div>
 
-  <h2 class='my-enrolments-title'> Enrolments </h2>
+  <h2 class='my-enrolments-title'> My Enrolments </h2>
     
   <div class='my-enrolments'>
     <%= render 'enrolments/index', locals: { enrolments: current_user.enrolments} if current_user.enrolments.present? %>
