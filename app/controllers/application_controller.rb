@@ -11,20 +11,20 @@ class ApplicationController < ActionController::Base
   # devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :current_password, :gender }
   end
 
-  def admin_only
-    user_signed_in? && current_user.role == 'admin'
+  def ensure_admin
+    redirect_to root_path, alert: I18n.t("forbidden") unless current_user.admin?
   end
 
-  def privileged_only
-    user_signed_in? && current_user.role == 'employee'  || current_user.role == 'admin'
+  def ensure_privileged
+    redirect_to root_path, alert: I18n.t("forbidden") unless current_user.privileged?
   end
 
-  def student_only
-    user_signed_in && current_user.role == 'student'
+  def ensure_student
+    redirect_to root_path, alert: I18n.t("forbidden") unless current_user.student?
   end
 
-  def redirect_turbo(path)
-    render js: "Turbolinks.visit('#{path}')"
+  def ensure_parent
+    redirect_to root_path, alert: I18n.t("forbidden") unless current_user.parent?
   end
 
   def not_found!

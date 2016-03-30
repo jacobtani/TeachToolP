@@ -18,6 +18,22 @@ class User < ActiveRecord::Base
     "#{first_name} #{surname}"
   end
 
+  def privileged?
+    role == 'admin' || role == 'employee'
+  end
+
+  def admin?
+    role == 'admin'
+  end
+
+  def parent?
+    role == 'parent'
+  end
+
+  def student?
+    role == 'student'
+  end
+
   def self.update_total_rewards(user)
     total_rewards = 0
     user.pack_records.each {|pr| total_rewards = pr.reward  }
