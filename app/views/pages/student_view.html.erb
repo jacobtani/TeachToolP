@@ -1,26 +1,32 @@
 <div class = "container">
-  <div class='jumbotron'>
+  <div class='jumbotron level-header'>
     <h2> STUDENT PORTAL </h2>
+    <%= link_to "Reset Page", student_view_path, class: 'btn btn-add pull-right'%>
   </div>
-  <div id = 'student-view-header'>
-    <h2> Welcome <%=current_user.full_name %></h2>
-    <h4> <i> Your current rewards is <%= number_to_currency current_user.rewards %> .</i> </h4>
-  </div>
-<!--<div class = "col-sm-3 col-md-2 sidebar">
-  <ul class = "nav nav-sidebar">
-    <li class = "sidebar-brand"><%= link_to 'Hi' %> </li>
-    <li> <%#= link_to 'My Records', user_pack_records_path(user_id: current_user.id) %> </li>
-    <li> <%#= link_to 'Rawr', root_path %> </li>
-    <li> <%#= link_to 'Sleep', root_path %> </li>
-  </ul>
-</div>
--->
-  <div class = 'academic-history'>
-    <%= render "pack_records/index", locals: {pack_records: current_user.pack_records} %>
+  
+  <h2 class='my-profile-title'> Profile </h2>
+
+  <div class='profile-student'>
+    <%= render 'users/show', locals: { user: current_user } %>
   </div>
 
-  <div id = "user_performance">
+  <h2 class='my-pack-records-title'> Academic Records </h2>
+    
+  <div class='my-pack-records'>
+    <%= render 'pack_records/index', locals: { pack_records: current_user.pack_records} %>
+  </div>
+
+  <h2 class='my-enrolments-title'> Enrolments </h2>
+    
+  <div class='my-enrolments'>
+    <%= render 'enrolments/index', locals: { enrolments: current_user.enrolments} if current_user.enrolments.present? %>
+  </div>
+
+  <h2 class='my-performance-title'> My Performance </h2>
+  
+  <div class='my-performance-graph'>  
     <img src = "<%= Gchart.line(:data => [current_user.pack_records.pluck(:score)], :axis_with_labels => 'x,y', :axis_labels => [['' ,'' ,'' ,'' ,'' ,'' ,'' ,'' ,'' ,'' ,'' , '', '', '', '', ''],[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]], :max_value => 100, 
             :title => "My Performance Record", :size => '800x300') %>"/>
   </div>
-</div>
+ 
+  </div>
