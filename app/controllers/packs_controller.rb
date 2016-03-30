@@ -1,7 +1,7 @@
 class PacksController < ApplicationController
   before_action :authenticate_user!  
   before_action :set_pack, only: [:edit, :update, :show, :destroy]
-  before_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
+  before_action :ensure_admin, only: [:new, :create, :edit, :update, :destroy]
   
   def index
     @packs = Pack.all

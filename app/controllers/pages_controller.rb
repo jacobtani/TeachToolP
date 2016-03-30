@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
-  
+  before_action :ensure_admin, only: [:admin]
+  before_action :ensure_privileged, only: [:employee_view]
+  before_action :ensure_parent, only: [:parent_summary, :parent_student_view]
+  before_action :ensure_student, only: [:student_view]
+
   def home
   end
 
@@ -46,9 +50,6 @@ class PagesController < ApplicationController
   end
 
   def employee_view
-  end
-
-  def placement_pack
   end
 
   def student_view

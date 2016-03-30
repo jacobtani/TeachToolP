@@ -28,6 +28,17 @@ $(document).ready(function() {
  $('.student-pack-records').addClass('hidden');
  $('.student-details').addClass('hidden');
  $('.student-enrolments').addClass('hidden');
+ $(".subject-page").addClass('hidden');
+ $(".offer-page").addClass('hidden');
+ $(".pack-page").addClass('hidden');
+ $(".enclosure-page").addClass('hidden');
+ $(".fee-page").addClass('hidden');
+ $(".user-page").addClass('hidden');
+ $(".all-users").addClass('hidden');
+ $(".profile-student").addClass('hidden');
+ $(".my-pack-records").addClass('hidden');
+ $(".my-enrolments").addClass('hidden');
+ $(".my-performance-graph").addClass('hidden');
 
  $('.records-title').on("click", function() {
     $('.student-pack-records').removeClass('hidden');
@@ -53,14 +64,6 @@ $(document).ready(function() {
     $('.student-enrolments').addClass('hidden');
 });
 
- $(".subject-page").addClass('hidden');
- $(".offer-page").addClass('hidden');
- $(".pack-page").addClass('hidden');
- $(".enclosure-page").addClass('hidden');
- $(".fee-page").addClass('hidden');
- $(".user-page").addClass('hidden');
- $(".all-users").addClass('hidden');
-
  $(".subject-a").on("click", function() {
     $(".subject-page").removeClass('hidden');
     $(".offer-page").addClass('hidden');
@@ -70,7 +73,7 @@ $(document).ready(function() {
     $(".user-page").addClass('hidden');
     $(".all-users").addClass('hidden');
     $(".user-admin").removeClass('hidden');
-});
+ });
 
  $(".offer-a").on("click", function() {
     $(".subject-page").addClass('hidden');
@@ -127,6 +130,34 @@ $(document).ready(function() {
     $(".user-page").removeClass('hidden');
     $(".user-admin").addClass('hidden');
     $(".all-users").removeClass('hidden');
+ });
+
+ $(".my-profile-title").on("click", function() {
+     $(".profile-student").removeClass('hidden');
+     $(".my-pack-records").addClass('hidden');
+     $(".my-enrolments").addClass('hidden');
+     $(".my-performance-graph").addClass('hidden');
+ });
+
+ $(".my-pack-records-title").on("click", function() {
+     $(".profile-student").addClass('hidden');
+     $(".my-pack-records").removeClass('hidden');
+     $(".my-enrolments").addClass('hidden');
+     $(".my-performance-graph").addClass('hidden');
+ });
+
+ $(".my-enrolments-title").on("click", function() {
+     $(".profile-student").addClass('hidden');
+     $(".my-pack-records").addClass('hidden');
+     $(".my-enrolments").removeClass('hidden');
+     $(".my-performance-graph").addClass('hidden');
+ });
+
+ $(".my-performance-title").on("click", function() {
+     $(".profile-student").addClass('hidden');
+     $(".my-pack-records").addClass('hidden');
+     $(".my-enrolments").addClass('hidden');
+     $(".my-performance-graph").removeClass('hidden');
  });
 
 });

@@ -1,7 +1,7 @@
  class FeesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_fee, only: [:edit, :update, :show, :destroy]
-  before_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
+  before_action :ensure_admin, only: [:new, :create, :edit, :update, :destroy]
   
   def index
     @fees = Fee.all
