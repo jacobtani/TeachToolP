@@ -3,7 +3,8 @@ class Enrolment < ActiveRecord::Base
   belongs_to :user
   validates_uniqueness_of :user_id, scope: :subject_id, message: "can only enrol once per subject"
   validate :validate_enrolment #ensure enrolment subject is same as offer applied for subject
-  
+  scope :recent, -> { where("created_at > ?", Time.now - 3.minutes ) }
+
   def self.validate_offer(user, enrolment)
     @offer = Offer.find(enrolment.offer_id) if enrolment.offer_id
     if @offer
