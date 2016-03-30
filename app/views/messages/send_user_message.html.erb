@@ -1,5 +1,5 @@
 <div class='container level-header'>
-  <h1> Send Message </h1>
+  <h2> Send Message </h2>
   <%= bootstrap_form_for(@message, layout: :horizontal)  do |f| %>
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
     <%= f.text_field :message_recipient_name, label: 'Message Recipient Name' %>

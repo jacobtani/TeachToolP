@@ -1,5 +1,5 @@
 <div class = 'container form-scrollable level-header'>
-  <h1> STUDENT NEEDS HELP </h1>
+  <h2> Student needs Help Email </h2>
   <%= bootstrap_form_for(@message, layout: :horizontal)  do |f| %>
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
     <%= f.collection_select :subject_name, Subject.all, :subject_name, :subject_name, :prompt => "Select subject", label: 'Subject needing help'%>

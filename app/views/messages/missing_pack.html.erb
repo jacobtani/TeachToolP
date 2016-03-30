@@ -1,5 +1,5 @@
 <div class = 'container form-scrollable level-header'>
-  <h1> MISSING PACK/WORK </h1>
+  <h2> Missing Pack/Work Email </h2>
   <%= bootstrap_form_for(@message, layout: :horizontal)  do |f| %>
     <% render 'messages/message_errors_template', locals: {:message => @message} %>
     <%= f.collection_select :child, current_user.children, :id, :full_name, :prompt => "Select student", label: 'Student Name' %>
