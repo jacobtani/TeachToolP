@@ -1,0 +1,19 @@
+enrolment_fee:
+  start_date: <%= Date.today %>
+  end_date: <%= Date.today + 1.year %>
+  amount: 100
+  fee_type: 0
+
+monthly_english_fee:
+  start_date: <%= Date.today %>
+  end_date: <%= Date.today + 1.year %>
+  amount: 160
+  fee_type: 1
+  subject: english
+
+monthly_maths_fee:
+  start_date: <%= Date.today %>
+  end_date: <%= Date.today + 1.year %>
+  amount: 160
+  fee_type: 1
+  subject: maths

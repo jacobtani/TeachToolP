@@ -3,6 +3,7 @@ class Pack < ActiveRecord::Base
   has_many :enclosures, dependent: :destroy
   validates :name, :description, presence: true
   enum pack_type: [:NORMAL, :GLOBAL, :HIGH_INTENSITY]
+  has_many :pack_records, dependent: :destroy
 
   #Update the stock of unassigned vs assigned of a pack
   def self.update_stock(pack)

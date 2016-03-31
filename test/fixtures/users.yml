@@ -1,0 +1,35 @@
+employee_user:
+  first_name: Employee
+  surname: User
+  role: employee 
+  postal_address: Employee Lane 
+  city: San Francisco
+  state: CA 
+  zip_code: 02020
+  email: employee@gmail.com
+  password: password123
+  phone_number: 4949494949
+
+admin_user:
+  first_name: Admin
+  surname: User
+  role: admin 
+  postal_address: Admin Lane 
+  city: San Francisco
+  state: CA 
+  zip_code: 02020
+  email: admin@gmail.com
+  password: password123
+  phone_number: 1234939393
+
+jj_parent:
+  first_name: JJ
+  surname: Surname
+  role: parent
+  postal_address: Parent One Lane
+  city: San Francisco
+  state: CA 
+  zip_code: 02020
+  email: jj@gmail.com
+  password: password123
+  phone_number: 121212454545

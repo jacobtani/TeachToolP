@@ -1,0 +1,13 @@
+offer_english:
+  offer_name: 'Premier Group X English'
+  offer_description: 'Starting English Offer'
+  start_date: <%=Date.today %>
+  end_date: <%=Date.today + 1.year %>
+  subject: english
+
+offer_maths:
+  offer_name: 'Premier Group X Mathematics'
+  offer_description: 'Starting Mathematics Offer'
+  start_date: <%=Date.today %>
+  end_date: <%=Date.today + 1.year %>
+  subject: maths

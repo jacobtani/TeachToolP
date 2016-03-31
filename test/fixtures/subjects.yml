@@ -1,0 +1,9 @@
+maths:
+  subject_name: 'Mathematics'
+  lowest_grade_taught: 1
+  highest_grade_taught: 7
+
+english:
+  subject_name: 'English'
+  lowest_grade_taught: 1
+  highest_grade_taught: 7
