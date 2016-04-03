@@ -130,7 +130,7 @@ class UsersController < ApplicationController
       if user.enrolments && user.role == 'student'
         user.enrolments.recent.each do |e|
           e.update(date: Date.today)
-          #e.update(date: Date.today, start_date: Date.today, user_id: user.id, created_at: Time.now - 10.minutes)
+          e.update(created_at: Time.now - 10.minutes)
           user.payment_due = Date.today + 1.month
           Enrolment.validate_offer(user, e)
         end
