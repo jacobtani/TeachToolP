@@ -1,5 +1,5 @@
 <div class='container'>
-  <% @user = User.find(params[:id]) %>
+  <% @user = User.find(params[:id]) if @user.nil? %>
   
   <div class ='jumbotron level-header'>
     <h2> Student Profile - <%=@user.full_name%> </h2>
