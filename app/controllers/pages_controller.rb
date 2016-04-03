@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   before_action :ensure_admin, only: [:admin]
   before_action :ensure_privileged, only: [:employee_view]
-  before_action :ensure_parent, only: [:parent_summary, :parent_student_view]
+  before_action :ensure_parent, only: [:parent_summary]
   before_action :ensure_student, only: [:student_view]
 
   def home
