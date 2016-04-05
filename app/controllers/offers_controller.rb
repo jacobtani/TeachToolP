@@ -46,7 +46,7 @@
   private
 
     def offer_params
-      params.require(:offer).permit(:offer_name, :offer_description, :start_date, :end_date, :includes_free_trial, :discount_monthly, :discount_enrolment, :percentage_enrolment, :percentage_monthly, :number_of_subjects)
+      params.require(:offer).permit(:offer_name, :offer_description, :start_date, :end_date, :includes_free_trial, :discount_monthly, :discount_enrolment, :percentage_enrolment, :percentage_monthly, :number_of_subjects, :subject_id)
     end
 
     def set_offer

@@ -1,23 +1,23 @@
+five_junior_e:
+  name: '5--'
+  description: 'A pack for less competent fifth graders in english'
+  action_required: 'None'
+  subject: english
+
+five_advanced_e:
+  name: '5++'
+  description: 'A pack for competent fifth graders in english'
+  action_required: 'None'
+  subject: english
+
 five_advanced_m:
   name: '5++'
-  description: 'A pack for advanced fifth graders'
+  description: 'A pack for advanced fifth graders in maths'
   action_required: 'None'
   subject: maths
 
 five_junior_m:
   name: '5--'
-  description: 'A pack for less competent fifth graders'
+  description: 'A pack for less competent fifth graders in maths'
   action_required: 'None'
   subject: maths
-
-five_junior_e:
-  name: '5--'
-  description: 'A pack for less competent fifth graders'
-  action_required: 'None'
-  subject: english
-
-five_junior_e:
-  name: '5--'
-  description: 'A pack for less competent fifth graders'
-  action_required: 'None'
-  subject: english
