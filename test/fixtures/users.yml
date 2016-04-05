@@ -33,3 +33,18 @@ jj_parent:
   email: jj@gmail.com
   password: password123
   phone_number: 121212454545
+
+iain_student:
+  first_name: Iain
+  surname: WW
+  role: student
+  postal_address: Parent One Lane
+  city: San Francisco
+  state: CA 
+  zip_code: 02020
+  email: iain@gmail.com
+  password: password123
+  phone_number: 121212454545
+  contact_email: jj@gmail.com
+  parent: jj_parent
+  school_grade: 4
