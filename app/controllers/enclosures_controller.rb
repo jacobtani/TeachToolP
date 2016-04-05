@@ -1,7 +1,7 @@
  class EnclosuresController < ApplicationController
   before_action :authenticate_user!  
   before_action :set_enclosure, only: [:edit, :update, :show, :destroy]
-  before_action :ensure_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :ensure_admin, only: [:new, :create, :edit, :update, :destroy, :index, :show]
   
   def index
     @enclosures = Enclosure.all
@@ -49,7 +49,7 @@
   private
 
     def enclosure_params
-      params.require(:enclosure).permit(:name, :subject, :pack_id, :barcode, :due_date)
+      params.require(:enclosure).permit(:name, :barcode, :due_date, :pack_id, )
     end
 
     def set_enclosure

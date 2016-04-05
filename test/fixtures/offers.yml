@@ -4,6 +4,7 @@ offer_english:
   start_date: <%=Date.today %>
   end_date: <%=Date.today + 1.year %>
   subject: english
+  discount_monthly: 40
 
 offer_maths:
   offer_name: 'Premier Group X Mathematics'
@@ -11,3 +12,4 @@ offer_maths:
   start_date: <%=Date.today %>
   end_date: <%=Date.today + 1.year %>
   subject: maths
+  discount_monthly: 40
