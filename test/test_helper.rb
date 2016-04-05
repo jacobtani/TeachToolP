@@ -12,7 +12,6 @@ SimpleCov.start do
   add_filter 'config/'
   add_group 'Controllers', 'app/controllers'
   add_group 'Models', 'app/models'
-  add_group 'Interactors', 'app/interactors'
 end if ENV["COV"]
 
 if ENV['SQL'] then ActiveRecord::Base.logger = Logger.new(STDOUT) if defined? ActiveRecord::Base end
@@ -26,13 +25,6 @@ class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
   include Capybara::DSL
   include Capybara::Assertions
-
-setup do
-    SiteConfig.create(
-      running_start: false,
-      running_stop: true
-)
-end
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   #
