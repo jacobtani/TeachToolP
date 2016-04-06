@@ -14,7 +14,7 @@ class FeesControllerTest < ActionController::TestCase
     describe "actions by a non logged in user" do
 
       it "doesn't allow fee to be created when not logged in" do
-        post :create, fee: { start_date: Date.today, end_date: Date.today + 1.year, amount: 180, fee_type: 1, subject: english }
+        post :create, fee: { fee_name: 'English New', start_date: Date.today, end_date: Date.today + 1.year, amount: 180, fee_type: 1, subject: english }
         assert_response 302
         @controller.instance_variable_get('@fee').must_equal nil
       end
@@ -46,7 +46,7 @@ class FeesControllerTest < ActionController::TestCase
      end
 
      it "for student doesn't allow fee to be created" do
-       post :create, fee: { start_date: Date.today, end_date: Date.today + 1.year, amount: 180, fee_type: 1, subject: english }
+       post :create, fee: { fee_name: 'English New', start_date: Date.today, end_date: Date.today + 1.year, amount: 180, fee_type: 1, subject: english }
        assert_response 302
        @controller.instance_variable_get('@fee').must_equal nil
      end
@@ -80,7 +80,7 @@ class FeesControllerTest < ActionController::TestCase
      end
 
      it "for parent doesn't allow fee to be created" do
-       post :create, fee: { start_date: Date.today, end_date: Date.today + 1.year, amount: 180, fee_type: 1, subject: english }
+       post :create, fee: { fee_name: 'English New', start_date: Date.today, end_date: Date.today + 1.year, amount: 180, fee_type: 1, subject: english }
        assert_response 302
        @controller.instance_variable_get('@fee').must_equal nil
      end
@@ -114,7 +114,7 @@ class FeesControllerTest < ActionController::TestCase
      end
 
      it "for employee doesn't allow fee to be created" do
-       post :create, fee: { start_date: Date.today, end_date: Date.today + 1.year, amount: 180, fee_type: 1, subject: english }
+       post :create, fee: { fee_name: 'English New', start_date: Date.today, end_date: Date.today + 1.year, amount: 180, fee_type: 1, subject: english }
        assert_response 302
        @controller.instance_variable_get('@fee').must_equal nil
      end
@@ -147,7 +147,7 @@ class FeesControllerTest < ActionController::TestCase
      end
 
      it "an admin can add new fee" do
-       post :create, fee: { start_date: Date.today, end_date: Date.today + 1.year, amount: 180, fee_type: "MONTHLY", subject: english }
+       post :create, fee: { fee_name: 'English New', start_date: Date.today, end_date: Date.today + 1.year, amount: 180, fee_type: "MONTHLY", subject: english }
        assert_response 302
        @controller.instance_variable_get('@fee').amount.must_equal 180
        @controller.instance_variable_get('@fee').subject.must_equal @english
