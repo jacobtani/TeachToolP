@@ -129,7 +129,6 @@ class UsersController < ApplicationController
     def build_enrolment_user_data(user)
       if user.enrolments && user.role == 'student'
         user.enrolments.recent.each do |e|
-          binding.pry
           e.update(date: Date.today, start_date: Date.today, user_id: user.id, created_at: Time.now - 10.minutes)
           user.payment_due = Date.today + 1.month
           Enrolment.validate_offer(user, e)

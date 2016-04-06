@@ -2,10 +2,10 @@ maths:
   subject_name: 'Mathematics'
   lowest_grade_taught: 1
   highest_grade_taught: 7
-  fee: 200
+  fee_id: monthly_maths_fee.id
 
 english:
   subject_name: 'English'
   lowest_grade_taught: 1
   highest_grade_taught: 7
-  fee: 200
+  fee_id: monthly_english_fee.id

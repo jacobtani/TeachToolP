@@ -9,11 +9,12 @@ class SubjectsControllerTest < ActionController::TestCase
     let(:student) { users(:iain_student) }
     let(:maths) { subjects(:maths) }
     let(:english) { subjects(:english) }
+    let(:fee) { fees(:monthly_english_fee) }
 
     describe "actions by a non logged in user" do
 
       it "doesn't allow subject to be created when not logged in" do
-        post :create, subject: { subject_name: 'Science', lowest_grade_taught: 1, highest_grade_taught: 7 }
+        post :create, subject: { subject_name: 'Science', lowest_grade_taught: 1, highest_grade_taught: 7, fee_id: fee.id }
         assert_response 302
         @controller.instance_variable_get('@subject').must_equal nil
       end
@@ -46,7 +47,7 @@ class SubjectsControllerTest < ActionController::TestCase
      end
 
      it "for student doesn't allow subject to be created" do
-       post :create, subject: { subject_name: 'Science', lowest_grade_taught: 1, highest_grade_taught: 7 }
+        post :create, subject: { subject_name: 'Science', lowest_grade_taught: 1, highest_grade_taught: 7, fee_id: fee.id }
        assert_response 302
        @controller.instance_variable_get('@subject').must_equal nil
      end
@@ -80,7 +81,7 @@ class SubjectsControllerTest < ActionController::TestCase
      end
 
      it "for parent doesn't allow subject to be created" do
-       post :create, subject: { subject_name: 'Science', lowest_grade_taught: 1, highest_grade_taught: 7 }
+        post :create, subject: { subject_name: 'Science', lowest_grade_taught: 1, highest_grade_taught: 7, fee_id: fee.id }
        assert_response 302
        @controller.instance_variable_get('@subject').must_equal nil
      end
@@ -114,7 +115,7 @@ class SubjectsControllerTest < ActionController::TestCase
      end
 
      it "for employee doesn't allow subject to be created" do
-       post :create, subject: { subject_name: 'Science', lowest_grade_taught: 1, highest_grade_taught: 7 }
+        post :create, subject: { subject_name: 'Science', lowest_grade_taught: 1, highest_grade_taught: 7, fee_id: fee.id }
        assert_response 302
        @controller.instance_variable_get('@subject').must_equal nil
      end
@@ -147,7 +148,7 @@ class SubjectsControllerTest < ActionController::TestCase
      end
 
      it "an admin can add new subject" do
-       post :create, subject: { subject_name: 'Science', lowest_grade_taught: 1, highest_grade_taught: 7 }
+        post :create, subject: { subject_name: 'Science', lowest_grade_taught: 1, highest_grade_taught: 7, fee_id: fee.id }
        assert_response 302
        @controller.instance_variable_get('@subject').subject_name.must_equal 'Science'
        @controller.instance_variable_get('@subject').lowest_grade_taught.must_equal 1

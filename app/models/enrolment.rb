@@ -7,9 +7,9 @@ class Enrolment < ActiveRecord::Base
 
   def self.validate_offer(user, enrolment)
     @offer = Offer.find(enrolment.offer_id) if enrolment.offer_id
+    enrolment_fee = Fee.all.where(fee_type: 0).first.amount
+    monthly_fee = Fee.all.where(subject_id: enrolment.subject_id, fee_type: 1).first.amount
     if @offer
-      enrolment_fee = Fee.all.where(fee_type: 0).first.amount
-      monthly_fee = Fee.all.where(subject_id: enrolment.subject_id, fee_type: 1).first.amount
       new_enrolment_fee = user.enrolments.present? ? 0 : self.apply_enrolment_fee_adjustments(enrolment_fee, @offer.discount_enrolment, @offer.percentage_enrolment)
       new_monthly_fee = self.apply_monthly_fee_adjustments(monthly_fee, @offer.discount_monthly, @offer.percentage_monthly)
       self.calculate_total_enrolment_fees(new_enrolment_fee, new_monthly_fee, enrolment)
@@ -20,8 +20,10 @@ class Enrolment < ActiveRecord::Base
 
   #Check enrolment's subject id is the same as that of the offer being used for the enrolment
   def validate_enrolment
-    if self.subject_id != Offer.find(self.offer_id).subject_id
-      errors.add(:enrolment, 'Offer subject id not same as enrolment subject')
+    if self.offer_id.present?
+      if self.subject_id != Offer.find(self.offer_id).subject_id
+        errors.add(:enrolment, 'Offer subject id not same as enrolment subject')
+      end
     end
   end
 

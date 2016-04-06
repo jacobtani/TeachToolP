@@ -1,6 +1,6 @@
 <div class = 'container'>
   <% @enrolments = locals[:enrolments] if @enrolments.nil? %>
-  <% @user = User.find(@enrolments.first.user_id) %>
+  <% @user = User.find(@enrolments.first.user_id) if @user.nil?%>
   <table class = 'table table-striped'>
     <thead>
       <th> Subject</th>
