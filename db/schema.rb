@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330071640) do
+ActiveRecord::Schema.define(version: 20160406032639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20160330071640) do
     t.integer  "subject_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "fee_name"
   end
 
   add_index "fees", ["subject_id"], name: "index_fees_on_subject_id", using: :btree
@@ -118,10 +119,12 @@ ActiveRecord::Schema.define(version: 20160330071640) do
 
   create_table "subjects", force: :cascade do |t|
     t.string  "subject_name"
-    t.float   "fee"
     t.integer "lowest_grade_taught"
     t.integer "highest_grade_taught"
+    t.integer "fee_id"
   end
+
+  add_index "subjects", ["fee_id"], name: "index_subjects_on_fee_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",                                             null: false
@@ -161,7 +164,7 @@ ActiveRecord::Schema.define(version: 20160330071640) do
     t.integer  "school_grade",           default: 1
     t.text     "additional_info"
     t.float    "account_balance"
-    t.datetime "payment_due",            default: '2016-03-30 00:00:00'
+    t.datetime "payment_due",            default: '2016-04-06 00:00:00'
     t.integer  "referrer_count",         default: 0
     t.string   "referrer_email"
     t.datetime "last_payment_date"

@@ -46,7 +46,7 @@
   private
 
     def subject_params
-      params.require(:subject).permit(:subject_name, :fee, :highest_grade_taught, :lowest_grade_taught)
+      params.require(:subject).permit(:subject_name, :fee_id, :highest_grade_taught, :lowest_grade_taught)
     end
 
     def set_subject

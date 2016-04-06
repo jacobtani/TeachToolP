@@ -36,6 +36,7 @@ class SubjectsControllerTest < ActionController::TestCase
         assert_response :redirect
         assert_nil assigns(:subjects)
      end
+
    end
 
    describe "actions by a student" do
