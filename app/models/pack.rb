@@ -1,9 +1,9 @@
 class Pack < ActiveRecord::Base
   belongs_to :subject, inverse_of: :packs
   has_many :enclosures, dependent: :destroy
-  validates :name, :description, presence: true
-  enum pack_type: [:NORMAL, :GLOBAL, :HIGH_INTENSITY]
   has_many :pack_records, dependent: :destroy
+  enum pack_type: [:NORMAL, :GLOBAL, :HIGH_INTENSITY]
+  validates_presence_of :name, :description, :subject_id. :pack_type, :priority
 
   #Update the stock of unassigned vs assigned of a pack
   def self.update_stock(pack)
