@@ -1,5 +1,6 @@
 class Offer < ActiveRecord::Base 
-  validates   :offer_name, :start_date, :end_date, presence: true
-  scope :active, -> { where("start_date <= :now AND end_date >= :now ", { now: DateTime.now } ) }
   belongs_to :subject
+  scope :active, -> { where("start_date <= :now AND end_date >= :now ", { now: DateTime.now } ) }
+  validates_presence_of :offer_name, :start_date, :end_date
+  validates :end_date, date: { after: :start_date }
 end

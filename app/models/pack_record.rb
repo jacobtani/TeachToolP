@@ -1,8 +1,10 @@
 class PackRecord < ActiveRecord::Base
   belongs_to :user
+  belongs_to :pack
   enum status: [:DISPATCHED, :RECEIVED, :COMPLETED]
   scope :overdue, -> { where("due_date < ?", Date.today ) }
-  belongs_to :pack
+  validates :due_date, date: { after: :start_date }
+  validates_presence_of :start_date, :end_date, :user_id, :pack_id,  :status
 
   #Calculate the reward a user gets for a pack record based on their score
   def self.calculate_reward(score)
