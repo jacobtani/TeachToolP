@@ -12,19 +12,19 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_admin
-    redirect_to root_path, alert: I18n.t("forbidden") unless current_user.admin?
+    redirect_to root_path, alert: I18n.t("forbidden") unless current_user && current_user.admin?
   end
 
   def ensure_privileged
-    redirect_to root_path, alert: I18n.t("forbidden") unless current_user.privileged?
+    redirect_to root_path, alert: I18n.t("forbidden") unless current_user && current_user.privileged?
   end
 
   def ensure_student
-    redirect_to root_path, alert: I18n.t("forbidden") unless current_user.student?
+    redirect_to root_path, alert: I18n.t("forbidden") unless current_user && current_user.student?
   end
 
   def ensure_parent
-    redirect_to root_path, alert: I18n.t("forbidden") unless current_user.parent?
+    redirect_to root_path, alert: I18n.t("forbidden") unless current_user && current_user.parent?
   end
 
   def not_found!

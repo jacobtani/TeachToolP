@@ -1,6 +1,7 @@
  class SubjectsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_subject, only: [:edit, :update, :show, :destroy]
-  before_action :ensure_admin, only: [:new, :create, :update, :edit, :destroy]
+  before_action :ensure_admin, only: [:new, :index, :show, :create, :update, :edit, :destroy]
   
   def index
     @subjects = Subject.all
@@ -45,7 +46,7 @@
   private
 
     def subject_params
-      params.require(:subject).permit(:subject_name, :fee, :highest_grade_taught, :lowest_grade_taught)
+      params.require(:subject).permit(:subject_name, :fee_id, :highest_grade_taught, :lowest_grade_taught)
     end
 
     def set_subject

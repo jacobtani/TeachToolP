@@ -1,0 +1,14 @@
+english_enclosure:
+  name: 'Learn to Spell'
+  returnable?: false
+  enclosure_type: 'FREE'
+  pack: five_junior_e
+  due_date: <%=Time.now + 2.weeks%>
+
+maths_enclosure:
+  name: 'Learn Algebra'
+  returnable?: false
+  status: 'ACTIVE'
+  enclosure_type: 'FREE'
+  pack: five_advanced_m
+  due_date: <%=Time.now + 2.weeks%>

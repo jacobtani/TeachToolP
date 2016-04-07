@@ -1,6 +1,6 @@
 require "test_helper"
 
-class UserMailerTest < ActionMailer::TestCase
+class AdminMailerTest < ActionMailer::TestCase
   def test_sanity
  #   flunk "Need real tests"
   end

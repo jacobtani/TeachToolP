@@ -1,0 +1,27 @@
+five_junior_e:
+  name: '5--'
+  description: 'A pack for less competent fifth graders in english'
+  action_required: 'None'
+  subject: english
+  number_unassigned: 20
+
+five_advanced_e:
+  name: '5++'
+  description: 'A pack for competent fifth graders in english'
+  action_required: 'None'
+  subject: english
+  number_unassigned: 20
+
+five_advanced_m:
+  name: '5++'
+  description: 'A pack for advanced fifth graders in maths'
+  action_required: 'None'
+  subject: maths
+  number_unassigned: 20
+
+five_junior_m:
+  name: '5--'
+  description: 'A pack for less competent fifth graders in maths'
+  action_required: 'None'
+  subject: maths
+  number_unassigned: 20

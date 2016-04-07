@@ -61,7 +61,7 @@ group :production do
   gem 'rails_12factor'  
 end   
 
-group :development, :test do
+group :development do
   gem 'quiet_assets'
   gem 'annotate' # run 'annotate -p before' to annotate your models
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -69,22 +69,22 @@ group :development, :test do
     # jazz hands gems
   gem 'awesome_print'
   gem 'coolline'
-  gem 'pry-rails'
-  gem 'pry-stack_explorer'
   gem 'hirb'
   gem 'bullet'
+   # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+end
+
+  gem 'pry-rails'
+  gem 'pry-stack_explorer'
+  gem 'pry-nav'
+
+group :test do
+  gem 'simplecov'
   gem 'minitest-reporters'
   gem 'minitest-spec-rails'
   gem 'minitest-rails-capybara'
-  gem 'vcr'
-
-  gem 'simplecov'
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-
-  gem 'pry-nav'
-
+  gem 'mocha'
 end
