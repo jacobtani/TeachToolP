@@ -1,0 +1,18 @@
+iain_enrolment_maths:
+  user: iain_student
+  subject: maths 
+  date: <%=Date.today%>
+  grade: 5
+  ability_level: 8
+  fees: 260
+
+iain_enrolment_english:
+  user: iain_student
+  subject: english 
+  date: <%=Date.today%>
+  grade: 5
+  ability_level: 4
+  fees: 160
+
+  
+  

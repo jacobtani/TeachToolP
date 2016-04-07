@@ -24,7 +24,7 @@ admin_user:
 
 jj_parent:
   first_name: JJ
-  surname: Surname
+  surname: Parent
   role: parent
   postal_address: Parent One Lane
   city: San Francisco
@@ -36,7 +36,7 @@ jj_parent:
 
 iain_student:
   first_name: Iain
-  surname: WW
+  surname: Awesome
   role: student
   postal_address: Parent One Lane
   city: San Francisco
