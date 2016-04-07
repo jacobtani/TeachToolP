@@ -151,14 +151,14 @@ class EnclosuresControllerTest < ActionController::TestCase
 
      it "an admin can add new enclosure" do
        post :create, enclosure: { name: 'Learn Grammar', enclosure_type: 'FREE', pack_id: english_pack, due_date: Time.now + 1.week }
-       assert_response 302
+       assert_response 200
        @controller.instance_variable_get('@enclosure').name.must_equal 'Learn Grammar'
        @controller.instance_variable_get('@enclosure').enclosure_type.must_equal'FREE'
      end
 
      it "admin can update a enclosure" do
        patch :update, id: maths_enclosure, enclosure: { enclosure_id: maths_enclosure, name: 'Learn Algebra 5th Grade'  }
-       assert_response 302
+       assert_response 200
        @controller.instance_variable_get('@enclosure').name.must_equal 'Learn Algebra 5th Grade'
      end
 

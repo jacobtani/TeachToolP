@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406032639) do
+ActiveRecord::Schema.define(version: 20160406221459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(version: 20160406032639) do
     t.string   "name"
     t.integer  "barcode"
     t.boolean  "returnable?"
-    t.string   "status"
     t.datetime "due_date"
     t.integer  "enclosure_type", default: 0
     t.integer  "pack_id",                    null: false
+    t.integer  "status"
   end
 
   add_index "enclosures", ["pack_id"], name: "index_enclosures_on_pack_id", using: :btree
