@@ -6,6 +6,14 @@ offer_english:
   subject: english
   discount_monthly: 40
 
+offer_english_percentage:
+  offer_name: 'Premier Group X English'
+  offer_description: 'Starting English Offer'
+  start_date: <%=Date.today %>
+  end_date: <%=Date.today + 1.year %>
+  subject: english
+  percentage_monthly: 50
+
 offer_maths:
   offer_name: 'Premier Group X Mathematics'
   offer_description: 'Starting Mathematics Offer'
@@ -20,3 +28,10 @@ offer_enrolment_discount:
   start_date: <%=Date.today %>
   end_date: <%=Date.today + 1.year %>
   percentage_enrolment: 20
+
+offer_enrolment_discount_amount:
+  offer_name: 'Enrolment Discount'
+  offer_description: 'Discounted Enrolment Fee'
+  start_date: <%=Date.today %>
+  end_date: <%=Date.today + 1.year %>
+  discount_enrolment: 50

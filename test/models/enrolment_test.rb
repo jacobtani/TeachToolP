@@ -12,7 +12,9 @@ class EnrolmentTest < ActiveSupport::TestCase
     let (:tj_student) { users(:tj_student) }
     let (:maths_offer) { offers(:offer_maths) }
     let (:english_offer) { offers(:offer_english) }
+    let (:english_offer_percentage) { offers(:offer_english_percentage) }
     let (:enrolment_discount_offer) { offers(:offer_enrolment_discount) }
+    let (:enrolment_discount_amount_offer) { offers(:offer_enrolment_discount_amount) }
 
     describe "invalid enrolments" do
 
@@ -60,6 +62,11 @@ class EnrolmentTest < ActiveSupport::TestCase
         enrolment.fees.must_equal 120
       end
 
+      it "applies a monthly discount percentage correctly to fees for an enrolment when no enrolment fee" do 
+        enrolment = Enrolment.create(date: Date.today, user_id: student.id, grade: 3, subject_id: english.id, ability_level: 8, offer_id: english_offer_percentage.id)
+        Enrolment.validate_offer(student, enrolment)
+        enrolment.fees.must_equal 80
+      end
 
       it "calculates total fees when no enrolments present for student" do 
         enrolment = Enrolment.create(date: Date.today, user_id: tj_student.id, grade: 6, subject_id: maths.id, ability_level: 2, offer_id: maths_offer.id)
@@ -67,10 +74,16 @@ class EnrolmentTest < ActiveSupport::TestCase
         enrolment.fees.must_equal 220
       end
 
-      it "calculates enrolment discounts correctly" do 
+      it "calculates enrolment discount percentage correctly" do 
         enrolment = Enrolment.create(date: Date.today, user_id: tj_student.id, grade: 6, subject_id: maths.id, ability_level: 2, offer_id: enrolment_discount_offer.id)
         Enrolment.validate_offer(tj_student, enrolment)
         enrolment.fees.must_equal 240
+      end
+
+      it "calculates enrolment discount amount correctly" do 
+        enrolment = Enrolment.create(date: Date.today, user_id: tj_student.id, grade: 6, subject_id: maths.id, ability_level: 2, offer_id: enrolment_discount_amount_offer.id)
+        Enrolment.validate_offer(tj_student, enrolment)
+        enrolment.fees.must_equal 210
       end
 
     end

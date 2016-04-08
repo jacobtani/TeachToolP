@@ -50,7 +50,7 @@
   private
 
     def fee_params
-      params.require(:fee).permit(:start_date, :end_date, :amount, :fee_type, :subject_id)
+      params.require(:fee).permit(:fee_name, :start_date, :end_date, :amount, :fee_type, :subject_id)
     end
 
     def set_fee

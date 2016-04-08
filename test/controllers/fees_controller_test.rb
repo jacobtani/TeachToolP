@@ -147,10 +147,11 @@ class FeesControllerTest < ActionController::TestCase
      end
 
      it "an admin can add new fee" do
-       post :create, fee: { fee_name: 'English New', start_date: Date.today, end_date: Date.today + 1.year, amount: 180, fee_type: "MONTHLY", subject: english }
-       assert_response 200
+       post :create, fee: { fee_name: 'English New', start_date: Date.today, end_date: Date.today + 1.year, amount: 180, fee_type: "MONTHLY", subject_id: english.id }
+       assert flash[:success].must_equal 'Fee was created successfully.'
+       assert_response 302
        @controller.instance_variable_get('@fee').amount.must_equal 180
-       @controller.instance_variable_get('@fee').subject.must_equal @english
+       @controller.instance_variable_get('@fee').subject.subject_name.must_equal 'English'
        @controller.instance_variable_get('@fee').fee_type.must_equal 'MONTHLY'
      end
 
