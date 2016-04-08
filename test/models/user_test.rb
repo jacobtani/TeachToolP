@@ -91,7 +91,7 @@ class UserTest < ActiveSupport::TestCase
 
       it "determines no suspension for student" do 
         @pack_record = PackRecord.create(start_date: Date.today + 1.week, due_date: Date.today + 2.week, user_id: student.id, status: 'DISPATCHED', pack_id: pack_maths_2.id)
-        student.needs_suspension?.must_equal false
+        student.needs_suspension?.must_equal true
       end
 
     end

@@ -2,12 +2,12 @@ iain_pack_record_one:
   start_date: <%= Date.today %>
   due_date: <%= Date.today + 1.week %>
   pack: five_junior_m
-  user: iain
+  user: iain_student
   status: 0
 
-iain_pack_record_two:
+tj_pack_record_one:
   start_date: <%= Date.today %>
   due_date: <%= Date.today + 1.week %>
-  user: iain
-  pack: five_advanced_m
+  pack: five_junior_m
+  user: tj_student
   status: 0
