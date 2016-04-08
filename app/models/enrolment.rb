@@ -7,11 +7,11 @@ class Enrolment < ActiveRecord::Base
   validates_presence_of :subject_id, :date, :user_id, :fees, :ability_level, :grade
 
   def self.validate_offer(user, enrolment)
-    @offer = Offer.find(enrolment.offer_id) if enrolment.offer_id
-    enrolment_fee = Fee.all.where(fee_type: 0).first.amount
+    enrolment_fee = user.enrolments.count > 1 ? 0 : Fee.all.where(fee_type: 0).first.amount
     monthly_fee = Fee.all.where(subject_id: enrolment.subject_id, fee_type: 1).first.amount
-    if @offer
-      new_enrolment_fee = user.enrolments.present? ? 0 : self.apply_enrolment_fee_adjustments(enrolment_fee, @offer.discount_enrolment, @offer.percentage_enrolment)
+    unless enrolment.offer_id.nil?
+      @offer = Offer.find(enrolment.offer_id)
+      new_enrolment_fee = self.apply_enrolment_fee_adjustments(enrolment_fee, @offer.discount_enrolment, @offer.percentage_enrolment)
       new_monthly_fee = self.apply_monthly_fee_adjustments(monthly_fee, @offer.discount_monthly, @offer.percentage_monthly)
       self.calculate_total_enrolment_fees(new_enrolment_fee, new_monthly_fee, enrolment)
     else

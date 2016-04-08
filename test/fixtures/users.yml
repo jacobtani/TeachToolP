@@ -48,3 +48,18 @@ iain_student:
   contact_email: jj@gmail.com
   parent: jj_parent
   school_grade: 4
+
+tj_student:
+  first_name: TJ
+  surname: User
+  role: student
+  postal_address: Parent One Lane
+  city: San Francisco
+  state: CA 
+  zip_code: 02020
+  email: tj@gmail.com
+  password: password123
+  phone_number: 121212454545
+  contact_email: jj@gmail.com
+  parent: jj_parent
+  school_grade: 6

@@ -13,3 +13,10 @@ offer_maths:
   end_date: <%=Date.today + 1.year %>
   subject: maths
   discount_monthly: 40
+
+offer_enrolment_discount:
+  offer_name: 'Enrolment Discount'
+  offer_description: 'Discounted Enrolment Fee'
+  start_date: <%=Date.today %>
+  end_date: <%=Date.today + 1.year %>
+  percentage_enrolment: 20
