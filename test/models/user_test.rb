@@ -14,7 +14,16 @@ class UserTest < ActiveSupport::TestCase
 
     describe "invalid users" do
 
-      it "doesn't allow invalid users to be created - missing " do
+      it "doesn't allow invalid users to be created - missing surname, email, password " do
+        @user = User.create(first_name: 'Test', role: 'student', contact_email: 'jj@gmail.com', postal_address: '5 The Rock', city: 'New York', state: 'NY', zip_code: 5011)
+        @user.valid?.must_equal false
+        assert_equal [:email, :password, :surname], @user.errors.keys
+      end
+
+      it "doesn't allow invalid users to be created - date of birth is after today's date " do
+        @user = User.create(first_name: 'The', surname: 'User', role: 'student', contact_email: 'jj@gmail.com', postal_address: '5 The Rock', city: 'New York', state: 'NY', zip_code: 5011, date_of_birth: '11/09/2016', email: 'myuser@gmail.com', password: 'hahahaha' )
+        @user.valid?.must_equal false
+        assert_equal [:date_of_birth], @user.errors.keys
       end
 
     end
@@ -22,7 +31,8 @@ class UserTest < ActiveSupport::TestCase
     describe "valid users" do 
 
       it "creates valid users to be created" do
-
+        @user = User.create(first_name: 'The', surname: 'User', role: 'student', contact_email: 'jj@gmail.com', postal_address: '5 The Rock', city: 'New York', state: 'NY', zip_code: 5011, date_of_birth: '11/09/1992', email: 'myuser@gmail.com', password: 'hahahaha' )
+        @user.valid?.must_equal true
       end
 
     end
@@ -70,7 +80,7 @@ class UserTest < ActiveSupport::TestCase
 
       it "calculates total fees" do 
         fees = student.calculate_total_fees(student)
-        fees.must_equal 420
+        fees.must_equal 260
       end
 
       it "determines if student needs suspension with 2 dispatched PRs" do 
