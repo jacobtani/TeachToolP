@@ -23,7 +23,7 @@ class UsersControllerTest < ActionController::TestCase
       it "non logged in user can't update a user" do
         patch :update, id: student, user: { user_id: student.id, surname: 'Bro' }
         assert_response 302
-        @controller.instance_variable_get('@user').surname.must_equal 'Awesome'
+        @controller.instance_variable_get('@user').must_equal nil
       end
 
       it "redirect user when trying to delete a user" do
@@ -32,12 +32,18 @@ class UsersControllerTest < ActionController::TestCase
         end
         assert_response :redirect
       end
-     
-     it "should not display users if not logged in" do
+
+      it "should not display users if not logged in" do
         get :index
         assert_response 302
         assert_nil assigns(:users)
      end
+     
+     it "should not display user details if not logged in" do
+       get :show, id: student
+       assert_response 302
+       assert_nil assigns(:user)
+     end     
 
    end
 
@@ -71,6 +77,12 @@ class UsersControllerTest < ActionController::TestCase
        assert_response 302
        assert_nil assigns(:users)
      end
+
+     it "for student should display user details" do
+       get :show, id: student
+       assert_response 200
+       assert_not_nil assigns(:user)
+     end     
 
    end
 
@@ -117,6 +129,12 @@ class UsersControllerTest < ActionController::TestCase
       get :cancel_account, id: student
       @controller.instance_variable_get('@user').status.must_equal 'CANCELLED'
     end
+
+    it "for parent should display user details" do
+       get :show, id: parent
+       assert_response 200
+       assert_not_nil assigns(:user)
+    end     
    
    end
 
@@ -152,6 +170,12 @@ class UsersControllerTest < ActionController::TestCase
        assert_response 200
        assert_not_nil assigns(:users)
      end
+
+     it "for employee should display user details" do
+       get :show, id: employee
+       assert_response 200
+       assert_not_nil assigns(:user)
+     end     
 
    end
 
@@ -204,6 +228,12 @@ class UsersControllerTest < ActionController::TestCase
        assert_response 200
        assert_not_nil assigns(:users)
      end
+
+     it "for admin should display user details" do
+       get :show, id: admin
+       assert_response 200
+       assert_not_nil assigns(:user)
+    end     
 
     it "suspends accounts correctly" do 
       get :suspend, id: student
