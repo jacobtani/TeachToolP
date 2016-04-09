@@ -154,10 +154,26 @@ class PacksControllerTest < ActionController::TestCase
        @controller.instance_variable_get('@pack').description.must_equal'Advanced pack for sixth graders in english'
      end
 
+     it "an admin can add new invalid pack" do
+       post :create, pack: { description: 'Advanced pack for seventh graders in english', subject_id: english.id }
+       assert_includes response.body, "blank"
+       assert_response 200
+       assert_includes response.header['Content-Type'], 'text/html'
+       @controller.instance_variable_get('@pack').description.must_equal'Advanced pack for seventh graders in english'
+     end
+
      it "admin can update a pack" do
        patch :update, id: english_pack, pack: { pack_id: Pack.first, name: '5-- English'  }
        assert_response 302
        @controller.instance_variable_get('@pack').name.must_equal '5-- English'
+     end
+
+     it "admin can update an invalid pack" do
+       patch :update, id: english_pack, pack: { pack_id: Pack.first, name: nil  }
+       assert_includes response.body, "blank"
+       assert_response 200
+       assert_includes response.header['Content-Type'], 'text/html'
+       @controller.instance_variable_get('@pack').name.must_equal nil
      end
 
      it "admin can delete an pack" do

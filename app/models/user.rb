@@ -13,8 +13,9 @@ class User < ActiveRecord::Base
   enum status: [:ACTIVE, :SUSPENDED, :CANCELLED, :CANCELLED_TRIAL]
   validates_uniqueness_of :email, message: "is already taken"
   accepts_nested_attributes_for :enrolments, allow_destroy: true
-  validates_presence_of :first_name, :surname, :role, :status, :postal_address, :city, :zip_code, :email, :password
+  validates_presence_of :first_name, :surname, :role, :status, :postal_address, :city, :zip_code, :email
   validates :date_of_birth, date: { before: Date.today }
+  validates_presence_of :password, :on => :create
 
   def full_name
     "#{first_name} #{surname}"

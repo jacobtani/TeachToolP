@@ -116,7 +116,7 @@ class PackRecordsControllerTest < ActionController::TestCase
        sign_in employee
      end
 
-     it "an employee can add new pack record" do
+     it "an employee can add new valid pack record" do
        post :create, pack_record: { user_id: student.id, start_date: Date.today, due_date: Date.today + 1.week, pack_id: maths_pack.id, status: 'DISPATCHED' }
        assert_response 302
        assert_not_nil assigns (:pack_record)
@@ -124,10 +124,28 @@ class PackRecordsControllerTest < ActionController::TestCase
        @controller.instance_variable_get('@pack_record').pack_id.must_equal maths_pack.id
      end
 
+     it "an employee can add new invalid pack record" do
+       post :create, pack_record: { user_id: student.id, start_date: Date.today, due_date: Date.today + 1.week, pack_id: maths_pack.id, status: nil }
+       assert_includes response.body, "blank"
+       assert_response 200
+       assert_includes response.header['Content-Type'], 'text/html'
+       assert_not_nil assigns (:pack_record)
+       @controller.instance_variable_get('@pack_record').status.must_equal nil
+       @controller.instance_variable_get('@pack_record').pack_id.must_equal maths_pack.id
+     end
+
      it "an employee can update a pack record" do
        patch :update, id: pack_record_tj, pack_record: { id: pack_record_tj.id, status: 'RECEIVED' }
        assert_response 302
        @controller.instance_variable_get('@pack_record').status.must_equal 'RECEIVED'
+     end
+
+     it "an employee can update an invalid pack record" do
+       patch :update, id: pack_record_tj, pack_record: { id: pack_record_tj.id, status: nil }
+       assert_includes response.body, "blank"
+       assert_response 200
+       assert_includes response.header['Content-Type'], 'text/html'
+       @controller.instance_variable_get('@pack_record').status.must_equal nil
      end
 
      it "an employee can delete a pack record" do
@@ -142,6 +160,12 @@ class PackRecordsControllerTest < ActionController::TestCase
        get :index, user_id: employee.id
        assert_response 200
        assert_not_nil assigns(:pack_records)
+     end
+
+     it "sends work missing email correctly" do 
+       get :work_missing_email
+       assert_response 302
+       assert_equal flash[:success], "Work missing emails are sent"
      end
 
    end
@@ -161,7 +185,7 @@ class PackRecordsControllerTest < ActionController::TestCase
        @controller.instance_variable_get('@pack_record').pack_id.must_equal maths_pack.id
      end
 
-     it "for employee, redirect user when update pack record" do
+     it "for admin, can update pack record" do
        patch :update, id: pack_record_tj, pack_record: { id: pack_record_tj.id, status: 'RECEIVED' }
        assert_response 302
        @controller.instance_variable_get('@pack_record').status.must_equal 'RECEIVED'

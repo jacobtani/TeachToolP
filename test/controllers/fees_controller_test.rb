@@ -155,10 +155,27 @@ class FeesControllerTest < ActionController::TestCase
        @controller.instance_variable_get('@fee').fee_type.must_equal 'MONTHLY'
      end
 
+     it "an admin can add new invalid fee" do
+       post :create, fee: { start_date: Date.today, end_date: Date.today + 1.year, amount: 180, fee_type: "MONTHLY", subject_id: english.id }
+       assert_response 200
+       assert_includes response.header['Content-Type'], 'text/html'
+       @controller.instance_variable_get('@fee').amount.must_equal 180
+       @controller.instance_variable_get('@fee').subject.subject_name.must_equal 'English'
+       @controller.instance_variable_get('@fee').fee_type.must_equal 'MONTHLY'
+     end
+
      it "admin can update a fee" do
        patch :update, id: english_fee, fee: { fee_id: Fee.second, amount: 250 }
        assert_response 302
        @controller.instance_variable_get('@fee').amount.must_equal 250
+     end
+
+     it "admin can update with an invalid fee" do
+       patch :update, id: english_fee, fee: { fee_id: Fee.second, end_date: nil }
+       assert_response 200
+       assert_includes response.header['Content-Type'], 'text/html'
+       assert_includes response.body, "blank"
+       @controller.instance_variable_get('@fee').end_date.must_equal nil
      end
 
      it "admin can delete a fee" do

@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: I18n.t("forbidden") unless current_user && current_user.parent?
   end
 
+  def ensure_not_student
+    redirect_to root_path, alert: I18n.t("forbidden") unless current_user && !current_user.student?
+  end
+
   def not_found!
     render file: "errors/not_found.html.erb", status: :not_found
   end

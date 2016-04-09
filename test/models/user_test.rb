@@ -14,7 +14,7 @@ class UserTest < ActiveSupport::TestCase
 
     describe "invalid users" do
 
-      it "doesn't allow invalid users to be created - missing surname, email, password " do
+      it "doesn't allow invalid users to be created - missing surname, password, email " do
         @user = User.create(first_name: 'Test', role: 'student', contact_email: 'jj@gmail.com', postal_address: '5 The Rock', city: 'New York', state: 'NY', zip_code: 5011)
         @user.valid?.must_equal false
         assert_equal [:email, :password, :surname], @user.errors.keys

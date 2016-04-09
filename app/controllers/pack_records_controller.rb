@@ -1,8 +1,8 @@
 class PackRecordsController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :destroy, :show]
+  before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :destroy, :show, :work_missing_email]
   before_action :set_user, only: [:index, :show, :update_total_rewards]
   before_action :set_pack_record, only: [:edit, :update, :show, :destroy]
-  before_action :ensure_privileged, only: [:new, :create, :edit, :update, :destroy]
+  before_action :ensure_privileged, only: [:new, :create, :edit, :update, :destroy, :work_missing_email]
 
   def index
     if current_user.privileged?
@@ -10,10 +10,6 @@ class PackRecordsController < ApplicationController
     else
       @pack_records = @user.pack_records
     end
-  end
-
-  def show
-    @pack_record = @user.pack_records.find(params[:id])
   end
 
   def new

@@ -7,10 +7,6 @@
     @enclosures = Enclosure.all
   end
 
-  def show
-    @enclosure = Enclosure.find(params[:id])
-  end
-
   def new
     @enclosure  = Enclosure.new
   end
@@ -49,7 +45,7 @@
   private
 
     def enclosure_params
-      params.require(:enclosure).permit(:name, :barcode, :due_date, :pack_id, )
+      params.require(:enclosure).permit(:name, :barcode, :due_date, :pack_id, :status)
     end
 
     def set_enclosure

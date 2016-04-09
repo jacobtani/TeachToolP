@@ -2,8 +2,12 @@ require 'tempfile'
 
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy, :edit, :update, :children, :suspend, :cancel_account, :end_trial, :redeem_reward, :missing_payment, :payment_received]
-  before_action :authenticate_user!  
- 
+  before_action :authenticate_user!
+  before_action :ensure_not_student, only: [:new, :create, :edit, :update, :destroy, :index]
+  before_action :ensure_privileged, only: [:enter_placement_pack, :suspend, :nullify_rewards, :payment_received]
+  before_action :ensure_parent, only: [:cancel_account, :end_trial]
+  before_action :ensure_admin, only: [:login_as]
+
   def index
     @users = User.all
   end
@@ -78,7 +82,7 @@ class UsersController < ApplicationController
   def suspend
     @user.update(status: 1)
     UserMailer.suspension_email(@user).deliver_now
-    redirect_to users_path
+    redirect_to root_path
   end
 
   def cancel_account

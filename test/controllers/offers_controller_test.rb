@@ -154,10 +154,27 @@ class OffersControllerTest < ActionController::TestCase
        @controller.instance_variable_get('@offer').discount_monthly.must_equal 30
      end
 
+     it "an admin cannot add new invalid offer" do
+       post :create, offer: { offer_name: 'My Offer', offer_description: 'My Exclusive best offer', start_date: DateTime.now, discount_enrolment: 50, subject_id: english.id }
+       assert_includes response.body, "blank"
+       assert_response 200
+       assert_includes response.header['Content-Type'], 'text/html'
+       @controller.instance_variable_get('@offer').offer_name.must_equal 'My Offer'
+       @controller.instance_variable_get('@offer').discount_enrolment.must_equal 50
+     end
+
      it "admin can update a offer" do
        patch :update, id: english_offer, offer: { offer_id: Offer.first, discount_monthly: 100 }
        assert_response 302
        @controller.instance_variable_get('@offer').discount_monthly.must_equal 100
+     end
+
+    it "admin can update an invalid offer" do
+       patch :update, id: english_offer, offer: { offer_id: Offer.first, end_date: nil }
+       assert_includes response.body, "blank"
+       assert_response 200
+       assert_includes response.header['Content-Type'], 'text/html'
+       @controller.instance_variable_get('@offer').end_date.must_equal nil
      end
 
      it "admin can delete an offer" do

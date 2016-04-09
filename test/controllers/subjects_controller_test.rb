@@ -148,9 +148,18 @@ class SubjectsControllerTest < ActionController::TestCase
      end
 
      it "an admin can add new subject" do
-        post :create, subject: { subject_name: 'Science', lowest_grade_taught: 1, highest_grade_taught: 7, fee_id: fee.id }
+       post :create, subject: { subject_name: 'Science', lowest_grade_taught: 1, highest_grade_taught: 7, fee_id: fee.id }
        assert_response 302
        @controller.instance_variable_get('@subject').subject_name.must_equal 'Science'
+       @controller.instance_variable_get('@subject').lowest_grade_taught.must_equal 1
+       @controller.instance_variable_get('@subject').highest_grade_taught.must_equal 7
+     end
+
+     it "an admin can add new invalid subject" do
+       post :create, subject: { lowest_grade_taught: 1, highest_grade_taught: 7, fee_id: fee.id }
+       assert_response 200
+       assert_includes response.body, "blank"
+       assert_includes response.header['Content-Type'], 'text/html'
        @controller.instance_variable_get('@subject').lowest_grade_taught.must_equal 1
        @controller.instance_variable_get('@subject').highest_grade_taught.must_equal 7
      end
@@ -159,6 +168,14 @@ class SubjectsControllerTest < ActionController::TestCase
        patch :update, id: english, subject: { subject_name: 'Science', lowest_grade_taught: 3, highest_grade_taught: 7 }
        assert_response 302
        @controller.instance_variable_get('@subject').lowest_grade_taught.must_equal 3
+     end
+
+     it "admin can update an invalid subject" do
+       patch :update, id: english, subject: { subject_id: english.id, subject_name: nil }
+       assert_response 200
+       assert_includes response.body, "blank"
+       assert_includes response.header['Content-Type'], 'text/html'
+       @controller.instance_variable_get('@subject').subject_name.must_equal nil
      end
 
      it "admin can delete a subject" do

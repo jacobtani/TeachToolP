@@ -15,7 +15,7 @@ class EnclosuresControllerTest < ActionController::TestCase
     describe "actions by a non logged in user" do
 
       it "doesn't allow enclosure to be created when not logged in" do
-        post :create, enclosure: { name: 'Learn Grammar', enclosure_type: 'FREE', pack_id: english_pack, due_date: Date.today + 1.week }
+        post :create, enclosure: { name: 'Learn Grammar', enclosure_type: 'FREE', pack_id: english_pack.id, barcode: 123455, due_date: Time.now + 1.week, status: 'AVAILABLE' }
         assert_response 302
         @controller.instance_variable_get('@enclosure').must_equal nil
       end
@@ -48,7 +48,7 @@ class EnclosuresControllerTest < ActionController::TestCase
      end
 
      it "for student doesn't allow enclosure to be created" do
-       post :create, enclosure: { name: 'Learn Grammar', enclosure_type: 'FREE', pack_id: english_pack, due_date: Date.today + 1.week }
+       post :create, enclosure: { name: 'Learn Grammar', enclosure_type: 'FREE', pack_id: english_pack.id, barcode: 123455, due_date: Time.now + 1.week, status: 'AVAILABLE' }
        assert_response 302
        @controller.instance_variable_get('@enclosure').must_equal nil
      end
@@ -82,7 +82,7 @@ class EnclosuresControllerTest < ActionController::TestCase
      end
 
      it "for parent doesn't allow enclosure to be created" do
-       post :create, enclosure: { name: 'Learn Grammar', enclosure_type: 'FREE', pack_id: english_pack, due_date: Date.today + 1.week }
+       post :create, enclosure: { name: 'Learn Grammar', enclosure_type: 'FREE', pack_id: english_pack.id, barcode: 123455, due_date: Time.now + 1.week, status: 'AVAILABLE' }
        assert_response 302
        @controller.instance_variable_get('@enclosure').must_equal nil
      end
@@ -116,7 +116,7 @@ class EnclosuresControllerTest < ActionController::TestCase
      end
 
      it "for employee doesn't allow enclosure to be created" do
-       post :create, enclosure: { name: 'Learn Grammar', enclosure_type: 'FREE', pack_id: english_pack, due_date: Date.today + 1.week }
+       post :create, enclosure: { name: 'Learn Grammar', enclosure_type: 'FREE', pack_id: english_pack.id, barcode: 123455, due_date: Time.now + 1.week, status: 'AVAILABLE' }
        assert_response 302
        @controller.instance_variable_get('@enclosure').must_equal nil
      end
@@ -149,17 +149,34 @@ class EnclosuresControllerTest < ActionController::TestCase
        sign_in admin
      end
 
-     it "an admin can add new enclosure" do
-       post :create, enclosure: { name: 'Learn Grammar', enclosure_type: 'FREE', pack_id: english_pack, due_date: Time.now + 1.week }
-       assert_response 200
+     it "an admin can add new valid enclosure" do
+       post :create, enclosure: { name: 'Learn Grammar', enclosure_type: 'FREE', pack_id: english_pack.id, barcode: 123455, due_date: Time.now + 1.week, status: 'AVAILABLE' }
+       assert_response 302
        @controller.instance_variable_get('@enclosure').name.must_equal 'Learn Grammar'
+       @controller.instance_variable_get('@enclosure').enclosure_type.must_equal'FREE'
+     end
+
+     it "an admin can't add new invalid enclosure" do
+       post :create, enclosure: { enclosure_type: 'FREE', pack_id: english_pack.id, barcode: 123455, due_date: Time.now + 1.week, status: 'AVAILABLE' }
+       assert_includes response.body, "blank"
+       assert_response 200
+       assert_includes response.header['Content-Type'], 'text/html'
+       @controller.instance_variable_get('@enclosure').valid?.must_equal false
        @controller.instance_variable_get('@enclosure').enclosure_type.must_equal'FREE'
      end
 
      it "admin can update a enclosure" do
        patch :update, id: maths_enclosure, enclosure: { enclosure_id: maths_enclosure, name: 'Learn Algebra 5th Grade'  }
-       assert_response 200
+       assert_response 302
        @controller.instance_variable_get('@enclosure').name.must_equal 'Learn Algebra 5th Grade'
+     end
+
+     it "admin can update an invalid enclosure" do
+       patch :update, id: maths_enclosure, enclosure: { enclosure_id: maths_enclosure, name: nil  }
+       assert_includes response.body, "blank"
+       assert_response 200
+       assert_includes response.header['Content-Type'], 'text/html'
+       @controller.instance_variable_get('@enclosure').name.must_equal nil
      end
 
      it "admin can delete an enclosure" do

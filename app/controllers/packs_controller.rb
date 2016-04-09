@@ -7,10 +7,6 @@ class PacksController < ApplicationController
     @packs = Pack.all
   end
 
-  def show
-    @pack = Pack.find(params[:id])
-  end
-
   def new
     @pack  = Pack.new
   end

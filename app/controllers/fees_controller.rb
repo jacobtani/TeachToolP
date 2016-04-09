@@ -7,10 +7,6 @@
     @fees = Fee.all
   end
 
-  def show
-    @fee = Fee.find(params[:id])
-  end
-
   def new
     @fee  = Fee.new
   end
