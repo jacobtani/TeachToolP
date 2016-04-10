@@ -2,7 +2,7 @@ require 'tempfile'
 
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :destroy, :edit, :update, :children, :suspend, :cancel_account, :end_trial, :redeem_reward, :missing_payment, :payment_received]
+  before_action :set_user, only: [:show, :destroy, :edit, :update, :children, :suspend, :cancel_account, :end_trial, :redeem_reward, :payment_received]
   before_action :ensure_not_student, only: [:new, :create, :edit, :update, :destroy, :index]
   before_action :ensure_privileged, only: [:enter_placement_pack, :suspend, :nullify_rewards, :payment_received]
   before_action :ensure_parent, only: [:cancel_account, :end_trial]
@@ -27,8 +27,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         build_enrolment_user_data(@user)
-        #UserMailer.registration_confirmation_to_user(@user).deliver_now
-        #AdminMailer.registration_confirmation_to_admin(@user).deliver_now
+        UserMailer.registration_confirmation_to_user(@user).deliver_now
+        AdminMailer.registration_confirmation_to_admin(@user).deliver_now
         flash[:success] = "User was created successfully."
         format.html { redirect_to root_path }
       else

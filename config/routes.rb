@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get '/messages/missing_pack' => "messages#missing_pack", as: :missing_pack
   get '/messages/general_parent_enquiry' => "messages#general_parent_enquiry", as: :general_parent_enquiry
   get '/messages/parent_help_required' => "messages#parent_help_required", as: :parent_help
+  get '/messages/student_help_required' => "messages#student_help_required", as: :student_help
   get '/messages/payment_related_enquiry' => "messages#payment_related_enquiry", as: :payment_related_enquiry
   get '/messages/missing_payment' => "messages#missing_payment", as: :missing_payment
   get '/messages/recommend_us' => "messages#recommend_us", as: :recommend_us

@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
   default from: "tjterminator.dev@gmail.com"
 
   def registration_confirmation_to_user(child)
-    @user = user
+    @user = child
     if @user.role == 'student'
       mail(:to => @user.parent.email, :subject => "Registration Complete for OurCompany")
     else 
@@ -57,12 +57,6 @@ class UserMailer < ApplicationMailer
     @parent = parent
     @message = message
     mail(:to => @message.message_recipient, :subject => "Recommendation of Our Company")
-  end
-
-  def new_enrolment(student, enrolment)
-    @student = student
-    @enrolment = enrolment
-    mail(:to => @student.parent.email, :subject => "New Enrolment")
   end
 
 end

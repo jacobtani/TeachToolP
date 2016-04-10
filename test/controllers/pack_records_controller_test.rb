@@ -178,7 +178,9 @@ class PackRecordsControllerTest < ActionController::TestCase
      end
 
      it "for admin can create pack record " do
-       post :create, pack_record: { user_id: student.id, start_date: Date.today, due_date: Date.today + 1.week, pack_id: maths_pack.id, status: 'DISPATCHED' }
+       assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+         post :create, pack_record: { user_id: student.id, start_date: Date.today, due_date: Date.today + 1.week, pack_id: maths_pack.id, status: 'DISPATCHED' }
+       end
        assert_response 302
        assert_not_nil assigns (:pack_record)
        @controller.instance_variable_get('@pack_record').status.must_equal 'DISPATCHED'

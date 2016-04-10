@@ -1,5 +1,9 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!  
+  before_action :ensure_parent, only: [:parent_help_required, :missing_pack, :general_parent_enquiry, :payment_related_enquiry, :recommend_us]
+  before_action :ensure_student, only: [:student_help_required, :redeem_reward]
+  before_action :ensure_privileged, only: [:send_user_message]
+  before_action :set_user, only: [:missing_payment]
 
   def new
     @message = Message.new
@@ -98,5 +102,11 @@ class MessagesController < ApplicationController
     def message_params
       params.require(:message).permit(:content, :pack_name, :message_recipient_name, :child, :page_number, :question_number, :subject_name, :subject, :message_subject, :message_recipient)
     end
+
+    def set_user
+      @user = User.find params[:user_id] rescue nil
+      return not_found! unless @user
+    end
+
 
 end

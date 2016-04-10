@@ -15,7 +15,7 @@ class UsersControllerTest < ActionController::TestCase
     describe "actions by a non logged in user" do
 
       it "doesn't allow user to be created when not logged in" do
-        post :create, user: { email: 'anita@gmail.com', password: 'iamawesome123', contact_email: 'jj@gmail.com', first_name: 'Anita', surname: 'Student', role: 'student', postal_address: '5 Lilly Lane', city: 'Alabama', state: 'AL', zip_code: 2011  }
+        post :create, user: { email: 'anita@gmail.com', password: 'iamawesome123', contact_email: 'jj@gmail.com', parent_id: parent.id, first_name: 'Anita', surname: 'Student', role: 'student', postal_address: '5 Lilly Lane', city: 'Alabama', state: 'AL', zip_code: 2011  }
         assert_response 302
         @controller.instance_variable_get('@user').must_equal nil
       end
@@ -54,7 +54,7 @@ class UsersControllerTest < ActionController::TestCase
      end
 
      it "for student doesn't allow user to be created" do
-       post :create, user: { email: 'anita@gmail.com', password: 'iamawesome123', contact_email: 'jj@gmail.com', first_name: 'Anita', surname: 'Student', role: 'student', postal_address: '5 Lilly Lane', city: 'Alabama', state: 'AL', zip_code: 2011  }
+       post :create, user: { contact_email: 'jj@gmail.com', parent_id: parent, email: 'anita@gmail.com', password: 'iamawesome123', contact_email: 'jj@gmail.com', first_name: 'Anita', surname: 'Student', role: 'student', postal_address: '5 Lilly Lane', city: 'Alabama', state: 'AL', zip_code: 2011  }
        assert_response 302
        @controller.instance_variable_get('@user').must_equal nil
      end
@@ -94,7 +94,7 @@ class UsersControllerTest < ActionController::TestCase
      end
 
      it "for parent allow student to be created" do
-       post :create, user: { email: 'anita@gmail.com', password: 'iamawesome123', contact_email: 'jj@gmail.com', first_name: 'Anita', surname: 'Student', role: 'student', postal_address: '5 Lilly Lane', city: 'Alabama', state: 'AL', zip_code: 2011  }
+       post :create, user: { contact_email: 'jj@gmail.com', parent_id: parent, email: 'anita@gmail.com', password: 'iamawesome123', contact_email: 'jj@gmail.com', first_name: 'Anita', surname: 'Student', role: 'student', postal_address: '5 Lilly Lane', city: 'Alabama', state: 'AL', zip_code: 2011  }
        assert_response 302
        @controller.instance_variable_get('@user').role.must_equal 'student'
        @controller.instance_variable_get('@user').first_name.must_equal 'Anita'
@@ -146,7 +146,7 @@ class UsersControllerTest < ActionController::TestCase
      end
 
      it "for employee allow user to be created" do
-       post :create, user: { email: 'anita@gmail.com', password: 'iamawesome123', contact_email: 'jj@gmail.com', first_name: 'Anita', surname: 'Student', role: 'student', postal_address: '5 Lilly Lane', city: 'Alabama', state: 'AL', zip_code: 2011  }
+       post :create, user: { contact_email: 'jj@gmail.com', parent_id: parent.id , email: 'anita@gmail.com', password: 'iamawesome123', contact_email: 'jj@gmail.com', first_name: 'Anita', surname: 'Student', role: 'student', postal_address: '5 Lilly Lane', city: 'Alabama', state: 'AL', zip_code: 2011  }
        assert_response 302
        @controller.instance_variable_get('@user').role.must_equal 'student'
        @controller.instance_variable_get('@user').first_name.must_equal 'Anita'
@@ -187,14 +187,14 @@ class UsersControllerTest < ActionController::TestCase
      end
 
      it "for admin allow valid user to be created" do
-       post :create, user: { email: 'anita@gmail.com', password: 'iamawesome123', contact_email: 'jj@gmail.com', first_name: 'Anita', surname: 'Student', role: 'student', postal_address: '5 Lilly Lane', city: 'Alabama', state: 'AL', zip_code: 2011  }
+       post :create, user: { parent_id: parent, email: 'anita@gmail.com', password: 'iamawesome123', contact_email: 'jj@gmail.com', first_name: 'Anita', surname: 'Student', role: 'student', postal_address: '5 Lilly Lane', city: 'Alabama', state: 'AL', zip_code: 2011  }
        assert_response 302
        @controller.instance_variable_get('@user').role.must_equal 'student'
        @controller.instance_variable_get('@user').first_name.must_equal 'Anita'
      end
 
      it "for admin allow invalid user to be created" do
-       post :create, user: { contact_email: 'jj@gmail.com', first_name: 'Anita', surname: 'Student', role: 'student', postal_address: '5 Lilly Lane', city: 'Alabama', state: 'AL', zip_code: 2011  }
+       post :create, user: { contact_email: 'jj@gmail.com', parent_id: parent, first_name: 'Anita', surname: 'Student', role: 'student', postal_address: '5 Lilly Lane', city: 'Alabama', state: 'AL', zip_code: 2011  }
        assert_response 200
        assert_includes response.body, "blank"
        assert_includes response.header['Content-Type'], 'text/html'
@@ -236,7 +236,9 @@ class UsersControllerTest < ActionController::TestCase
     end     
 
     it "suspends accounts correctly" do 
-      get :suspend, id: student
+      assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+        get :suspend, id: student
+      end
       @controller.instance_variable_get('@user').status.must_equal 'SUSPENDED'
     end 
 
