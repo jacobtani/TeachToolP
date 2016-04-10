@@ -146,6 +146,11 @@ class OffersControllerTest < ActionController::TestCase
        sign_in admin 
      end
 
+     it "new offer should render right template" do 
+       get :new
+       assert_template layout: "layouts/application", partial: "_form"
+     end
+
      it "an admin can add new offer" do
        post :create, offer: { offer_name: 'Special English Offer', offer_description: 'Only valid for 2 months', start_date: DateTime.now, end_date: DateTime.now + 2.months, discount_monthly: 30, subject_id: english.id }
        assert_response 302

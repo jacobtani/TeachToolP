@@ -5,14 +5,14 @@ class UserMailer < ApplicationMailer
     @user = child
     if @user.role == 'student'
       mail(:to => @user.parent.email, :subject => "Registration Complete for OurCompany")
-    else 
+    elsif @user.role == 'parent'
       mail(:to => @user.email, :subject => "Registration Complete for OurCompany")
     end
   end
 
   def suspension_email(student)
     @student = student
-    mail(:to => @student.parent.email, :subject => "Suspension of MyCompany Account")
+    mail(:to => @student.parent.email, :subject => "Suspension of OurCompany Account")
   end
 
   def cancel_child_account(student, message)
@@ -24,12 +24,12 @@ class UserMailer < ApplicationMailer
   def new_work_email(student, pack)
     @student = student
     @pack = pack
-    mail(:to => @student.parent.email, :subject => "New work added to MyCompany Account")
+    mail(:to => @student.parent.email, :subject => "New work added to OurCompany Account")
   end
 
   def reward_expiry_reminder(student)
     @student = student
-    mail(:to => @student.parent.email, :subject => "Rewards expiring in 1 month")
+    mail(:to => @student.parent.email, :subject => "Rewards expiring in 1 week")
   end
 
   def work_missing(student, pack_record)
@@ -50,7 +50,7 @@ class UserMailer < ApplicationMailer
 
   def send_enrolment_deletion(student)
     @student = student
-    mail(:to => @student.parent.email, :subject => "Confirmation of Enrolment Deletion")
+    mail(:to => @student.parent.email, :subject => "Confirmation of Enrolment Deletion for OurCompany")
   end
 
   def recommend_us(parent, message)

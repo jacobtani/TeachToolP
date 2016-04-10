@@ -85,11 +85,6 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def cancel_account
-    @user.update(status: 2)
-    @message = Message.new
-  end
-
   def end_trial
     @user.update(status: 3)
     redirect_to parent_summary_path

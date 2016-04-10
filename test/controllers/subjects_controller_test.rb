@@ -147,6 +147,11 @@ class SubjectsControllerTest < ActionController::TestCase
        sign_in admin 
      end
 
+     it "new subject should render right template" do 
+       get :new
+       assert_template layout: "layouts/application", partial: "_form"
+     end
+
      it "an admin can add new subject" do
        post :create, subject: { subject_name: 'Science', lowest_grade_taught: 1, highest_grade_taught: 7, fee_id: fee.id }
        assert_response 302

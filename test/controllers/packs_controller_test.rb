@@ -147,6 +147,11 @@ class PacksControllerTest < ActionController::TestCase
        sign_in admin
      end
 
+     it "new pack should render right template" do 
+       get :new
+       assert_template layout: "layouts/application", partial: "_form"
+     end
+
      it "an admin can add new pack" do
        post :create, pack: { name: '6++', description: 'Advanced pack for sixth graders in english', subject_id: english.id }
        assert_response 302

@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   end
 
   get '/users/:id/suspend' => "users#suspend", as: :suspend_child
-  get '/users/:id/cancel' => "users#cancel_account", as: :cancel_child
   get '/users/:id/end_trial' => "users#end_trial", as: :end_trial
   get '/users/:id/nullify_rewards' => "users#nullify_rewards", as: :nullify_rewards
   get  '/users/:id/login_as' => "users#login_as", as: :login_as_user
@@ -38,6 +37,7 @@ Rails.application.routes.draw do
   get '/messages/recommend_us' => "messages#recommend_us", as: :recommend_us
   get '/messages/redeem_reward' => "messages#redeem_reward", as: :redeem_reward
   get '/messages/send_user_message' => "messages#send_user_message", as: :send_user_message
+  get '/messages/cancel' => "messages#cancel_account", as: :cancel_child
 
   resources :users_admin, :controller => 'users' do 
     resources :enrolments

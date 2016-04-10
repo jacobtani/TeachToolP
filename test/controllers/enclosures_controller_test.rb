@@ -149,6 +149,11 @@ class EnclosuresControllerTest < ActionController::TestCase
        sign_in admin
      end
 
+     it "new enclosure should render right template" do 
+       get :new
+       assert_template layout: "layouts/application", partial: "_form"
+     end
+
      it "an admin can add new valid enclosure" do
        post :create, enclosure: { name: 'Learn Grammar', enclosure_type: 'FREE', pack_id: english_pack.id, barcode: 123455, due_date: Time.now + 1.week, status: 'AVAILABLE' }
        assert_response 302

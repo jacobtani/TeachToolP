@@ -96,6 +96,15 @@ class MessagesControllerTest < ActionController::TestCase
        end
      end
 
+    it "cancel account correctly" do 
+      get :cancel_account, user_id: student
+      @controller.instance_variable_get('@user').status.must_equal 'CANCELLED'
+      @controller.instance_variable_get('@message').must_equal Message.new
+      assert_difference 'ActionMailer::Base.deliveries.size', +2 do
+        post :create, message: { child: student, message_subject: 'TERMINATED ACCOUNT', content: 'Financial Reasons' }, user: { user_id: student.id }
+      end
+    end
+
    end
 
    describe "actions by an employee" do

@@ -146,6 +146,11 @@ class FeesControllerTest < ActionController::TestCase
        sign_in admin 
      end
 
+     it "new fee should render right template" do 
+       get :new
+       assert_template layout: "layouts/application", partial: "_form"
+     end
+
      it "an admin can add new fee" do
        post :create, fee: { fee_name: 'English New', start_date: Date.today, end_date: Date.today + 1.year, amount: 180, fee_type: "MONTHLY", subject_id: english.id }
        assert flash[:success].must_equal 'Fee was created successfully.'

@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   before_action :ensure_parent, only: [:parent_help_required, :missing_pack, :general_parent_enquiry, :payment_related_enquiry, :recommend_us]
   before_action :ensure_student, only: [:student_help_required, :redeem_reward]
   before_action :ensure_privileged, only: [:send_user_message]
-  before_action :set_user, only: [:missing_payment]
+  before_action :set_user, only: [:missing_payment, :cancel_account]
 
   def new
     @message = Message.new
@@ -90,12 +90,19 @@ class MessagesController < ApplicationController
     redirect_to parent_summary_path
   end
 
+  def cancel_account
+    @user.update(status: 2)
+    @message = Message.new
+  end
+
+
   def redeem_reward
     @student = User.find(params[:id])
     AdminMailer.redeem_reward(@student, @student.rewards).deliver_now
     @student.update(rewards: 0, activation_date: Date.today)
     redirect_to parent_summary_path
   end
+
 
   private 
 
@@ -107,6 +114,5 @@ class MessagesController < ApplicationController
       @user = User.find params[:user_id] rescue nil
       return not_found! unless @user
     end
-
 
 end

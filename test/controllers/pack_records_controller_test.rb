@@ -116,6 +116,11 @@ class PackRecordsControllerTest < ActionController::TestCase
        sign_in employee
      end
 
+     it "new pack record should render right template" do 
+       get :new
+       assert_template layout: "layouts/application", partial: "_form"
+     end
+
      it "an employee can add new valid pack record" do
        post :create, pack_record: { user_id: student.id, start_date: Date.today, due_date: Date.today + 1.week, pack_id: maths_pack.id, status: 'DISPATCHED' }
        assert_response 302
@@ -175,6 +180,11 @@ class PackRecordsControllerTest < ActionController::TestCase
      before do
        sign_out employee
        sign_in admin
+     end
+
+     it "new pack record should render right template" do 
+       get :new
+       assert_template layout: "layouts/application", partial: "_form"
      end
 
      it "for admin can create pack record " do

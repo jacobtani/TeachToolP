@@ -124,12 +124,6 @@ class UsersControllerTest < ActionController::TestCase
       @controller.instance_variable_get('@user').status.must_equal 'CANCELLED_TRIAL'
     end    
 
-
-    it "cancel account correctly" do 
-      get :cancel_account, id: student
-      @controller.instance_variable_get('@user').status.must_equal 'CANCELLED'
-    end
-
     it "for parent should display user details" do
        get :show, id: parent
        assert_response 200
@@ -184,6 +178,11 @@ class UsersControllerTest < ActionController::TestCase
      before do
        sign_out employee
        sign_in admin
+     end
+
+     it "new user should render right template" do 
+       get :new
+       assert_template layout: "layouts/application", partial: "_form"
      end
 
      it "for admin allow valid user to be created" do
