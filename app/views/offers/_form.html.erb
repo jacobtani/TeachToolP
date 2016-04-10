@@ -1,10 +1,10 @@
 <div class='container form-scrollable'>
   <%= bootstrap_form_for(@offer, layout: :horizontal)  do |f| %>  
-    <%= f.text_field :offer_name, placeholder: 'Enter offer name ', class: 'form-control', label: 'Name' %>
+    <%= f.text_field :offer_name, placeholder: 'Enter offer name ', class: 'form-control required', label: 'Name' %>
     <%= f.text_field :offer_description, placeholder: 'Enter offer description ', class: 'form-control', label: 'Description' %>
     <%= f.number_field :number_of_subjects, placeholder: 'Enter number of subjects', class: 'form-control', label: 'Number of Subjects' %>
-    <%= f.date_field :start_date, placeholder: 'Enter start date ', class: 'form-control' %>
-    <%= f.date_field :end_date, placeholder: 'Enter end date ', class: 'form-control' %>
+    <%= f.date_field :start_date, placeholder: 'Enter start date ', class: 'form-control required' %>
+    <%= f.date_field :end_date, placeholder: 'Enter end date ', class: 'form-control required' %>
     <%= f.number_field :discount_monthly, placeholder: 'Enter monthly discount amount', class: 'form-control' %>
     <%= f.number_field :discount_enrolment, placeholder: 'Enter enrolment discount amount', class: 'form-control' %>
     <%= f.number_field :percentage_monthly, placeholder: 'Enter monthly percentage discount', class: 'form-control' %>

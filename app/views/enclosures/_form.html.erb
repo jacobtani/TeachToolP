@@ -1,10 +1,11 @@
 <div class='container form-scrollable'>
   <%= bootstrap_form_for(@enclosure, layout: :horizontal)  do |f| %>
-    <%= f.text_field :name, placeholder: 'Enter enclosure name ', class: 'form-control' %>
-    <%= f.select :enclosure_type, Enclosure.enclosure_types.keys.to_a, label: "Type" %>
-    <%= f.number_field :barcode, placeholder: 'Enter barcode', class: 'form-control' %>
-    <%= f.date_field :due_date, placeholder: 'Enter due date', class: 'form-control' %>
-    <%= f.collection_select :pack_id, Pack.all, :id, :name, :prompt => "Select Pack" %>
+    <%= f.text_field :name, placeholder: 'Enter enclosure name ', class: 'form-control required' %>
+    <%= f.select :enclosure_type, Enclosure.enclosure_types.keys.to_a, label: "Type", class: 'required' %>
+    <%= f.select :status, Enclosure.status.keys.to_a, label: "Status", class: 'required' %>
+     <%= f.number_field :barcode, placeholder: 'Enter barcode', class: 'form-control required' %>
+    <%= f.date_field :due_date, placeholder: 'Enter due date', class: 'form-control required' %>
+    <%= f.collection_select :pack_id, Pack.all, :id, :name, :prompt => "Select Pack", class: 'required' %>
     <div class='level-header'>
       <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
         <i class="fa fa-save"></i> Save

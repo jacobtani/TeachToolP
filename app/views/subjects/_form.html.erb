@@ -1,9 +1,9 @@
 <div class='container form-scrollable'>
   <%= bootstrap_form_for(@subject, layout: :horizontal)  do |f| %>
-    <%= f.text_field :subject_name, placeholder: 'Enter subject name ', class: 'form-control', autofocus: true, label: 'Name' %>
-    <%= f.collection_select :fee_id, Fee.all, :id, :fee_name, prompt: 'Select fee', class: 'form-control' %>
-    <%= f.number_field :lowest_grade_taught, placeholder: 'Enter lowest grade taught', class: 'form-control' %>
-    <%= f.number_field :highest_grade_taught, placeholder: 'Enter highest grade taught', class: 'form-control' %>
+    <%= f.text_field :subject_name, placeholder: 'Enter subject name ', class: 'form-control required', autofocus: true, label: 'Name' %>
+    <%= f.collection_select :fee_id, Fee.all, :id, :fee_name, prompt: 'Select fee', class: 'form-control required' %>
+    <%= f.number_field :lowest_grade_taught, placeholder: 'Enter lowest grade taught', class: 'form-control required' %>
+    <%= f.number_field :highest_grade_taught, placeholder: 'Enter highest grade taught', class: 'form-control required' %>
     <div class='level-header'>
       <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
         <i class="fa fa-save"></i> Save

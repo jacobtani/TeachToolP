@@ -17,6 +17,10 @@
 @import "teach_tool/navbar";
 @import "teach_tool/buttons";
 
+label.required:after {
+  content:" *";
+}
+
 .body-style{
   padding-top: 90px;
 }

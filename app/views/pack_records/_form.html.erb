@@ -1,10 +1,10 @@
 <div class='container form-scrollable'>
   <%= bootstrap_form_for(@pack_record, layout: :horizontal)  do |f| %>
-    <%= f.date_field :start_date, placeholder: 'Enter start date ', class: 'form-control' %>
-    <%= f.date_field :due_date, placeholder: 'Enter due date ', class: 'form-control' %>
-    <%= f.collection_select :pack_id, Pack.all, :id, :name, prompt: 'Select pack', class: 'form-control' %>
-    <%= f.select :status, PackRecord.statuses.keys.to_a %>
-    <%= f.collection_select :user_id, User.all.where(role: 'student'), :id, :first_name, prompt: 'Select user', class: 'form-control' %>
+    <%= f.date_field :start_date, placeholder: 'Enter start date ', class: 'form-control required' %>
+    <%= f.date_field :due_date, placeholder: 'Enter due date ', class: 'form-control required' %>
+    <%= f.collection_select :pack_id, Pack.all, :id, :name, prompt: 'Select pack', class: 'form-control required' %>
+    <%= f.select :status, PackRecord.statuses.keys.to_a, class: 'required'%>
+    <%= f.collection_select :user_id, User.all.where(role: 'student'), :id, :first_name, prompt: 'Select user', class: 'form-control required' %>
     <%= f.number_field :accuracy, placeholder: 'Enter accuracy', min: 0, max: 100, class: 'form-control' %>
     <%= f.number_field :presentation, placeholder: 'Enter presentation', min: 0, max: 100, class: 'form-control' %>
     <%= f.number_field :quality, placeholder: 'Enter quality', min: 0, max: 100, class: 'form-control' %>

@@ -1,12 +1,12 @@
 <div class='container form-scrollable'>
   <%= bootstrap_form_for(@pack, layout: :horizontal)  do |f| %>
-    <%= f.text_field :name, placeholder: 'Enter pack name ', class: 'form-control' %>
-    <%= f.text_field :description, placeholder: 'Enter pack description ', class: 'form-control' %>
+    <%= f.text_field :name, placeholder: 'Enter pack name ', class: 'form-control required' %>
+    <%= f.text_field :description, placeholder: 'Enter pack description ', class: 'form-control required' %>
     <%= f.text_field :action_required, placeholder: 'Enter action required ', class: 'form-control' %>
-    <%= f.number_field :number_unassigned, placeholder: 'Enter no of unassigned packs ', class: 'form-control' %>
-    <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select a subject" %>
-    <%= f.select :pack_type, Pack.pack_types.keys.to_a, label: 'Type' %>
-    <%= f.number_field :priority, placeholder: 'Enter priority' %>
+    <%= f.number_field :number_unassigned, placeholder: 'Enter no of unassigned packs ', class: 'form-control required' %>
+    <%= f.collection_select :subject_id, Subject.all, :id, :subject_name, :prompt => "Select a subject", class: 'form-control required' %>
+    <%= f.select :pack_type, Pack.pack_types.keys.to_a, label: 'Type', class: 'required' %>
+    <%= f.number_field :priority, placeholder: 'Enter priority required' %>
     <div class='level-header'>
       <%= button_tag(type: 'submit', class: "btn btn-success", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..."}) do %>
         <i class="fa fa-save"></i> Save
