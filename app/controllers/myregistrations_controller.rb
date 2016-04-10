@@ -1,6 +1,7 @@
 class MyregistrationsController < Devise::RegistrationsController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
-  
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
+
   def index
     @users = User.all
   end
@@ -29,13 +30,11 @@ class MyregistrationsController < Devise::RegistrationsController
   end
   
   def update
-    respond_to do |format|
-      if @user.update_attributes user_params
-        flash[:success] = "User was updated successfully."
-        format.html { redirect_to parent_summary_path }
-      else
-        format.html { render :edit }
-      end
+    if @user.update_attributes user_params
+      flash[:success] = "User was updated successfully."
+      redirect_to root_path
+    else
+        render :edit
     end
   end
 
