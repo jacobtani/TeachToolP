@@ -18,7 +18,7 @@ class UserMailerTest < ActionMailer::TestCase
     assert_not ActionMailer::Base.deliveries.empty? 
     assert_equal ['tjterminator.dev@gmail.com'], email.from
     assert_equal ['jj@gmail.com'], email.to
-    assert_equal 'Registration Complete for OurCompany', email.subject
+    assert_equal 'Registration Complete for iwavez', email.subject
   end
 
  def test_registration_parent
@@ -26,7 +26,7 @@ class UserMailerTest < ActionMailer::TestCase
     assert_not ActionMailer::Base.deliveries.empty? 
     assert_equal ['tjterminator.dev@gmail.com'], email.from
     assert_equal ['jj@gmail.com'], email.to
-    assert_equal 'Registration Complete for OurCompany', email.subject
+    assert_equal 'Registration Complete for iwavez', email.subject
   end
 
   def test_suspension_email
@@ -34,14 +34,14 @@ class UserMailerTest < ActionMailer::TestCase
     assert ActionMailer::Base.deliveries.empty? 
     assert_equal ['tjterminator.dev@gmail.com'], email.from
     assert_equal ['jj@gmail.com'], email.to
-    assert_equal 'Suspension of OurCompany Account', email.subject
+    assert_equal 'Suspension of iwavez Account', email.subject
   end    
 
   def test_new_work_email
     email = UserMailer.new_work_email(student, Pack.last)
     assert_equal ['tjterminator.dev@gmail.com'], email.from
     assert_equal ['jj@gmail.com'], email.to
-    assert_equal 'New work added to OurCompany Account', email.subject
+    assert_equal 'New work added to iwavez Account', email.subject
   end    
 
   def test_reward_expiry_reminder
@@ -56,14 +56,14 @@ class UserMailerTest < ActionMailer::TestCase
     email = UserMailer.work_missing(student, pack_record_iain)
     assert_equal ['tjterminator.dev@gmail.com'], email.from
     assert_equal ['jj@gmail.com'], email.to
-    assert_equal 'Work missing for OurCompany', email.subject
+    assert_equal 'Work missing for iwavez', email.subject
   end    
 
   def test_send_enrolment_deletion
     email = UserMailer.send_enrolment_deletion(student)
     assert_equal ['tjterminator.dev@gmail.com'], email.from
     assert_equal ['jj@gmail.com'], email.to
-    assert_equal 'Confirmation of Enrolment Deletion for OurCompany', email.subject
+    assert_equal 'Confirmation of Enrolment Deletion for iwavez', email.subject
   end    
 
 end

@@ -1,5 +1,5 @@
 ### TeachTool
-`TeachTool` is an online tuition centre application for OurCompany. It will allow users to be able to
+`TeachTool` is an online tuition centre application for iwavez. It will allow users to be able to
 * Add accounts - parent/student
 * View performance of students
 * Be notified on changes
@@ -22,7 +22,7 @@
 
 ### Database
 
-TeachTool uses a PostgreSQL database to build the application. Ensure you have it running on your machine (please refer to: http://www.gotealeaf.com/blog/how-to-install-postgresql-on-a-mac)
+iwavez uses a PostgreSQL database to build the application. Ensure you have it running on your machine (please refer to: http://www.gotealeaf.com/blog/how-to-install-postgresql-on-a-mac)
 
 ### Background Processes
 
