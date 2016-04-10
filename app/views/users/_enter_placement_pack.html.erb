@@ -1,7 +1,7 @@
 <div class = 'container'>
   <%= wicked_pdf_stylesheet_link_tag "pdf.css" %> 
-  <%@student = User.find(params[:student]) %>
-  <h2>Placement Pack Results for <%= @student.full_name (@student.id) %> </h2>
+  <%@user = User.find(params[:student]) %>
+  <h2>Placement Pack Results for <%= @user.full_name%> - <%=@user.id%> %> </h2>
   <h4> Q1: How did the student do from earlier years? </h4>
   <p> <%= 'RATING: ' + params[:q1] + '    COMMENTS: ' + params[:q1comments] %> </p>
   <h4> Q2: How did the student do from the nominal school level? </h4>
@@ -14,4 +14,4 @@
   <p> <%= 'RATING: ' + params[:q5] + '     COMMENTS: ' + params[:q5comments] %> </p>
   <h4> Q6: What are your thoughts about where the student's work should start and progress? </h4>
   <p> <%= 'RATING: ' + params[:q6] + '     COMMENTS: ' + params[:q6comments] %> </p>
-  </div>
+</div>
