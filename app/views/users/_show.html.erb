@@ -43,6 +43,11 @@
     </p>
 
     <p>
+      <strong>Enrolment Fee:</strong>
+      <%= number_to_currency @user.enrolment_fee %>
+    </p>
+
+    <p>
       <strong>Overdue Fees:</strong>
       <%= number_to_currency @user.overdue_fees %>
     </p>

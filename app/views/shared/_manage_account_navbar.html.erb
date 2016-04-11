@@ -16,6 +16,9 @@
           <% if @user.rewards > 0.00 && current_user.role == 'parent' || current_user.role == 'student' %>
             <%= link_to fa_icon("bank", text: 'Redeem Reward'), redeem_reward_path(id: @user.id), class: "btn btn-add", id: 'redeem-reward-link' %>
           <%end%>
+          <% if @user.payment_due < Date.today %>
+            <li><%= link_to fa_icon("stop-circle", text: 'Mark Fees Overdue'), register_fees_overdue_path(id: @user.id), class: "btn btn-add", id: 'mark-overdue-fees-link' if current_user.privileged? %></li>
+          <% end %>  
         </ul>
       </li>
     </div>

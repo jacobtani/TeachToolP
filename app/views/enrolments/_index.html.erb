@@ -13,7 +13,7 @@
         <td> <%= Subject.find(enrolment.subject_id).subject_name %> </td>
         <td> <%= enrolment.grade %> </td>    
         <td> <%= enrolment.ability_level %> </td>    
-        <td> <%= number_to_currency enrolment.fees %> </td>
+        <td> <%= number_to_currency enrolment.monthly_fee %> </td>
       </tr>
     <%end%>
   </table>

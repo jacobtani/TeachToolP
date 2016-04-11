@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408094443) do
+ActiveRecord::Schema.define(version: 20160411095047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 20160408094443) do
     t.integer  "user_id",                       null: false
     t.integer  "grade",                         null: false
     t.integer  "offer_id"
-    t.float    "fees",            default: 0.0
     t.integer  "ability_level",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "monthly_fee",     default: 0.0
   end
 
   add_index "enrolments", ["offer_id"], name: "index_enrolments_on_offer_id", using: :btree
@@ -134,7 +134,6 @@ ActiveRecord::Schema.define(version: 20160408094443) do
     t.string   "username"
     t.string   "password"
     t.string   "phone_number"
-    t.text     "mailing_address"
     t.text     "postal_address",                                         null: false
     t.float    "overdue_fees",           default: 0.0
     t.float    "coupon_value",           default: 0.0
@@ -156,18 +155,18 @@ ActiveRecord::Schema.define(version: 20160408094443) do
     t.integer  "zip_code"
     t.string   "contact_email"
     t.string   "contact_phone"
-    t.string   "contact_mobile"
     t.integer  "status",                 default: 0
     t.datetime "activation_date"
     t.float    "rewards",                default: 0.0
     t.float    "total_fees",             default: 0.0
     t.integer  "school_grade",           default: 1
     t.text     "additional_info"
-    t.float    "account_balance"
-    t.datetime "payment_due",            default: '2016-04-10 00:00:00'
+    t.datetime "payment_due",            default: '2016-04-11 00:00:00'
     t.integer  "referrer_count",         default: 0
     t.string   "referrer_email"
     t.datetime "last_payment_date"
+    t.float    "enrolment_fee",          default: 0.0
+    t.float    "account_balance",        default: 0.0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

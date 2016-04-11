@@ -13,9 +13,9 @@ class Enrolment < ActiveRecord::Base
       @offer = Offer.find(enrolment.offer_id)
       new_enrolment_fee = self.apply_enrolment_fee_adjustments(enrolment_fee, @offer.discount_enrolment, @offer.percentage_enrolment)
       new_monthly_fee = self.apply_monthly_fee_adjustments(monthly_fee, @offer.discount_monthly, @offer.percentage_monthly)
-      self.calculate_total_enrolment_fees(new_enrolment_fee, new_monthly_fee, enrolment)
+      self.calculate_total_enrolment_fees(user, new_enrolment_fee, new_monthly_fee, enrolment)
     else
-      self.calculate_total_enrolment_fees(enrolment_fee, monthly_fee, enrolment)
+      self.calculate_total_enrolment_fees(user, enrolment_fee, monthly_fee, enrolment)
     end
   end
 
@@ -49,10 +49,12 @@ class Enrolment < ActiveRecord::Base
   end
 
   #Calculate total enrolment fees
-  def self.calculate_total_enrolment_fees (enrolment_fee, monthly_fee, enrolment)
-    if enrolment.fees == 0 
-      enrolment.update(fees: enrolment_fee + monthly_fee)
-    end
+  def self.calculate_total_enrolment_fees (user, enrolment_fee, monthly_fee, enrolment)
+    enrolment.update(monthly_fee: monthly_fee)
+    user.update(enrolment_fee: enrolment_fee)
+    total_fees = monthly_fee + enrolment_fee
+    user.account_balance += total_fees
+    user.save
   end
 
 end

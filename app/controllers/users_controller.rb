@@ -2,9 +2,9 @@ require 'tempfile'
 
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :destroy, :edit, :update, :children, :suspend, :cancel_account, :end_trial, :redeem_reward, :payment_received]
+  before_action :set_user, only: [:show, :destroy, :edit, :update, :children, :suspend, :cancel_account, :end_trial, :redeem_reward, :payment_received, :register_fees_overdue]
   before_action :ensure_not_student, only: [:new, :create, :edit, :update, :destroy, :index]
-  before_action :ensure_privileged, only: [:enter_placement_pack, :suspend, :nullify_rewards, :payment_received]
+  before_action :ensure_privileged, only: [:register_fees_overdue, :enter_placement_pack, :suspend, :nullify_rewards, :payment_received]
   before_action :ensure_parent, only: [:cancel_account, :end_trial]
   before_action :ensure_admin, only: [:login_as]
 
@@ -109,6 +109,12 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def register_fees_overdue
+    fees = @user.account_balance
+    @user.update(overdue_fees: fees)
+    total_monthly_fees = @user.total_fees
+    @user.update (account_balance: total_monthly_fees )
+  end
 
   private 
 

@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
   def calculate_subject_enrolment_fees(user)
     subject_enrolment_fees = 0
     if user.role == 'student' && user.enrolments.present?
-      user.enrolments.each {|enrolment| subject_enrolment_fees+= enrolment.fees  }
+      user.enrolments.each {|enrolment| subject_enrolment_fees+= enrolment.monthly_fee  }
     end
     subject_enrolment_fees
   end
