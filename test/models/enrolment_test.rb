@@ -19,7 +19,7 @@ class EnrolmentTest < ActiveSupport::TestCase
     describe "invalid enrolments" do
 
       it "doesn't allow invalid enrolments to be created - missing user id " do
-        @enrolment = Enrolment.create(date: Date.today, fees: 300, grade: 3, subject_id: maths.id, ability_level: 8)
+        @enrolment = Enrolment.create(date: Date.today, monthly_fee: 160, grade: 3, subject_id: maths.id, ability_level: 8)
         @enrolment.valid?.must_equal false
         assert_equal [:user_id], @enrolment.errors.keys
       end
@@ -29,12 +29,12 @@ class EnrolmentTest < ActiveSupport::TestCase
     describe "valid enrolments" do
 
       it "creates valid enrolments to be created" do
-        @enrolment = Enrolment.create(date: Date.today, user_id: student.id, fees: 300, grade: 3, subject_id: english.id, ability_level: 8)
+        @enrolment = Enrolment.create(date: Date.today, user_id: student.id, monthly_fee: 160, grade: 3, subject_id: english.id, ability_level: 8)
         @enrolment.valid?.must_equal true
       end
 
       it "ensures there is one subject and user id enrolment " do
-        @enrolment = Enrolment.create(date: Date.today, user_id: student.id, fees: 300, grade: 3, subject_id: maths.id, ability_level: 8)
+        @enrolment = Enrolment.create(date: Date.today, user_id: student.id, monthly_fee: 300, grade: 3, subject_id: maths.id, ability_level: 8)
         @enrolment.valid?.must_equal false
         assert_equal [:user_id], @enrolment.errors.keys
         assert_equal ["can only enrol once per subject"], @enrolment.errors.messages[:user_id]
@@ -42,48 +42,54 @@ class EnrolmentTest < ActiveSupport::TestCase
 
     end
 
-    describe "applies fees correctly when there are no offers selected" do 
+    describe "applies monthly_fees correctly when there are no offers selected" do 
 
-      it "sets right fees when no offers" do 
+      it "sets right monthly_fees when no offers" do 
         my_enrolment = Enrolment.create(date: Date.today, user_id: tj_student.id, grade: 3, subject_id: english.id, ability_level: 8)
         Enrolment.validate_offer(tj_student, my_enrolment)
-        my_enrolment.fees.must_equal 260
+        my_enrolment.monthly_fees.must_equal 160
+        tj_student.enrolment_fee.must_equal 100
       end
 
-      it "applies a monthly discount correctly to fees for an enrolment when no enrolment fee" do 
+      it "applies a monthly discount correctly to monthly_fees for an enrolment when no enrolment fee" do 
         enrolment = Enrolment.create(date: Date.today, user_id: student.id, grade: 3, subject_id: english.id, ability_level: 8, offer_id: english_offer.id)
         Enrolment.validate_offer(student, enrolment)
-        enrolment.fees.must_equal 120
+        enrolment.monthly_fees.must_equal 120
+        tj_student.enrolment_fee.must_equal 100
       end
 
-      it "applies a monthly discount correctly to fees for an enrolment when no enrolment fee" do 
+      it "applies a monthly discount correctly to monthly_fees for an enrolment when no enrolment fee" do 
         enrolment = Enrolment.create(date: Date.today, user_id: student.id, grade: 3, subject_id: english.id, ability_level: 8, offer_id: english_offer.id)
         Enrolment.validate_offer(student, enrolment)
-        enrolment.fees.must_equal 120
+        enrolment.monthly_fees.must_equal 120
+        student.enrolment_fee.must_equal 100
       end
 
-      it "applies a monthly discount percentage correctly to fees for an enrolment when no enrolment fee" do 
+      it "applies a monthly discount percentage correctly to monthly_fees for an enrolment when no enrolment fee" do 
         enrolment = Enrolment.create(date: Date.today, user_id: student.id, grade: 3, subject_id: english.id, ability_level: 8, offer_id: english_offer_percentage.id)
         Enrolment.validate_offer(student, enrolment)
-        enrolment.fees.must_equal 80
+        enrolment.monthly_fees.must_equal 80
+        student.enrolment_fee.must_equal 100
       end
 
-      it "calculates total fees when no enrolments present for student" do 
+      it "calculates total monthly_fees when no enrolments present for student" do 
         enrolment = Enrolment.create(date: Date.today, user_id: tj_student.id, grade: 6, subject_id: maths.id, ability_level: 2, offer_id: maths_offer.id)
         Enrolment.validate_offer(tj_student, enrolment)
-        enrolment.fees.must_equal 220
+        enrolment.monthly_fees.must_equal 120
+        tj_student.enrolment_fee.must_equal 100
       end
 
       it "calculates enrolment discount percentage correctly" do 
         enrolment = Enrolment.create(date: Date.today, user_id: tj_student.id, grade: 6, subject_id: maths.id, ability_level: 2, offer_id: enrolment_discount_offer.id)
         Enrolment.validate_offer(tj_student, enrolment)
-        enrolment.fees.must_equal 240
+        enrolment.monthly_fees.must_equal 160
+        tj_student.enrolment_fee.must_equal 80
       end
 
       it "calculates enrolment discount amount correctly" do 
         enrolment = Enrolment.create(date: Date.today, user_id: tj_student.id, grade: 6, subject_id: maths.id, ability_level: 2, offer_id: enrolment_discount_amount_offer.id)
         Enrolment.validate_offer(tj_student, enrolment)
-        enrolment.fees.must_equal 210
+        enrolment.monthly_fees.must_equal 210
       end
 
     end

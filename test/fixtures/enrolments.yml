@@ -4,7 +4,7 @@ iain_enrolment_maths:
   date: <%=Date.today%>
   grade: 5
   ability_level: 8
-  fees: 260
+  monthly_fee: 120
 
   
   

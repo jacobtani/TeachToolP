@@ -113,7 +113,7 @@ class UsersController < ApplicationController
     fees = @user.account_balance
     @user.update(overdue_fees: fees)
     total_monthly_fees = @user.total_fees
-    @user.update (account_balance: total_monthly_fees )
+    @user.update(account_balance: total_monthly_fees )
   end
 
   private 
