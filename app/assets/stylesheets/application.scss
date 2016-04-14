@@ -281,3 +281,15 @@ Header with buttons
 h2 {
   color: $teal;
 }
+
+.carousel-inner > .item > img {
+    margin: 0 auto;
+    height: 60%;
+}
+
+.carousel-caption {
+    position: relative;
+    left: auto;
+    right: auto;
+    color: $teal;
+}
