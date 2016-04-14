@@ -171,7 +171,7 @@ class SubjectsControllerTest < ActionController::TestCase
 
      it "admin can update a subject" do
        patch :update, id: english, subject: { subject_name: 'Science', lowest_grade_taught: 3, highest_grade_taught: 7 }
-       assert_response 302
+       assert_response 200
        @controller.instance_variable_get('@subject').lowest_grade_taught.must_equal 3
      end
 

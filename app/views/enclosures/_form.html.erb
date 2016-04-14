@@ -2,7 +2,7 @@
   <%= bootstrap_form_for(@enclosure, layout: :horizontal)  do |f| %>
     <%= f.text_field :name, placeholder: 'Enter enclosure name ', class: 'form-control required' %>
     <%= f.select :enclosure_type, Enclosure.enclosure_types.keys.to_a, label: "Type", class: 'required' %>
-    <%= f.select :status, Enclosure.status.keys.to_a, label: "Status", class: 'required' %>
+    <%= f.select :status, Enclosure.statuses.keys.to_a, label: "Status", class: 'required' %>
      <%= f.number_field :barcode, placeholder: 'Enter barcode', class: 'form-control required' %>
     <%= f.date_field :due_date, placeholder: 'Enter due date', class: 'form-control required' %>
     <%= f.collection_select :pack_id, Pack.all, :id, :name, :prompt => "Select Pack", class: 'required' %>

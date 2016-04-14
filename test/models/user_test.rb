@@ -80,7 +80,7 @@ class UserTest < ActiveSupport::TestCase
 
       it "calculates total fees" do 
         fees = student.calculate_total_fees(student)
-        fees.must_equal 260
+        fees.must_equal 120
       end
 
       it "determines if student needs suspension with 2 dispatched PRs" do 

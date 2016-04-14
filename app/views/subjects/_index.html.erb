@@ -20,7 +20,7 @@
     <% @subjects.sort_by(&:"#{'id'}").each do |subject| %>
       <tr>
         <td> <%= subject.subject_name %> </td>
-        <td> <%= number_to_currency Fee.find(subject.fee_id).amount %> </td>
+        <td> <%= number_to_currency subject.fee.amount %> </td>
         <td> <%= subject.lowest_grade_taught %> </td>
         <td> <%= subject.highest_grade_taught %> </td>
         <% if current_user.role == 'admin' %>
