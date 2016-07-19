@@ -1,8 +1,8 @@
-ruby '2.2.1'
+ruby '2.3.1'
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.6'
 # Use pg as the database for Active Record
 gem 'pg' #-- --with-pg-config=/usr/local/bin/pg_config
 #authentication
@@ -75,6 +75,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'brakeman', :require => false
 end
 
   gem 'pry-rails'
